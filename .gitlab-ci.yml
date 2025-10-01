@@ -1,0 +1,12 @@
+stages:
+  - lint 
+
+lint:
+  stage: lint
+  image : node:20
+  before_script:
+    - npm install --prefix frontend
+    - npm install --prefix backend
+  script: 
+  - npm run lint --prefix frontend
+  - npm run lint --prefix backend
