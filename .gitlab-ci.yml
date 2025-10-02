@@ -3,7 +3,7 @@ stages:
 workflow:
   rules:
     # a merge request
-    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_EVENT_TYPE == "merge_request_ready" '
   # a new tag pushed
     - if: $CI_COMMIT_TAG
   # commit made to the default branch (usually main)
