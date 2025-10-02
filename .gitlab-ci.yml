@@ -8,5 +8,5 @@ lint:
     - npm install --prefix frontend
     - npm install --prefix backend
   script: 
-  - npm run lint --prefix frontend
-  - npm run lint --prefix backend
+  - npm run lint:fix --prefix frontend
+  - npm run lint:fix --prefix backend
