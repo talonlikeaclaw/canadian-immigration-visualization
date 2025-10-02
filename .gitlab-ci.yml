@@ -1,5 +1,13 @@
 stages:
   - lint 
+workflow:
+  rules:
+    # a merge request
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+  # a new tag pushed
+    - if: $CI_COMMIT_TAG
+  # commit made to the default branch (usually main)
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 lint:
   stage: lint

@@ -13,3 +13,8 @@ By combining demographic and linguistic datasets, we will create a narrative tha
 | Central/Anglophone | Toronto |
 |Prairies| Calgary/Edmonton|
 |Pacific/West| Vancouver|
+
+
+## Credits 
+- CI rules -> taken from jaya's repo
+- Eslint rules for backend -> taken from jaya's repo  
