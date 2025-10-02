@@ -18,6 +18,7 @@ export default defineConfig([
       semi: "error",
       quotes: ["error", "single"],
       "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+      'indent': ['error', 2],
     },
   },
 ]);
