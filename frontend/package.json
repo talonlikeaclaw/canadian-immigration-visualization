@@ -1,5 +1,5 @@
 {
-  "name": "immigration-data",
+  "name": "frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "lint:fix": "eslint . --ext .js --fix"
+    "lint:fix": "eslint . .js --fix"
 
   },
   "dependencies": {
