@@ -2,7 +2,7 @@
 
 ## Data
 
-https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/4
+[Choose Data GitLab Issue](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/4)
 
 We will be using the Canadian federal 2021 census data for immigration per city, and the languages spoken in those cites.
 
