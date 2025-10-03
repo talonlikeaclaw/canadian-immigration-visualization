@@ -6,13 +6,14 @@
 
 We will be using the Canadian federal 2021 census data for immigration per city, and the languages spoken in those cites.
 
-
 ## API
 
 - GET route: `/api/city/:city_name` returns city information.
-- GET route: `/api/immigration/:city` returns total immigrants and immigration patterns per city.
-- GET route: `/api/language/:city` returns a truncated list of the amount of people that speak english and french at home, and the top 5 unofficial languages.
-
+- GET route: `/api/immigration/:city` returns all immigration stats for a city (all places of birth × periods), truncated to top 5.
+- GET route: `/api/immigration/:city/period/:period` returns origins for a city in a specific immigration period (2011-2021).
+- GET route: `/api/languages/:city` returns a truncated list of the amount of people that speak english and french at home, and the top 5 unofficial languages.
+- GET route: `/api/city/:city/profile` returns a combined city profile: immigration origins (by period) and languages spoken.
+- GET route: `/api/cities/comparison?cities=Toronto,Montreal` returns side-by-side immigration and language data.
 
 ## Visualizations
 - Our story aims to explore and visualize Canadian immigration patterns to different major cities from one coast to the other.
