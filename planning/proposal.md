@@ -20,9 +20,30 @@ We will be using the Canadian federal 2021 census data for immigration per city,
 - We will create a narrative that illustrates how different immigrant communities cluster in major Canadian cities, depending on where they are located.
 
 ## Views
-``` TBD ```
+### Desktop view
+- Above the fold + scrolling down
+![1st wire frame: above the scroll + scrolling down]('/planning/wireframes/1.png)
+- Continuation of scrolling
+![2nd wire frame: scrolling down]('/planning/wireframes/2.png)
+![3rd wire frame: scrolling down]('/planning/wireframes/3.png)
+![4th wire frame: scrolling down]('/planning/wireframes/4.png)
+![5th wire frame: scrolling down]('/planning/wireframes/5.png)
+![6th wire frame: scrolling down]('/planning/wireframes/6.png)
+
+### Mobile view
+- Above the fold + scrolling down
+![1st wire frame: above the scroll + scrolling down]('/planning/wireframes/mobile1.png)
+- Continuation of scrolling
+![2nd wire frame: scrolling down]('/planning/wireframes/mobile2.png)
+![3rd wire frame: scrolling down]('/planning/wireframes/mobile3.png)
+
 ## Functionality
-``` TBD ```
+- We want the story to be a as contunous and immersive as as possible.
+- The main thing users will have to do is scroll. Using a parallax effect, the information and story will come to the user.
+- There will also be some other small interactions where the users will click on different buttons to display different charts.
+
+- If we have enough time at the end, we'll add more data and a possibility for users to learn more about the different cities, be able to compare cities, and ultimately come up with their own conclusions about the data.
+
 ## Features and Priorities
 | Core features | Add ons |
 | -------- | ------- |
