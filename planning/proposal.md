@@ -39,9 +39,11 @@ We will be using the Canadian federal 2021 census data for immigration per city,
 ![3rd wire frame: scrolling down](wireframes/mobile3.png) <br>
 
 ## Functionality
-- We want the story to be a as contunous and immersive as as possible.
-- The main thing users will have to do is scroll. Using a parallax effect, the information and story will come to the user.
-- There will also be some other small interactions where the users will click on different buttons to display different charts.
+- We want the story to be as continous and immersive as as possible.
+- The main thing users will have to do is **scroll**. Using a parallax effect, the information and story will come to the user.
+- There will also be some other small interactions where the users will **click** on different buttons to display different charts.
+
+- Overall, we want to bring the story to the users, not make the users look for the story.
 
 - If we have enough time at the end, we'll add more data and a possibility for users to learn more about the different cities, be able to compare cities, and ultimately come up with their own conclusions about the data.
 
