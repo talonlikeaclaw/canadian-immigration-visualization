@@ -22,20 +22,21 @@ We will be using the Canadian federal 2021 census data for immigration per city,
 ## Views
 ### Desktop view
 - Above the fold + scrolling down
-![1st wire frame: above the scroll + scrolling down]('/planning/wireframes/1.png)
+![1st wire frame: above the scroll + scrolling down](wireframes/1.png)
+
 - Continuation of scrolling
-![2nd wire frame: scrolling down]('/planning/wireframes/2.png)
-![3rd wire frame: scrolling down]('/planning/wireframes/3.png)
-![4th wire frame: scrolling down]('/planning/wireframes/4.png)
-![5th wire frame: scrolling down]('/planning/wireframes/5.png)
-![6th wire frame: scrolling down]('/planning/wireframes/6.png)
+[2nd wire frame: scrolling down](wireframes/2.png) <br>
+![3rd wire frame: scrolling down](wireframes/3.png) <br>
+![4th wire frame: scrolling down](wireframes/4.png) <br>
+![5th wire frame: scrolling down](wireframes/5.png) <br>
+![6th wire frame: scrolling down](wireframes/6.png) <br>
 
 ### Mobile view
-- Above the fold + scrolling down
-![1st wire frame: above the scroll + scrolling down]('/planning/wireframes/mobile1.png)
-- Continuation of scrolling
-![2nd wire frame: scrolling down]('/planning/wireframes/mobile2.png)
-![3rd wire frame: scrolling down]('/planning/wireframes/mobile3.png)
+- Above the fold + scrolling down 
+![1st wire frame: above the scroll + scrolling down](wireframes/mobile1.png) <br>
+- Continuation of scrolling <br>
+![2nd wire frame: scrolling down](wireframes/mobile2.png) <br>
+![3rd wire frame: scrolling down](wireframes/mobile3.png) <br>
 
 ## Functionality
 - We want the story to be a as contunous and immersive as as possible.
