@@ -17,4 +17,5 @@ By combining demographic and linguistic datasets, we will create a narrative tha
 
 ## Credits 
 - CI rules -> taken from jaya's repo
-- Eslint rules for backend -> taken from jaya's repo  
+- Eslint rules for backend -> taken from jaya's repo
+- [Canada SVG Icon](https://www.svgrepo.com/svg/406564/maple-leaf)
