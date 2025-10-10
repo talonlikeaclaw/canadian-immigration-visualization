@@ -2,8 +2,8 @@ image: node:24-bookworm-slim
 
 workflow:
   rules:
-    # Run on merge requests (when marked "Ready")
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_EVENT_TYPE == "merge_request_ready"'
+    # Run on merge requests
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
     # Run on pushes to main
     - if: '$CI_COMMIT_BRANCH == "main"'
     # Run on pushes to staging
