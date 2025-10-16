@@ -2,11 +2,24 @@ import express from 'express';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  
-  // } else {
-  //   res.status(404).json({ error: 'Router: immigration data not found' });
-  // }
+router.get('/:city', (req, res) => {
+ const { city } = req.params;
+  if (city) {
+    res.json({ message: ` you asked for ${city} city data` });
+  } else {
+    res.status(404).json({ error: 'Router: city not found ' });
+  }
 });
+
+router.get('/:city/period/:period', (req, res) => {
+ const { city } = req.params;
+  if (city) {
+    res.json({ message: ` you asked for ${city} city data` });
+  } else {
+    res.status(404).json({ error: 'Router: city not found ' });
+  }
+});
+
+
 
 export default router;
