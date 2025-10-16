@@ -1,12 +1,13 @@
-import  from './routes/api.js';
-import from './routes/pirate.js';
-
+import city from './routers/city.js';
+import immigration from './routers/immigraton.js';
+import languages from './routers/languages.js'
 import express from 'express';
 const app = express();
 
 app.use('/', );
-app.use('/api', );
-
+app.use('/api/city', city);
+app.use('/api/immigration', immigration);
+app.use('/api/languages', languages)
 
 app.use(express.static('public'));
 
