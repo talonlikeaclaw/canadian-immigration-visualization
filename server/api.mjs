@@ -1,10 +1,10 @@
-import city from './routers/city.js';
-import immigration from './routers/immigraton.js';
-import languages from './routers/languages.js'
+import city from './routers/city.mjs';
+import immigration from './routers/immigration.mjs';
+import languages from './routers/languages.mjs'
 import express from 'express';
 const app = express();
 
-app.use('/', );
+// app.use('/', );
 app.use('/api/city', city);
 app.use('/api/immigration', immigration);
 app.use('/api/languages', languages)
