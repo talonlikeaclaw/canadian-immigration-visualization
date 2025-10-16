@@ -1,18 +1,34 @@
-import city from './routers/city.mjs';
-import immigration from './routers/immigration.mjs';
-import languages from './routers/languages.mjs'
-import cities from './routers/cities.mjs'
+import city from './routers/cityRouter.mjs';
+import immigration from './routers/immigrationRouter.mjs';
+import languages from './routers/languagesRouter.mjs'
+import cities from './routers/citiesRouter.mjs'
 
 import express from 'express';
 const app = express();
 
+// middlwears
+app.use(express.json());
+app.use(express.static('public'));
+
+// api routes
 // app.use('/', );
 app.use('/api/city', city);
 app.use('/api/immigration', immigration);
 app.use('/api/languages', languages)
 app.use('/api/cities', cities)
-app.use(express.static('public'));
 
+// 404 handler
+app.use((req, res, next) => {
+  res.status(404).json({ error: 'Route not found' });
+});
+
+// global handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(err.status || 500).json({ error: err.message || 'Internal Server Error' });
+});
+
+// listen
 app.listen(3000, function() {
   console.log('server start on port http://localhost:3000'); 
 });
