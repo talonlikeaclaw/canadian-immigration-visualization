@@ -5,7 +5,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
   
   } else {
-    res.status(404).json({ error: 'name required' });
+    res.status(404).json({ error: 'Router: languages data not found' });
   }
 });
 
