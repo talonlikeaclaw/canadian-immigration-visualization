@@ -14,12 +14,10 @@ router.get('/:city', (req, res) => {
 router.get('/:city/period/:period', (req, res) => {
  const { city } = req.params;
   if (city) {
-    res.json({ message: ` you asked for ${city} city data` });
+    res.json({ message: ` you asked for ${city} specific period data` });
   } else {
     res.status(404).json({ error: 'Router: city not found ' });
   }
 });
-
-
 
 export default router;

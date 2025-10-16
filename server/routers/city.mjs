@@ -11,7 +11,6 @@ router.get('/:city_name', (req, res) => {
   }
 });
 
-
 router.get('/:city/profile', (req, res) => {
   const { city_name } = req.params;
   if (city_name) {
