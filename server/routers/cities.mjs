@@ -8,7 +8,7 @@ router.get('/comparison', (req, res) => {
     return res.status(400).json({ error: 'Missing cities query parameter' });
   }
   const cityList = cities.split(',');
-  res.json({ message: `Comparison between: ${cityList.join(' & ')}` });
+  res.json({ message: ` you asked for comparison between: ${cityList.join(' & ')}` });
 });
 
 export default router;
