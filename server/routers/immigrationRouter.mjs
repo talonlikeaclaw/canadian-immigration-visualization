@@ -3,7 +3,7 @@ import express from 'express';
 const router = express.Router();
 
 router.get('/:city', (req, res) => {
- const { city } = req.params;
+  const { city } = req.params;
   if (city) {
     res.json({ message: ` you asked for ${city} city immigration data` });
   } else {
@@ -12,7 +12,7 @@ router.get('/:city', (req, res) => {
 });
 
 router.get('/:city/period/:period', (req, res) => {
- const { city, period } = req.params;
+  const { city, period } = req.params;
   if (city) {
     res.json({ message: ` you asked for ${city} specific period ${period} data` });
   } else {

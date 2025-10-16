@@ -11,10 +11,10 @@ router.get('/:city/profile', (req, res) => {
   }
 });
 
-router.get('/:city_name', (req, res) => {
-  const { city_name } = req.params;
-  if (city_name) {
-    res.json({ message: ` you asked for ${city_name} city name` });
+router.get('/:cityName', (req, res) => {
+  const { cityName } = req.params;
+  if (cityName) {
+    res.json({ message: ` you asked for ${cityName} city name` });
   } else {
     res.status(404).json({ error: 'Router: city not found ' });
   }
