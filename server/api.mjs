@@ -26,6 +26,11 @@ app.listen(3000, function() {
 // GET	/api/immigration/:city	=> Immigration stats
 // http://localhost:3000/api/immigration/montreal
 
-// GET	http://localhost:3000/api/immigration/montreal/period/2010-2022 => Immigration by period
-// GET	/api/languages/:city	=> Language stats
+// GET  /api/immigration/:city/period/:period => immigration by period
+// http://localhost:3000/api/immigration/montreal/period/2010-2022 => Immigration by period
+
+// GET	/api/languages/:city	=> Language stats per city
+// http://localhost:3000/api/languages/montreal
+
 // GET	/api/cities/comparison?cities=A,B
+// http://localhost:3000/api/cities/comparison?cities=Calgary,Montreal

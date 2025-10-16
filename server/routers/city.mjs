@@ -20,6 +20,4 @@ router.get('/:city_name', (req, res) => {
   }
 });
 
-
-
 export default router;
