@@ -1,14 +1,5 @@
 import { readFile } from 'fs/promises';
 import { parse } from 'csv-parse/sync';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-// Sources:
-// - https://nodejs.org/api/esm.html#modules-ecmascript-modules
-// - https://bobbyhadz.com/blog/javascript-dirname-is-not-defined-in-es-module-scope
-// This enables our ES Module to safely obtain absolute path to current file.
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 // --- HELPER FUNCTIONS ---
 
@@ -47,8 +38,7 @@ const parseCount = s => {
  * @returns Promise<Array<{ City: string, Country: string, Period: string, Count: number|null }>>
  */
 export async function parseImmigrationCSV() {
-  const fileName = 'immigration_data.csv';
-  const filePath = path.join(__dirname, 'data', fileName);
+  const filePath = './data/immigration_data.csv';
 
   // Line and column indices constants
   const START_LINE = 9;
@@ -162,8 +152,7 @@ export async function parseImmigrationCSV() {
  * @returns Promise<Array<{ City: city, Language: language, Count: count| }>>
  */
 export async function parseLanguageCSV() {
-  const fileName = 'language_data.csv';
-  const filePath = path.join(__dirname, 'data', fileName);
+  const filePath = './data/language_data.csv';
 
   // Line number and inidices constants
   const START_LINE = 10;
