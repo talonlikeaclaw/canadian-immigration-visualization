@@ -10,7 +10,10 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// --- HELPER FUNCTIONS ---
+
 // Regex patterns created by ChatGPT
+
 // For labels like "Halifax (CMA), N.S. i12" or "Saint Pierre and Miquelon 5"
 const cleanLabel = s =>
   (s || '')
@@ -33,6 +36,8 @@ const parseCount = s => {
   const cleaned = s.replace(/[\u00A0\u202F, ]/g, '');
   return /^\d+$/.test(cleaned) ? Number(cleaned) : null;
 };
+
+// --- IMMIGRATION ---
 
 /**
  * Parse and normalize StatsCan immigration CSV rows into typed records.
@@ -92,10 +97,8 @@ export async function parseImmigrationCSV() {
       continue;
     }
 
-    // Clean/normalize the remaining fields
+    // Clean + parse
     const period = cleanImmigrationPeriod(periodRaw);
-
-    // Fancy ChatGPT regex for normalizing "1,234" style numbers
     const count = parseCount(countRaw);
 
     out.push({
@@ -151,6 +154,8 @@ export async function parseImmigrationCSV() {
 ]
 */
 
+// --- LANGUAGE ---
+
 /**
  * Parse and normalize StatsCan language CSV rows into typed records.
  *
@@ -160,14 +165,17 @@ export async function parseLanguageCSV() {
   const fileName = 'language_data.csv';
   const filePath = path.join(__dirname, 'data', fileName);
 
+  // Line number and inidices constants
   const START_LINE = 10;
 
   const GEO_COL = 0;
   const LANGUAGE_COL = 3;
   const COUNT_COL = 5;
 
+  // Load file
   const csv = await readFile(filePath, 'utf-8');
 
+  // Parse into rows
   const rows = parse(csv, {
     skipEmptyLines: true,
     bom: true,
@@ -176,6 +184,7 @@ export async function parseLanguageCSV() {
     relaxColumnCount: true
   });
 
+  // Iterate over the rows, carrying forward the last City
   const out = [];
   let city = '';
 
@@ -186,7 +195,7 @@ export async function parseLanguageCSV() {
     const languageRaw = row[LANGUAGE_COL]?.trim();
     const countRaw = row[COUNT_COL]?.trim();
 
-    // Update sticky city when present; continuation rows inherit it
+    // Update the City if exists
     if (geography) city = cleanLabel(geography);
     if (!city || !languageRaw) continue;
 
