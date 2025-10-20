@@ -12,7 +12,7 @@ const __dirname = path.dirname(__filename);
 
 // Regex patterns created by ChatGPT
 // For labels like "Halifax (CMA), N.S. i12" or "Saint Pierre and Miquelon 5"
-const cleanImmigrationLabel = s =>
+const cleanLabel = s =>
   (s || '')
     // remove a trailing space + 'i' + digits (" i12")
     .replace(/\si\d+$/i, '')
@@ -27,6 +27,13 @@ const cleanImmigrationPeriod = s =>
     .replace(/\s+(\d+)$/, (_, d) => (Number(d) < 10 ? '' : ` ${d}`))
     .trim();
 
+// For parsing number values
+const parseCount = s => {
+  if (!s) return null;
+  const cleaned = s.replace(/[\u00A0\u202F, ]/g, '');
+  return /^\d+$/.test(cleaned) ? Number(cleaned) : null;
+};
+
 /**
  * Parse and normalize StatsCan immigration CSV rows into typed records.
  * ESM path handling: __filename/__dirname are derived from import.meta.url so
@@ -38,12 +45,13 @@ export async function parseImmigrationCSV() {
   const fileName = 'immigration_data.csv';
   const filePath = path.join(__dirname, 'data', fileName);
 
-  // Line and column indices constants for this dataset
-  const startLine = 9;
-  const geographyColumn = 0;
-  const placeOfBirthColumn = 4;
-  const periodColumn = 5;
-  const countColumn = 6;
+  // Line and column indices constants
+  const START_LINE = 9;
+
+  const GEO_COL = 0;
+  const POB_COL = 4;
+  const PERIOD_COL = 5;
+  const COUNT_COL = 6;
 
   // Load file
   const csv = await readFile(filePath, 'utf-8');
@@ -52,7 +60,7 @@ export async function parseImmigrationCSV() {
   const rows = parse(csv, {
     skipEmptyLines: true,
     bom: true,
-    fromLine: startLine,
+    fromLine: START_LINE,
     relaxColumnCount: true
   });
 
@@ -63,31 +71,32 @@ export async function parseImmigrationCSV() {
 
   for (const row of rows) {
     // The StatsCan export is messy, so this is a safe guard (for thee)
-    if (row.length < 2) continue;
+    if (!row || row.length < 2) continue;
 
     // Get the values from the columns
-    const geography = row[geographyColumn]?.trim();
-    const placeOfBirth = row[placeOfBirthColumn]?.trim();
-    const periodRaw = row[periodColumn]?.trim();
-    const countRaw = row[countColumn]?.trim();
+    const geography = row[GEO_COL]?.trim();
+    const placeOfBirth = row[POB_COL]?.trim();
+    const periodRaw = row[PERIOD_COL]?.trim();
+    const countRaw = row[COUNT_COL]?.trim();
 
     // Update the Geography or Place of Birth if exists
-    if (geography) city = cleanImmigrationLabel(geography);
-    if (placeOfBirth) country = cleanImmigrationLabel(placeOfBirth);
+    if (geography) city = cleanLabel(geography);
+    if (placeOfBirth) country = cleanLabel(placeOfBirth);
 
     // Skipping totals for object consistency (we can calculate the total later)
     if (!periodRaw || periodRaw.includes('Total')) continue;
-    if (city === 'Geography' || periodRaw === 'Period of immigration (8)')
+    if (
+      city === 'Geography' ||
+      periodRaw === 'Period of immigration (8)'
+    ) {
       continue;
+    }
 
     // Clean/normalize the remaining fields
     const period = cleanImmigrationPeriod(periodRaw);
 
     // Fancy ChatGPT regex for normalizing "1,234" style numbers
-    const count =
-      countRaw && /^[\d,]+$/.test(countRaw)
-        ? Number(countRaw.replace(/,/g, ''))
-        : null;
+    const count = parseCount(countRaw);
 
     out.push({
       City: city,
@@ -100,10 +109,10 @@ export async function parseImmigrationCSV() {
   return out;
 }
 
-// Testing
-const data = await parseImmigrationCSV();
-console.log(data.slice(14, 25));
-console.log(`Parsed ${data.length} records`);
+// Testing - Immigration
+// const immigrationData = await parseImmigrationCSV();
+// console.log(JSON.stringify(immigrationData.slice(4300, 4540), null, 2));
+// console.log(`Parsed ${immigrationData.length} records`);
 
 // Results
 /*
@@ -137,6 +146,103 @@ console.log(`Parsed ${data.length} records`);
     Country: 'Somalia',
     Period: '2011 to 2015',
     Count: 45
-  }
+  },
+  ...
 ]
+*/
+
+/**
+ * Parse and normalize StatsCan language CSV rows into typed records.
+ *
+ * @returns Promise<Array<{ City: city, Language: language, Count: count| }>>
+ */
+export async function parseLanguageCSV() {
+  const fileName = 'language_data.csv';
+  const filePath = path.join(__dirname, 'data', fileName);
+
+  const START_LINE = 10;
+
+  const GEO_COL = 0;
+  const LANGUAGE_COL = 3;
+  const COUNT_COL = 5;
+
+  const csv = await readFile(filePath, 'utf-8');
+
+  const rows = parse(csv, {
+    skipEmptyLines: true,
+    bom: true,
+    fromLine: START_LINE,
+    relaxQuotes: true,
+    relaxColumnCount: true
+  });
+
+  const out = [];
+  let city = '';
+
+  for (const row of rows) {
+    if (!row || row.length < 2) continue;
+
+    const geography = row[GEO_COL]?.trim();
+    const languageRaw = row[LANGUAGE_COL]?.trim();
+    const countRaw = row[COUNT_COL]?.trim();
+
+    // Update sticky city when present; continuation rows inherit it
+    if (geography) city = cleanLabel(geography);
+    if (!city || !languageRaw) continue;
+
+    // Clean + parse
+    const language = cleanLabel(languageRaw);
+    const count = parseCount(countRaw);
+
+    out.push({ City: city, Language: language, Count: count });
+  }
+
+  return out;
+}
+
+// Testing - Languages
+// const languageData = await parseLanguageCSV();
+// console.log(JSON.stringify(languageData.slice(810, 835), null, 2));
+// console.log(`Parsed ${languageData.length} records`);
+
+/*
+[
+  {
+    "City": "Montréal (CMA), Que.",
+    "Language": "English",
+    "Count": 693340
+  },
+  {
+    "City": "Montréal (CMA), Que.",
+    "Language": "French",
+    "Count": 2708435
+  },
+  {
+    "City": "Montréal (CMA), Que.",
+    "Language": "Indigenous languages",
+    "Count": 215
+  },
+  {
+    "City": "Montréal (CMA), Que.",
+    "Language": "Arabic",
+    "Count": 89800
+  },
+  {
+    "City": "Montréal (CMA), Que.",
+    "Language": "Vietnamese",
+    "Count": 18435
+  },
+  {
+    "City": "Montréal (CMA), Que.",
+    "Language": "Tagalog (Pilipino, Filipino)",
+    "Count": 9245
+  },
+  {
+    "City": "Montréal (CMA), Que.",
+    "Language": "Haitian Creole",
+    "Count": 18580
+  },
+  ...
+]
+Parsed 4321 records
 */
