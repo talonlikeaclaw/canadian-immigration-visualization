@@ -16,19 +16,19 @@ const __dirname = path.dirname(__filename);
 
 // For labels like "Halifax (CMA), N.S. i12" or "Saint Pierre and Miquelon 5"
 const cleanLabel = s =>
-  (s || '')
+  (s || '').
     // remove a trailing space + 'i' + digits (" i12")
-    .replace(/\si\d+$/i, '')
+    replace(/\si\d+$/i, '').
     // remove a trailing space + digits (" ... 7")
-    .replace(/\s+\d+$/g, '')
-    .trim();
+    replace(/\s+\d+$/g, '').
+    trim();
 
 // For period values like "2016 to 2021 7"
 const cleanImmigrationPeriod = s =>
-  (s || '')
-    .replace(/\si\d+$/i, '')
-    .replace(/\s+(\d+)$/, (_, d) => (Number(d) < 10 ? '' : ` ${d}`))
-    .trim();
+  (s || '').
+    replace(/\si\d+$/i, '').
+    replace(/\s+(\d+)$/, (_, d) => Number(d) < 10 ? '' : ` ${d}`).
+    trim();
 
 // For parsing number values
 const parseCount = s => {
