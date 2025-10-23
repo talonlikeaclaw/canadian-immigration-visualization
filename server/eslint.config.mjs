@@ -24,7 +24,6 @@ export default [
     },
     rules: {
       ////////// Possible Errors //////////
-      'no-console': ['warn', { allow: ['error'] }],
       'one-var': ['warn', 'never'],
       'no-undef': 'warn',
       'prefer-const': 'warn',
@@ -35,7 +34,6 @@ export default [
       'no-cond-assign': ['error', 'always'],
       'no-debugger': 'warn',
       'default-case': 'warn',
-      'dot-location': ['warn', 'object'],
       eqeqeq: 'warn',
       'no-alert': 'warn',
       'no-eq-null': 'warn',
