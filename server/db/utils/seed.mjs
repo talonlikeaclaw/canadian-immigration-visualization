@@ -6,7 +6,7 @@
  * - Immigration CSV data -> "immigration" collection
  * - Language CSV data -> "languages" collection
  *
- * Run manually in this directorywith:
+ * Run manually in this directory with:
  *    node seed.mjs
  *
  * Notes:
