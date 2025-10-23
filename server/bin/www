@@ -1,7 +1,25 @@
 #!/usr/bin/env node
+/**
+ * Server Entrypoint
+ * -----------------
+ * Boots the Express application, connects to MongoDB,
+ * and manages graceful shutdown signals.
+ *
+ * Environment Variables:
+ *  - NODE_ENV: Application environment (development | production)
+ *  - PORT: HTTP server port (default: 3000)
+ *  - DB_NAME: MongoDB database name
+ *
+ * Responsibilities:
+ *  1. Load configuration and validate environment.
+ *  2. Connect to MongoDB via db.mjs.
+ *  3. Start the HTTP server.
+ *  4. Handle SIGINT / SIGTERM for graceful shutdown.
+ */
 import app from '../app.mjs';
 import { db } from '../db/db.mjs';
 
+// Environment config setup
 const NODE_ENV = process.env.NODE_ENV ?? 'development';
 const PORT = process.env.PORT || 3000;
 const DB_NAME = process.env.DB_NAME;
@@ -11,6 +29,7 @@ if (!DB_NAME) {
   process.exit(1);
 }
 
+// Database connection
 try {
   await db.connect(DB_NAME);
 } catch (e) {
@@ -18,12 +37,19 @@ try {
   process.exit(1);
 }
 
+// Start HTTP server
 const server = app.listen(PORT, () => {
   console.log(
     `[HTTP] Server (${NODE_ENV}) listening on http://localhost:${PORT}`
   );
 });
 
+/**
+ * Gracefully handles process shutdown signals (SIGINT / SIGTERM).
+ * Ensures the HTTP server and database connections are closed cleanly.
+ *
+ * @param {string} signal - The system signal received.
+ */
 function handleShutdown(signal) {
   console.info(`[SYS] ${signal} received: shutting down...`);
   if (server) {
@@ -44,5 +70,6 @@ function handleShutdown(signal) {
   }
 }
 
+// Signal handlers
 process.on('SIGTERM', () => handleShutdown('SIGTERM'));
 process.on('SIGINT', () => handleShutdown('SIGINT'));
