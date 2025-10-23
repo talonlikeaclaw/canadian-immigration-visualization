@@ -30,12 +30,6 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).json({ error: err.message || 'Internal Server Error' });
 });
 
-// listen
-app.listen(3000, function() {
-  // eslint-disable-next-line
-  console.log('server start on port http://localhost:3000'); 
-});
-
 // GET  /api/city/:city_name=> City info
 // http://localhost:3000/api/city/Toronto
 
@@ -53,3 +47,5 @@ app.listen(3000, function() {
 
 // GET /api/cities/comparison?cities=A,B
 // http://localhost:3000/api/cities/comparison?cities=Calgary,Montreal
+
+export default app;
