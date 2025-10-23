@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --timeout 10000"
+    "start": "node bin/www",
+    "dev": "node --watch bin/www",
+    "test": "mocha --timeout 10000",
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "",
