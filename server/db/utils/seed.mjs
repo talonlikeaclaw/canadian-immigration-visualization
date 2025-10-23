@@ -3,18 +3,18 @@
  * -----------------------
  * Seeds MongoDB collections with data parsed from CSV files.
  *
- * - Immigration CSV data → "immigration" collection
- * - Language CSV data → "languages" collection
+ * - Immigration CSV data -> "immigration" collection
+ * - Language CSV data -> "languages" collection
  *
- * Run manually with:
+ * Run manually in this directorywith:
  *    node seed.mjs
  *
  * Notes:
  * - Requires .env file with DB_NAME and ATLAS_URI_DEV/PROD.
- *   - Temporarily move your .env to the db/ directory when running.
+ *   - Temporarily move your .env to the db/utils directory when running.
  * - Clears each collection before inserting fresh data.
  */
-import { db } from './db.mjs';
+import { db } from '../db.mjs';
 import { parseImmigrationCSV, parseLanguageCSV } from './csvParser.mjs';
 
 const DB_NAME = process.env.DB_NAME;
