@@ -27,7 +27,9 @@ app.use((req, res, next) => {
 // eslint-disable-next-line
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(err.status || 500).json({ error: err.message || 'Internal Server Error' });
+  res
+    .status(err.status || 500)
+    .json({ error: err.message || 'Internal Server Error' });
 });
 
 // GET  /api/city/:city_name=> City info
