@@ -8,7 +8,7 @@ const app = express();
 
 // middlwears
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static('../client/dist'));
 
 // api routes
 // app.use('/', );
