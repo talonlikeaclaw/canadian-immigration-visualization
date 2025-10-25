@@ -111,6 +111,14 @@ function groupByCountry(allEntries) {
       results[country] = count;
     }
   });
+
+  const sortedResults = Object.fromEntries(
+    Object.entries(results).sort((a, b) => {
+      if(a[1] < b[1]) return 1;
+      if(a[1] > b[1]) return -1;
+      if(a[1] === b[1]) return 0;
+    })
+  );
   
-  return results;
+  return sortedResults;
 }
