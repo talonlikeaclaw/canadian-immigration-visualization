@@ -49,10 +49,10 @@ router.get('/:city', async (req, res) => {
   }
 });
 
-router.get('/:city/period/:period', (req, res) => {
-  const { city, period } = req.params;
+router.get('/:city/period/:start/:end', (req, res) => {
+  const { city, start, end } = req.params;
   if (city) {
-    res.json({ message: ` you asked for ${city} specific period ${period} data` });
+    res.json({ message: ` you asked for ${city} specific period ${start} - ${end} data` });
   } else {
     res.status(404).json({ error: 'Router: city not found ' });
   }
