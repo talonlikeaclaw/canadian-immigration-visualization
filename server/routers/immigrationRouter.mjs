@@ -49,12 +49,51 @@ router.get('/:city', async (req, res) => {
   }
 });
 
-router.get('/:city/period/:start/:end', (req, res) => {
-  const { city, start, end } = req.params;
-  if (city) {
-    res.json({ message: ` you asked for ${city} specific period ${start} - ${end} data` });
-  } else {
-    res.status(404).json({ error: 'Router: city not found ' });
+router.get('/:city/period/:start/:end', async (req, res) => {
+  try {
+    const { city, start, end } = req.params;
+    
+    await db.setCollection('immigration');
+    
+    // must match period format in DB
+    const periodString = `${start} to ${end}`;
+    
+    const results = await db.find({
+      City: new RegExp(city, 'i'),
+      Period: periodString,
+      Count: { $gt: 0 }
+    });
+    
+    // Early return
+    if (results.length === 0) {
+      return res.status(404).json({
+        'error': `No immigration data found for ${city} in period ${periodString}.`,
+        'hint': 'If the city name contains accents, please include them.'
+      });
+    }
+    
+    const allEntriesArray = [];
+    let totalImmigrants = 0;
+    // Add all entries, only with country and count info
+    results.forEach(result => {
+      const country = result.Country;
+      const count = result.Count;
+
+      const newObj = {
+        country: country,
+        count: count
+      };
+
+      allEntriesArray.push(newObj);
+      totalImmigrants += count;
+    });
+
+    const endData = groupByCountry(allEntriesArray);
+
+    res.json({city, period: periodString, totalImmigrants, countries: endData});
+  } catch(e) {
+    console.error(`Error from immigration router: /:city/period/:start/:end`, e);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
