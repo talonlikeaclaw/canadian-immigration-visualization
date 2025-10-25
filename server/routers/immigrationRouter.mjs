@@ -41,6 +41,7 @@ router.get('/:city', async (req, res) => {
     res.json({data: endData});
 
   } catch(e) {
+    console.error(`Error from immigration router: api/:city`, e);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
