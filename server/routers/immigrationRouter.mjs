@@ -11,7 +11,8 @@ router.get('/:city', async (req, res) => {
     const { city } = req.params;
 
     // if contains anything other than letters
-    if (city.match(/[^a-zA-Z]/g)) {
+    // Regex pattern created by ChatGPT to allow accents on letters
+    if (city.match(/[^a-zA-Z\u00C0-\u017F]/g)) {
       return res.status(400).json({'error': 'Invalid city name'});
     }
 
@@ -67,7 +68,8 @@ router.get('/:city/period/:end', async (req, res) => {
     const { city, end } = req.params;
 
     // if contains anything other than letters
-    if (city.match(/[^a-zA-Z]/g)) {
+    // Regex pattern created by ChatGPT to allow accents on letters
+    if (city.match(/[^a-zA-Z\u00C0-\u017F]/g)) {
       return res.status(400).json({'error': 'Invalid city name'});
     }
 
@@ -128,7 +130,8 @@ router.get('/:city/period/:start/:end', async (req, res) => {
     const { city, start, end } = req.params;
 
     // if contains anything other than letters
-    if (city.match(/[^a-zA-Z]/g)) {
+    // Regex pattern created by ChatGPT to allow accents on letters
+    if (city.match(/[^a-zA-Z\u00C0-\u017F]/g)) {
       return res.status(400).json({'error': 'Invalid city name'});
     }
 
