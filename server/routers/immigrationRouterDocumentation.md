@@ -83,3 +83,66 @@ Response `200 OK`
 	}
 }
 ```
+<br>
+<br>
+
+## `GET` `/:city/period/:end`
+<hr>
+
+### Valid city name and end date
+
+| Key | Value |
+|:-----|:---:|
+| :city | calgary |
+| :end | 1980 |
+
+Response `200 OK`
+```
+{
+    "city": "calgary",
+    "period": "Before 1980",
+    "totalImmigrants": 52545,
+    "countries": {
+        "United Kingdom": 11060,
+        "Germany": 3385,
+        "United States of America": 3365,
+        "India": 2700,
+        "Italy": 2535,
+        "Philippines": 2210,
+        "Netherlands": 2070,
+        "Hong Kong": 2040,
+        "China": 2000,
+		...
+    }
+}
+```
+
+
+### Invalid city name
+
+| Key | Value |
+|:-----|:---:|
+| :city | abc 123 |
+| :end | 1980 |
+
+Response `400 Bad request`
+```
+{
+    "error": "Invalid city name"
+}
+```
+
+### Invalid end date
+
+| Key | Value |
+|:-----|:---:|
+| :city | calgary |
+| :end | 2009 |
+
+Response `400 Bad request`
+```
+{
+    "error": "Invalid ending year"
+}
+```
+
