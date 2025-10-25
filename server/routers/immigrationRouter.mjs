@@ -84,3 +84,33 @@ router.get('/:city/summary', (req, res) => {
 });
 
 export default router;
+
+// Helper functions
+
+/**
+ * Groups all entries by country name and adds their count together
+ * @param {Array} allEntries i.e [
+ * {country: 'country1', count: 10},
+ * {country: 'country1', count: 26},
+ * {country: 'country2', count: 10}]
+ * @returns Object with countries as keys and total counts as values
+ * i.e. {country1: 36, country2: 10}
+ */
+function groupByCountry(allEntries) {
+  const results = {};
+  
+  allEntries.forEach(entry => {
+    const country = entry.country;
+    const count = entry.count;
+    
+    // If key with country name already exists, add to its existant count
+    if (results[country]) {
+      results[country] += count;
+    } else {
+      // if new country, create new object key/value pair
+      results[country] = count;
+    }
+  });
+  
+  return results;
+}
