@@ -26,9 +26,9 @@ router.get('/:cityName', async (req, res) => {
     }
     // return json format langauges for cityName
     res.json(languages);
-
-  } catch (error) {
-    console.error('language router: api/langguages error: ', error);
+      
+  }catch(error){
+    console.error('language router: api/langguages error: ',  error);
     //res.status(500).json({error: 'Internal server error'});
     next(error);
   }
