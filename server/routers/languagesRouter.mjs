@@ -9,7 +9,7 @@ router.get('/:cityName', async (req, res) => {
     let { cityName } = req.params;
     if (!cityName) {
       return res.status(404).json({ error: 'language router : city name is required!' });
-    } else if (cityName.toLowerCase() === 'montreal') {
+    }else if (cityName.toLowerCase() === 'montreal') {
       // a quixk fix for now => in db montreal has accent
       cityName = 'Montréal';
     }
