@@ -32,6 +32,7 @@ router.get('/:city', async (req, res) => {
     }
 
     const allEntriesArray = [];
+    let totalImmigrants = 0;
     // Add all entries, only with country and count info
     results.forEach(result => {
       const country = result.Country;
@@ -43,11 +44,12 @@ router.get('/:city', async (req, res) => {
       };
 
       allEntriesArray.push(newObj);
+      totalImmigrants += count;
     });
 
     const endData = groupByCountry(allEntriesArray);
 
-    res.json({data: endData});
+    res.json({city, period: 'before 1980 to 2021', totalImmigrants, countries: endData});
 
   } catch(e) {
     console.error(`Error from immigration router: api/:city`, e);
