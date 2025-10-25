@@ -1,14 +1,27 @@
 import express from 'express';
+import {db} from '../db/db.mjs'
 
 const router = express.Router();
 
-router.get('/:cityName', (req, res) => {
-  const { cityName } = req.params;
-  if (cityName) {
-    res.json({ message: ` you asked language for ${cityName} city` });
-  } else {
-    res.status(404).json({ error: 'Router: city not found ' });
+// GET /api/languages/:cityName
+router.get('/:cityName', async (req, res) => {
+  try {
+    const { cityName } = req.params;
+    if (!cityName) {
+      res.status(404).json({ error: 'language router : city name is required!' });
+    }
+    // connect to db
+    await db.setCollection('languages');
+
+    // $regex => pattern based match instead of exact matching  
+    // i => ignore case
+    const languages = await db
+    .find({ City : { $regex: 'montreal', $options: 'i'}});
+
+    if (!languages.length){
+      return res.status(404).json({ error: `no language data found for ${cityName}`});
+    }
+    
   }
-});
 
 export default router;
