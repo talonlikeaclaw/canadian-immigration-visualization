@@ -4,11 +4,19 @@ import { db } from '../db/db.mjs';
 const router = express.Router();
 
 /**
+ * Catches any bad requests with missing city name
+ */
+router.get('/', (req, res) => {
+  return res.status(400).json({'error': 'Missing city name.'});
+});
+
+/**
  * Get total immigration count for given city (all periods, all countries)
  */
 router.get('/:city', async (req, res) => {
   try {
     const { city } = req.params;
+
     await db.setCollection('immigration');
 
     // get all entries with a count higher than 0
