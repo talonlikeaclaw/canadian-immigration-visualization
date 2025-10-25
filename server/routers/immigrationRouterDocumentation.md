@@ -1,14 +1,15 @@
 # /api/immigration
 
-## GET 
+## `GET` `/:city`
+<hr>
 
-`GET` `/:city` \
+### Valid city name
 
 | Key | Value |
 |:-----|:---:|
 | :city | halifax |
 
-Response
+Response `200 OK`
 ```
 {
     "city": "halifax",
@@ -31,13 +32,26 @@ Response
 }
 ```
 
-`GET` `/:city` \
+### Invalid city name (has digits, white space, special characters)
+
+| Key | Value |
+|:-----|:---:|
+| :city | abc 123 |
+
+Response `400 Bad request`
+```
+{
+    "error": "Invalid city name"
+}
+```
+
+### City name that exists, but accent is ommited
 
 | Key | Value |
 |:-----|:---:|
 | :city | montreal |
 
-Response
+Response `404 Not found`
 ```
 {
     "error": "City not found or immigration data non existant.",
@@ -45,13 +59,13 @@ Response
 }
 ```
 
-`GET` `/:city` \
+### City name that exists, accent NOT ommited
 
 | Key | Value |
 |:-----|:---:|
 | :city | montréal |
 
-Response
+Response `200 OK`
 ```
 {
     "city": "montréal",
