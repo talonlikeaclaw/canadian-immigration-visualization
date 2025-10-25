@@ -19,7 +19,10 @@ router.get('/:city', async (req, res) => {
 
     // early return
     if (results.length === 0) {
-      return res.status(404).json({'error' : 'City not found or immigration data non existant.'});
+      return res.status(404).json({
+        'error' : 'City not found or immigration data non existant.',
+        'hint': 'If the city name contains accents, please include them in your request.'
+      });
     }
 
     const allEntriesArray = [];
