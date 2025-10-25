@@ -31,7 +31,7 @@ describe('GET /api/languages/:cityName', () => {
     it('should return languages for montréal when "montreal"', async () => {
 
         const res = await request(app)
-            .get('api/languages/montreal');
+            .get('/api/languages/montreal');
 
         // assert    
         // expect('content-Type', /json/)
@@ -39,7 +39,7 @@ describe('GET /api/languages/:cityName', () => {
         expect(res.body).to.be.an('array');
         expect(res.body.length).to.be.greaterThan(0);
         expect(res.body[0]).to.have.property('City');
-        expect(res.body[0]).to.have.property('Languages');
+        expect(res.body[0]).to.have.property('Language');
         expect(findStub.calledOnce).to.be.true;
         expect(setCollectionStub.calledWith('languages')).to.be.true;
     });
