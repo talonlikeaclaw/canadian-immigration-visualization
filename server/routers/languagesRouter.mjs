@@ -6,9 +6,13 @@ const router = express.Router();
 // GET /api/languages/:cityName
 router.get('/:cityName', async (req, res) => {
   try {
-    const { cityName } = req.params;
+    let { cityName } = req.params;
     if (!cityName) {
       res.status(404).json({ error: 'language router : city name is required!' });
+    }
+    // a quixk fix for now => in db montreal has accent
+    else if (cityName.toLowerCase() === 'montreal') {
+      cityName = 'Montréal';
     }
     // connect to db
     await db.setCollection('languages');
@@ -25,7 +29,7 @@ router.get('/:cityName', async (req, res) => {
     res.json(languages);
     
   }catch(error){
-    console.error('[API] /langguages error: ',  error);
+    console.error('language router: api/langguages error: ',  error);
     res.status(500).json({error: 'Internal server error'});
   }
 });
