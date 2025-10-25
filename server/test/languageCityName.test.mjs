@@ -4,7 +4,7 @@ import sinon from 'sinon';
 import app from '../app.mjs';
 import { db } from '../db/db.mjs'
 
-const expext = chai.expect;
+const expect = chai.expect;
 
 describe('GET /api/languages/:cityName', () => {
     let setCollectionStub, findStub;
