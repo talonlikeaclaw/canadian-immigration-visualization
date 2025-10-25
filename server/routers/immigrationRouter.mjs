@@ -57,9 +57,28 @@ router.get('/:city', async (req, res) => {
   }
 });
 
+
+/**
+ * Gets immigration numbers from ALL countries but only for given time period
+ */
 router.get('/:city/period/:start/:end', async (req, res) => {
   try {
     const { city, start, end } = req.params;
+
+    // if contains anything other than letters
+    if (city.match(/[^a-zA-Z]/g)) {
+      return res.status(400).json({'error': 'Invalid city name'});
+    }
+
+    // if contains anything other than digits
+    if (start.match(/[^\d]/g)) {
+      return res.status(400).json({'error': 'Invalid starting year'});
+    }
+
+    // if contains anything other than digits
+    if (end.match(/[^\d]/g)) {
+      return res.status(400).json({'error': 'Invalid ending year'});
+    }
     
     await db.setCollection('immigration');
     
