@@ -91,9 +91,6 @@ router.get('/:city/period/:start/:end', async (req, res) => {
     if (start === '1980') {
       periodString = 'Before 1980';
     }
-
-    console.log(periodString);
-    
     
     const results = await db.find({
       City: new RegExp(city, 'i'),
