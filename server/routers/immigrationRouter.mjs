@@ -30,7 +30,7 @@ router.get('/:city/country/:country', (req, res) => {
 });
 
 // Limit to top 5-10 countries that have immigrated the most to given city
-router.get('/:city/topCountries', (req, res) => {
+router.get('/:city/top-countries', (req, res) => {
   const { city } = req.params;
   if (city) {
     res.json({ message: `Most countries emmigrating towards ${city} city` });
