@@ -145,4 +145,99 @@ Response `400 Bad request`
     "error": "Invalid ending year"
 }
 ```
+<br>
+<br>
 
+## `GET` `/:city/period/:start/:end`
+<hr>
+
+### Valid city name, start and end years
+
+| Key | Value |
+|:-----|:---:|
+| :city | calgary |
+| :start | 2001 |
+| :end | 2005 |
+
+Response `200 OK`
+```
+{
+    "city": "vancouver",
+    "period": "2001 to 2005",
+    "totalImmigrants": 120750,
+    "countries": {
+        "China": 35735,
+        "India": 17315,
+        "Philippines": 13165,
+        "Korea, South": 7625,
+        "Iran": 5985,
+        "Taiwan": 4445,
+		...
+    }
+}
+```
+
+
+### Incorrect starting year
+In this case, incorrect does not mean that the year does not exist, but that it's not part of the start time period in the DB.
+
+| Key | Value |
+|:-----|:---:|
+| :city | calgary |
+| :start | 2004 |
+| :end | 2005 |
+
+Response `404 Not found`
+```
+{
+    "error": "No immigration data found for vancouver in period 2004 to 2005.",
+    "hint": "If the city name contains accents, please include them."
+}
+```
+
+### Incorrect ending year
+In this case, incorrect does not mean that the year does not exist, but that it's not part of the end time period in the DB.
+
+| Key | Value |
+|:-----|:---:|
+| :city | calgary |
+| :start | 2011 |
+| :end | 2016 |
+
+Response `404 Not found`
+```
+{
+    "error": "No immigration data found for vancouver in period 2011 to 2016.",
+    "hint": "If the city name contains accents, please include them."
+}
+```
+
+### Invalid starting year
+
+| Key | Value |
+|:-----|:---:|
+| :city | calgary |
+| :start | abc |
+| :end | 2005 |
+
+Response `400 Bad request`
+```
+{
+    "error": "Invalid starting year"
+}
+```
+
+### Invalid ending year
+
+| Key | Value |
+|:-----|:---:|
+| :city | calgary |
+| :start | 2011 |
+| :end | 2016 |
+
+Response `400 Bad request`
+```
+{
+    "error": "Invalid ending year"
+}
+```
