@@ -16,7 +16,7 @@ router.get('/:cityName', async (req, res) => {
     // $regex => pattern based match instead of exact matching  
     // i => ignore case
     const languages = await db
-    .find({ City : { $regex: 'montreal', $options: 'i'}});
+    .find({ City : { $regex: cityName, $options: 'i'}});
 
     if (!languages.length){
       return res.status(404).json({ error: `no language data found for ${cityName}`});
