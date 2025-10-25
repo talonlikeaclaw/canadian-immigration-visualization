@@ -6,7 +6,7 @@ const router = express.Router();
 /**
  * Get total immigration count for given city (all periods, all countries)
  */
-router.get('/:city', async (req, res) => {
+router.get('/:city', async (req, res, next) => {
   try {
     const { city } = req.params;
 
@@ -53,8 +53,7 @@ router.get('/:city', async (req, res) => {
     res.json({city, period: 'before 1980 to 2021', totalImmigrants, countries: endData});
 
   } catch(e) {
-    console.error(`Error from immigration router: api/:city`, e);
-    res.status(500).json({ error: 'Internal server error' });
+    next(e);
   }
 });
 
@@ -63,7 +62,7 @@ router.get('/:city', async (req, res) => {
  * This route was created because one of the possible periods is 'Before 1980', 
  * so there's no specific start year.
  */
-router.get('/:city/period/:end', async (req, res) => {
+router.get('/:city/period/:end', async (req, res, next) => {
   try {
     const { city, end } = req.params;
 
@@ -117,15 +116,14 @@ router.get('/:city/period/:end', async (req, res) => {
 
     res.json({city, period: periodString, totalImmigrants, countries: endData});
   } catch(e) {
-    console.error(`Error from immigration router: /:city/period/:start/:end`, e);
-    res.status(500).json({ error: 'Internal server error' });
+    next(e);
   }
 });
 
 /**
  * Gets immigration numbers from ALL countries but only for given time period
  */
-router.get('/:city/period/:start/:end', async (req, res) => {
+router.get('/:city/period/:start/:end', async (req, res, next) => {
   try {
     const { city, start, end } = req.params;
 
@@ -191,8 +189,7 @@ router.get('/:city/period/:start/:end', async (req, res) => {
 
     res.json({city, period: periodString, totalImmigrants, countries: endData});
   } catch(e) {
-    console.error(`Error from immigration router: /:city/period/:start/:end`, e);
-    res.status(500).json({ error: 'Internal server error' });
+    next(e);
   }
 });
 
