@@ -1,13 +1,47 @@
 import express from 'express';
+import { db } from '../db/db.mjs';
 
 const router = express.Router();
 
-router.get('/:city', (req, res) => {
-  const { city } = req.params;
-  if (city) {
-    res.json({ message: ` you asked for ${city} city immigration data` });
-  } else {
-    res.status(404).json({ error: 'Router: city not found ' });
+/**
+ * Get total immigration count for given city (all periods, all countries)
+ */
+router.get('/:city', async (req, res) => {
+  try {
+    const { city } = req.params;
+    await db.setCollection('immigration');
+
+    // get all entries with a count higher than 0
+    const results = await db.find({ 
+      City: new RegExp(city, 'i'),
+      Count: { $gt: 0 }
+    });
+
+    // early return
+    if (results.length === 0) {
+      return res.status(404).json({'error' : 'City not found or immigration data non existant.'});
+    }
+
+    const allEntriesArray = [];
+    // Add all entries, only with country and count info
+    results.forEach(result => {
+      const country = result.Country;
+      const count = result.Count;
+
+      const newObj = {
+        country: country,
+        count: count
+      };
+
+      allEntriesArray.push(newObj);
+    });
+
+    const endData = groupByCountry(allEntriesArray);
+
+    res.json({data: endData});
+
+  } catch(e) {
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
