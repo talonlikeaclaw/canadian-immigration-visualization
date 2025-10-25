@@ -75,15 +75,25 @@ router.get('/:city/period/:start/:end', async (req, res) => {
       return res.status(400).json({'error': 'Invalid starting year'});
     }
 
-    // if contains anything other than digits
-    if (end.match(/[^\d]/g)) {
-      return res.status(400).json({'error': 'Invalid ending year'});
+    // only check ending year if start year is NOT 1980
+    if (start !== '1980') {
+      // if contains anything other than digits
+      if (end.match(/[^\d]/g)) {
+        return res.status(400).json({'error': 'Invalid ending year'});
+      }
     }
     
     await db.setCollection('immigration');
     
     // must match period format in DB
-    const periodString = `${start} to ${end}`;
+    let periodString = `${start} to ${end}`;
+
+    if (start === '1980') {
+      periodString = 'Before 1980';
+    }
+
+    console.log(periodString);
+    
     
     const results = await db.find({
       City: new RegExp(city, 'i'),
