@@ -57,6 +57,68 @@ router.get('/:city', async (req, res) => {
   }
 });
 
+/**
+ * Gets immigration numbers from ALL countries but only for the end date and before
+ * This route was created because one of the possible periods is 'Before 1980', 
+ * so there's no specific start year.
+ */
+router.get('/:city/period/:end', async (req, res) => {
+  try {
+    const { city, end } = req.params;
+
+    // if contains anything other than letters
+    if (city.match(/[^a-zA-Z]/g)) {
+      return res.status(400).json({'error': 'Invalid city name'});
+    }
+
+    // if contains anything other than digits
+    if (end.match(/[^\d]/g)) {
+      return res.status(400).json({'error': 'Invalid ending year'});
+    }
+    
+    await db.setCollection('immigration');
+    
+    // must match period format in DB
+    const periodString = `Before ${end}`;
+
+    const results = await db.find({
+      City: new RegExp(city, 'i'),
+      Period: periodString,
+      Count: { $gt: 0 }
+    });
+    
+    // Early return
+    if (results.length === 0) {
+      return res.status(404).json({
+        'error': `No immigration data found for ${city} in period ${periodString}.`,
+        'hint': 'If the city name contains accents, please include them.'
+      });
+    }
+    
+    const allEntriesArray = [];
+    let totalImmigrants = 0;
+    // Add all entries, only with country and count info
+    results.forEach(result => {
+      const country = result.Country;
+      const count = result.Count;
+
+      const newObj = {
+        country: country,
+        count: count
+      };
+
+      allEntriesArray.push(newObj);
+      totalImmigrants += count;
+    });
+
+    const endData = groupByCountry(allEntriesArray);
+
+    res.json({city, period: periodString, totalImmigrants, countries: endData});
+  } catch(e) {
+    console.error(`Error from immigration router: /:city/period/:start/:end`, e);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 /**
  * Gets immigration numbers from ALL countries but only for given time period
