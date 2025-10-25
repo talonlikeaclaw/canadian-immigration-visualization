@@ -21,7 +21,13 @@ router.get('/:cityName', async (req, res) => {
     if (!languages.length){
       return res.status(404).json({ error: `no language data found for ${cityName}`});
     }
+    // return json format langauges for cityName
+    res.json(languages);
     
+  }catch(error){
+    console.error('[API] /langguages error: ',  error);
+    res.status(500).json({error: 'Internal server error'});
   }
+});
 
 export default router;
