@@ -30,7 +30,7 @@ router.get('/:cityName', async (req, res, next) => {
   }catch(error){
     console.error('language router: api/langguages error: ',  error);
     //res.status(500).json({error: 'Internal server error'});
-    // eslint-disable-next-line 
+     
     next(error);
   }
 });
