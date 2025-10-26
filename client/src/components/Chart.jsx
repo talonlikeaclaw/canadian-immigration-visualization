@@ -21,6 +21,10 @@ function Chart({city}){
       catch();
   }, [city]);
 
+  // Only have 10 countries
+  countries.length = 10;
+  counts.length = 10;
+
   const data = [
     {
       y: countries,
@@ -38,7 +42,7 @@ function Chart({city}){
   ];
 
   const layout = {
-    title: 'Immigration patterns to Halifax',
+    title: `Immigration patterns to ${city}`,
     xaxis: {
       title: 'Count',
     },
@@ -51,7 +55,7 @@ function Chart({city}){
     <Plot
       data={data}
       layout={layout}
-      style={{ width: '100%', height: '100%' }}
+      style={{ width: '100%'}}
     />
   );
 }
