@@ -92,4 +92,16 @@ line8
     const result = await csvParser.parseImmigrationCSV(readFileStub);
     expect(result).to.be.an('array').that.is.empty;
   });
+
+  it('should return an empty array for an empty language CSV', async () => {
+    readFileStub.resolves('');
+    const result = await csvParser.parseLanguageCSV(readFileStub);
+    expect(result).to.be.an('array').that.is.empty;
+  });
+
+  it('should return an empty array for a malformed language CSV', async () => {
+    readFileStub.resolves(',,,');
+    const result = await csvParser.parseLanguageCSV(readFileStub);
+    expect(result).to.be.an('array').that.is.empty;
+  });
 });
