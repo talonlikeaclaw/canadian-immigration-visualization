@@ -69,5 +69,5 @@ test-server:
   script:
     - cd server 
     - echo "DB_NAME=webproject" > .env
-    - echo "ATLAS_URI_DEV"=mongodb://fake-uri" >> .env
+    - echo "ATLAS_URI_DEV=mongodb://fake-uri" >> .env
     - npm test
