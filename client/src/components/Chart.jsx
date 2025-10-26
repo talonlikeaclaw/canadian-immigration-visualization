@@ -1,0 +1,40 @@
+// import React from 'react';
+import Plot from 'react-plotly.js';
+
+function Chart(){
+  const data = [
+    {
+      y: ['United Kingdom', 'India', 'China'],
+      x: [6590, 4815, 3745],
+      type: 'bar',
+      orientation: 'h',
+      marker: {
+        color: 'rgba(55,128,191,0.6)',
+        line: {
+          color: 'rgba(55,128,191,1.0)',
+          width: 1,
+        },
+      },
+    },
+  ];
+
+  const layout = {
+    title: 'Immigration patterns to Halifax',
+    xaxis: {
+      title: 'Count',
+    },
+    yaxis: {
+      title: 'County',
+    },
+  };
+
+  return (
+    <Plot
+      data={data}
+      layout={layout}
+      style={{ width: '100%', height: '100%' }}
+    />
+  );
+}
+
+export default Chart;
