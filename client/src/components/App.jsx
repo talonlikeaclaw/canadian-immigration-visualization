@@ -8,7 +8,7 @@ function App() {
   function onChangehandler(e){
     setCity(e.target.value);
   }
-  
+
   return (
     <>
       <HeroSection></HeroSection>
@@ -20,7 +20,7 @@ function App() {
           <option value="Toronto">Toronto</option>
           <option value="Calgary">Calgary</option>
           <option value="Edmonton">Edmonton</option>
-          <option value="Vacouver">Vacouver</option>
+          <option value="Vancouver">Vancouver</option>
         </select>
       </section>
       <Chart city={city}></Chart>
