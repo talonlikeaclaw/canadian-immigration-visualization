@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import { seedDatabase } from '../db/utils/seed.mjs';
 
-describe('seedDatabase', () => {
+describe('Database Seeding Script', () => {
   let dbStub;
   let parseImmigrationCSVStub;
   let parseLanguageCSVStub;
@@ -60,5 +60,29 @@ describe('seedDatabase', () => {
   afterEach(() => {
     sinon.restore();
     delete process.env.DB_NAME;
+  });
+
+  it('should seed both collections successfully', async () => {
+    // Inject testing dependencies
+    await seedDatabase({
+      db: dbStub,
+      parseImmigrationCSV: parseImmigrationCSVStub,
+      parseLanguageCSV: parseLanguageCSVStub
+    });
+
+    // DB connection and collection setup
+    expect(dbStub.connect.calledOnceWith('test_db')).to.be.true;
+    expect(dbStub.setCollection.calledWith('immigration')).to.be.true;
+    expect(dbStub.setCollection.calledWith('languages')).to.be.true;
+
+    // Parsing and seeding
+    expect(parseImmigrationCSVStub.calledOnce).to.be.true;
+    expect(parseLanguageCSVStub.calledOnce).to.be.true;
+    expect(dbStub.dropAndSeed.calledTwice).to.be.true;
+
+    // Cleanup and logs
+    expect(dbStub.close.calledOnce).to.be.true;
+    expect(consoleLogStub.calledWith('[DB] Starting database seeding...'))
+      .to.be.true;
   });
 });
