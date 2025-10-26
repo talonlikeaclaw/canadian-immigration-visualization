@@ -57,5 +57,17 @@ build-client:
 
 test-server:
   stage: test
+  # these environment variables make sure tests run
+  # in "test mode" without connecting to mongo
+  # Our unit tests use stubs/mocks instead of real MongoDB access
+  variables:
+    NODE_ENV: test
+    # dummy db
+    DB_NAME: webproject
+    # fake mongo uri to prevent real db donnection
+    ATLAS_URI_DEV: mongodb://fake-uri
   script:
-    - cd server && npm test
+    - cd server 
+    - echo "DB_NAME=webproject" > .env
+    - echo "ATLAS_URI_DEV=mongodb://fake-uri" >> .env
+    - npm test
