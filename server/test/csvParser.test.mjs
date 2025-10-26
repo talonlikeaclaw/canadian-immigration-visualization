@@ -80,4 +80,16 @@ line8
       Count: 10
     });
   });
+
+  it('should return an empty array for an empty immigration CSV', async () => {
+    readFileStub.resolves('');
+    const result = await csvParser.parseImmigrationCSV(readFileStub);
+    expect(result).to.be.an('array').that.is.empty;
+  });
+
+  it('should return an empty array for a malformed immigration CSV', async () => {
+    readFileStub.resolves(',,,');
+    const result = await csvParser.parseImmigrationCSV(readFileStub);
+    expect(result).to.be.an('array').that.is.empty;
+  });
 });
