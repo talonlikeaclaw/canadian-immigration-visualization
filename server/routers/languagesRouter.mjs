@@ -4,7 +4,7 @@ import { db } from '../db/db.mjs';
 const router = express.Router();
 
 // GET /api/languages/:cityName
-router.get('/:cityName', async (req, res) => {
+router.get('/:cityName', async (req, res, next) => {
   try {
     let { cityName } = req.params;
     if (!cityName) {
