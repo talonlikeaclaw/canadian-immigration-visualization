@@ -85,4 +85,19 @@ describe('Database Seeding Script', () => {
     expect(consoleLogStub.calledWith('[DB] Starting database seeding...'))
       .to.be.true;
   });
+
+  it('should throw an error if DB_NAME is missing', async () => {
+    // Delete DB_NAME environment variable for test
+    delete process.env.DB_NAME;
+
+    try {
+      await seedDatabase({
+        db: dbStub,
+        parseImmigrationCSV: parseImmigrationCSVStub,
+        parseLanguageCSV: parseLanguageCSVStub
+      });
+    } catch (e) {
+      expect(e.message).to.equal('Missing DB_NAME environment variable.');
+    }
+  });
 });
