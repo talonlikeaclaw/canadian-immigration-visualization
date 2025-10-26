@@ -130,4 +130,23 @@ describe('Database Seeding Script', () => {
       expect(error.message).to.equal('parse fail');
     }
   });
+
+  it('should call functions in correct order', async () => {
+    await seedDatabase({
+      db: dbStub,
+      parseImmigrationCSV: parseImmigrationCSVStub,
+      parseLanguageCSV: parseLanguageCSVStub
+    });
+
+    sinon.assert.callOrder(
+      dbStub.connect,
+      dbStub.setCollection,
+      parseImmigrationCSVStub,
+      dbStub.dropAndSeed,
+      dbStub.setCollection,
+      parseLanguageCSVStub,
+      dbStub.dropAndSeed,
+      dbStub.close,
+    );
+  });
 });
