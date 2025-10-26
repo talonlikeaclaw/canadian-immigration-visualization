@@ -1,11 +1,31 @@
 // import React from 'react';
+import { useEffect, useState } from 'react';
 import Plot from 'react-plotly.js';
 
 function Chart(){
+  const [countries, setCountries] = useState([]);
+  const [counts, setCounts] = useState([]);
+
+  useEffect(()=>{
+    fetch('/api/immigration/halifax').
+      then(reponse =>{
+        if (reponse.ok) {
+          return reponse.json();
+        }
+        console.error('Network response was not ok.');
+      }).
+      then(data =>{
+        const info = data.countries;
+        setCountries(Object.keys(info));
+        setCounts(Object.values(info));
+      }).
+      catch();
+  }, []);
+
   const data = [
     {
-      y: ['United Kingdom', 'India', 'China'],
-      x: [6590, 4815, 3745],
+      y: countries,
+      x: counts,
       type: 'bar',
       orientation: 'h',
       marker: {
