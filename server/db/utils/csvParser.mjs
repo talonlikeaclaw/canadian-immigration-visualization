@@ -37,7 +37,7 @@ const parseCount = s => {
  *
  * @returns Promise<Array<{ City: string, Country: string, Period: string, Count: number|null }>>
  */
-export async function parseImmigrationCSV() {
+export async function parseImmigrationCSV(reader = readFile) {
   const filePath = './data/immigration_data.csv';
 
   // Line and column indices constants
@@ -49,7 +49,7 @@ export async function parseImmigrationCSV() {
   const COUNT_COL = 6;
 
   // Load file
-  const csv = await readFile(filePath, 'utf-8');
+  const csv = await reader(filePath, 'utf-8');
 
   // Parse into rows
   const rows = parse(csv, {
@@ -151,7 +151,7 @@ export async function parseImmigrationCSV() {
  *
  * @returns Promise<Array<{ City: city, Language: language, Count: count| }>>
  */
-export async function parseLanguageCSV() {
+export async function parseLanguageCSV(reader = readFile) {
   const filePath = './data/language_data.csv';
 
   // Line number and inidices constants
@@ -160,9 +160,9 @@ export async function parseLanguageCSV() {
   const GEO_COL = 0;
   const LANGUAGE_COL = 3;
   const COUNT_COL = 5;
-
+;
   // Load file
-  const csv = await readFile(filePath, 'utf-8');
+  const csv = await reader(filePath, 'utf-8');
 
   // Parse into rows
   const rows = parse(csv, {
