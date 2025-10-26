@@ -24,6 +24,7 @@ import { parseImmigrationCSV, parseLanguageCSV } from './csvParser.mjs';
  * to allow dependency injection. Without these, I would get
  * "TypeError: ES Modules cannot be stubbed" because I was trying to
  * stub the read-only bindings imported into this module.
+ * Source: https://stackoverflow.com/questions/75843342/typeerror-es-modules-cannot-be-stubbed-sinon
  *
  * @param {Object} deps - Optional dependencies for dependency injection/testing.
  * @param {Object} deps.db - Database manager.
