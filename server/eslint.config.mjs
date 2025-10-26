@@ -63,5 +63,13 @@ export default [
       semi: 'error',
       'semi-spacing': 'error'
     }
+  },
+  {
+    files: ['test/**/*.js', 'test/**/*.mjs'],
+    languageOptions: {
+      globals: {
+        ...globals.mocha
+      }
+    }
   }
 ];
