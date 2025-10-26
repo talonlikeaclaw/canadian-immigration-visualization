@@ -67,4 +67,7 @@ test-server:
     # fake mongo uri to prevent real db donnection
     ATLAS_URI_DEV: mongodb://fake-uri
   script:
-    - cd server && npm test
+    - cd server 
+    - echo "DB_NAME"="webproject" > .env
+    - echo "ATLAS_URI_DEV"=mongodb://fake-uri" >> .env
+    - npm test
