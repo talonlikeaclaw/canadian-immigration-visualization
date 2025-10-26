@@ -162,7 +162,7 @@ export async function parseLanguageCSV(reader = readFile) {
   const GEO_COL = 0;
   const LANGUAGE_COL = 3;
   const COUNT_COL = 5;
-;
+  ;
   // Load file
   const csv = await reader(filePath, 'utf-8');
 
