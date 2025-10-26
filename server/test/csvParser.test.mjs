@@ -48,4 +48,36 @@ line8
       Count: 555
     });
   });
+
+  it('should correctly parse simplified language CSV rows', async () => {
+    const fakeCSV = `
+line1
+line2
+line3
+line4
+line5
+line6
+line7
+line8
+"Geography","Gender","Age","Language spoken","First official language spoken (5) 5","2021"
+"Corner Brook (CA), N.L. i3","Total","Total","English","Total","28810"
+,,,"French",,"35"
+,,,"Arabic",,"10"
+`.trim();
+
+    readFileStub.resolves(fakeCSV);
+
+    // Validate process
+    const result = await csvParser.parseLanguageCSV(readFileStub);
+    expect(readFileStub.calledOnce).to.be.true;
+    expect(result).to.have.length(3);
+
+    // Validate result
+    const last = result[result.length - 1];
+    expect(last).to.deep.equal({
+      City: 'Corner Brook (CA), N.L.',
+      Language: 'Arabic',
+      Count: 10
+    });
+  });
 });
