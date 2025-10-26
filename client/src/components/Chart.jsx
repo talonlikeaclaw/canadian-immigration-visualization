@@ -1,13 +1,12 @@
-// import React from 'react';
 import { useEffect, useState } from 'react';
 import Plot from 'react-plotly.js';
 
-function Chart(){
+function Chart({city}){
   const [countries, setCountries] = useState([]);
   const [counts, setCounts] = useState([]);
 
   useEffect(()=>{
-    fetch('/api/immigration/halifax').
+    fetch(`/api/immigration/${city}`).
       then(reponse =>{
         if (reponse.ok) {
           return reponse.json();
@@ -20,7 +19,7 @@ function Chart(){
         setCounts(Object.values(info));
       }).
       catch();
-  }, []);
+  }, [city]);
 
   const data = [
     {
