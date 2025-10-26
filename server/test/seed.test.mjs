@@ -100,4 +100,34 @@ describe('Database Seeding Script', () => {
       expect(e.message).to.equal('Missing DB_NAME environment variable.');
     }
   });
+
+  it('should log an error if immigration parsing fails', async () => {
+    parseImmigrationCSVStub.rejects(new Error('parse fail'));
+
+    try {
+      await seedDatabase({
+        db: dbStub,
+        parseImmigrationCSV: parseImmigrationCSVStub,
+        parseLanguageCSV: parseLanguageCSVStub
+      });
+    } catch (error) {
+      expect(consoleErrorStub.called).to.be.true;
+      expect(error.message).to.equal('parse fail');
+    }
+  });
+
+  it('should log an error if language parsing fails', async () => {
+    parseLanguageCSVStub.rejects(new Error('parse fail'));
+
+    try {
+      await seedDatabase({
+        db: dbStub,
+        parseImmigrationCSV: parseImmigrationCSVStub,
+        parseLanguageCSV: parseLanguageCSVStub
+      });
+    } catch (error) {
+      expect(consoleErrorStub.called).to.be.true;
+      expect(error.message).to.equal('parse fail');
+    }
+  });
 });
