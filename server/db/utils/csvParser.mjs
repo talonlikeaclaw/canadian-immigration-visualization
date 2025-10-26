@@ -35,6 +35,7 @@ const parseCount = s => {
  * ESM path handling: __filename/__dirname are derived from import.meta.url so
  * the CSV can be located regardless of process working directory.
  *
+ * @param {Function} reader - Optional file reader function used for testing.
  * @returns Promise<Array<{ City: string, Country: string, Period: string, Count: number|null }>>
  */
 export async function parseImmigrationCSV(reader = readFile) {
@@ -149,6 +150,7 @@ export async function parseImmigrationCSV(reader = readFile) {
 /**
  * Parse and normalize StatsCan language CSV rows into typed records.
  *
+ * @param {Function} reader - Optional file reader function used for testing.
  * @returns Promise<Array<{ City: city, Language: language, Count: count| }>>
  */
 export async function parseLanguageCSV(reader = readFile) {
