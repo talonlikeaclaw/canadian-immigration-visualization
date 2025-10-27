@@ -101,6 +101,14 @@ describe('GET /api/cities/comparison?cities=City1,City2', () => {
     expect(setCollectionStub.calledTwice).to.be.true;
     expect(findStub.calledCount(4)).to.be.true;
   });
+
+  it('should return 404 for an unknown city', async () => {
+    const res = await request(app)
+      .get('/api/cities/comparison?cities=Montréal,unknownCity');
+
+    expect(res.statusCode).to.equal(404);
+    expect(res.body).to.have.property('error');
+  });
 });
 
 // Expected Output:
