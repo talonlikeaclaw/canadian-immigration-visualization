@@ -103,3 +103,49 @@ describe('GET /api/cities/comparison?cities=City1,City2', () => {
 
   it.skip('should return ', () => {});
 });
+
+// Expected Output:
+// [
+//   {
+//     "city": "Montréal",
+//     "immigration": [
+//       {
+//         City: 'Montréal (CMA), Que.',
+//         Country: 'Somalia',
+//         Period: '1980 to 1990',
+//         Count: 25
+//       },
+//       {
+//         City: 'Montréal (CMA), Que.',
+//         Country: 'Somalia',
+//         Period: '1991 to 2000',
+//         Count: 255
+//       }     
+//     ],
+//     "languages": [
+//       { "Language": "French", "Count": 2708435 },
+//       { "Language": "English", "Count": 693340 }
+//     ]
+//   },
+//   {
+//     "city": "Vancouver",
+//     "immigration": [
+//       {
+//         City: 'Vancouver',
+//         Country: 'Somalia',
+//         Period: '1980 to 1990',
+//         Count: 10
+//       },
+//       {
+//         City: 'Vancouver',
+//         Country: 'Somalia',
+//         Period: '1991 to 2000',
+//         Count: 200
+//       }
+//     ],
+//     "languages": [
+//       { City: 'Vancouver', Language: 'English', Count: 1500000 },
+//       { City: 'Vancouver', Language: 'French', Count: 70000 }
+//     ]
+//   }
+// ]
