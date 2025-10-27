@@ -15,7 +15,7 @@ describe('GET /:city', ()=>{
     setCollectionStub = sinon.stub(db, 'setCollection').resolves();
 
     // stub db.find
-    // default by default will return empty array (no data)
+    // by default will return empty array (no data)
     findStub = sinon.stub(db, 'find').resolves([]);
   });
 
@@ -60,8 +60,7 @@ describe('GET /:city', ()=>{
 
     // response structure 
     expect(response.statusCode).to.equal(200);
-    expect(response.body).to.be.an(Object);
-    expect(response.body.length).to.be.greaterThan(0);
+    expect(response.body).to.be.an('object');
 
     // response object properties
     expect(response.body).to.have.property('city');
