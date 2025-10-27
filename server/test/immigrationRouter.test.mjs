@@ -7,8 +7,16 @@ import { db } from '../db/db.mjs';
 const expect = chai.expect;
 
 describe('GET /:city', ()=>{
-  beforeEach(()=>{
+  let setCollectionStub;
+  let findStub;
 
+  beforeEach(()=>{
+    // stub db call with fake call
+    setCollectionStub = sinon.stub(db, 'setCollection');
+
+    // stub db.find
+    // default by default will return empty array (no data)
+    findStub = sinon.stub(db, 'find').resolves([]);
   });
 
   afterEach(() => {
