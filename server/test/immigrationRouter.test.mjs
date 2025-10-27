@@ -67,6 +67,10 @@ describe('GET /:city', ()=>{
     expect(response.body).to.have.property('period');
     expect(response.body).to.have.property('totalImmigrants');
     expect(response.body).to.have.property('countries');
-    expect(response.body[3].length).to.be.greaterThan(0);
+    expect(response.body.countries.length).to.be.greaterThan(0);
+
+    // stub behavious
+    expect(findStub.calledOnce).to.be.true;
+    expect(setCollectionStub.calledWith('immigration')).to.be.true;
   });
 });
