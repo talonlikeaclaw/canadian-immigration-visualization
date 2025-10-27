@@ -12,7 +12,7 @@ describe('GET /:city', ()=>{
 
   beforeEach(()=>{
     // stub db call with fake call
-    setCollectionStub = sinon.stub(db, 'setCollection');
+    setCollectionStub = sinon.stub(db, 'setCollection').resolves();
 
     // stub db.find
     // default by default will return empty array (no data)
