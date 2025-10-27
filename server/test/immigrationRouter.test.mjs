@@ -25,6 +25,37 @@ describe('GET /:city', ()=>{
 
   // Act
   it('Should return num of immigrants by country for given city, when valid city passed', async()=>{
+    const mockImmigrationData = [
+      {
+        '_id': {
+          '$oid': '68fce6a8a27b1de7e01e6505'
+        },
+        'City': 'Halifax (CMA), N.S.',
+        'Country': 'United States of America',
+        'Period': 'Before 1980',
+        'Count': 1340
+      },
+      {
+        '_id': {
+          '$oid': '68fce6a8a27b1de7e01e6506'
+        },
+        'City': 'Halifax (CMA), N.S.',
+        'Country': 'United States of America',
+        'Period': '1980 to 1990',
+        'Count': 460
+      },
+      {
+        '_id': {
+          '$oid': '68fce6a8a27b1de7e01e6507'
+        },
+        'City': 'Halifax (CMA), N.S.',
+        'Country': 'United States of America',
+        'Period': '1991 to 2000',
+        'Count': 305
+      }
+    ];
+    // resolve to correct, expected data
+    findStub.resolves(mockImmigrationData);
     const response = await request(app).get('/api/immigration/halifax');
 
     // response structure 
