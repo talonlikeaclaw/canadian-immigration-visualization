@@ -4,14 +4,20 @@ import sinon from 'sinon';
 import app from '../app.mjs';
 import { db } from '../db/db.mjs';
 
+const expect = chai.expect;
+
 describe('GET /api/cities/comparison?cities=City1,City2', () => {
+  let setCollectionStub;
+  let findStub;
+
   beforeEach(() => {
     setCollectionStub = sinon.stub(db, 'setCollection').resolves();
 
-    findImmigrationCityOneStub = sinon
-      .stub(db, 'find')
-      .callsFake(async query => {
-        // Fake db query getting immigration data for city one
+    // Stub find to return mock immigration and language data
+    // We will need to implement a db.currentCollection method for testing
+    findStub = sinon.stub(db, 'find').callsFake(async query => {
+      // Immigration data simulation
+      if (/immigration/i.test(db.currentCollection)) {
         if (/Montréal/i.test(query.City.$regex)) {
           return [
             {
@@ -28,13 +34,6 @@ describe('GET /api/cities/comparison?cities=City1,City2', () => {
             }
           ];
         }
-        return [];
-      });
-
-    findImmigrationCityTwoStub = sinon
-      .stub(db, 'find')
-      .callsFake(async query => {
-        // Fake db query getting immigration data for city two
         if (/Vancouver/i.test(query.City.$regex)) {
           return [
             {
@@ -51,57 +50,31 @@ describe('GET /api/cities/comparison?cities=City1,City2', () => {
             }
           ];
         }
-        return [];
-      });
+      }
 
-    findLanguageCityOneStub = sinon
-      .stub(db, 'find')
-      .callsFake(async query => {
-        // Fake db query getting language data
+      // Language data simulation
+      if (/languages/i.test(db.currentCollection)) {
         if (/Montréal/i.test(query.City.$regex)) {
           return [
-            {
-              City: 'Montréal',
-              Language: 'French',
-              Count: 2708435
-            },
-            {
-              City: 'Montréal',
-              Language: 'English',
-              Count: 693340
-            }
+            { City: 'Montréal', Language: 'French', Count: 2708435 },
+            { City: 'Montréal', Language: 'English', Count: 693340 }
           ];
         }
-        return [];
-      });
-
-    findLanguageCityTwoStub = sinon
-      .stub(db, 'find')
-      .callsFake(async query => {
-        // Fake db query getting language data
-        if (/Vancouver/.i.test(query.City.$regex)) {
+        if (/Vancouver/i.test(query.City.$regex)) {
           return [
-            {
-              City: 'Vancouver',
-              Language: 'French',
-              Count: 2708435
-            },
-            {
-              City: 'Vancouver',
-              Language: 'English',
-              Count: 693340
-            }
+            { City: 'Vancouver', Language: 'English', Count: 1500000 },
+            { City: 'Vancouver', Language: 'French', Count: 70000 }
           ];
         }
-        return [];
-      });
+      }
+
+      return [];
+    });
   });
 
   afterEach(() => {
     sinon.restore();
   });
-
-  it.skip('should return ', () => {});
 });
 
 // Expected Output:
@@ -120,7 +93,7 @@ describe('GET /api/cities/comparison?cities=City1,City2', () => {
 //         Country: 'Somalia',
 //         Period: '1991 to 2000',
 //         Count: 255
-//       }     
+//       }
 //     ],
 //     "languages": [
 //       { "Language": "French", "Count": 2708435 },
