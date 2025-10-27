@@ -54,18 +54,8 @@ describe('GET /api/city/:city/profile', () => {
 
       // return fake data depending on which collection is active
       if (/toronto/i.test(query.City?.$regex)) {
-        // city info
-        if (collection === 'cities') {
-          return [{
-            City: 'Toronto (CMA), Ont.',
-            Province: 'Ontario',
-            Population: 5928040,
-            AreaKm2: 630.2,
-            GeoLocation: [43.65107, -79.347015],
-          }];
-        }
-
-        // 2. languages data
+       
+        // 1 languages data
         if (collection === 'languages') {
           return [
             { City: 'Toronto (CMA), Ont.', Language: 'English', Count: 3700000 },
@@ -74,7 +64,7 @@ describe('GET /api/city/:city/profile', () => {
           ];
         }
 
-        // 3. immigration data
+        // 2 immigration data
         if (collection === 'immigration') {
           return [
             { City: 'Toronto (CMA), Ont.', Period: '2011-2016', Country: 'India', Count: 90000 },
