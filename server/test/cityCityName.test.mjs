@@ -68,11 +68,11 @@ describe('GET /api/city/:city_name', () => {
     expect(setCollectionStub.calledWith('cities')).to.be.true;
   });
 
-  it.skip('should return 404 for an unknown city', async () => {
+  it.skip('should return 400 for an unknown city', async () => {
     const res = await request(app)
       .get('/api/city/unknowncity');
 
-    expect(res.statusCode).to.equal(404);
+    expect(res.statusCode).to.equal(400);
     expect(res.body).to.have.property('error');
     expect(findStub.calledOnce).to.be.true;
   });
