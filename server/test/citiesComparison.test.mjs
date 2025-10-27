@@ -75,6 +75,32 @@ describe('GET /api/cities/comparison?cities=City1,City2', () => {
   afterEach(() => {
     sinon.restore();
   });
+
+  it('should return immigration and language data for two cities', async () => {
+    const res = await request(app).get(
+      '/api/cities/comparison?cities=Montréal,Vancouver'
+    );
+
+    // Validate the output of the response
+    expect(res.statusCode).to.equal(200);
+    expect(res.body).to.be.an('array');
+    expect(res.body).to.have.length(2);
+
+    // Validate the internal structure
+    for (const cityData of res.body) {
+      expect(cityData).to.have.all.keys(
+        'city',
+        'immigration',
+        'languages'
+      );
+      expect(cityData.immigration).to.be.an('array');
+      expect(cityData.languages).to.be.an('array');
+    }
+
+    // Validate the process
+    expect(setCollectionStub.calledTwice).to.be.true;
+    expect(findStub.calledCount(4)).to.be.true;
+  });
 });
 
 // Expected Output:
