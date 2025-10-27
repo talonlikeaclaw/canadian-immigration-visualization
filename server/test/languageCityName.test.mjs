@@ -6,14 +6,14 @@ import { db } from '../db/db.mjs';
 
 const expect = chai.expect;
 
-// eslint-disable-next-line no-undef
+ 
 describe('GET /api/languages/:cityName', () => {
   let setCollectionStub; let findStub;
 
   // AAA pattern
   // Arrange
   // mocha hook runs beforeEach test
-  // eslint-disable-next-line no-undef
+   
   beforeEach(() => {
     // stub (replace) db call with a fake call
     setCollectionStub = sinon.stub(db, 'setCollection').resolves();
@@ -30,13 +30,13 @@ describe('GET /api/languages/:cityName', () => {
     });
   });
   // mocha hook => clean sinon stubs after each test
-  // eslint-disable-next-line no-undef
+   
   afterEach(() => {
     sinon.restore();
   });
 
   // Act => supertest
-  // eslint-disable-next-line no-undef
+   
   it('should return languages for montréal when "montreal"', async () => {
 
     const res = await request(app)
@@ -56,7 +56,7 @@ describe('GET /api/languages/:cityName', () => {
   });
 
   // act 
-  // eslint-disable-next-line no-undef
+   
   it('should return 404 for an unknown city', async () => {
 
     const res = await request(app)
