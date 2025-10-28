@@ -1,0 +1,21 @@
+{
+  "name": "520-project-safari-chiru-dunbar",
+  "version": "1.0.0",
+  "description": "This project aims to explore and visualize Canadian immigration patterns to different major cities through the lens of the languages spoken.  By combining demographic and linguistic datasets, we will create a narrative that illustrates how different immigrant communities cluster in major Canadian cities, showcasing the cultural and linguistic profile of each major city center.",
+  "homepage": "https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar#readme",
+  "bugs": {
+    "url": "https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar.git"
+  },
+  "license": "ISC",
+  "author": "Habibullah Safari, Melania Chiru, Talon Dunbar",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd server && node bin/www",
+    "build": "cd client && npm install && npm run build && cd ../server && npm install"
+  }
+}
