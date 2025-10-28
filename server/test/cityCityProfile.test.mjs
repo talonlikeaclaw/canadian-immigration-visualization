@@ -122,6 +122,6 @@ describe('GET /api/city/:city/profile', () => {
     // verify correct error response
     expect(res.statusCode).to.equal(404);
     expect(res.body).to.have.property('error');
-    expect(findStub.callCount).to.be.true;
+    expect(findStub.called).to.be.true;
   });
 });
