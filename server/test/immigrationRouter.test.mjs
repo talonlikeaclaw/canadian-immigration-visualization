@@ -83,7 +83,7 @@ describe('GET /:city', ()=>{
     expect(findStub.called).to.be.false;
   });
 
-  it('Should return 404 Not Found if no data is returned from DB', async () => {
+  it('Should return 404 - Not Found if no data is returned from DB', async () => {
     // findStub is already configured to return [] by default in beforeEach()
     const response = await request(app).get('/api/immigration/nonExistingCity');
 
@@ -92,6 +92,105 @@ describe('GET /:city', ()=>{
     expect(response.body).to.have.
       property('error').
       include('City not found or immigration data non existant.');
+    expect(findStub.calledOnce).to.be.true;
+  });
+
+});
+
+describe('GET /:city/period/:end', ()=>{
+  let setCollectionStub;
+  let findStub;
+
+  beforeEach(()=>{
+    // stub db call with fake call
+    setCollectionStub = sinon.stub(db, 'setCollection').resolves();
+
+    // stub db.find
+    // by default will return empty array (no data)
+    findStub = sinon.stub(db, 'find').resolves([]);
+  });
+
+  afterEach(() => {
+    sinon.restore();
+  });
+
+  // Act
+  it('Should return num of immigrants by country for given city, when valid city passed', async()=>{
+    const mockImmigrationData = [
+      {
+        '_id': {
+          '$oid': '68fce6a8a27b1de7e01e6505'
+        },
+        'City': 'Halifax (CMA), N.S.',
+        'Country': 'United States of America',
+        'Period': 'Before 1980',
+        'Count': 1340
+      },
+      {
+        '_id': {
+          '$oid': '68fce6a8a27b1de7e01e6506'
+        },
+        'City': 'Halifax (CMA), N.S.',
+        'Country': 'United States of America',
+        'Period': '1980 to 1990',
+        'Count': 460
+      },
+      {
+        '_id': {
+          '$oid': '68fce6a8a27b1de7e01e6507'
+        },
+        'City': 'Halifax (CMA), N.S.',
+        'Country': 'United States of America',
+        'Period': '1991 to 2000',
+        'Count': 305
+      }
+    ];
+    // resolve to correct, expected data
+    findStub.resolves(mockImmigrationData);
+    const response = await request(app).get('/api/immigration/halifax/period/1980');
+
+    // response structure 
+    expect(response.statusCode).to.equal(200);
+    expect(response.body).to.be.an('object');
+
+    // response object properties
+    expect(response.body).to.have.property('city');
+    expect(response.body).to.have.property('period');
+    expect(response.body).to.have.property('totalImmigrants');
+    expect(response.body).to.have.property('countries');
+    expect(Object.keys(response.body.countries).length).to.be.greaterThan(0);
+
+    // stub behavious
+    expect(findStub.calledOnce).to.be.true;
+    expect(setCollectionStub.calledWith('immigration')).to.be.true;
+  });
+
+  it('Should return 400 - Bad request for invalid city name', async()=>{
+    const response = await request(app).get('/api/immigration/Halifax123/period/1980');
+
+    // Assert
+    expect(response.statusCode).to.equal(400);
+    expect(response.body).to.have.property('error').equal('Invalid city name');
+    expect(findStub.called).to.be.false;
+  });
+
+  it('Should return 400 - Bad Request for an invalid ending year', async () => {
+    const response = await request(app).get('/api/immigration/Halifax/period/2000a');
+    // Assert
+    expect(response.statusCode).to.equal(400);
+    expect(response.body).to.have.property('error').equal('Invalid ending year');
+    expect(findStub.called).to.be.false;
+  });
+
+  it('Should return 404 - Not Found if no data is returned from DB', async () => {
+    // findStub is already configured to return [] by default in beforeEach()
+    const response = await request(app).get('/api/immigration/halifax/period/1234');
+
+    // Assert
+    expect(response.statusCode).to.equal(404);
+    expect(response.body).to.have.
+      property('error').
+      include('No immigration data found for halifax in period Before 1234.');
     expect(findStub.calledOnce).to.be.true;
   });
 
