@@ -73,4 +73,13 @@ describe('GET /:city', ()=>{
     expect(findStub.calledOnce).to.be.true;
     expect(setCollectionStub.calledWith('immigration')).to.be.true;
   });
+
+  it('Should return 400 - Bad request for invalid city name', async()=>{
+    const response = await request(app).get('/api/immigration/Halifax123!');
+
+    // Assert
+    expect(response.statusCode).to.equal(400);
+    expect(response.body).to.have.property('error').equal('Invalid city name');
+    expect(findStub.called).to.be.false;
+  });
 });
