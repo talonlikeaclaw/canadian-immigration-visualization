@@ -82,4 +82,17 @@ describe('GET /:city', ()=>{
     expect(response.body).to.have.property('error').equal('Invalid city name');
     expect(findStub.called).to.be.false;
   });
+
+  it('Should return 404 Not Found if no data is returned from DB', async () => {
+    // findStub is already configured to return [] by default in beforeEach()
+    const response = await request(app).get('/api/immigration/nonExistingCity');
+
+    // Assert
+    expect(response.statusCode).to.equal(404);
+    expect(response.body).to.have.
+      property('error').
+      include('City not found or immigration data non existant.');
+    expect(findStub.calledOnce).to.be.true;
+  });
+
 });
