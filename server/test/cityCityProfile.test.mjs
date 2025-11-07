@@ -42,7 +42,7 @@ describe('GET /api/city/:city/profile', () => {
     // simulate setting a collection name in the database
     setCollectionStub = sinon.stub(db, 'setCollection').callsFake((collection) => {
       // which collection is active
-      db._currentCollection = collection;
+      db.currentCollection = collection;
       // mimic async behavior
       return Promise.resolve();
     });
@@ -50,7 +50,7 @@ describe('GET /api/city/:city/profile', () => {
     // stub the db.find method to return mock data for different collections
     findStub = sinon.stub(db, 'find').callsFake(async (query) => {
       // which collection the app is querying
-      const collection = db._currentCollection;
+      const collection = db.currentCollection;
 
       // return fake data depending on which collection is active
       if (/toronto/i.test(query.City?.$regex)) {

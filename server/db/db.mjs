@@ -65,6 +65,15 @@ class DB {
    */
   setCollection(collectionName) {
     instance.collection = instance.db.collection(collectionName);
+    instance.collectionName = collectionName;
+  }
+
+  /**
+   * Gets the currently active collection.
+   * @returns The current active Mongo collection.
+   */
+  currentCollection() {
+    return instance.collectionName;
   }
 
   /**
