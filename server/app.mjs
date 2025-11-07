@@ -6,16 +6,15 @@ import cities from './routers/citiesRouter.mjs';
 import express from 'express';
 const app = express();
 
-// middlwears
-app.use(express.json());
-app.use(express.static('../client/dist'));
-
 // api routes
 // app.use('/', );
 app.use('/api/city', city);
 app.use('/api/immigration', immigration);
 app.use('/api/languages', languages);
 app.use('/api/cities', cities);
+
+// middlewares
+app.use(express.static('../client/dist'));
 
 // 404 handler
 // eslint-disable-next-line
