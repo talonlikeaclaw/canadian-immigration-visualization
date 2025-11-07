@@ -6,11 +6,11 @@ import { db } from '../db/db.mjs';
 
 const expect = chai.expect;
 
-describe('GET /:city', ()=>{
+describe('GET /:city', () => {
   let setCollectionStub;
   let aggregateStub;
 
-  beforeEach(()=>{
+  beforeEach(() => {
     // stub db call with fake call
     setCollectionStub = sinon.stub(db, 'setCollection').resolves();
 
@@ -24,24 +24,23 @@ describe('GET /:city', ()=>{
   });
 
   // Act
-  it('Should return num of immigrants by country for given city, when valid city passed', async()=>{
+  it('Should return num of immigrants by country for given city, when valid city passed', async () => {
     // resolve to correct, expected data
     aggregateStub.resolves([
       {
         totalImmigrants: 50315,
         countries: {
           'United Kingdom': 6590,
-          'India': 4815,
-          'China': 3745,
+          India: 4815,
+          China: 3745,
           'United States of America': 3680
         }
       }
     ]);
 
-
     const response = await request(app).get('/api/immigration/halifax');
 
-    // response structure 
+    // response structure
     expect(response.statusCode).to.equal(200);
     expect(response.body).to.be.an('object');
 
@@ -50,47 +49,54 @@ describe('GET /:city', ()=>{
     expect(response.body).to.have.property('period');
     expect(response.body).to.have.property('totalImmigrants');
     expect(response.body).to.have.property('countries');
-    expect(Object.keys(response.body.countries).length).to.be.greaterThan(0);
+    expect(Object.keys(response.body.countries).length).to.be.greaterThan(
+      0
+    );
 
     // stub behavious
     expect(aggregateStub.calledOnce).to.be.true;
     expect(setCollectionStub.calledWith('immigration')).to.be.true;
   });
 
-  it('Should return 400 - Bad request for invalid city name', async()=>{
-    const response = await request(app).get('/api/immigration/Halifax123!');
+  it('Should return 400 - Bad request for invalid city name', async () => {
+    const response = await request(app).get(
+      '/api/immigration/Halifax123!'
+    );
 
     // Assert
     expect(response.statusCode).to.equal(400);
-    expect(response.body).to.have.property('error').equal('Invalid city name');
+    expect(response.body)
+      .to.have.property('error')
+      .equal('Invalid city name');
     expect(aggregateStub.called).to.be.false;
   });
 
   it('Should return 404 - Not Found if no data is returned from DB', async () => {
     // findStub is already configured to return [] by default in beforeEach()
-    const response = await request(app).get('/api/immigration/nonExistingCity');
+    const response = await request(app).get(
+      '/api/immigration/nonExistingCity'
+    );
 
     // Assert
     expect(response.statusCode).to.equal(404);
-    expect(response.body).to.have.
-      property('error').
-      include('City not found or immigration data non existant.');
+    expect(response.body)
+      .to.have.property('error')
+      .include('City not found or immigration data non existant.');
     expect(aggregateStub.calledOnce).to.be.true;
   });
-
 });
 
-describe('GET /:city/period/:end', ()=>{
+describe('GET /:city/period/:end', () => {
   let setCollectionStub;
-  let findStub;
+  let aggregateStub;
 
-  beforeEach(()=>{
+  beforeEach(() => {
     // stub db call with fake call
     setCollectionStub = sinon.stub(db, 'setCollection').resolves();
 
-    // stub db.find
+    // stub db.aggregate
     // by default will return empty array (no data)
-    findStub = sinon.stub(db, 'find').resolves([]);
+    aggregateStub = sinon.stub(db, 'aggregate').resolves([]);
   });
 
   afterEach(() => {
@@ -98,41 +104,19 @@ describe('GET /:city/period/:end', ()=>{
   });
 
   // Act
-  it('Should return num of immigrants by country for given city, when valid city passed', async()=>{
-    const mockImmigrationData = [
-      {
-        '_id': {
-          '$oid': '68fce6a8a27b1de7e01e6505'
-        },
-        'City': 'Halifax (CMA), N.S.',
-        'Country': 'United States of America',
-        'Period': 'Before 1980',
-        'Count': 1340
-      },
-      {
-        '_id': {
-          '$oid': '68fce6a8a27b1de7e01e6506'
-        },
-        'City': 'Halifax (CMA), N.S.',
-        'Country': 'United States of America',
-        'Period': '1980 to 1990',
-        'Count': 460
-      },
-      {
-        '_id': {
-          '$oid': '68fce6a8a27b1de7e01e6507'
-        },
-        'City': 'Halifax (CMA), N.S.',
-        'Country': 'United States of America',
-        'Period': '1991 to 2000',
-        'Count': 305
-      }
-    ];
+  it('Should return num of immigrants by country for given city, when valid city passed', async () => {
     // resolve to correct, expected data
-    findStub.resolves(mockImmigrationData);
-    const response = await request(app).get('/api/immigration/halifax/period/1980');
+    aggregateStub.resolves([
+      {
+        totalImmigrants: 2105,
+        countries: { 'United States of America': 2105 }
+      }
+    ]);
+    const response = await request(app).get(
+      '/api/immigration/halifax/period/1980'
+    );
 
-    // response structure 
+    // response structure
     expect(response.statusCode).to.equal(200);
     expect(response.body).to.be.an('object');
 
@@ -141,55 +125,68 @@ describe('GET /:city/period/:end', ()=>{
     expect(response.body).to.have.property('period');
     expect(response.body).to.have.property('totalImmigrants');
     expect(response.body).to.have.property('countries');
-    expect(Object.keys(response.body.countries).length).to.be.greaterThan(0);
+    expect(Object.keys(response.body.countries).length).to.be.greaterThan(
+      0
+    );
 
     // stub behavious
-    expect(findStub.calledOnce).to.be.true;
+    expect(aggregateStub.calledOnce).to.be.true;
     expect(setCollectionStub.calledWith('immigration')).to.be.true;
   });
 
-  it('Should return 400 - Bad request for invalid city name', async()=>{
-    const response = await request(app).get('/api/immigration/Halifax123/period/1980');
+  it('Should return 400 - Bad request for invalid city name', async () => {
+    const response = await request(app).get(
+      '/api/immigration/Halifax123/period/1980'
+    );
 
     // Assert
     expect(response.statusCode).to.equal(400);
-    expect(response.body).to.have.property('error').equal('Invalid city name');
-    expect(findStub.called).to.be.false;
+    expect(response.body)
+      .to.have.property('error')
+      .equal('Invalid city name');
+    expect(aggregateStub.called).to.be.false;
   });
 
   it('Should return 400 - Bad Request for an invalid ending year', async () => {
-    const response = await request(app).get('/api/immigration/Halifax/period/2000a');
+    const response = await request(app).get(
+      '/api/immigration/Halifax/period/2000a'
+    );
     // Assert
     expect(response.statusCode).to.equal(400);
-    expect(response.body).to.have.property('error').equal('Invalid ending year');
-    expect(findStub.called).to.be.false;
+    expect(response.body)
+      .to.have.property('error')
+      .equal('Invalid ending year');
+    expect(aggregateStub.called).to.be.false;
   });
 
   it('Should return 404 - Not Found if no data is returned from DB', async () => {
     // findStub is already configured to return [] by default in beforeEach()
-    const response = await request(app).get('/api/immigration/halifax/period/1234');
+    const response = await request(app).get(
+      '/api/immigration/halifax/period/1234'
+    );
 
     // Assert
     expect(response.statusCode).to.equal(404);
-    expect(response.body).to.have.
-      property('error').
-      include('No immigration data found for halifax in period Before 1234.');
-    expect(findStub.calledOnce).to.be.true;
+    expect(response.body)
+      .to.have.property('error')
+      .include(
+        'No immigration data found for halifax in period Before 1234.'
+      );
+    expect(aggregateStub.calledOnce).to.be.true;
   });
-
 });
 
-describe('GET /:city/period/:start/:end', ()=>{
+describe('GET /:city/period/:start/:end', () => {
   let setCollectionStub;
-  let findStub;
+  let aggregateStub;
 
-  beforeEach(()=>{
+  beforeEach(() => {
     // stub db call with fake call
     setCollectionStub = sinon.stub(db, 'setCollection').resolves();
 
-    // stub db.find
+    // stub db.aggregate
     // by default will return empty array (no data)
-    findStub = sinon.stub(db, 'find').resolves([]);
+    aggregateStub = sinon.stub(db, 'aggregate').resolves([]);
   });
 
   afterEach(() => {
@@ -197,41 +194,19 @@ describe('GET /:city/period/:start/:end', ()=>{
   });
 
   // Act
-  it('Should return num of immigrants by country for city, when valid period passed', async()=>{
-    const mockImmigrationData = [
-      {
-        '_id': {
-          '$oid': '68fce6a8a27b1de7e01e6505'
-        },
-        'City': 'Halifax (CMA), N.S.',
-        'Country': 'United States of America',
-        'Period': 'Before 1980',
-        'Count': 1340
-      },
-      {
-        '_id': {
-          '$oid': '68fce6a8a27b1de7e01e6506'
-        },
-        'City': 'Halifax (CMA), N.S.',
-        'Country': 'United States of America',
-        'Period': '1980 to 1990',
-        'Count': 460
-      },
-      {
-        '_id': {
-          '$oid': '68fce6a8a27b1de7e01e6507'
-        },
-        'City': 'Halifax (CMA), N.S.',
-        'Country': 'United States of America',
-        'Period': '1991 to 2000',
-        'Count': 305
-      }
-    ];
+  it('Should return num of immigrants by country for city, when valid period passed', async () => {
     // resolve to correct, expected data
-    findStub.resolves(mockImmigrationData);
-    const response = await request(app).get('/api/immigration/halifax/period/2001/2005');
+    aggregateStub.resolves([
+      {
+        totalImmigrants: 2105,
+        countries: { 'United States of America': 2105 }
+      }
+    ]);
+    const response = await request(app).get(
+      '/api/immigration/halifax/period/2001/2005'
+    );
 
-    // response structure 
+    // response structure
     expect(response.statusCode).to.equal(200);
     expect(response.body).to.be.an('object');
 
@@ -240,48 +215,65 @@ describe('GET /:city/period/:start/:end', ()=>{
     expect(response.body).to.have.property('period');
     expect(response.body).to.have.property('totalImmigrants');
     expect(response.body).to.have.property('countries');
-    expect(Object.keys(response.body.countries).length).to.be.greaterThan(0);
+    expect(Object.keys(response.body.countries).length).to.be.greaterThan(
+      0
+    );
 
     // stub behavious
-    expect(findStub.calledOnce).to.be.true;
+    expect(aggregateStub.calledOnce).to.be.true;
     expect(setCollectionStub.calledWith('immigration')).to.be.true;
   });
 
-  it('Should return 400 - Bad request for invalid city name', async()=>{
-    const response = await request(app).get('/api/immigration/halifax123/period/2001/2005');
+  it('Should return 400 - Bad request for invalid city name', async () => {
+    const response = await request(app).get(
+      '/api/immigration/halifax123/period/2001/2005'
+    );
 
     // Assert
     expect(response.statusCode).to.equal(400);
-    expect(response.body).to.have.property('error').equal('Invalid city name');
-    expect(findStub.called).to.be.false;
+    expect(response.body)
+      .to.have.property('error')
+      .equal('Invalid city name');
+    expect(aggregateStub.called).to.be.false;
   });
 
   it('Should return 400 - Bad Request for an invalid starting year', async () => {
-    const response = await request(app).get('/api/immigration/halifax/period/2002a/2005');
+    const response = await request(app).get(
+      '/api/immigration/halifax/period/2002a/2005'
+    );
     // Assert
     expect(response.statusCode).to.equal(400);
-    expect(response.body).to.have.property('error').equal('Invalid starting year');
-    expect(findStub.called).to.be.false;
+    expect(response.body)
+      .to.have.property('error')
+      .equal('Invalid starting year');
+    expect(aggregateStub.called).to.be.false;
   });
 
   it('Should return 400 - Bad Request for an invalid ending year', async () => {
-    const response = await request(app).get('/api/immigration/halifax/period/2001/abc');
+    const response = await request(app).get(
+      '/api/immigration/halifax/period/2001/abc'
+    );
     // Assert
     expect(response.statusCode).to.equal(400);
-    expect(response.body).to.have.property('error').equal('Invalid ending year');
-    expect(findStub.called).to.be.false;
+    expect(response.body)
+      .to.have.property('error')
+      .equal('Invalid ending year');
+    expect(aggregateStub.called).to.be.false;
   });
 
   it('Should return 404 - Not Found if no data is returned from DB', async () => {
     // findStub is already configured to return [] by default in beforeEach()
-    const response = await request(app).get('/api/immigration/halifax/period/2002/2005');
+    const response = await request(app).get(
+      '/api/immigration/halifax/period/2002/2005'
+    );
 
     // Assert
     expect(response.statusCode).to.equal(404);
-    expect(response.body).to.have.
-      property('error').
-      include('No immigration data found for halifax in period 2002 to 2005.');
-    expect(findStub.calledOnce).to.be.true;
+    expect(response.body)
+      .to.have.property('error')
+      .include(
+        'No immigration data found for halifax in period 2002 to 2005.'
+      );
+    expect(aggregateStub.calledOnce).to.be.true;
   });
-
 });
