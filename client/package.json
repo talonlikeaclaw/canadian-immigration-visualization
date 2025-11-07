@@ -21,6 +21,7 @@
     }
   ],
   "dependencies": {
+    "bundlesize2": "^0.2.1",
     "plotly.js": "^3.1.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
