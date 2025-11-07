@@ -2,7 +2,7 @@ import { useState } from 'react';
 import '../assets/styles/App.css';
 import HeroSection from './HeroSection';
 import Chart from './Chart';
-import Footer from './Footert';
+import Footer from './Footer';
 
 function App() {
   const [city, setCity] = useState('Halifax');
