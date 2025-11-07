@@ -59,8 +59,9 @@ check-bundlesize:
   stage: build
   script:
     - cd client
+    - npm ci --cache .npm --prefer-offline
     - npm run build
-    - npm run bundlesize
+    - npx bundlesize2
   # fails if size exceed the limit
   allow_failure: false
   
