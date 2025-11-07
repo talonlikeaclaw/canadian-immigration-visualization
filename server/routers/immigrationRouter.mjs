@@ -18,40 +18,41 @@ router.get('/:city', async (req, res, next) => {
 
     await db.setCollection('immigration');
 
-    // get all entries with a count higher than 0
-    const results = await db.find({ 
-      City: new RegExp(city, 'i'),
-      Count: { $gt: 0 }
-    });
+    const pipeline = [
+      { $match: { City: new RegExp(city, 'i'), Count: { $gt: 0 } } },
+      { $group: { _id: '$Country', totalCount: { $sum: '$Count' } } },
+      { $sort: { totalCount: -1 } },
+      {
+        $group: {
+          _id: null,
+          countries: { $push: { k: '$_id', v: '$totalCount' } },
+          totalImmigrants: { $sum: '$totalCount' }
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          totalImmigrants: 1,
+          countries: { $arrayToObject: '$countries' }
+        }
+      }
+    ];
+
+    const [result] = await db.aggregate(pipeline);
 
     // early return
-    if (results.length === 0) {
+    if (!result) {
       return res.status(404).json({
         'error' : 'City not found or immigration data non existant.',
         'hint': 'If the city name contains accents, please include them in your request.'
       });
     }
 
-    const allEntriesArray = [];
-    let totalImmigrants = 0;
-    // Add all entries, only with country and count info
-    results.forEach(result => {
-      const country = result.Country;
-      const count = result.Count;
-
-      const newObj = {
-        country: country,
-        count: count
-      };
-
-      allEntriesArray.push(newObj);
-      totalImmigrants += count;
+    res.json({
+      city,
+      period: 'before 1980 to 2021',
+      ...result
     });
-
-    const endData = groupByCountry(allEntriesArray);
-
-    res.json({city, period: 'before 1980 to 2021', totalImmigrants, countries: endData});
-
   } catch(e) {
     next(e);
   }
