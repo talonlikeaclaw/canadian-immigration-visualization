@@ -2,6 +2,7 @@ import { useState } from 'react';
 import '../assets/styles/App.css';
 import HeroSection from './HeroSection';
 import Chart from './Chart';
+import Footer from './Footert';
 
 function App() {
   const [city, setCity] = useState('Halifax');
@@ -24,6 +25,8 @@ function App() {
         </select>
       </section>
       <Chart city={city}></Chart>
+
+      <Footer/>
     </>
   );
 }
