@@ -54,6 +54,20 @@ build-client:
     when: on_success
     paths:
       - client/dist
+check-bundlesize:
+  stage: build
+  script:
+    - cd client
+    - npm run build
+    - npm run bundlesize
+  allow_failure: false
+  needs:
+    - build-client
+  artifacts:
+    when: on_failure
+    expire_in: 1 day
+    paths:
+      - clien/dist
 
 test-server:
   stage: test
@@ -67,7 +81,7 @@ test-server:
     # fake mongo uri to prevent real db donnection
     ATLAS_URI_DEV: mongodb://fake-uri
   script:
-    - cd server 
+    - cd server
     - echo "DB_NAME=webproject" > .env
     - echo "ATLAS_URI_DEV=mongodb://fake-uri" >> .env
     - npm test
