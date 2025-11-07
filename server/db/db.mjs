@@ -86,6 +86,15 @@ class DB {
   }
 
   /**
+   * Runs an aggregation pipeline on the current collection.
+   * @param {Array<Object>} pipeline
+   * @returns {Promise<Array>}
+   */
+  async aggregate(pipeline) {
+    return instance.collection.aggregate(pipeline).toArray();
+  }
+
+  /**
    * Finds all documents matching a query.
    * @param {object} [query={}] - MongoDB query filter.
    * @param {object} [projection={ _id: 0 }] - Fields to include or exclude.
