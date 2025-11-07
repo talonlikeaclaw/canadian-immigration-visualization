@@ -63,15 +63,18 @@ check-bundlesize:
     - npm run bundlesize
   # fails if size exceed the limit
   allow_failure: false
+  
   # will run after the build-client is done
-  needs:
-    - build-client
+  # but build-client does not always run so I comment it out for now
+  # needs:
+  #   - build-client
   # keep dist folder for inspection
   artifacts:
     when: on_failure
     expire_in: 1 day
     paths:
       - clien/dist
+
 
 test-server:
   stage: test
