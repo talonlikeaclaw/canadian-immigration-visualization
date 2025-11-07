@@ -74,7 +74,7 @@ check-bundlesize:
     when: on_failure
     expire_in: 1 day
     paths:
-      - clien/dist
+      - client/dist
 
 
 test-server:
