@@ -54,15 +54,19 @@ build-client:
     when: on_success
     paths:
       - client/dist
+
 check-bundlesize:
   stage: build
   script:
     - cd client
     - npm run build
     - npm run bundlesize
+  # fails if size exceed the limit
   allow_failure: false
+  # will run after the build-client is done
   needs:
     - build-client
+  # keep dist folder for inspection
   artifacts:
     when: on_failure
     expire_in: 1 day
