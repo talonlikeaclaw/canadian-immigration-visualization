@@ -3,7 +3,63 @@ import { db } from '../db/db.mjs';
 
 const router = express.Router();
 
-// GET /api/languages/:cityName
+/**
+ * @swagger
+ * /api/languages/{cityName}:
+ *   get:
+ *     summary: Get language statistics for a given city
+ *     description: >
+ *       Returns the top spoken languages in a given city,
+ *       sorted by count in descending order.
+ *     parameters:
+ *       - in: path
+ *         name: cityName
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The name of the city (e.g., Montréal, Toronto)
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved language data for the specified city.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   City:
+ *                     type: string
+ *                     example: Montréal (CMA), Que.
+ *                   Language:
+ *                     type: string
+ *                     example: English
+ *                   Count:
+ *                     type: integer
+ *                     example: 693340
+ *       400:
+ *         description: Missing city name in request path.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "language router : city name is required!"
+ *       404:
+ *         description: No language data found for the specified city.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "no language data found for Montréal"
+ *       500:
+ *         description: Internal server error.
+ */
 router.get('/:cityName', async (req, res, next) => {
   try {
     let { cityName } = req.params;
