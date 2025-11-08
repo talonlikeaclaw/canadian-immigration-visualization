@@ -4,7 +4,84 @@ import { db } from '../db/db.mjs';
 const router = express.Router();
 
 /**
- * Get total immigration count for given city (all periods, all countries)
+ * @swagger
+ * /api/immigration/{city}:
+ *   get:
+ *     tags:
+ *       - Immigration
+ *     summary: Get immigration statistics for a city
+ *     description: >
+ *       Returns aggregated immigration data for a given city, including total immigrants and
+ *       country-by-country breakdown, grouped and sorted by immigrant count.
+ *     parameters:
+ *       - in: path
+ *         name: city
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: >
+ *           The name of the city. Only letters and accented characters are allowed.
+ *           If the city name includes accents, you must include them (e.g., Montréal).
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved immigration data for the specified city.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 city:
+ *                   type: string
+ *                   example: "Montréal"
+ *                 period:
+ *                   type: string
+ *                   example: "before 1980 to 2021"
+ *                 totalImmigrants:
+ *                   type: integer
+ *                   example: 1020835
+ *                 countries:
+ *                   type: object
+ *                   additionalProperties:
+ *                     type: integer
+ *                   example:
+ *                     Haiti: 79720
+ *                     Algeria: 66730
+ *                     France: 63235
+ *       400:
+ *         description: Invalid city name.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Invalid city name"
+ *       404:
+ *         description: City not found or data unavailable.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "City not found or immigration data non existant."
+ *                 hint:
+ *                   type: string
+ *                   example:
+ *                     If the city name contains accents,
+ *                     please include them in your request.
+ *       500:
+ *         description: Internal server error.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Internal server error"
  */
 router.get('/:city', async (req, res, next) => {
   try {
