@@ -8,7 +8,7 @@ const expect = chai.expect;
 
  
 describe('GET /api/languages/:cityName', () => {
-  let setCollectionStub; let findStub;
+  let setCollectionStub; let aggregateStub;
 
   // AAA pattern
   // Arrange
@@ -18,9 +18,10 @@ describe('GET /api/languages/:cityName', () => {
     // stub (replace) db call with a fake call
     setCollectionStub = sinon.stub(db, 'setCollection').resolves();
     // stub db.find => simulate fake data
-    findStub = sinon.stub(db, 'find').callsFake(async (query) => {
+    aggregateStub = sinon.stub(db, 'aggregate').callsFake(async (pipeline) => {
+      const regex = pipeline[0].$match.City;
       // acting as db returns a query response
-      if (/Montréal/i.test(query.City.$regex)) {
+      if (/Montréal/i.test(regex)) {
         return [
           { City: 'Montréal (CMA), Que.', Language: 'French', Count: 2708435 },
           { City: 'Montréal (CMA), Que.', Language: 'English', Count: 693340 }
@@ -51,7 +52,7 @@ describe('GET /api/languages/:cityName', () => {
     expect(res.body[0]).to.have.property('City');
     expect(res.body[0]).to.have.property('Language');
     // stub behavior
-    expect(findStub.calledOnce).to.be.true;
+    expect(aggregateStub.calledOnce).to.be.true;
     expect(setCollectionStub.calledWith('languages')).to.be.true;
   });
 
@@ -64,6 +65,6 @@ describe('GET /api/languages/:cityName', () => {
     // assert
     expect(res.statusCode).to.equal(404);
     expect(res.body).to.have.property('error');
-    expect(findStub.calledOnce).to.be.true;
+    expect(aggregateStub.calledOnce).to.be.true;
   });
 });
