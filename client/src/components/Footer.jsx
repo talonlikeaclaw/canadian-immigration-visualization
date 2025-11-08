@@ -34,7 +34,7 @@ export default function Footer(){
             Statistics Canada: Custom 2021 Census Language Data
       </a>
         .<br/>
-        License under the {''}
+        Licensed under the {''}
       <a
         href="https://open.canada.ca/en/open-government-licence-canada"
         target="blank"
