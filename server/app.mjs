@@ -5,9 +5,11 @@ import cities from './routers/citiesRouter.mjs';
 
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+import { SwaggerTheme, SwaggerThemeNameEnum } from 'swagger-themes';
 import express from 'express';
 
 const app = express();
+const theme = new SwaggerTheme();
 
 const swaggerDefinition = {
   openapi: '3.0.0',
@@ -17,16 +19,21 @@ const swaggerDefinition = {
   }
 };
 
-const options = {
+const jsdocOptions = {
   swaggerDefinition,
   apis: ['./routers/*.mjs']
 };
 
-const swaggerSpec = swaggerJSDoc(options);
+const swaggerSpec = swaggerJSDoc(jsdocOptions);
+
+// The dafault theme was not my favorite
+const uiOptions = {
+  customCss: theme.getBuffer(SwaggerThemeNameEnum.DRACULA)
+};
 
 // api routes
 // app.use('/', );
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, uiOptions));
 app.use('/api/city', city);
 app.use('/api/immigration', immigration);
 app.use('/api/languages', languages);
