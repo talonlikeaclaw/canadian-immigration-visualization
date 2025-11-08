@@ -150,7 +150,9 @@ router.get('/:city', async (req, res, next) => {
  *     summary: Get immigration statistics for a city before a given year
  *     description: >
  *       Returns aggregated immigration data for a given city for all years **before** the specified ending year.
- *       This route exists because the database includes a period label such as `"Before 1980"`.
+ *       This route exists because the database includes a period label `"Before 1980"`.
+ *       Valid end year values:
+ *         - 1980
  *     parameters:
  *       - in: path
  *         name: city
@@ -297,7 +299,103 @@ router.get('/:city/period/:end', async (req, res, next) => {
 });
 
 /**
- * Gets immigration numbers from ALL countries but only for given time period
+ * @swagger
+ * /api/immigration/{city}/period/{start}/{end}:
+ *   get:
+ *     tags:
+ *       - Immigration
+ *     summary: Get immigration statistics for a city during a specific time period
+ *     description: >
+ *       Returns aggregated immigration data for a given city between two years (inclusive),
+ *       grouped by country and sorted by immigrant count. If the period starts at 1980, it
+ *       automatically uses the label "Before 1980" to match the database format.
+*       Valid period ranges in the dataset are:
+*         - Before 1980
+*         - 1980 to 1990
+*         - 1991 to 2000
+*         - 2001 to 2005
+*         - 2006 to 2010
+*         - 2011 to 2015
+*         - 2016 to 2021
+ *     parameters:
+ *       - in: path
+ *         name: city
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: >
+ *           The name of the city. Only letters and accented characters are allowed.
+ *           If the city name includes accents, include them (e.g., Montréal).
+ *       - in: path
+ *         name: start
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The starting year of the period (e.g., 2000)
+ *       - in: path
+ *         name: end
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The ending year of the period (e.g., 2005)
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved immigration data for the specified city and period.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 city:
+ *                   type: string
+ *                   example: "Montréal"
+ *                 period:
+ *                   type: string
+ *                   example: "2001 to 2005"
+ *                 totalImmigrants:
+ *                   type: integer
+ *                   example: 115630
+ *                 countries:
+ *                   type: object
+ *                   additionalProperties:
+ *                     type: integer
+ *                   example:
+ *                     Algeria: 11800
+ *                     Morocco: 11105
+ *                     China: 11105
+ *       400:
+ *         description: Invalid city name or invalid year values.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: Invalid starting or ending year.
+ *       404:
+ *         description: No immigration data found for the specified city and period.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "No immigration data found for Montréal in period 1991 to 2000."
+ *                 hint:
+ *                   type: string
+ *                   example: Include accents in the city name if applicable.
+ *       500:
+ *         description: Internal server error.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: Internal server error.
  */
 router.get('/:city/period/:start/:end', async (req, res, next) => {
   try {
