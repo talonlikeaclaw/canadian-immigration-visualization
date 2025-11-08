@@ -84,13 +84,15 @@ router.get('/:city/period/:end', async (req, res, next) => {
     const periodString = `Before ${end}`;
 
     const pipeline = [
-      { $match: { 
-        City: new RegExp(city, 'i'), 
-        Period: periodString, 
-        Count: { $gt: 0 } 
-      }},
-      { $group: { _id: '$Country', totalCount: { $sum: '$Count' } }},
-      { $sort: { totalCount: -1 }},
+      {
+        $match: {
+          City: new RegExp(city, 'i'),
+          Period: periodString,
+          Count: { $gt: 0 }
+        }
+      },
+      { $group: { _id: '$Country', totalCount: { $sum: '$Count' } } },
+      { $sort: { totalCount: -1 } },
       {
         $group: {
           _id: null,
@@ -163,13 +165,15 @@ router.get('/:city/period/:start/:end', async (req, res, next) => {
     }
 
     const pipeline = [
-      { $match: { 
-        City: new RegExp(city, 'i'), 
-        Period: periodString, 
-        Count: { $gt: 0 } 
-      }},
-      { $group: { _id: '$Country', totalCount: { $sum: '$Count' } }},
-      { $sort: { totalCount: -1 }},
+      {
+        $match: {
+          City: new RegExp(city, 'i'),
+          Period: periodString,
+          Count: { $gt: 0 }
+        }
+      },
+      { $group: { _id: '$Country', totalCount: { $sum: '$Count' } } },
+      { $sort: { totalCount: -1 } },
       {
         $group: {
           _id: null,
@@ -187,7 +191,7 @@ router.get('/:city/period/:start/:end', async (req, res, next) => {
     ];
 
     const [result] = await db.aggregate(pipeline);
-    
+
     // Early return
     if (!result) {
       return res.status(404).json({
