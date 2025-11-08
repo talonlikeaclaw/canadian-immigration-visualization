@@ -48,7 +48,7 @@ const router = express.Router();
  *               properties:
  *                 error:
  *                   type: string
- *                   example: "language router : city name is required!"
+ *                   example: "Invalid city name"
  *       404:
  *         description: No language data found for the specified city.
  *         content:
@@ -58,7 +58,7 @@ const router = express.Router();
  *               properties:
  *                 error:
  *                   type: string
- *                   example: "no language data found for Montréal"
+ *                   example: "No language data found for Montréal"
  *       500:
  *         description: Internal server error.
  *         content:
@@ -76,9 +76,9 @@ router.get('/:city', async (req, res, next) => {
     if (!city) {
       return res
         .status(400)
-        .json({ error: 'language router : city name is required!' });
+        .json({ error: 'Invalid city name' });
     } else if (city.toLowerCase() === 'montreal') {
-      // a quixk fix for now => in db montreal has accent
+      // a quick fix for now => in db montreal has accent
       city = 'Montréal';
     }
     // connect to db
@@ -98,14 +98,12 @@ router.get('/:city', async (req, res, next) => {
     if (!languages.length) {
       return res
         .status(404)
-        .json({ error: `no language data found for ${city}` });
+        .json({ error: `No language data found for ${city}` });
     }
-    // return json format langauges for cityName
+    // return json format langauges for city
     res.json(languages);
   } catch (error) {
     console.error('language router: api/langguages error: ', error);
-    //res.status(500).json({error: 'Internal server error'});
-
     next(error);
   }
 });
