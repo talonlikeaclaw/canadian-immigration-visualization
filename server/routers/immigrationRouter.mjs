@@ -19,9 +19,13 @@ router.get('/:city', async (req, res, next) => {
     await db.setCollection('immigration');
 
     const pipeline = [
+      // Filter the documents
       { $match: { City: new RegExp(city, 'i'), Count: { $gt: 0 } } },
+      // Group by country and sum counts
       { $group: { _id: '$Country', totalCount: { $sum: '$Count' } } },
+      // Sort by total count
       { $sort: { totalCount: -1 } },
+      // Create single document with all countries
       {
         $group: {
           _id: null,
@@ -29,6 +33,7 @@ router.get('/:city', async (req, res, next) => {
           totalImmigrants: { $sum: '$totalCount' }
         }
       },
+      // Reshape output structure
       {
         $project: {
           _id: 0,
@@ -84,6 +89,7 @@ router.get('/:city/period/:end', async (req, res, next) => {
     const periodString = `Before ${end}`;
 
     const pipeline = [
+      // Filter the documents
       {
         $match: {
           City: new RegExp(city, 'i'),
@@ -91,8 +97,11 @@ router.get('/:city/period/:end', async (req, res, next) => {
           Count: { $gt: 0 }
         }
       },
+      // Group by country and sum counts
       { $group: { _id: '$Country', totalCount: { $sum: '$Count' } } },
+      // Sort by total count
       { $sort: { totalCount: -1 } },
+      // Create single document with all countries
       {
         $group: {
           _id: null,
@@ -100,6 +109,7 @@ router.get('/:city/period/:end', async (req, res, next) => {
           totalImmigrants: { $sum: '$totalCount' }
         }
       },
+      // Reshape output structure
       {
         $project: {
           _id: 0,
@@ -165,6 +175,7 @@ router.get('/:city/period/:start/:end', async (req, res, next) => {
     }
 
     const pipeline = [
+      // Filter the documents
       {
         $match: {
           City: new RegExp(city, 'i'),
@@ -172,8 +183,11 @@ router.get('/:city/period/:start/:end', async (req, res, next) => {
           Count: { $gt: 0 }
         }
       },
+      // Group by country and sum counts
       { $group: { _id: '$Country', totalCount: { $sum: '$Count' } } },
+      // Sort by total count
       { $sort: { totalCount: -1 } },
+      // Create single document with all countries
       {
         $group: {
           _id: null,
@@ -181,6 +195,7 @@ router.get('/:city/period/:start/:end', async (req, res, next) => {
           totalImmigrants: { $sum: '$totalCount' }
         }
       },
+      // Reshape output structure
       {
         $project: {
           _id: 0,

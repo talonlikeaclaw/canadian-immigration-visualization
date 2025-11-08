@@ -21,7 +21,9 @@ router.get('/:cityName', async (req, res, next) => {
     // $regex => pattern based match instead of exact matching
     // i => ignore case
     const pipeline = [
+      // Filter the documents
       { $match: { City: new RegExp(cityName, 'i'), Count: { $gt: 0 } } },
+      // Sort by count
       { $sort: { Count: -1 } }
     ];
 
