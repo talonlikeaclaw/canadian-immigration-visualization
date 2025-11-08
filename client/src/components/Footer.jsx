@@ -24,7 +24,7 @@ export default function Footer(){
         .<br/>
         License under the {''}
         <a
-            href=""
+            href="https://open.canada.ca/en/open-government-licence-canada"
             target="blank"
             rel=""
             >
