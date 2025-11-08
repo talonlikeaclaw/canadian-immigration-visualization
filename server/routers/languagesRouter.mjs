@@ -5,15 +5,17 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/languages/{cityName}:
+ * /api/languages/{city}:
  *   get:
+ *     tags:
+ *       - Language
  *     summary: Get language statistics for a given city
  *     description: >
  *       Returns the top spoken languages in a given city,
  *       sorted by count in descending order.
  *     parameters:
  *       - in: path
- *         name: cityName
+ *         name: city
  *         required: true
  *         schema:
  *           type: string
@@ -60,16 +62,16 @@ const router = express.Router();
  *       500:
  *         description: Internal server error.
  */
-router.get('/:cityName', async (req, res, next) => {
+router.get('/:city', async (req, res, next) => {
   try {
-    let { cityName } = req.params;
-    if (!cityName) {
+    let { city } = req.params;
+    if (!city) {
       return res
         .status(400)
         .json({ error: 'language router : city name is required!' });
-    } else if (cityName.toLowerCase() === 'montreal') {
+    } else if (city.toLowerCase() === 'montreal') {
       // a quixk fix for now => in db montreal has accent
-      cityName = 'Montréal';
+      city = 'Montréal';
     }
     // connect to db
     await db.setCollection('languages');
@@ -78,7 +80,7 @@ router.get('/:cityName', async (req, res, next) => {
     // i => ignore case
     const pipeline = [
       // Filter the documents
-      { $match: { City: new RegExp(cityName, 'i'), Count: { $gt: 0 } } },
+      { $match: { City: new RegExp(city, 'i'), Count: { $gt: 0 } } },
       // Sort by count
       { $sort: { Count: -1 } }
     ];
@@ -88,7 +90,7 @@ router.get('/:cityName', async (req, res, next) => {
     if (!languages.length) {
       return res
         .status(404)
-        .json({ error: `no language data found for ${cityName}` });
+        .json({ error: `no language data found for ${city}` });
     }
     // return json format langauges for cityName
     res.json(languages);

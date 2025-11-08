@@ -6,7 +6,7 @@ import { db } from '../db/db.mjs';
 
 const expect = chai.expect;
 
-describe('GET /api/languages/:cityName', () => {
+describe('GET /api/languages/:city', () => {
   let setCollectionStub;
   let aggregateStub;
 
