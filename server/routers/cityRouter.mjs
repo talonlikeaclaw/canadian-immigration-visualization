@@ -1,4 +1,5 @@
 import express from 'express';
+import cityData from '../db/utils/data/city_data.mjs';
 
 const router = express.Router();
 
@@ -12,12 +13,14 @@ router.get('/:city/profile', (req, res) => {
 });
 
 router.get('/:cityName', (req, res) => {
-  const { cityName } = req.params;
-  if (cityName) {
-    res.json({ message: ` you asked for ${cityName} city name` });
-  } else {
-    res.status(404).json({ error: 'Router: city not found ' });
+  const cityKey = req.params.cityName.toLowerCase();
+  const city = cityData[cityKey];
+
+  if (!city) {
+    return res.status(404).json({ error: 'City not found '});
   }
+
+  res.json(city);
 });
 
 export default router;
