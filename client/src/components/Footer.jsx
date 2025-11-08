@@ -15,7 +15,7 @@ export default function Footer(){
         </a> {''}
         and {''}
         <a 
-            href=""
+            href="https://www150.statcan.gc.ca/t1/tbl1/en/cv!recreate.action?pid=9810019201&selectedNodeIds=4D4,4D5,4D7,4D115,4D127,4D145,4D149,4D159,4D177,4D178,4D184,4D187,4D197,4D203,4D214,4D218,4D219,4D220,4D229,4D233,4D242,4D243,4D248,4D249,4D250,4D251,4D255&checkedLevels=0D3,0D4,1D1,2D1,4D1&refPeriods=20210101,20210101&dimensionLayouts=layout3,layout3,layout3,layout3,layout3,layout2&vectorDisplay=false"
             target="blank"
             rel=""
         >
