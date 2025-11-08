@@ -167,7 +167,7 @@ router.get('/:city', async (req, res, next) => {
  *         required: true
  *         schema:
  *           type: integer
- *         description: The ending year (e.g., 1980)
+ *         description: The ending year (e.g., 1980) only 1980 is currently supported.
  *     responses:
  *       200:
  *         description: Successfully retrieved immigration data for the specified city and period.
@@ -331,13 +331,13 @@ router.get('/:city/period/:end', async (req, res, next) => {
  *         required: true
  *         schema:
  *           type: integer
- *         description: The starting year of the period (e.g., 2000)
+ *         description: The starting year of the period (e.g., 1980, 1991, 2001, 2006, 2011, 2016)
  *       - in: path
  *         name: end
  *         required: true
  *         schema:
  *           type: integer
- *         description: The ending year of the period (e.g., 2005)
+ *         description: The ending year of the period (e.g., 1990, 2000, 2005, 2010, 2015, 2021)
  *     responses:
  *       200:
  *         description: Successfully retrieved immigration data for the specified city and period.
