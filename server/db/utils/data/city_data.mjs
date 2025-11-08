@@ -11,7 +11,7 @@ const cityData = {
     AreaKm2: 631.1,
     Geolocation: [43.65322, -79.38318]
   },
-  montreal: {
+  montréal: {
     Province: 'Quebec',
     Population: 1762949,
     AreaKm2: 364.74,
