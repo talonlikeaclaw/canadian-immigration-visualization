@@ -6,7 +6,7 @@ import { db } from '../db/db.mjs';
 
 const expect = chai.expect;
 
-describe('GET /:city', () => {
+describe('GET /api/immigration/:city', () => {
   let setCollectionStub;
   let aggregateStub;
 
@@ -86,7 +86,7 @@ describe('GET /:city', () => {
   });
 });
 
-describe('GET /:city/period/:end', () => {
+describe('GET /api/immigration/:city/period/:end', () => {
   let setCollectionStub;
   let aggregateStub;
 
@@ -176,7 +176,7 @@ describe('GET /:city/period/:end', () => {
   });
 });
 
-describe('GET /:city/period/:start/:end', () => {
+describe('GET /api/immigration/:city/period/:start/:end', () => {
   let setCollectionStub;
   let aggregateStub;
 

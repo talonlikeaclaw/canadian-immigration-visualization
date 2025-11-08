@@ -35,7 +35,7 @@ describe('GET /api/city/:city_name', () => {
     expect(res.body.Geolocation[1]).to.be.a('number');
   });
 
-  it.skip('should return 404 for an unknown city', async () => {
+  it('should return 404 for an unknown city', async () => {
     const res = await request(app).get('/api/city/unknowncity');
 
     expect(res.statusCode).to.equal(404);
