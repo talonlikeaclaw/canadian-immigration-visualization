@@ -8,15 +8,17 @@ router.get('/:cityName', async (req, res, next) => {
   try {
     let { cityName } = req.params;
     if (!cityName) {
-      return res.status(400).json({ error: 'language router : city name is required!' });
-    }else if (cityName.toLowerCase() === 'montreal') {
+      return res
+        .status(400)
+        .json({ error: 'language router : city name is required!' });
+    } else if (cityName.toLowerCase() === 'montreal') {
       // a quixk fix for now => in db montreal has accent
       cityName = 'Montréal';
     }
     // connect to db
     await db.setCollection('languages');
 
-    // $regex => pattern based match instead of exact matching  
+    // $regex => pattern based match instead of exact matching
     // i => ignore case
     const pipeline = [
       { $match: { City: new RegExp(cityName, 'i'), Count: { $gt: 0 } } },
@@ -26,15 +28,16 @@ router.get('/:cityName', async (req, res, next) => {
     const languages = await db.aggregate(pipeline);
 
     if (!languages.length) {
-      return res.status(404).json({ error: `no language data found for ${cityName}` });
+      return res
+        .status(404)
+        .json({ error: `no language data found for ${cityName}` });
     }
     // return json format langauges for cityName
     res.json(languages);
-      
-  }catch(error){
-    console.error('language router: api/langguages error: ',  error);
+  } catch (error) {
+    console.error('language router: api/langguages error: ', error);
     //res.status(500).json({error: 'Internal server error'});
-     
+
     next(error);
   }
 });
