@@ -1,4 +1,4 @@
-export const cityData = {
+const cityData = {
   halifax: {
     Province: 'Nova Scotia',
     Population: 439819,
@@ -36,3 +36,5 @@ export const cityData = {
     Geolocation: [49.28273, -123.12074]
   }
 };
+
+export default cityData;
