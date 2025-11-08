@@ -3,11 +3,30 @@ import immigration from './routers/immigrationRouter.mjs';
 import languages from './routers/languagesRouter.mjs';
 import cities from './routers/citiesRouter.mjs';
 
+import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
 import express from 'express';
+
 const app = express();
+
+const swaggerDefinition = {
+  openapi: '3.0.0',
+  info: {
+    title: 'Canada Immigration and Language Stats API',
+    version: '1.0.0'
+  }
+};
+
+const options = {
+  swaggerDefinition,
+  apis: ['./routers/*.mjs']
+};
+
+const swaggerSpec = swaggerJSDoc(options);
 
 // api routes
 // app.use('/', );
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/api/city', city);
 app.use('/api/immigration', immigration);
 app.use('/api/languages', languages);
