@@ -167,7 +167,8 @@ router.get('/:city', async (req, res, next) => {
  *         required: true
  *         schema:
  *           type: integer
- *         description: The ending year (e.g., 1980) only 1980 is currently supported.
+ *         description: >
+ *            The ending year. Supported values: 1980
  *     responses:
  *       200:
  *         description: Successfully retrieved immigration data for the specified city and period.
@@ -309,14 +310,14 @@ router.get('/:city/period/:end', async (req, res, next) => {
  *       Returns aggregated immigration data for a given city between two years (inclusive),
  *       grouped by country and sorted by immigrant count. If the period starts at 1980, it
  *       automatically uses the label "Before 1980" to match the database format.
-*       Valid period ranges in the dataset are:
-*         - Before 1980
-*         - 1980 to 1990
-*         - 1991 to 2000
-*         - 2001 to 2005
-*         - 2006 to 2010
-*         - 2011 to 2015
-*         - 2016 to 2021
+ *       Valid period ranges in the dataset are:
+ *         - Before 1980
+ *         - 1980 to 1990
+ *         - 1991 to 2000
+ *         - 2001 to 2005
+ *         - 2006 to 2010
+ *         - 2011 to 2015
+ *         - 2016 to 2021
  *     parameters:
  *       - in: path
  *         name: city
@@ -331,13 +332,17 @@ router.get('/:city/period/:end', async (req, res, next) => {
  *         required: true
  *         schema:
  *           type: integer
- *         description: The starting year of the period (e.g., 1980, 1991, 2001, 2006, 2011, 2016)
+ *         description: >
+ *           The starting year of the period. Supported values:
+ *           1980, 1991, 2001, 2006, 2011, 2016
  *       - in: path
  *         name: end
  *         required: true
  *         schema:
  *           type: integer
- *         description: The ending year of the period (e.g., 1990, 2000, 2005, 2010, 2015, 2021)
+ *         description: >
+ *           The ending year of the period. Supported values:
+ *           1990, 2000, 2005, 2010, 2015, 2021
  *     responses:
  *       200:
  *         description: Successfully retrieved immigration data for the specified city and period.
@@ -372,7 +377,7 @@ router.get('/:city/period/:end', async (req, res, next) => {
  *               properties:
  *                 error:
  *                   type: string
- *                   example: Invalid starting or ending year.
+ *                   example: Invalid city name or starting or ending year.
  *       404:
  *         description: No immigration data found for the specified city and period.
  *         content:
