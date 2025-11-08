@@ -140,10 +140,90 @@ router.get('/:city', async (req, res, next) => {
   }
 });
 
+/* eslint-disable max-len */
 /**
- * Gets immigration numbers from ALL countries but only for the end date and before
- * This route was created because one of the possible periods is 'Before 1980',
- * so there's no specific start year.
+ * @swagger
+ * /api/immigration/{city}/period/{end}:
+ *   get:
+ *     tags:
+ *       - Immigration
+ *     summary: Get immigration statistics for a city before a given year
+ *     description: >
+ *       Returns aggregated immigration data for a given city for all years **before** the specified ending year.
+ *       This route exists because the database includes a period label such as `"Before 1980"`.
+ *     parameters:
+ *       - in: path
+ *         name: city
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: >
+ *           The name of the city. Only letters and accented characters are allowed.
+ *           If the city name includes accents, you must include them (e.g., Montréal).
+ *       - in: path
+ *         name: end
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The ending year (e.g., 1980)
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved immigration data for the specified city and period.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 city:
+ *                   type: string
+ *                   example: "Montréal"
+ *                 period:
+ *                   type: string
+ *                   example: "Before 1980"
+ *                 totalImmigrants:
+ *                   type: integer
+ *                   example: 161235
+ *                 countries:
+ *                   type: object
+ *                   additionalProperties:
+ *                     type: integer
+ *                   example:
+ *                     Italy: 38295
+ *                     Greece: 13320
+ *                     Haiti: 12090
+ *       400:
+ *         description: Invalid city name or invalid ending year.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: Invalid city name or ending year.
+ *       404:
+ *         description: No immigration data found for the specified city and period.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "No immigration data found for Montréal in period Before 1980."
+ *                 hint:
+ *                   type: string
+ *                   example: If the city name contains accents, please include them.
+ *       500:
+ *         description: Internal server error.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: Internal server error.
  */
 router.get('/:city/period/:end', async (req, res, next) => {
   try {
