@@ -24,7 +24,7 @@ describe('GET /:city', () => {
   });
 
   // Act
-  it('Should return num of immigrants by country for given city, when valid city passed', async () => {
+  it('Should return num of immigrants by country for given city, valid city passed', async () => {
     // resolve to correct, expected data
     aggregateStub.resolves([
       {
@@ -104,7 +104,7 @@ describe('GET /:city/period/:end', () => {
   });
 
   // Act
-  it('Should return num of immigrants by country for given city, when valid city passed', async () => {
+  it('Should return num of immigrants by country for given city, valid city passed', async () => {
     // resolve to correct, expected data
     aggregateStub.resolves([
       {
