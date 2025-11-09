@@ -12,7 +12,9 @@ const cities = [
 
 export default function DataExplorer() {
   const [datasetType, setDatasetType] = useState('immigration');
+  const [activeDatasetType, setActiveDatasetType] = useState('immigration');
   const [selectedCity, setSelectedCity] = useState('');
+  const [activeCity, setActiveCity] = useState('');
   const [cityInfo, setCityInfo] = useState(null);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -30,6 +32,9 @@ export default function DataExplorer() {
     setLoading(true);
     setCityInfo(null);
     setData(null);
+
+    setActiveCity(selectedCity);
+    setActiveDatasetType(datasetType);
 
     try {
       const cityRes = await fetch(
@@ -119,9 +124,9 @@ export default function DataExplorer() {
       {cityInfo && (
         <section>
           <article>
-            <h3>About {selectedCity}</h3>
+            <h3>About {activeCity}</h3>
             <p>
-              {selectedCity} in the province of{' '}
+              {activeCity} in the province of{' '}
               <strong>{cityInfo.Province}</strong> has a population of{' '}
               <strong>{cityInfo.Population}</strong> people over{' '}
               <strong>{cityInfo.AreaKm2}</strong> km², giving it a population density
@@ -141,14 +146,14 @@ export default function DataExplorer() {
         <section>
           <article>
             <h3>
-              {selectedCity} -{' '}
-              {datasetType[0].toUpperCase() + datasetType.slice(1)} Data
+              {activeCity} -{' '}
+              {activeDatasetType[0].toUpperCase() + activeDatasetType.slice(1)} Data
             </h3>
             <Chart
               data={data}
-              title={`${selectedCity} - ${datasetType}`}
+              title={`${activeCity} - ${activeDatasetType}`}
               xLabel="Count"
-              yLabel={datasetType === 'immigration' ? 'Country' : 'Language'}
+              yLabel={activeDatasetType === 'immigration' ? 'Country' : 'Language'}
             />
           </article>
         </section>
