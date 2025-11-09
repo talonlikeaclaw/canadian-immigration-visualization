@@ -12,11 +12,13 @@ const cities = [
 
 export default function DataExplorer() {
   const [datasetType, setDatasetType] = useState('immigration');
-  const [activeDatasetType, setActiveDatasetType] = useState('immigration');
+  const [activeDatasetType, setActiveDatasetType] =
+    useState('immigration');
   const [selectedCity, setSelectedCity] = useState('');
   const [activeCity, setActiveCity] = useState('');
   const [cityInfo, setCityInfo] = useState(null);
   const [data, setData] = useState(null);
+  const [resultLimit, setResultLimit] = useState(10);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -44,9 +46,10 @@ export default function DataExplorer() {
       const cityJson = await cityRes.json();
       setCityInfo(cityJson);
 
-      const datasetUrl = datasetType === 'immigration'
-        ? `/api/immigration/${encodeURIComponent(selectedCity)}`
-        : `/api/languages/${encodeURIComponent(selectedCity)}`;
+      const datasetUrl =
+        datasetType === 'immigration'
+          ? `/api/immigration/${encodeURIComponent(selectedCity)}`
+          : `/api/languages/${encodeURIComponent(selectedCity)}`;
 
       const datasetRes = await fetch(datasetUrl);
       if (!datasetRes.ok) throw new Error('Failed to fetch dataset');
@@ -63,6 +66,8 @@ export default function DataExplorer() {
           value: Count
         }));
       }
+
+      normalizedData = normalizedData.slice(0, resultLimit);
 
       setData(normalizedData);
     } catch (err) {
@@ -113,6 +118,19 @@ export default function DataExplorer() {
             <option value="language">Language</option>
           </select>
 
+          <label htmlFor="limit-select">Result Limit</label>
+          <select
+            id="limit-select"
+            value={resultLimit}
+            onChange={e => setResultLimit(parseInt(e.target.value))}
+          >
+            <option value={5}>Top 5</option>
+            <option value={10}>Top 10</option>
+            <option value={15}>Top 15</option>
+            <option value={20}>Top 20</option>
+            <option value={25}>Top 25</option>
+          </select>
+
           <button type="submit" disabled={!selectedCity || loading}>
             {loading ? 'Loading...' : 'Show Data'}
           </button>
@@ -129,8 +147,8 @@ export default function DataExplorer() {
               {activeCity} in the province of{' '}
               <strong>{cityInfo.Province}</strong> has a population of{' '}
               <strong>{cityInfo.Population}</strong> people over{' '}
-              <strong>{cityInfo.AreaKm2}</strong> km², giving it a population density
-              of{' '}
+              <strong>{cityInfo.AreaKm2}</strong> km², giving it a
+              population density of{' '}
               <strong>
                 {cityInfo.AreaKm2 && cityInfo.Population
                   ? (cityInfo.Population / cityInfo.AreaKm2).toFixed(1)
@@ -147,13 +165,19 @@ export default function DataExplorer() {
           <article>
             <h3>
               {activeCity} -{' '}
-              {activeDatasetType[0].toUpperCase() + activeDatasetType.slice(1)} Data
+              {activeDatasetType[0].toUpperCase() +
+                activeDatasetType.slice(1)}{' '}
+              Data
             </h3>
             <Chart
               data={data}
               title={`${activeCity} - ${activeDatasetType}`}
               xLabel="Count"
-              yLabel={activeDatasetType === 'immigration' ? 'Country' : 'Language'}
+              yLabel={
+                activeDatasetType === 'immigration'
+                  ? 'Country'
+                  : 'Language'
+              }
             />
           </article>
         </section>
