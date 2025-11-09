@@ -14,11 +14,18 @@ function App() {
 
   const { ref: halifaxRef, inView: halifaxInView } = useInView(options);
   const { ref: montrealRef, inView: montrealInView } = useInView(options);
+  const { ref: torontoRef, inView: torontoInView } = useInView(options);
+  const { ref: calgaryRef, inView: calgaryInView } = useInView(options);
+  const { ref: vancouverRef, inView: vancouverInView } = useInView(options);
 
   // Determine the currently zoomed city based on scroll position
   const currentZoomedCity = 
-  halifaxInView ? 'halifax' 
-    : montrealInView ? 'montreal' : '';
+    vancouverInView ? 'vancouver' :
+      calgaryInView ? 'calgary' :
+        torontoInView ? 'toronto' :
+          montrealInView ? 'montreal' :
+            halifaxInView ? 'halifax' :
+              '';
 
   return (
     <>
@@ -121,6 +128,42 @@ function App() {
         </p>
 
         <Chart city="montréal"></Chart>
+
+      </section>
+
+      <div className="city-divider"></div>
+
+      <p>
+        We move west to Toronto, the massive, 
+        English-speaking metropolis that truly took off after World War II.
+      </p>
+
+      <section className="toronto-section" ref={torontoRef}>
+        <p>
+          During Word War II, Toronto was transformed into a vital industrial city. 
+          After the war, Canada needed workers, and the federal government opened 
+          the immigration doors wide to fuel the country&apos;s industrial and economic growth.
+        </p>
+        <p>
+          Toronto then became the ultimate destination! Early waves brought not only European 
+          communities like Italians, British and Portuguese, but communities from all over the 
+          world from India, Guyana, the Philippines and so much more.
+        </p>
+
+        <p>
+          The most spoken non-official language is Punjabi (Panjabi) with 161,965 speakers. 
+          This is followed by Urdu (89,120 speakers) and Tamil (83,225 speakers), clearly showing 
+          Toronto&apos;s powerful ties to India, Pakistan, and Sri Lanka. Other huge communities
+          include speakers of Spanish (78,275), Tagalog (77,925), and Iranian Persian (57,085).
+        </p>
+
+        <p>
+          The city quickly transformed from a relatively Anglo-centric place to the dynamic, 
+          multicultural mosaic it is today. That postwar need for labor is why Toronto is 
+          now one of the most linguistically diverse places on the planet.
+        </p>
+
+        <Chart city="toronto"></Chart>
 
       </section>
 
