@@ -2,8 +2,13 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	gap: 0;
 }
+
+.map-wrapper {
+	display: grid;
+	place-content: center;
+}
+
 .country-map{
 	display: flex;
 	flex-direction: column;

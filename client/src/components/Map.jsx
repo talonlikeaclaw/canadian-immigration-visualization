@@ -40,7 +40,7 @@ import upperMap from'../assets/images/map-upper-half.svg';
 
 function Map({zoomedInCity = ''}){
   return (
-    <>
+    <section className="map-wrapper">
       {zoomedInCity === '' &&
         <section className="country-map">
           <img className="upper-map" src={upperMap} alt="" />
@@ -144,7 +144,7 @@ function Map({zoomedInCity = ''}){
           <img className="grid-map__item" src={map22}/>
         </section>
       }
-    </>
+    </section>
   );
 }
 
