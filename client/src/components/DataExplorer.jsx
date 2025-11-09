@@ -34,24 +34,32 @@ export default function DataExplorer() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  /**
+   * Handles form submission: fetches city info and dataset
+   * based on current selections (city, dataset type, and period).
+   */
   async function handleSubmit(e) {
     e.preventDefault();
 
+    // Ensure city is selected
     if (!selectedCity) {
       setError('Please select a city first.');
       return;
     }
 
+    // Reset UI
     setError('');
     setLoading(true);
     setCityInfo(null);
     setData(null);
 
+    // Commit form selections
     setActiveCity(selectedCity);
     setActiveDataType(dataType);
     setActivePeriod(period);
 
     try {
+      // Fetch city information
       const cityRes = await fetch(
         `/api/city/${encodeURIComponent(selectedCity)}`
       );
@@ -59,6 +67,7 @@ export default function DataExplorer() {
       const cityJson = await cityRes.json();
       setCityInfo(cityJson);
 
+      // Build dataset URL based on type and period
       let datasetUrl;
       if (dataType === 'immigration') {
         if (period === 'All time') {
@@ -79,6 +88,7 @@ export default function DataExplorer() {
               selectedCity
             )}/period/${start}/${end}`;
           } else {
+            // Fallback
             datasetUrl = `/api/immigration/${encodeURIComponent(
               selectedCity
             )}`;
@@ -88,22 +98,26 @@ export default function DataExplorer() {
         datasetUrl = `/api/languages/${encodeURIComponent(selectedCity)}`;
       }
 
+      // Fetch dataset and handle normalization
       const datasetRes = await fetch(datasetUrl);
       if (!datasetRes.ok) throw new Error('Failed to fetch dataset');
       const datasetJson = await datasetRes.json();
 
       let normalizedData = [];
       if (dataType === 'immigration') {
+        // Transform object of countries into array of { label, value }
         normalizedData = Object.entries(datasetJson.countries).map(
           ([label, value]) => ({ label, value })
         );
       } else {
+        // Transform array of language objects into { label, value }
         normalizedData = datasetJson.map(({ Language, Count }) => ({
           label: Language,
           value: Count
         }));
       }
 
+      // Trim results
       normalizedData = normalizedData.slice(0, resultLimit);
 
       setData(normalizedData);
@@ -125,10 +139,13 @@ export default function DataExplorer() {
         </p>
       </header>
 
+
+      {/* === Selection Form === */}
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Options</legend>
 
+          {/* City selection */}
           <label htmlFor="city-select">City</label>
           <select
             name="city"
@@ -144,6 +161,7 @@ export default function DataExplorer() {
             ))}
           </select>
 
+          {/* Dataset type (Immigration / Language) */}
           <label htmlFor="dataset-select">Dataset</label>
           <select
             name="dataset"
@@ -155,6 +173,7 @@ export default function DataExplorer() {
             <option value="language">Language</option>
           </select>
 
+          {/* Period only shown for immigration */}
           {dataType === 'immigration' && (
             <>
               <label htmlFor="period-select">Period</label>
@@ -172,6 +191,7 @@ export default function DataExplorer() {
             </>
           )}
 
+          {/* Number of entries to display */}
           <label htmlFor="limit-select">Result Limit</label>
           <select
             id="limit-select"
@@ -191,6 +211,7 @@ export default function DataExplorer() {
         </fieldset>
       </form>
 
+      {/* Display any error messages */}
       <section>{error && <p className="error">{error}</p>}</section>
 
       {cityInfo && (
@@ -214,6 +235,7 @@ export default function DataExplorer() {
         </section>
       )}
 
+      {/* Chart visualization */}
       {data && (
         <section>
           <article>
