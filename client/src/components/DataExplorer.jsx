@@ -11,9 +11,8 @@ const cities = [
 ];
 
 export default function DataExplorer() {
-  const [datasetType, setDatasetType] = useState('immigration');
-  const [activeDatasetType, setActiveDatasetType] =
-    useState('immigration');
+  const [dataType, setDataType] = useState('immigration');
+  const [activeDataType, setActiveDataType] = useState('immigration');
   const [selectedCity, setSelectedCity] = useState('');
   const [activeCity, setActiveCity] = useState('');
   const [cityInfo, setCityInfo] = useState(null);
@@ -36,7 +35,7 @@ export default function DataExplorer() {
     setData(null);
 
     setActiveCity(selectedCity);
-    setActiveDatasetType(datasetType);
+    setActiveDataType(dataType);
 
     try {
       const cityRes = await fetch(
@@ -47,7 +46,7 @@ export default function DataExplorer() {
       setCityInfo(cityJson);
 
       const datasetUrl =
-        datasetType === 'immigration'
+        dataType === 'immigration'
           ? `/api/immigration/${encodeURIComponent(selectedCity)}`
           : `/api/languages/${encodeURIComponent(selectedCity)}`;
 
@@ -56,7 +55,7 @@ export default function DataExplorer() {
       const datasetJson = await datasetRes.json();
 
       let normalizedData = [];
-      if (datasetType === 'immigration') {
+      if (dataType === 'immigration') {
         normalizedData = Object.entries(datasetJson.countries).map(
           ([label, value]) => ({ label, value })
         );
@@ -111,8 +110,8 @@ export default function DataExplorer() {
           <select
             name="dataset"
             id="dataset-select"
-            value={datasetType}
-            onChange={e => setDatasetType(e.target.value)}
+            value={dataType}
+            onChange={e => setDataType(e.target.value)}
           >
             <option value="immigration">Immigration</option>
             <option value="language">Language</option>
@@ -165,16 +164,16 @@ export default function DataExplorer() {
           <article>
             <h3>
               {activeCity} -{' '}
-              {activeDatasetType[0].toUpperCase() +
-                activeDatasetType.slice(1)}{' '}
+              {activeDataType[0].toUpperCase() +
+                activeDataType.slice(1)}{' '}
               Data
             </h3>
             <Chart
               data={data}
-              title={`${activeCity} - ${activeDatasetType}`}
+              title={`${activeCity} - ${activeDataType}`}
               xLabel="Count"
               yLabel={
-                activeDatasetType === 'immigration'
+                activeDataType === 'immigration'
                   ? 'Country'
                   : 'Language'
               }
