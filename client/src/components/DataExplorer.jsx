@@ -19,7 +19,30 @@ export default function DataExplorer() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    // TODO: implement fetching
+
+    if (!selectedCity) {
+      setError('Please select a city first.');
+      return;
+    }
+
+    setError('');
+    setLoading(true);
+    setCityInfo(null);
+    setData(null);
+
+    try {
+      const cityRes = await fetch(
+        `/api/city/${encodeURIComponent(selectedCity)}`
+      );
+      if (!cityRes.ok) throw new Error('Failed to fetch city info');
+      const cityJson = await cityRes.json();
+      setCityInfo(cityJson);
+    } catch (err) {
+      console.error(err);
+      setError('Something went wrong while fetching data.');
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -77,8 +100,8 @@ export default function DataExplorer() {
             <p>
               {selectedCity} in the province of{' '}
               <strong>{cityInfo.Province}</strong> has a population of{' '}
-              <strong>{cityInfo.Population}</strong> over{' '}
-              <strong>{cityInfo.AreaKm2}</strong> km², giving it a density
+              <strong>{cityInfo.Population}</strong> people over{' '}
+              <strong>{cityInfo.AreaKm2}</strong> km², giving it a population density
               of{' '}
               <strong>
                 {cityInfo.AreaKm2 && cityInfo.Population
