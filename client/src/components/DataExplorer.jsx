@@ -193,8 +193,8 @@ export default function DataExplorer() {
       <header>
         <h2>City Data Explorer</h2>
         <p>
-          Pick a city and dataset to visualize immigration or language
-          statistics.
+          Pick one or two cities and dataset to visualize/compare
+          immigration or language statistics.
         </p>
       </header>
 
@@ -205,7 +205,7 @@ export default function DataExplorer() {
 
           {/* City selection */}
           {/* === City 1 === */}
-          <label htmlFor="city-select">Primary City</label>
+          <label htmlFor="city-select">Primary City:</label>
           <select
             id="city-select"
             value={selectedCity}
@@ -221,7 +221,7 @@ export default function DataExplorer() {
 
           {/* === Optional comparison city === */}
           <label htmlFor="comparison-select">
-            Comparison City (optional)
+            Comparison City (optional):
           </label>
           <select
             id="comparison-select"
@@ -239,7 +239,7 @@ export default function DataExplorer() {
           </select>
 
           {/* Dataset type (Immigration / Language) */}
-          <label htmlFor="dataset-select">Dataset</label>
+          <label htmlFor="dataset-select">Dataset:</label>
           <select
             name="dataset"
             id="dataset-select"
@@ -253,7 +253,7 @@ export default function DataExplorer() {
           {/* Period only shown for immigration */}
           {dataType === 'immigration' && (
             <>
-              <label htmlFor="period-select">Period</label>
+              <label htmlFor="period-select">Period:</label>
               <select
                 id="period-select"
                 value={period}
@@ -269,7 +269,7 @@ export default function DataExplorer() {
           )}
 
           {/* Number of entries to display */}
-          <label htmlFor="limit-select">Result Limit</label>
+          <label htmlFor="limit-select">Result Limit:</label>
           <select
             id="limit-select"
             value={resultLimit}
