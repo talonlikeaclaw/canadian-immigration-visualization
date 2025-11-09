@@ -13,3 +13,8 @@
 
 	z-index: -10;
 }
+
+.city-divider{
+	height: 50rem;
+	width: 100vw;
+}
