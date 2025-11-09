@@ -33,7 +33,7 @@ function Chart({ data, title, xLabel, yLabel }) {
     yaxis: {
       title: { title: yLabel, automargin: true }
     },
-    margin: { l: 110, r: 20, t: 20, b: 20 },
+    margin: { l: 160, r: 20, t: 20, b: 20 },
     autosize: true
   };
 
