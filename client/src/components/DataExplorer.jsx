@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Chart from './Chart';
+import '../assets/styles/DataExplorer.css';
 
 const cities = [
   'Halifax',
