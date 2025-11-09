@@ -167,6 +167,56 @@ function App() {
 
       </section>
 
+      <div className="city-divider"></div>
+
+      <p>
+        Now we explore the Prairies with Calgary and Edmonton, 
+        two cities whose fortunes are tied directly to the earth. 
+        Their histories are defined by natural resources.
+      </p>
+
+      <section className="calgary-section" ref={calgaryRef}>
+        <p>
+          While the region started with agriculture, the real game-changer was oil and gas.
+           The discovery of major fields in the mid-20th century turned the region into 
+           an energy powerhouse.
+        </p>
+        <p>
+          In 1976, The Federal Skilled Worker (FSW) Program was launched. It was the world&apos;s 
+          first point-based immigration program, designed to objectively select skilled immigrants
+          based on criteria like education, age, and language proficiency, rather than being chosen 
+          subjectively by immigration officers.
+        </p>
+
+        <p>
+          It took a few years for the program to show effective changes, 
+          but by the 1990s a shift in immigration patterns could be observed.
+        </p>
+
+        <p>
+          The immigration statistics for Calgary and Edmonton confirm this policy-driven change,
+           with the Philippines, India, and China now ranking as the top three source countries 
+          for new immigrants in both cities, clearly supplanting the United Kingdom and 
+          other European nations.
+        </p>
+
+        <p>
+          Looking at the two cities head-to-head, you can also see a shared linguistic DNA driven 
+          by the same economic engine. In Calgary, the most spoken non-official language is Punjabi 
+          (40,490 speakers), followed closely by Tagalog (28,505 speakers), the primary language of 
+          the Philippines. Edmonton shows a very similar pattern, with Punjabi (32,345 speakers) 
+          and Tagalog (26,000 speakers) leading the pack as well. Both cities also host significant
+           communities speaking Arabic (around 12,700 speakers in each) and Spanish 
+           (with over 19,300 in Calgary and 11,570 in Edmonton). This shows that the pursuit of 
+           careers in the energy sector has created two modern, vibrant, and incredibly diverse
+            linguistic hubs right in the heart of the Prairies.
+        </p>
+
+        <Chart city="calgary"></Chart>
+        <Chart city="edmonton"></Chart>
+
+      </section>
+
 
       <Footer/>
     </>
