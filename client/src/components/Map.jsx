@@ -97,6 +97,18 @@ function Map({zoomedInCity = 'halifax'}){
           <img className="grid-map__item" src={map14}/>
         </section>
       }
+
+      {zoomedInCity === 'montreal' && 
+        <section className="city-map">
+          <img className="grid-map__item" src={map17}/>
+          <img className="grid-map__item" src={map16}/>
+          <img className="grid-map__item" src={map15}/>
+
+          <img className="grid-map__item" src={map5}/>
+          <img className="grid-map__item" src={map4}/>
+          <img className="grid-map__item" src={map3}/>
+        </section>
+      }
     </>
   );
 }
