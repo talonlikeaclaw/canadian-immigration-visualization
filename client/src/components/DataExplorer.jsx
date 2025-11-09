@@ -204,19 +204,17 @@ export default function DataExplorer() {
 
   return (
     <>
-      <header>
-        <h2>City Data Explorer</h2>
-        <p>
-          Pick one or two cities and dataset to visualize/compare
-          immigration or language statistics.
-        </p>
-      </header>
 
       {/* === Selection Form === */}
       <form onSubmit={handleSubmit}>
         <fieldset>
-          <legend>Options</legend>
-
+          <header>
+            <h2>City Data Explorer</h2>
+            <p>
+              Pick one or two cities and dataset to visualize/compare
+              immigration or language statistics.
+            </p>
+          </header>
           {/* City selection */}
           {/* === City 1 === */}
           <label htmlFor="city-select">Primary City:</label>
