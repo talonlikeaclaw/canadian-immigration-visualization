@@ -26,3 +26,5 @@ By combining demographic and linguistic datasets, we will create a narrative tha
 - Jaya’s Assignment 2 repository : ESLint rules.
 - Jaya’s Exercise 8.2 solution code: Database class.
 - ChatGPT: Assisted with regex pattern creation.
+- ChatGPT: Assisted with polishing up text presented to users (all information given was double checked)
+- Map of Canada image: [fla-shop.com/svg/canada](https://www.fla-shop.com/svg/canada/)
