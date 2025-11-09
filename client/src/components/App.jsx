@@ -2,6 +2,7 @@ import { useState } from 'react';
 import '../assets/styles/App.css';
 import HeroSection from './HeroSection';
 import Chart from './Chart';
+import Map from './Map';
 import Footer from './Footer';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
       </section>
       <Chart city={city}></Chart>
 
+      <Map/>
       <Footer/>
     </>
   );
