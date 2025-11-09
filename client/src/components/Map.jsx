@@ -38,7 +38,7 @@ import map35 from'../assets/images/map-35.svg';
 import map36 from'../assets/images/map-36.svg';
 import upperMap from'../assets/images/map-upper-half.svg';
 
-function Map({zoomedInCity = 'vancouver'}){
+function Map({zoomedInCity = ''}){
   return (
     <>
       {zoomedInCity === '' &&
@@ -84,8 +84,7 @@ function Map({zoomedInCity = 'vancouver'}){
           </section>
         </section>
       }
-
-          
+  
       {zoomedInCity === 'halifax' && 
         <section className="city-map">
           <img className="grid-map__item" src={map28}/>

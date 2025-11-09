@@ -28,6 +28,11 @@ function App() {
       <Chart city={city}></Chart>
 
       <Map/>
+      <Map zoomedInCity="halifax"/>
+      <Map zoomedInCity="montreal"/>
+      <Map zoomedInCity="toronto"/>
+      <Map zoomedInCity="calgary"/>
+      <Map zoomedInCity="vancouver"/>
       <Footer/>
     </>
   );
