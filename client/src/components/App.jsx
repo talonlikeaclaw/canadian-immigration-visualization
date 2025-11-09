@@ -1,7 +1,6 @@
 import { useInView } from 'react-intersection-observer'; 
 import '../assets/styles/App.css';
 import HeroSection from './HeroSection';
-import Chart from './Chart';
 import DataExplorer from './DataExplorer';
 import Map from './Map';
 import Footer from './Footer';
