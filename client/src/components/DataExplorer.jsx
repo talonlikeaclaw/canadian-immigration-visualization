@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import Chart from './Chart';
 import '../assets/styles/DataExplorer.css';
 
@@ -42,6 +42,20 @@ export default function DataExplorer() {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
+  const primaryData = useMemo(
+    () =>
+      data && activeCity ? data.filter(d => d.city === activeCity) : [],
+    [data, activeCity]
+  );
+
+  const comparisonData = useMemo(
+    () =>
+      data && activeComparisonCity
+        ? data.filter(d => d.city === activeComparisonCity)
+        : [],
+    [data, activeComparisonCity]
+  );
 
   /**
    * Fetches and normalizes dataset information for a given city.
@@ -322,7 +336,7 @@ export default function DataExplorer() {
                 </div>
               )}
               <Chart
-                data={data.filter(d => d.city === activeCity)}
+                data={primaryData}
                 title={`${activeCity} – ${activeDataType}`}
                 xLabel="Count"
                 yLabel={
@@ -348,7 +362,7 @@ export default function DataExplorer() {
                   </div>
                 )}
                 <Chart
-                  data={data.filter(d => d.city === activeComparisonCity)}
+                  data={comparisonData}
                   title={`${activeComparisonCity} – ${activeDataType}`}
                   xLabel="Count"
                   yLabel={

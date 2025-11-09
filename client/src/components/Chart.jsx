@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Plot from 'react-plotly.js';
 
 function Chart({ data, title, xLabel, yLabel }) {
@@ -60,4 +61,4 @@ function Chart({ data, title, xLabel, yLabel }) {
   );
 }
 
-export default Chart;
+export default memo(Chart);
