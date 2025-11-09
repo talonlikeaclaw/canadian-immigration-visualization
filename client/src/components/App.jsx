@@ -217,6 +217,45 @@ function App() {
 
       </section>
 
+      <div className="city-divider"></div>
+
+      <p>
+        Finally, we land in Vancouver, a stunning city whose identity has
+         been completely remade by its role as Canada&apos;s bridge to the Pacific.
+      </p>
+
+      <section className="vancouver-section" ref={vancouverRef}>
+        <p>
+          Vancouver had long-standing ties to Asia, but its modern era began in the 1980s.
+           Key events included the international spotlight of Expo 86 and a new immigration
+            program that welcomed wealthy investors.
+        </p>
+        <p>
+          This coincided perfectly with political uncertainty surrounding the 1997 Handover
+           of Hong Kong to China. Huge numbers of capital-rich immigrants from Hong Kong, 
+           and later Mainland China, chose Vancouver as their new home.
+        </p>
+
+        <p>
+          The list of most common non-official languages reads like a map of the Asia-Pacific.
+           Vancouver has substantial populations speaking Korean (40,045 speakers) and Tagalog
+            (37,890 speakers). The city also has a surprisingly large community of Iranian 
+            Persian speakers (30,985). The prevalence of all these Asian and global languages,
+             especially compared to the relatively small number of French speakers (8,685),
+              highlights Vancouver&apos;s identity as a deeply Pacific-focused global city.
+        </p>
+
+        <p>
+          The 2010 Winter Olympic Games held in Vancouver provided a global
+           marketing platform for the city, and reinforced existing immigration trends.
+        </p>
+
+        <Chart city="vancouver"></Chart>
+
+      </section>
+
+      <div className="city-divider"></div>
+
 
       <Footer/>
     </>
