@@ -1,0 +1,23 @@
+.country-map{
+	display: flex;
+	flex-direction: column;
+	width: fit-content;
+	height: fit-content;
+}
+
+.upper-map{
+	width: 1272px;
+}
+.grid-map {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0;
+	margin: 0;
+	padding: 0;
+}
+
+.grid-map__item{
+	width: 106px;
+	height: 128px;
+}
