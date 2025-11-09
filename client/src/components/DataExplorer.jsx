@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Chart from './Chart';
 
 const cities = [
   'Halifax',
@@ -37,6 +38,28 @@ export default function DataExplorer() {
       if (!cityRes.ok) throw new Error('Failed to fetch city info');
       const cityJson = await cityRes.json();
       setCityInfo(cityJson);
+
+      const datasetUrl = datasetType === 'immigration'
+        ? `/api/immigration/${encodeURIComponent(selectedCity)}`
+        : `/api/languages/${encodeURIComponent(selectedCity)}`;
+
+      const datasetRes = await fetch(datasetUrl);
+      if (!datasetRes.ok) throw new Error('Failed to fetch dataset');
+      const datasetJson = await datasetRes.json();
+
+      let normalizedData = [];
+      if (datasetType === 'immigration') {
+        normalizedData = Object.entries(datasetJson.countries).map(
+          ([label, value]) => ({ label, value })
+        );
+      } else {
+        normalizedData = datasetJson.map(({ Language, Count }) => ({
+          label: Language,
+          value: Count
+        }));
+      }
+
+      setData(normalizedData);
     } catch (err) {
       console.error(err);
       setError('Something went wrong while fetching data.');
@@ -110,6 +133,23 @@ export default function DataExplorer() {
               </strong>{' '}
               people per km².
             </p>
+          </article>
+        </section>
+      )}
+
+      {data && (
+        <section>
+          <article>
+            <h3>
+              {selectedCity} -{' '}
+              {datasetType[0].toUpperCase() + datasetType.slice(1)} Data
+            </h3>
+            <Chart
+              data={data}
+              title={`${selectedCity} - ${datasetType}`}
+              xLabel="Count"
+              yLabel={datasetType === 'immigration' ? 'Country' : 'Language'}
+            />
           </article>
         </section>
       )}
