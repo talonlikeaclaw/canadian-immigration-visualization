@@ -10,6 +10,17 @@ const cities = [
   'Vancouver'
 ];
 
+const periods = [
+  'All time',
+  'Before 1980',
+  '1980 to 1990',
+  '1991 to 2000',
+  '2001 to 2005',
+  '2006 to 2010',
+  '2011 to 2015',
+  '2016 to 2021'
+];
+
 export default function DataExplorer() {
   const [dataType, setDataType] = useState('immigration');
   const [activeDataType, setActiveDataType] = useState('immigration');
@@ -17,6 +28,8 @@ export default function DataExplorer() {
   const [activeCity, setActiveCity] = useState('');
   const [cityInfo, setCityInfo] = useState(null);
   const [data, setData] = useState(null);
+  const [period, setPeriod] = useState('All time');
+  const [activePeriod, setActivePeriod] = useState('All time');
   const [resultLimit, setResultLimit] = useState(10);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -36,6 +49,7 @@ export default function DataExplorer() {
 
     setActiveCity(selectedCity);
     setActiveDataType(dataType);
+    setActivePeriod(period);
 
     try {
       const cityRes = await fetch(
@@ -45,10 +59,34 @@ export default function DataExplorer() {
       const cityJson = await cityRes.json();
       setCityInfo(cityJson);
 
-      const datasetUrl =
-        dataType === 'immigration'
-          ? `/api/immigration/${encodeURIComponent(selectedCity)}`
-          : `/api/languages/${encodeURIComponent(selectedCity)}`;
+      let datasetUrl;
+      if (dataType === 'immigration') {
+        if (period === 'All time') {
+          datasetUrl = `/api/immigration/${encodeURIComponent(
+            selectedCity
+          )}`;
+        } else if (period === 'Before 1980') {
+          datasetUrl = `/api/immigration/${encodeURIComponent(
+            selectedCity
+          )}/period/1980`;
+        } else {
+          // Regex created by ChatGPT.
+          const match = period.match(/(\d{4})\s*to\s*(\d{4})/);
+          if (match) {
+            /* eslint-disable no-unused-vars*/
+            const [_, start, end] = match;
+            datasetUrl = `/api/immigration/${encodeURIComponent(
+              selectedCity
+            )}/period/${start}/${end}`;
+          } else {
+            datasetUrl = `/api/immigration/${encodeURIComponent(
+              selectedCity
+            )}`;
+          }
+        }
+      } else {
+        datasetUrl = `/api/languages/${encodeURIComponent(selectedCity)}`;
+      }
 
       const datasetRes = await fetch(datasetUrl);
       if (!datasetRes.ok) throw new Error('Failed to fetch dataset');
@@ -117,6 +155,23 @@ export default function DataExplorer() {
             <option value="language">Language</option>
           </select>
 
+          {dataType === 'immigration' && (
+            <>
+              <label htmlFor="period-select">Period</label>
+              <select
+                id="period-select"
+                value={period}
+                onChange={e => setPeriod(e.target.value)}
+              >
+                {periods.map(p => (
+                  <option key={p} value={p}>
+                    {p}
+                  </option>
+                ))}
+              </select>
+            </>
+          )}
+
           <label htmlFor="limit-select">Result Limit</label>
           <select
             id="limit-select"
@@ -164,18 +219,24 @@ export default function DataExplorer() {
           <article>
             <h3>
               {activeCity} -{' '}
-              {activeDataType[0].toUpperCase() +
-                activeDataType.slice(1)}{' '}
-              Data
+              {activeDataType[0].toUpperCase() + activeDataType.slice(1)}{' '}
+              Data{' '}
+              {activeDataType === 'immigration' &&
+              activePeriod !== 'All time'
+                ? `(${activePeriod})`
+                : ''}
             </h3>
             <Chart
               data={data}
-              title={`${activeCity} - ${activeDataType}`}
+              title={`${activeCity} - ${activeDataType}${
+                activeDataType === 'immigration' &&
+                activePeriod !== 'All time'
+                  ? ` (${activePeriod})`
+                  : ''
+              }`}
               xLabel="Count"
               yLabel={
-                activeDataType === 'immigration'
-                  ? 'Country'
-                  : 'Language'
+                activeDataType === 'immigration' ? 'Country' : 'Language'
               }
             />
           </article>
