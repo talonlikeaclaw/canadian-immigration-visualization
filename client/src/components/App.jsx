@@ -29,7 +29,7 @@ function App() {
 
   return (
     <>
-      <HeroSection></HeroSection>
+      <HeroSection/>
       <Map zoomedInCity={currentZoomedCity}/>
       <p>
         While English and French are Canada’s official languages, 
