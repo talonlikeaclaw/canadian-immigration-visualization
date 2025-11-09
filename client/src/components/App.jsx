@@ -27,11 +27,22 @@ function App() {
       </section>
       <Chart city={city}></Chart>
 
+      <h1>Canada</h1>
       <Map/>
+
+      <h2>Halifax</h2>
       <Map zoomedInCity="halifax"/>
+
+      <h2>Montreal</h2>
       <Map zoomedInCity="montreal"/>
+
+      <h2>Toronto</h2>
       <Map zoomedInCity="toronto"/>
+
+      <h2>Calgary and Edmonton</h2>
       <Map zoomedInCity="calgary"/>
+
+      <h2>Vancouver</h2>
       <Map zoomedInCity="vancouver"/>
       <Footer/>
     </>
