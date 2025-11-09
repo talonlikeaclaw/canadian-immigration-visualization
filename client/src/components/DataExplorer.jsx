@@ -24,15 +24,81 @@ const periods = [
 export default function DataExplorer() {
   const [dataType, setDataType] = useState('immigration');
   const [activeDataType, setActiveDataType] = useState('immigration');
+
   const [selectedCity, setSelectedCity] = useState('');
   const [activeCity, setActiveCity] = useState('');
+  const [comparisonCity, setComparisonCity] = useState('');
+  const [activeComparisonCity, setActiveComparisonCity] = useState('');
+
   const [cityInfo, setCityInfo] = useState(null);
-  const [data, setData] = useState(null);
+  const [comparisonCityInfo, setComparisonCityInfo] = useState(null);
+
   const [period, setPeriod] = useState('All time');
   const [activePeriod, setActivePeriod] = useState('All time');
   const [resultLimit, setResultLimit] = useState(10);
+
+  const [data, setData] = useState(null);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
+  /**
+   * Fetches and normalizes dataset information for a given city.
+   * @param {string} city - The name of the city to fetch data for.
+   * @param {string} type - The dataset category to retrieve.
+   * @param {string} period - The selected time period.
+   * @returns {Promise<Array<{ label: string, value: number }>>}
+   */
+  async function fetchDataset(city, type, period) {
+    try {
+      // Build dataset URL based on type and period
+      let datasetUrl;
+      if (type === 'immigration') {
+        if (period === 'All time') {
+          datasetUrl = `/api/immigration/${encodeURIComponent(city)}`;
+        } else if (period === 'Before 1980') {
+          datasetUrl = `/api/immigration/${encodeURIComponent(
+            city
+          )}/period/1980`;
+        } else {
+          // Regex created by ChatGPT.
+          const match = period.match(/(\d{4})\s*to\s*(\d{4})/);
+          if (match) {
+            const [, start, end] = match;
+            datasetUrl = `/api/immigration/${encodeURIComponent(
+              city
+            )}/period/${start}/${end}`;
+          } else {
+            // Fallback
+            datasetUrl = `/api/immigration/${encodeURIComponent(city)}`;
+          }
+        }
+      } else {
+        datasetUrl = `/api/languages/${encodeURIComponent(city)}`;
+      }
+
+      // Fetch dataset and handle normalization
+      const datasetRes = await fetch(datasetUrl);
+      if (!datasetRes.ok) throw new Error('Failed to fetch dataset');
+      const datasetJson = await datasetRes.json();
+
+      if (type === 'immigration') {
+        // Transform object of countries into array of { label, value }
+        return Object.entries(datasetJson.countries).map(
+          ([label, value]) => ({ label, value })
+        );
+      } else {
+        // Transform array of language objects into { label, value }
+        return datasetJson.map(({ Language, Count }) => ({
+          label: Language,
+          value: Count
+        }));
+      }
+    } catch (err) {
+      console.error(`[Fetch Error] ${city}:`, err);
+      return [];
+    }
+  }
 
   /**
    * Handles form submission: fetches city info and dataset
@@ -43,7 +109,7 @@ export default function DataExplorer() {
 
     // Ensure city is selected
     if (!selectedCity) {
-      setError('Please select a city first.');
+      setError('Please select at least one city.');
       return;
     }
 
@@ -51,15 +117,17 @@ export default function DataExplorer() {
     setError('');
     setLoading(true);
     setCityInfo(null);
+    setComparisonCityInfo(null);
     setData(null);
 
     // Commit form selections
     setActiveCity(selectedCity);
+    setActiveComparisonCity(comparisonCity || '');
     setActiveDataType(dataType);
     setActivePeriod(period);
 
     try {
-      // Fetch city information
+      // Fetch city info for primary city
       const cityRes = await fetch(
         `/api/city/${encodeURIComponent(selectedCity)}`
       );
@@ -67,60 +135,50 @@ export default function DataExplorer() {
       const cityJson = await cityRes.json();
       setCityInfo(cityJson);
 
-      // Build dataset URL based on type and period
-      let datasetUrl;
-      if (dataType === 'immigration') {
-        if (period === 'All time') {
-          datasetUrl = `/api/immigration/${encodeURIComponent(
-            selectedCity
-          )}`;
-        } else if (period === 'Before 1980') {
-          datasetUrl = `/api/immigration/${encodeURIComponent(
-            selectedCity
-          )}/period/1980`;
-        } else {
-          // Regex created by ChatGPT.
-          const match = period.match(/(\d{4})\s*to\s*(\d{4})/);
-          if (match) {
-            /* eslint-disable no-unused-vars*/
-            const [_, start, end] = match;
-            datasetUrl = `/api/immigration/${encodeURIComponent(
-              selectedCity
-            )}/period/${start}/${end}`;
-          } else {
-            // Fallback
-            datasetUrl = `/api/immigration/${encodeURIComponent(
-              selectedCity
-            )}`;
-          }
-        }
-      } else {
-        datasetUrl = `/api/languages/${encodeURIComponent(selectedCity)}`;
-      }
-
-      // Fetch dataset and handle normalization
-      const datasetRes = await fetch(datasetUrl);
-      if (!datasetRes.ok) throw new Error('Failed to fetch dataset');
-      const datasetJson = await datasetRes.json();
-
-      let normalizedData = [];
-      if (dataType === 'immigration') {
-        // Transform object of countries into array of { label, value }
-        normalizedData = Object.entries(datasetJson.countries).map(
-          ([label, value]) => ({ label, value })
+      // Optionally fetch comparison city info
+      let comparisonJson = null;
+      if (comparisonCity) {
+        const comparisonRes = await fetch(
+          `/api/city/${encodeURIComponent(comparisonCity)}`
         );
+        if (comparisonRes.ok) comparisonJson = await comparisonRes.json();
+        setComparisonCityInfo(comparisonJson);
       } else {
-        // Transform array of language objects into { label, value }
-        normalizedData = datasetJson.map(({ Language, Count }) => ({
-          label: Language,
-          value: Count
-        }));
+        setComparisonCityInfo(null);
       }
 
-      // Trim results
-      normalizedData = normalizedData.slice(0, resultLimit);
+      const primaryData = await fetchDataset(
+        selectedCity,
+        dataType,
+        period
+      );
+      let comparisonData = [];
 
-      setData(normalizedData);
+      if (comparisonCity) {
+        comparisonData = await fetchDataset(
+          comparisonCity,
+          dataType,
+          period
+        );
+      }
+
+      const normalizedPrimary = primaryData
+        .slice(0, resultLimit)
+        .map(d => ({
+          ...d,
+          city: selectedCity
+        }));
+
+      const normalizedComparison = comparisonData
+        .slice(0, resultLimit)
+        .map(d => ({
+          ...d,
+          city: comparisonCity
+        }));
+
+      const combined = [...normalizedPrimary, ...normalizedComparison];
+
+      setData(combined);
     } catch (err) {
       console.error(err);
       setError('Something went wrong while fetching data.');
@@ -139,16 +197,15 @@ export default function DataExplorer() {
         </p>
       </header>
 
-
       {/* === Selection Form === */}
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Options</legend>
 
           {/* City selection */}
-          <label htmlFor="city-select">City</label>
+          {/* === City 1 === */}
+          <label htmlFor="city-select">Primary City</label>
           <select
-            name="city"
             id="city-select"
             value={selectedCity}
             onChange={e => setSelectedCity(e.target.value)}
@@ -159,6 +216,25 @@ export default function DataExplorer() {
                 {c}
               </option>
             ))}
+          </select>
+
+          {/* === Optional comparison city === */}
+          <label htmlFor="comparison-select">
+            Comparison City (optional)
+          </label>
+          <select
+            id="comparison-select"
+            value={comparisonCity}
+            onChange={e => setComparisonCity(e.target.value)}
+          >
+            <option value="">None</option>
+            {cities
+              .filter(c => c !== selectedCity)
+              .map(c => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
           </select>
 
           {/* Dataset type (Immigration / Language) */}
@@ -214,54 +290,75 @@ export default function DataExplorer() {
       {/* Display any error messages */}
       <section>{error && <p className="error">{error}</p>}</section>
 
-      {cityInfo && (
-        <section>
-          <article>
-            <h3>About {activeCity}</h3>
-            <p>
-              {activeCity} in the province of{' '}
-              <strong>{cityInfo.Province}</strong> has a population of{' '}
-              <strong>{cityInfo.Population}</strong> people over{' '}
-              <strong>{cityInfo.AreaKm2}</strong> km², giving it a
-              population density of{' '}
-              <strong>
-                {cityInfo.AreaKm2 && cityInfo.Population
-                  ? (cityInfo.Population / cityInfo.AreaKm2).toFixed(1)
-                  : 'N/A'}
-              </strong>{' '}
-              people per km².
-            </p>
-          </article>
-        </section>
-      )}
-
       {/* Chart visualization */}
       {data && (
-        <section>
-          <article>
-            <h3>
-              {activeCity} -{' '}
-              {activeDataType[0].toUpperCase() + activeDataType.slice(1)}{' '}
-              Data{' '}
-              {activeDataType === 'immigration' &&
-              activePeriod !== 'All time'
-                ? `(${activePeriod})`
-                : ''}
-            </h3>
-            <Chart
-              data={data}
-              title={`${activeCity} - ${activeDataType}${
-                activeDataType === 'immigration' &&
-                activePeriod !== 'All time'
-                  ? ` (${activePeriod})`
-                  : ''
-              }`}
-              xLabel="Count"
-              yLabel={
-                activeDataType === 'immigration' ? 'Country' : 'Language'
-              }
-            />
-          </article>
+        <section className="chart-section">
+          <h3>
+            {activeCity}
+            {activeComparisonCity
+              ? ` vs ${activeComparisonCity}`
+              : ''} –{' '}
+            {activeDataType[0].toUpperCase() + activeDataType.slice(1)}{' '}
+            Data{' '}
+            {activeDataType === 'immigration' &&
+            activePeriod !== 'All time'
+              ? `(${activePeriod})`
+              : ''}
+          </h3>
+
+          <div className="chart-grid">
+            {/* Primary City */}
+            <article className="chart-container">
+              {cityInfo && (
+                <div className="city-info">
+                  <h4>About {activeCity}</h4>
+                  <p>
+                    {activeCity} in the province of{' '}
+                    <strong>{cityInfo.Province}</strong> has a population
+                    of <strong>{cityInfo.Population}</strong> people over{' '}
+                    <strong>{cityInfo.AreaKm2}</strong> km².
+                  </p>
+                </div>
+              )}
+              <Chart
+                data={data.filter(d => d.city === activeCity)}
+                title={`${activeCity} – ${activeDataType}`}
+                xLabel="Count"
+                yLabel={
+                  activeDataType === 'immigration' ? 'Country' : 'Language'
+                }
+              />
+            </article>
+
+            {/* Comparison City */}
+            {activeComparisonCity && (
+              <article className="chart-container">
+                {comparisonCityInfo && (
+                  <div className="city-info">
+                    <h4>About {activeComparisonCity}</h4>
+                    <p>
+                      {activeComparisonCity} in the province of{' '}
+                      <strong>{comparisonCityInfo.Province}</strong> has a
+                      population of{' '}
+                      <strong>{comparisonCityInfo.Population}</strong>{' '}
+                      people over{' '}
+                      <strong>{comparisonCityInfo.AreaKm2}</strong> km².
+                    </p>
+                  </div>
+                )}
+                <Chart
+                  data={data.filter(d => d.city === activeComparisonCity)}
+                  title={`${activeComparisonCity} – ${activeDataType}`}
+                  xLabel="Count"
+                  yLabel={
+                    activeDataType === 'immigration'
+                      ? 'Country'
+                      : 'Language'
+                  }
+                />
+              </article>
+            )}
+          </div>
         </section>
       )}
     </>
