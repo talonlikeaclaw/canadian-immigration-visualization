@@ -38,7 +38,7 @@ import map35 from'../assets/images/map-35.svg';
 import map36 from'../assets/images/map-36.svg';
 import upperMap from'../assets/images/map-upper-half.svg';
 
-function Map({zoomedInCity = 'calgary'}){
+function Map({zoomedInCity = 'vancouver'}){
   return (
     <>
       {zoomedInCity === '' &&
@@ -131,6 +131,18 @@ function Map({zoomedInCity = 'calgary'}){
           <img className="grid-map__item" src={map22}/>
           <img className="grid-map__item" src={map21}/>
           <img className="grid-map__item" src={map20}/>
+        </section>
+      }
+
+      {zoomedInCity === 'vancouver' && 
+        <section className="city-map">
+          <img className="grid-map__item" src={map36}/>
+          <img className="grid-map__item" src={map35}/>
+          <img className="grid-map__item" src={map34}/>
+
+          <img className="grid-map__item" src={map24}/>
+          <img className="grid-map__item" src={map23}/>
+          <img className="grid-map__item" src={map22}/>
         </section>
       }
     </>
