@@ -1,20 +1,20 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import '../assets/styles/App.css';
 import HeroSection from './HeroSection';
-import Chart from './Chart';
+// import Chart from './Chart';
 import Map from './Map';
 import Footer from './Footer';
 
 function App() {
-  const [city, setCity] = useState('Halifax');
-  function onChangehandler(e){
-    setCity(e.target.value);
-  }
+  // const [city, setCity] = useState('Halifax');
+  // function onChangehandler(e){
+  //   setCity(e.target.value);
+  // }
 
   return (
     <>
       <HeroSection></HeroSection>
-      <section className="citySelect">
+      {/* <section className="citySelect">
         <label htmlFor="cities">Select a city:</label>
         <select name="cities" id="cities" onChange={(e) => onChangehandler(e) }>
           <option value="Halifax">Halifax</option>
@@ -25,7 +25,7 @@ function App() {
           <option value="Vancouver">Vancouver</option>
         </select>
       </section>
-      <Chart city={city}></Chart>
+      <Chart city={city}></Chart> */}
 
       <h1>Canada</h1>
       <Map/>
