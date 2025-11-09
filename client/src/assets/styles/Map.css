@@ -5,6 +5,13 @@
 	height: fit-content;
 }
 
+.city-map{
+	display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+	width: fit-content;
+	height: fit-content;
+}
 .upper-map{
 	width: 1272px;
 }

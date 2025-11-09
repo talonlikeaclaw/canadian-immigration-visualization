@@ -38,7 +38,7 @@ import map35 from'../assets/images/map-35.svg';
 import map36 from'../assets/images/map-36.svg';
 import upperMap from'../assets/images/map-upper-half.svg';
 
-function Map({zoomedInCity = ''}){
+function Map({zoomedInCity = 'halifax'}){
   return (
     <>
       {zoomedInCity === '' &&
@@ -82,6 +82,19 @@ function Map({zoomedInCity = ''}){
             <img className="grid-map__item" src={map2}/>
             <img className="grid-map__item" src={map1}/>
           </section>
+        </section>
+      }
+
+          
+      {zoomedInCity === 'halifax' && 
+        <section className="city-map">
+          <img className="grid-map__item" src={map28}/>
+          <img className="grid-map__item" src={map27}/>
+          <img className="grid-map__item" src={map26}/>
+
+          <img className="grid-map__item" src={map16}/>
+          <img className="grid-map__item" src={map15}/>
+          <img className="grid-map__item" src={map14}/>
         </section>
       }
     </>
