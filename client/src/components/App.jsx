@@ -1,15 +1,19 @@
-// import { useState } from 'react';
+import { useInView } from 'react-intersection-observer'; 
 import '../assets/styles/App.css';
 import HeroSection from './HeroSection';
-// import Chart from './Chart';
+import Chart from './Chart';
 import Map from './Map';
 import Footer from './Footer';
 
-function App() {
-  // const [city, setCity] = useState('Halifax');
-  // function onChangehandler(e){
-  //   setCity(e.target.value);
-  // }
+function App() {  
+  // A google search on how I can track the position of React elements
+  // lead me to the react intersction observer (plus I think this was
+  // in one of class lectures, with lazy loading)
+  // https://www.npmjs.com/package/react-intersection-observer
+  const { ref: halifaxRef, inView: halifaxInView } = useInView();
+
+  // Determine the currently zoomed city based on scroll position
+  const currentZoomedCity = halifaxInView ? 'halifax' : '';
 
   return (
     <>
