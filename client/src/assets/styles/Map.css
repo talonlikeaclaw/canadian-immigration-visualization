@@ -14,10 +14,6 @@
 	z-index: -10;
 }
 
-.country-map img{
-	height: 600px;
-}
-
 .city-map{
 	display: grid;
     grid-template-columns: repeat(3, 1fr);
