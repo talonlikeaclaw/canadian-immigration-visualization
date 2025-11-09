@@ -32,14 +32,29 @@ function Chart({ data, title, xLabel, yLabel }) {
     yaxis: {
       title: { title: yLabel, automargin: true }
     },
-    margin: { l: 120, r: 40, t: 50, b: 50 }
+    margin: { l: 110, r: 20, t: 20, b: 20 },
+    autosize: true
   };
 
   return (
     <Plot
       data={plotData}
       layout={layout}
-      config={{ responsive: true }}
+      config={{
+        responsive: true,
+        displaylogo: false,
+        modeBarButtonsToRemove: [
+          'zoomIn2d',
+          'zoomOut2d',
+          'autoScale2d',
+          'select2d',
+          'lasso2d',
+          'toggleSpikelines',
+          'hoverClosestCartesian',
+          'hoverCompareCartesian',
+          'pan2d'
+        ]
+      }}
       style={{ width: '100%', height: '100%' }}
     />
   );
