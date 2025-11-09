@@ -9,36 +9,17 @@
 	place-content: center;
 }
 
-.country-map{
-	display: flex;
-	flex-direction: column;
-	width: fit-content;
-	height: fit-content;
+.country-map img{
+	width: 1272px;
 }
 
 .city-map{
 	display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
-	width: fit-content;
-	height: fit-content;
 }
 
 .city-map .grid-map__item{
 	width: 246px;
 	height: 298px;
-}
-
-.upper-map{
-	width: 1272px;
-}
-.grid-map {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-}
-
-.grid-map__item{
-	width: 106px;
-	height: 128px;
 }
