@@ -13,14 +13,3 @@
 
 	z-index: -10;
 }
-
-.city-map{
-	display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-}
-
-.city-map .grid-map__item{
-	width: 246px;
-	height: 298px;
-}
