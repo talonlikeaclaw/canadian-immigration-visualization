@@ -1,61 +1,46 @@
-import { useEffect, useState } from 'react';
 import Plot from 'react-plotly.js';
 
-function Chart({city}){
-  const [countries, setCountries] = useState([]);
-  const [counts, setCounts] = useState([]);
+function Chart({ data, title, xLabel, yLabel }) {
+  if (!data || data.length === 0) {
+    return <p>No data available to display.</p>;
+  }
 
-  useEffect(()=>{
-    fetch(`/api/immigration/${city}`).
-      then(reponse =>{
-        if (reponse.ok) {
-          return reponse.json();
-        }
-        console.error('Network response was not ok.');
-      }).
-      then(data =>{
-        const info = data.countries;
-        setCountries(Object.keys(info));
-        setCounts(Object.values(info));
-      }).
-      catch();
-  }, [city]);
+  const labels = data.map(item => item.label);
+  const values = data.map(item => item.value);
 
-  // Only have 10 countries
-  countries.length = 10;
-  counts.length = 10;
-
-  const data = [
+  const plotData = [
     {
-      y: countries,
-      x: counts,
+      y: labels,
+      x: values,
       type: 'bar',
       orientation: 'h',
       marker: {
         color: 'rgba(55,128,191,0.6)',
         line: {
           color: 'rgba(55,128,191,1.0)',
-          width: 1,
-        },
-      },
-    },
+          width: 1
+        }
+      }
+    }
   ];
 
   const layout = {
-    title: `Immigration patterns to ${city}`,
+    title,
     xaxis: {
-      title: 'Count',
+      title: { title: xLabel }
     },
     yaxis: {
-      title: 'County',
+      title: { title: yLabel, automargin: true }
     },
+    margin: { l: 120, r: 40, t: 50, b: 50 }
   };
 
   return (
     <Plot
-      data={data}
+      data={plotData}
       layout={layout}
-      style={{ width: '100%'}}
+      config={{ responsive: true }}
+      style={{ width: '100%', height: '100%' }}
     />
   );
 }
