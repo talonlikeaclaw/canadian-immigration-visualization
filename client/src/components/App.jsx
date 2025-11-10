@@ -1,5 +1,5 @@
 import { useInView } from 'react-intersection-observer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../assets/styles/App.css';
 import HeroSection from './HeroSection';
 import DataExplorer from './DataExplorer';
@@ -68,34 +68,33 @@ function App() {
     );
   }
 
-  /**
-   * Fetches data for a specific city and updates the state.
-   * @param {string} cityKey - The key for the city (montreal)
-   * @param {string} apiName - The city name for the API endpoint (montréal)
-   */
-  const fetchCityData = async (cityKey, apiName) => {
+  useEffect(()=>{
     // don't fetch data if already fetched
-    if (cityData[cityKey]) return;
+    if (cityData['halifax']) return;
 
-    try {
-      const [immigrationResponse, languageResponse] = await Promise.all([
-        fetch(`/api/immigration/${apiName}`),
-        fetch(`/api/languages/${apiName}`),
-      ]);
-
-      const [immigrationData, languageData] = await Promise.all([
-        immigrationResponse.json(),
-        languageResponse.json(),
-      ]);
-
-      setCityData(prevData => ({
-        ...prevData,
-        [cityKey]: { immigration: immigrationData, languages: languageData },
-      }));
-    } catch (error) {
-      console.error(error);
-    }
-  };
+    Promise.all([
+      fetch(`/api/immigration/halifax`),
+      fetch(`/api/languages/halifax`),
+    ]).
+      then(([immigrationResponse, languageResponse]) => {
+        // Process the responses into JSON concurrently
+        return Promise.all([
+          immigrationResponse.json(),
+          languageResponse.json(),
+        ]);
+      }).
+      then(([immigrationData, languageData]) => {
+        // Update the state with the combined data
+        setCityData(prevData => ({
+          ...prevData,
+          ['halifax']: { immigration: immigrationData, languages: languageData },
+        }));
+      }).
+      catch(error => {
+        // Handle any errors that occurred in the chain
+        console.error(error);
+      });
+  }, [halifaxInView, cityData]);
 
   return (
     <>
