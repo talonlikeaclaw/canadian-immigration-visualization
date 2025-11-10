@@ -43,7 +43,7 @@ function App() {
           <p>
           While English and French are Canada’s official languages, a closer
           look reveals over 200 non-official languages thriving in our
-          biggest cities. We will however focus on the 6 city from east to
+          biggest cities. We will however focus on 6 cities across the country, from east to
           west.
           </p>
 
