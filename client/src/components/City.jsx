@@ -16,6 +16,7 @@ function City({cityName, ref, cityData}){
 
 function displayHalifax(ref, cityData){  
   const immigrationChartData = convertImmigrationDataObjectToArray(cityData);
+  const languagesChartData = simplifyLanguageArray(cityData);
   return (
     <>
       <p className="transition">Our journey starts in Halifax, the capital of Nova Scotia.</p>
@@ -61,6 +62,13 @@ function displayHalifax(ref, cityData){
           yLabel="Countries">
         </Chart>
 
+        <Chart 
+          data={languagesChartData} 
+          title="Languages Spoken in Halifax"
+          xLabel="Number of people" 
+          yLabel="Languages">
+        </Chart>
+
       </section>
     </>
   );
@@ -68,6 +76,7 @@ function displayHalifax(ref, cityData){
 
 function displayMontreal(ref, cityData){
   const immigrationChartData = convertImmigrationDataObjectToArray(cityData);
+  const languagesChartData = simplifyLanguageArray(cityData);
   return (
     <>
       <p className="transition">
@@ -126,6 +135,13 @@ function displayMontreal(ref, cityData){
           xLabel="Number of people" 
           yLabel="Countries">
         </Chart>
+
+        <Chart 
+          data={languagesChartData} 
+          title="Languages Spoken in Montreal"
+          xLabel="Number of people" 
+          yLabel="Languages">
+        </Chart>
       </section>
     </>
   );
@@ -133,6 +149,7 @@ function displayMontreal(ref, cityData){
 
 function displayToronto(ref, cityData){
   const immigrationChartData = convertImmigrationDataObjectToArray(cityData);
+  const languagesChartData = simplifyLanguageArray(cityData);
   return (
     <>
       <p className="transition">
@@ -176,6 +193,13 @@ function displayToronto(ref, cityData){
           yLabel="Countries">
         </Chart>
 
+        <Chart 
+          data={languagesChartData} 
+          title="Languages Spoken in Toronto"
+          xLabel="Number of people" 
+          yLabel="Languages">
+        </Chart>
+
       </section>
     </>
   );
@@ -183,6 +207,7 @@ function displayToronto(ref, cityData){
 
 function displayCalgary(ref, cityData){
   const immigrationChartData = convertImmigrationDataObjectToArray(cityData);
+  const languagesChartData = simplifyLanguageArray(cityData);
   return (
     <>
       <p className="transition">
@@ -239,11 +264,12 @@ function displayCalgary(ref, cityData){
           xLabel="Number of people"
           yLabel="Countries">
         </Chart>
+
         <Chart 
-          data={immigrationChartData}
-          title="Edmonton" 
+          data={languagesChartData} 
+          title="Languages Spoken in Calgary"
           xLabel="Number of people" 
-          yLabel="Countries">
+          yLabel="Languages">
         </Chart>
 
       </section>
@@ -253,6 +279,7 @@ function displayCalgary(ref, cityData){
 
 function displayVancouver(ref, cityData){
   const immigrationChartData = convertImmigrationDataObjectToArray(cityData);
+  const languagesChartData = simplifyLanguageArray(cityData);
   return (
     <>
       <p className="transition">
@@ -298,16 +325,23 @@ function displayVancouver(ref, cityData){
           yLabel="Countries">
         </Chart>
 
+        <Chart 
+          data={languagesChartData} 
+          title="Languages Spoken in Calgary"
+          xLabel="Number of people" 
+          yLabel="Languages">
+        </Chart>
+
       </section>
     </>
   );
 }
 
-function convertImmigrationDataObjectToArray(immigrationDataObj){
+function convertImmigrationDataObjectToArray(cityDataObj){
   let immigrationData = [];
   
-  if (immigrationDataObj.immigration.length !== 0){
-    immigrationData = immigrationDataObj.immigration.countries;
+  if (cityDataObj.immigration.length !== 0){
+    immigrationData = cityDataObj.immigration.countries;
   }
 
   const immigrationEntries = Object.entries(immigrationData);
@@ -318,6 +352,22 @@ function convertImmigrationDataObjectToArray(immigrationDataObj){
   }));
 
   return immigrationChartData;
+}
+
+function simplifyLanguageArray(cityDataObj){
+  let languagesData = [];
+
+
+  if (cityDataObj.languages.length !== 0){
+    languagesData = cityDataObj.languages.map(data =>{
+      return {
+        label: data.Language,
+        value: data.Count
+      };
+    });
+  }
+
+  return languagesData;
 }
 
 export default City;
