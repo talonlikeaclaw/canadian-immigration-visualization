@@ -7,14 +7,13 @@ By combining demographic and linguistic datasets, we will create a narrative tha
 
 ## Selected cities 
 
-| Region | Cities |
-| -------- | ------- |
-| Atlantic/East | Halifax |
-| Central/Francophonne | Montreal |
-| Central/Anglophone | Toronto |
-|Prairies| Calgary/Edmonton|
-|Pacific/West| Vancouver|
-
+| Region              | Cities           |
+| ------------------- | ---------------- |
+| Atlantic/East       | Halifax          |
+| Central/Francophone | Montreal         |
+| Central/Anglophone  | Toronto          |
+| Prairies            | Calgary/Edmonton |
+| Pacific/West        | Vancouver        |
 
 ## Credits 
 
