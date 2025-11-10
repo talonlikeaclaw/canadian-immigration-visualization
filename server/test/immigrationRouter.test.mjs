@@ -295,10 +295,10 @@ describe(' placeholder immigration routes', ()=> {
 
   // /api/immigration/:city/top-countries
   // it => from mocha
-  it('should retrun a message for /:city/top-country', async () => {
+  it('should retrun a message for /:city/top-countries', async () => {
     // request => supertest
     const response = await request(app).get(
-      '/api/immigration/montreal/top/-countries'
+      '/api/immigration/montreal/top-countries'
     );
 
     expect(response.statusCode).to.equal(200);
@@ -320,3 +320,5 @@ describe(' placeholder immigration routes', ()=> {
   });
 
 });
+
+// npm test => to run the tests
