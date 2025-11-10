@@ -68,6 +68,7 @@ function App() {
     );
   }
 
+  // fetch Halifax info when Halifax section is in view
   useEffect(()=>{
     // don't fetch data if already fetched
     if (cityData['halifax']) return;
@@ -95,6 +96,122 @@ function App() {
         console.error(error);
       });
   }, [halifaxInView, cityData]);
+
+  // fetch Montreal info when Montreal section is in view
+  useEffect(()=>{
+    // don't fetch data if already fetched
+    if (cityData['montreal']) return;
+
+    Promise.all([
+      fetch(`/api/immigration/montréal`),
+      fetch(`/api/languages/montréal`),
+    ]).
+      then(([immigrationResponse, languageResponse]) => {
+        // Process the responses into JSON concurrently
+        return Promise.all([
+          immigrationResponse.json(),
+          languageResponse.json(),
+        ]);
+      }).
+      then(([immigrationData, languageData]) => {
+        // Update the state with the combined data
+        setCityData(prevData => ({
+          ...prevData,
+          ['montreal']: { immigration: immigrationData, languages: languageData },
+        }));
+      }).
+      catch(error => {
+        // Handle any errors that occurred in the chain
+        console.error(error);
+      });
+  }, [montrealInView, cityData]);
+
+  // fetch Toronto info when Toronto section is in view
+  useEffect(()=>{
+    // don't fetch data if already fetched
+    if (cityData['toronto']) return;
+
+    Promise.all([
+      fetch(`/api/immigration/toronto`),
+      fetch(`/api/languages/toronto`),
+    ]).
+      then(([immigrationResponse, languageResponse]) => {
+        // Process the responses into JSON concurrently
+        return Promise.all([
+          immigrationResponse.json(),
+          languageResponse.json(),
+        ]);
+      }).
+      then(([immigrationData, languageData]) => {
+        // Update the state with the combined data
+        setCityData(prevData => ({
+          ...prevData,
+          ['toronto']: { immigration: immigrationData, languages: languageData },
+        }));
+      }).
+      catch(error => {
+        // Handle any errors that occurred in the chain
+        console.error(error);
+      });
+  }, [torontoInView, cityData]);
+
+  // fetch Calgary info when Calgary section is in view
+  useEffect(()=>{
+    // don't fetch data if already fetched
+    if (cityData['calgary']) return;
+
+    Promise.all([
+      fetch(`/api/immigration/calgary`),
+      fetch(`/api/languages/calgary`),
+    ]).
+      then(([immigrationResponse, languageResponse]) => {
+        // Process the responses into JSON concurrently
+        return Promise.all([
+          immigrationResponse.json(),
+          languageResponse.json(),
+        ]);
+      }).
+      then(([immigrationData, languageData]) => {
+        // Update the state with the combined data
+        setCityData(prevData => ({
+          ...prevData,
+          ['calgary']: { immigration: immigrationData, languages: languageData },
+        }));
+      }).
+      catch(error => {
+        // Handle any errors that occurred in the chain
+        console.error(error);
+      });
+  }, [calgaryInView, cityData]);
+
+  // fetch Vancouver info when Vancouver section is in view
+  useEffect(()=>{
+    // don't fetch data if already fetched
+    if (cityData['vancouver']) return;
+
+    Promise.all([
+      fetch(`/api/immigration/vancouver`),
+      fetch(`/api/languages/vancouver`),
+    ]).
+      then(([immigrationResponse, languageResponse]) => {
+        // Process the responses into JSON concurrently
+        return Promise.all([
+          immigrationResponse.json(),
+          languageResponse.json(),
+        ]);
+      }).
+      then(([immigrationData, languageData]) => {
+        // Update the state with the combined data
+        setCityData(prevData => ({
+          ...prevData,
+          ['vancouver']: { immigration: immigrationData, languages: languageData },
+        }));
+      }).
+      catch(error => {
+        // Handle any errors that occurred in the chain
+        console.error(error);
+      });
+  }, [vancouverInView, cityData]);
 
   return (
     <>
