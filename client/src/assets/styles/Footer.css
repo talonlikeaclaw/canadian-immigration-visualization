@@ -6,3 +6,9 @@
     font-size: 0.9rem;
     border-top: 1px solid #e0e0e0;
 }
+.footer-disclaimer {
+  font-size: 0.85rem;
+  color: #999;
+  display: block;
+  margin-top: 0.75rem;
+}
