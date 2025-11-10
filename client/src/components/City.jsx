@@ -1,20 +1,20 @@
 import '../assets/styles/City.css';
 import Chart from './Chart';
 
-function City({cityName, ref}){
+function City({cityName, ref, cityData}){
   return (
     <>
-      {cityName === 'halifax' && displayHalifax(ref)}
-      {cityName === 'montreal' && displayMontreal(ref)}
-      {cityName === 'toronto' && displayToronto(ref)}
-      {cityName === 'calgary' && displayCalgary(ref)}
-      {cityName === 'vancouver' && displayVancouver(ref)}
+      {cityName === 'halifax' && displayHalifax(ref, cityData)}
+      {cityName === 'montreal' && displayMontreal(ref, cityData)}
+      {cityName === 'toronto' && displayToronto(ref, cityData)}
+      {cityName === 'calgary' && displayCalgary(ref, cityData)}
+      {cityName === 'vancouver' && displayVancouver(ref, cityData)}
       <div className="city-divider"></div>
     </>
   );
 }
 
-function displayHalifax(ref){
+function displayHalifax(ref, cityData){
   return (
     <>
       <p className="transition">Our journey starts in Halifax, the capital of Nova Scotia.</p>
@@ -53,14 +53,14 @@ function displayHalifax(ref){
           from the Middle East, South Asia, and East Asia.
         </p>
 
-        <Chart data={null} title="Halifax" xLabel="Number of people" yLabel="Countries"></Chart>
+        <Chart data={cityData} title="Halifax" xLabel="Number of people" yLabel="Countries"></Chart>
 
       </section>
     </>
   );
 }
 
-function displayMontreal(ref){
+function displayMontreal(ref, cityData){
   return (
     <>
       <p className="transition">
@@ -113,13 +113,14 @@ function displayMontreal(ref){
           speakers.
         </p>
 
-        <Chart data={null} title="Montréal" xLabel="Number of people" yLabel="Countries"></Chart>
+        <Chart 
+          data={cityData} title="Montréal" xLabel="Number of people" yLabel="Countries"></Chart>
       </section>
     </>
   );
 }
 
-function displayToronto(ref){
+function displayToronto(ref, cityData){
   return (
     <>
       <p className="transition">
@@ -156,14 +157,14 @@ function displayToronto(ref){
           linguistically diverse places on the planet.
         </p>
 
-        <Chart data={null} title="Toronto" xLabel="Number of people" yLabel="Countries"></Chart>
+        <Chart data={cityData} title="Toronto" xLabel="Number of people" yLabel="Countries"></Chart>
 
       </section>
     </>
   );
 }
 
-function displayCalgary(ref){
+function displayCalgary(ref, cityData){
   return (
     <>
       <p className="transition">
@@ -214,15 +215,16 @@ function displayCalgary(ref){
           linguistic hubs right in the heart of the Prairies.
         </p>
 
-        <Chart data={null} title="Calgary" xLabel="Number of people" yLabel="Countries"></Chart>
-        <Chart data={null} title="Edmonton" xLabel="Number of people" yLabel="Countries"></Chart>
+        <Chart data={cityData} title="Calgary" xLabel="Number of people" yLabel="Countries"></Chart>
+        <Chart 
+          data={cityData} title="Edmonton" xLabel="Number of people" yLabel="Countries"></Chart>
 
       </section>
     </>
   );
 }
 
-function displayVancouver(ref){
+function displayVancouver(ref, cityData){
   return (
     <>
       <p className="transition">
@@ -261,7 +263,8 @@ function displayVancouver(ref){
           immigration trends.
         </p>
 
-        <Chart data={null} title="Vancouver" xLabel="Number of people" yLabel="Countries"></Chart>
+        <Chart 
+          data={cityData} title="Vancouver" xLabel="Number of people" yLabel="Countries"></Chart>
 
       </section>
     </>
