@@ -32,45 +32,42 @@ function App() {
           : halifaxInView
             ? 'halifax'
             : '';
+  
+  /**
+   * @returns two paragraphs that introduce our story
+   */
+  function displayContextText(){
+    return (
+      <>
+        <p>
+        While English and French are Canada’s official languages, a closer
+        look reveals over 200 non-official languages thriving in our
+        biggest cities. We will however focus on the 6 city from east to
+        west.
+        </p>
+
+        <p>
+        Canada’s three largest provinces by population (Ontario, Quebec and
+        British Columbia) are home to over the majority of the country’s
+        immigrant population. Each having it’s own distinct lingustic
+        profile shaped on geography and history.
+        </p>
+      </>
+    );
+  }
 
   return (
     <>
       <HeroSection />
       <Map zoomedInCity={currentZoomedCity} />
-      <p>
-        While English and French are Canada’s official languages, a closer
-        look reveals over 200 non-official languages thriving in our
-        biggest cities. We will however focus on the 6 city from east to
-        west.
-      </p>
 
-      <p>
-        Canada’s three largest provinces by population (Ontario, Quebec and
-        British Columbia) are home to over the majority of the country’s
-        immigrant population. Each having it’s own distinct lingustic
-        profile shaped on geography and history.
-      </p>
+      {displayContextText()}
 
       <City cityName="halifax" ref={halifaxRef}/>
-
-      <div className="city-divider"></div>
-
       <City cityName="montreal" ref={montrealRef}/>
-
-      <div className="city-divider"></div>
-
       <City cityName="toronto" ref={torontoRef}/>
-      
-
-      <div className="city-divider"></div>
-
       <City cityName="calgary" ref={calgaryRef}/>
-      
-      <div className="city-divider"></div>
-
       <City cityName="vancouver" ref={vancouverRef}/>
-      
-      <div className="city-divider"></div>
 
       <DataExplorer />
       <Footer />

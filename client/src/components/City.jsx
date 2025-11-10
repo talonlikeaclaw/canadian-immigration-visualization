@@ -8,6 +8,7 @@ function City({cityName, ref}){
       {cityName === 'toronto' && displayToronto(ref)}
       {cityName === 'calgary' && displayCalgary(ref)}
       {cityName === 'vancouver' && displayVancouver(ref)}
+      <div className="city-divider"></div>
     </>
   );
 }
