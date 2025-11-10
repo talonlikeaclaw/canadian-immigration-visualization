@@ -43,6 +43,10 @@ export default function Footer(){
             Open Government License - Canada
       </a>
         .
+        <br/> <br/>
+        <em className="footer-disclaimer"> 
+          The data prensented in this project is intended solely for the educational and analytical purposes. It does not reflect any political, religious, or ideological stance by the authors.
+          </em>
     </footer>
   );
 }
