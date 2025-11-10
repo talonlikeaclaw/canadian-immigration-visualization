@@ -277,3 +277,18 @@ describe('GET /api/immigration/:city/period/:start/:end', () => {
     expect(aggregateStub.calledOnce).to.be.true;
   });
 });
+
+describe(' placeholder immigration routes', ()=> {
+
+  it('should return a message for /:city/country/:country', async () => {
+    const response = await request(app).get(
+      '/api/immigration/montreal/country/france'
+    );
+    
+    expect(response.statusCode).to.equal(200);
+    expect(response.body)
+      .to.have.property('message')
+      .that.include('Specific immigration pattern of france into montreal city');
+  });
+  
+});
