@@ -15,6 +15,18 @@ function City({cityName, ref, cityData}){
 }
 
 function displayHalifax(ref, cityData){
+  let immigrationData = [];
+  if (cityData){
+    immigrationData = cityData.immigration.countries;
+  }
+
+  const immigrationEntries = Object.entries(immigrationData);
+
+  const immigrationChartData = immigrationEntries.map(([countryName, value]) => ({
+    label: countryName,
+    value: value
+  }));
+  
   return (
     <>
       <p className="transition">Our journey starts in Halifax, the capital of Nova Scotia.</p>
@@ -53,7 +65,12 @@ function displayHalifax(ref, cityData){
           from the Middle East, South Asia, and East Asia.
         </p>
 
-        <Chart data={cityData} title="Halifax" xLabel="Number of people" yLabel="Countries"></Chart>
+        <Chart 
+          data={immigrationChartData} 
+          title="Halifax immigration pattern"
+          xLabel="Number of people" 
+          yLabel="Countries">
+        </Chart>
 
       </section>
     </>
