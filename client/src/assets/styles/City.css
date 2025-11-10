@@ -1,5 +1,9 @@
 .city-section{
-	background-color: rgba(255, 0, 0, .3);
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	padding: 0 7rem;
+	margin: 0 5rem;
 }
 
 .transition{
@@ -9,4 +13,12 @@
 	padding: 3rem 5rem;
 	margin: 5rem 15rem;
 	margin-bottom: 15rem;
+}
+
+.city-section p{
+	background-color: #F1F8DC;
+	border: 3px solid #6E9853;
+	border-radius: 15px;
+	padding: 3rem;
+	text-align: justify;
 }
