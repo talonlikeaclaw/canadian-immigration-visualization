@@ -51,49 +51,22 @@ function App() {
         profile shaped on geography and history.
       </p>
 
-      <p>Our journey starts in Halifax, the capital of Nova Scotia.</p>
       <City cityName="halifax" ref={halifaxRef}/>
 
       <div className="city-divider"></div>
 
-      <p>
-        Next, we head to Montreal, the vibrant cultural heart of French
-        North America. This city&apos;s identity is defined by its powerful
-        Francophone ties. Montreal’s exposure to the world got a huge boost
-        from Expo 67, the spectacularly successful World’s Fair. It put
-        Montréal on the global stage.
-      </p>
-
       <City cityName="montreal" ref={montrealRef}/>
 
-
       <div className="city-divider"></div>
-
-      <p>
-        We move west to Toronto, the massive, English-speaking metropolis
-        that truly took off after World War II.
-      </p>
 
       <City cityName="toronto" ref={torontoRef}/>
       
 
       <div className="city-divider"></div>
 
-      <p>
-        Now we explore the Prairies with Calgary and Edmonton, two cities
-        whose fortunes are tied directly to the earth. Their histories are
-        defined by natural resources.
-      </p>
-
       <City cityName="calgary" ref={calgaryRef}/>
       
       <div className="city-divider"></div>
-
-      <p>
-        Finally, we land in Vancouver, a stunning city whose identity has
-        been completely remade by its role as Canada&apos;s bridge to the
-        Pacific.
-      </p>
 
       <City cityName="vancouver" ref={vancouverRef}/>
       
