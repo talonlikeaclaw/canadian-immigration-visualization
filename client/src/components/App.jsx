@@ -38,21 +38,24 @@ function App() {
    */
   function displayContextText(){
     return (
-      <>
-        <p>
-        While English and French are Canada’s official languages, a closer
-        look reveals over 200 non-official languages thriving in our
-        biggest cities. We will however focus on the 6 city from east to
-        west.
-        </p>
+      <section className="context-text-wrapper">
+        <section className="context-text">
+          <p>
+          While English and French are Canada’s official languages, a closer
+          look reveals over 200 non-official languages thriving in our
+          biggest cities. We will however focus on the 6 city from east to
+          west.
+          </p>
 
-        <p>
-        Canada’s three largest provinces by population (Ontario, Quebec and
-        British Columbia) are home to over the majority of the country’s
-        immigrant population. Each having it’s own distinct lingustic
-        profile shaped on geography and history.
-        </p>
-      </>
+          <p>
+          Canada’s three largest provinces by population (Ontario, Quebec and
+          British Columbia) are home to over the majority of the country’s
+          immigrant population. Each having it’s own distinct lingustic
+          profile shaped on geography and history.
+          </p>
+        </section>
+
+      </section>
     );
   }
 
