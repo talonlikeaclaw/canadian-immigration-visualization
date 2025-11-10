@@ -305,7 +305,8 @@ function displayVancouver(ref, cityData){
 
 function convertImmigrationDataObjectToArray(immigrationDataObj){
   let immigrationData = [];
-  if (immigrationDataObj){
+  
+  if (immigrationDataObj.immigration.length !== 0){
     immigrationData = immigrationDataObj.immigration.countries;
   }
 

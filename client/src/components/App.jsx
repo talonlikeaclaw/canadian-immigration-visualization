@@ -22,11 +22,11 @@ function App() {
     useInView(options);
 
   const [cityData, setCityData] = useState({
-    halifax: null,
-    montreal: null,
-    toronto: null,
-    calgary: null,
-    vancouver: null,
+    halifax: { immigration: [], languages: [] },
+    montreal: { immigration: [], languages: [] },
+    toronto: { immigration: [], languages: [] },
+    calgary: { immigration: [], languages: [] },
+    vancouver: { immigration: [], languages: [] },
   });
 
   // Determine the currently zoomed city based on scroll position
@@ -70,147 +70,162 @@ function App() {
 
   // fetch Halifax info when Halifax section is in view
   useEffect(()=>{
-    // don't fetch data if already fetched
-    if (cityData['halifax']) return;
+    if (halifaxInView){
+      // don't fetch data if already fetched
+      if (cityData['halifax'].immigration.length > 0) return;
+      if (cityData['halifax'].languages.length > 0) return;
+      Promise.all([
+        fetch(`/api/immigration/halifax`),
+        fetch(`/api/languages/halifax`),
+      ]).
+        then(([immigrationResponse, languageResponse]) => {
+          // Process the responses into JSON concurrently
+          return Promise.all([
+            immigrationResponse.json(),
+            languageResponse.json(),
+          ]);
+        }).
+        then(([immigrationData, languageData]) => {
+          // Update the state with the combined data
+          setCityData(prevData => ({
+            ...prevData,
+            ['halifax']: { immigration: immigrationData, languages: languageData },
+          }));
+        }).
+        catch(error => {
+          // Handle any errors that occurred in the chain
+          console.error(error);
+        });
+    }
 
-    Promise.all([
-      fetch(`/api/immigration/halifax`),
-      fetch(`/api/languages/halifax`),
-    ]).
-      then(([immigrationResponse, languageResponse]) => {
-        // Process the responses into JSON concurrently
-        return Promise.all([
-          immigrationResponse.json(),
-          languageResponse.json(),
-        ]);
-      }).
-      then(([immigrationData, languageData]) => {
-        // Update the state with the combined data
-        setCityData(prevData => ({
-          ...prevData,
-          ['halifax']: { immigration: immigrationData, languages: languageData },
-        }));
-      }).
-      catch(error => {
-        // Handle any errors that occurred in the chain
-        console.error(error);
-      });
   }, [halifaxInView, cityData]);
 
   // fetch Montreal info when Montreal section is in view
   useEffect(()=>{
-    // don't fetch data if already fetched
-    if (cityData['montreal']) return;
-
-    Promise.all([
-      fetch(`/api/immigration/montréal`),
-      fetch(`/api/languages/montréal`),
-    ]).
-      then(([immigrationResponse, languageResponse]) => {
-        // Process the responses into JSON concurrently
-        return Promise.all([
-          immigrationResponse.json(),
-          languageResponse.json(),
-        ]);
-      }).
-      then(([immigrationData, languageData]) => {
-        // Update the state with the combined data
-        setCityData(prevData => ({
-          ...prevData,
-          ['montreal']: { immigration: immigrationData, languages: languageData },
-        }));
-      }).
-      catch(error => {
-        // Handle any errors that occurred in the chain
-        console.error(error);
-      });
+    if (montrealInView){
+      // don't fetch data if already fetched
+      if (cityData['montreal'].immigration.length > 0) return;
+      if (cityData['montreal'].languages.length > 0) return;
+  
+      Promise.all([
+        fetch(`/api/immigration/montréal`),
+        fetch(`/api/languages/montréal`),
+      ]).
+        then(([immigrationResponse, languageResponse]) => {
+          // Process the responses into JSON concurrently
+          return Promise.all([
+            immigrationResponse.json(),
+            languageResponse.json(),
+          ]);
+        }).
+        then(([immigrationData, languageData]) => {
+          // Update the state with the combined data
+          setCityData(prevData => ({
+            ...prevData,
+            ['montreal']: { immigration: immigrationData, languages: languageData },
+          }));
+        }).
+        catch(error => {
+          // Handle any errors that occurred in the chain
+          console.error(error);
+        });
+    }
   }, [montrealInView, cityData]);
 
   // fetch Toronto info when Toronto section is in view
   useEffect(()=>{
-    // don't fetch data if already fetched
-    if (cityData['toronto']) return;
-
-    Promise.all([
-      fetch(`/api/immigration/toronto`),
-      fetch(`/api/languages/toronto`),
-    ]).
-      then(([immigrationResponse, languageResponse]) => {
-        // Process the responses into JSON concurrently
-        return Promise.all([
-          immigrationResponse.json(),
-          languageResponse.json(),
-        ]);
-      }).
-      then(([immigrationData, languageData]) => {
-        // Update the state with the combined data
-        setCityData(prevData => ({
-          ...prevData,
-          ['toronto']: { immigration: immigrationData, languages: languageData },
-        }));
-      }).
-      catch(error => {
-        // Handle any errors that occurred in the chain
-        console.error(error);
-      });
+    if (torontoInView){
+      // don't fetch data if already fetched
+      if (cityData['toronto'].immigration.length > 0) return;
+      if (cityData['toronto'].languages.length > 0) return;
+  
+      Promise.all([
+        fetch(`/api/immigration/toronto`),
+        fetch(`/api/languages/toronto`),
+      ]).
+        then(([immigrationResponse, languageResponse]) => {
+          // Process the responses into JSON concurrently
+          return Promise.all([
+            immigrationResponse.json(),
+            languageResponse.json(),
+          ]);
+        }).
+        then(([immigrationData, languageData]) => {
+          // Update the state with the combined data
+          setCityData(prevData => ({
+            ...prevData,
+            ['toronto']: { immigration: immigrationData, languages: languageData },
+          }));
+        }).
+        catch(error => {
+          // Handle any errors that occurred in the chain
+          console.error(error);
+        });
+    }
   }, [torontoInView, cityData]);
 
   // fetch Calgary info when Calgary section is in view
   useEffect(()=>{
-    // don't fetch data if already fetched
-    if (cityData['calgary']) return;
-
-    Promise.all([
-      fetch(`/api/immigration/calgary`),
-      fetch(`/api/languages/calgary`),
-    ]).
-      then(([immigrationResponse, languageResponse]) => {
-        // Process the responses into JSON concurrently
-        return Promise.all([
-          immigrationResponse.json(),
-          languageResponse.json(),
-        ]);
-      }).
-      then(([immigrationData, languageData]) => {
-        // Update the state with the combined data
-        setCityData(prevData => ({
-          ...prevData,
-          ['calgary']: { immigration: immigrationData, languages: languageData },
-        }));
-      }).
-      catch(error => {
-        // Handle any errors that occurred in the chain
-        console.error(error);
-      });
+    if (calgaryInView){
+      // don't fetch data if already fetched
+      if (cityData['calgary'].immigration.length > 0) return;
+      if (cityData['calgary'].languages.length > 0) return;
+  
+      Promise.all([
+        fetch(`/api/immigration/calgary`),
+        fetch(`/api/languages/calgary`),
+      ]).
+        then(([immigrationResponse, languageResponse]) => {
+          // Process the responses into JSON concurrently
+          return Promise.all([
+            immigrationResponse.json(),
+            languageResponse.json(),
+          ]);
+        }).
+        then(([immigrationData, languageData]) => {
+          // Update the state with the combined data
+          setCityData(prevData => ({
+            ...prevData,
+            ['calgary']: { immigration: immigrationData, languages: languageData },
+          }));
+        }).
+        catch(error => {
+          // Handle any errors that occurred in the chain
+          console.error(error);
+        });
+    }
   }, [calgaryInView, cityData]);
 
   // fetch Vancouver info when Vancouver section is in view
   useEffect(()=>{
-    // don't fetch data if already fetched
-    if (cityData['vancouver']) return;
-
-    Promise.all([
-      fetch(`/api/immigration/vancouver`),
-      fetch(`/api/languages/vancouver`),
-    ]).
-      then(([immigrationResponse, languageResponse]) => {
-        // Process the responses into JSON concurrently
-        return Promise.all([
-          immigrationResponse.json(),
-          languageResponse.json(),
-        ]);
-      }).
-      then(([immigrationData, languageData]) => {
-        // Update the state with the combined data
-        setCityData(prevData => ({
-          ...prevData,
-          ['vancouver']: { immigration: immigrationData, languages: languageData },
-        }));
-      }).
-      catch(error => {
-        // Handle any errors that occurred in the chain
-        console.error(error);
-      });
+    if (vancouverInView){
+      // don't fetch data if already fetched
+      if (cityData['vancouver'].immigration.length > 0) return;
+      if (cityData['vancouver'].languages.length > 0) return;
+  
+      Promise.all([
+        fetch(`/api/immigration/vancouver`),
+        fetch(`/api/languages/vancouver`),
+      ]).
+        then(([immigrationResponse, languageResponse]) => {
+          // Process the responses into JSON concurrently
+          return Promise.all([
+            immigrationResponse.json(),
+            languageResponse.json(),
+          ]);
+        }).
+        then(([immigrationData, languageData]) => {
+          // Update the state with the combined data
+          setCityData(prevData => ({
+            ...prevData,
+            ['vancouver']: { immigration: immigrationData, languages: languageData },
+          }));
+        }).
+        catch(error => {
+          // Handle any errors that occurred in the chain
+          console.error(error);
+        });
+    }
   }, [vancouverInView, cityData]);
 
   return (
