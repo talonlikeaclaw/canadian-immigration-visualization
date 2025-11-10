@@ -1,4 +1,5 @@
 import { useInView } from 'react-intersection-observer';
+import { useState } from 'react';
 import '../assets/styles/App.css';
 import HeroSection from './HeroSection';
 import DataExplorer from './DataExplorer';
@@ -19,6 +20,14 @@ function App() {
   const { ref: calgaryRef, inView: calgaryInView } = useInView(options);
   const { ref: vancouverRef, inView: vancouverInView } =
     useInView(options);
+
+  const [cityData, setCityData] = useState({
+    halifax: null,
+    montreal: null,
+    toronto: null,
+    calgary: null,
+    vancouver: null,
+  });
 
   // Determine the currently zoomed city based on scroll position
   const currentZoomedCity = vancouverInView
@@ -59,6 +68,35 @@ function App() {
     );
   }
 
+  /**
+   * Fetches data for a specific city and updates the state.
+   * @param {string} cityKey - The key for the city (montreal)
+   * @param {string} apiName - The city name for the API endpoint (montréal)
+   */
+  const fetchCityData = async (cityKey, apiName) => {
+    // don't fetch data if already fetched
+    if (cityData[cityKey]) return;
+
+    try {
+      const [immigrationResponse, languageResponse] = await Promise.all([
+        fetch(`/api/immigration/${apiName}`),
+        fetch(`/api/languages/${apiName}`),
+      ]);
+
+      const [immigrationData, languageData] = await Promise.all([
+        immigrationResponse.json(),
+        languageResponse.json(),
+      ]);
+
+      setCityData(prevData => ({
+        ...prevData,
+        [cityKey]: { immigration: immigrationData, languages: languageData },
+      }));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <HeroSection />
@@ -66,11 +104,11 @@ function App() {
 
       {displayContextText()}
 
-      <City cityName="halifax" ref={halifaxRef}/>
-      <City cityName="montreal" ref={montrealRef}/>
-      <City cityName="toronto" ref={torontoRef}/>
-      <City cityName="calgary" ref={calgaryRef}/>
-      <City cityName="vancouver" ref={vancouverRef}/>
+      <City cityName="halifax" ref={halifaxRef} cityData={cityData.halifax}/>
+      <City cityName="montreal" ref={montrealRef} cityData={cityData.montreal}/>
+      <City cityName="toronto" ref={torontoRef} cityData={cityData.toronto}/>
+      <City cityName="calgary" ref={calgaryRef} cityData={cityData.calgary}/>
+      <City cityName="vancouver" ref={vancouverRef} cityData={cityData.vancouver}/>
 
       <DataExplorer />
       <Footer />
