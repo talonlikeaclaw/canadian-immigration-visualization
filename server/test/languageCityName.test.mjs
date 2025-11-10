@@ -73,4 +73,10 @@ describe('GET /api/languages/:city', () => {
     expect(res.body).to.have.property('error');
     expect(aggregateStub.calledOnce).to.be.true;
   });
+
+  it('should handle city name case-insensitively', async () => {
+    const res = await request(app).get('/api/languages/MONTRÉAL');
+    expect(res.statusCode).to.equal(200);
+    expect(res.body[0].City).to.include('Montréal');
+  });
 });
