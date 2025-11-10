@@ -1,0 +1,46 @@
+.hero-section{
+	/* background-color: rgba(255, 0, 0, .3); */
+	height: 40rem;
+	display: flex;
+	flex-direction: column;
+	gap: 5rem;
+	padding: 3rem 5rem;
+	text-align: center;
+}
+
+.hero-section h1 {
+	margin-bottom: 3rem;
+}
+
+.hero-section .mini-intro{
+	padding: 0 5rem;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.text-center{
+	text-align: center;
+}
+
+
+.hero-section .scroll{
+	animation: bounce 0.5s infinite alternate;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.hero-section .scroll img{
+	height: 3rem;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0); /* Start position */
+    }
+    100% {
+        transform: translateY(-5px); /* Move up 20 pixels */
+    }
+}
