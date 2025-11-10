@@ -53,7 +53,8 @@ function displayHalifax(ref){
           from the Middle East, South Asia, and East Asia.
         </p>
 
-        {/* <Chart city="halifax"></Chart> */}
+        <Chart data={null} title="Halifax" xLabel="Number of people" yLabel="Countries"></Chart>
+
       </section>
     </>
   );
@@ -112,7 +113,7 @@ function displayMontreal(ref){
           speakers.
         </p>
 
-        <Chart city="montréal"></Chart>
+        <Chart data={null} title="Montréal" xLabel="Number of people" yLabel="Countries"></Chart>
       </section>
     </>
   );
@@ -155,7 +156,8 @@ function displayToronto(ref){
           linguistically diverse places on the planet.
         </p>
 
-        <Chart city="toronto"></Chart>
+        <Chart data={null} title="Toronto" xLabel="Number of people" yLabel="Countries"></Chart>
+
       </section>
     </>
   );
@@ -212,8 +214,9 @@ function displayCalgary(ref){
           linguistic hubs right in the heart of the Prairies.
         </p>
 
-        <Chart city="calgary"></Chart>
-        <Chart city="edmonton"></Chart>
+        <Chart data={null} title="Calgary" xLabel="Number of people" yLabel="Countries"></Chart>
+        <Chart data={null} title="Edmonton" xLabel="Number of people" yLabel="Countries"></Chart>
+
       </section>
     </>
   );
@@ -258,7 +261,8 @@ function displayVancouver(ref){
           immigration trends.
         </p>
 
-        <Chart city="vancouver"></Chart>
+        <Chart data={null} title="Vancouver" xLabel="Number of people" yLabel="Countries"></Chart>
+
       </section>
     </>
   );
