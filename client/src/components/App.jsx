@@ -3,6 +3,7 @@ import '../assets/styles/App.css';
 import HeroSection from './HeroSection';
 import DataExplorer from './DataExplorer';
 import Map from './Map';
+import City from './City';
 import Footer from './Footer';
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
       </p>
 
       <p>Our journey starts in Halifax, the capital of Nova Scotia.</p>
+      <City cityName="halifax"/>
 
       <section className="halifax-section" ref={halifaxRef}>
         <p>
