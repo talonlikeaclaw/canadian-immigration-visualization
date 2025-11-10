@@ -11,7 +11,7 @@ function App() {
   // lead me to the react intersction observer (plus I think this was
   // in one of class lectures, with lazy loading)
   // https://www.npmjs.com/package/react-intersection-observer
-  const options = { threshold: 0.5 };
+  const options = { threshold: 0.15 };
 
   const { ref: halifaxRef, inView: halifaxInView } = useInView(options);
   const { ref: montrealRef, inView: montrealInView } = useInView(options);
