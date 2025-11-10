@@ -177,16 +177,16 @@ export default function DataExplorer() {
         );
       }
 
-      const normalizedPrimary = primaryData
-        .slice(0, resultLimit)
-        .map(d => ({
+      const normalizedPrimary = primaryData.
+        slice(0, resultLimit).
+        map(d => ({
           ...d,
           city: selectedCity
         }));
 
-      const normalizedComparison = comparisonData
-        .slice(0, resultLimit)
-        .map(d => ({
+      const normalizedComparison = comparisonData.
+        slice(0, resultLimit).
+        map(d => ({
           ...d,
           city: comparisonCity
         }));
@@ -223,11 +223,11 @@ export default function DataExplorer() {
             onChange={e => setSelectedCity(e.target.value)}
           >
             <option value="">Select a city</option>
-            {cities.map(c => (
+            {cities.map(c => 
               <option key={c} value={c}>
                 {c}
               </option>
-            ))}
+            )}
           </select>
 
           {/* === Optional comparison city === */}
@@ -240,13 +240,13 @@ export default function DataExplorer() {
             onChange={e => setComparisonCity(e.target.value)}
           >
             <option value="">None</option>
-            {cities
-              .filter(c => c !== selectedCity)
-              .map(c => (
+            {cities.
+              filter(c => c !== selectedCity).
+              map(c => 
                 <option key={c} value={c}>
                   {c}
                 </option>
-              ))}
+              )}
           </select>
 
           {/* Dataset type (Immigration / Language) */}
@@ -262,7 +262,7 @@ export default function DataExplorer() {
           </select>
 
           {/* Period only shown for immigration */}
-          {dataType === 'immigration' && (
+          {dataType === 'immigration' && 
             <>
               <label htmlFor="period-select">Period:</label>
               <select
@@ -270,14 +270,14 @@ export default function DataExplorer() {
                 value={period}
                 onChange={e => setPeriod(e.target.value)}
               >
-                {periods.map(p => (
+                {periods.map(p => 
                   <option key={p} value={p}>
                     {p}
                   </option>
-                ))}
+                )}
               </select>
             </>
-          )}
+          }
 
           {/* Number of entries to display */}
           <label htmlFor="limit-select">Result Limit:</label>
@@ -302,7 +302,7 @@ export default function DataExplorer() {
       <section>{error && <p className="error">{error}</p>}</section>
 
       {/* Chart visualization */}
-      {data && data.length > 0 ? (
+      {data && data.length > 0 ? 
         <section className="chart-section">
           <h3>
             {activeCity}
@@ -320,7 +320,7 @@ export default function DataExplorer() {
           <div className="chart-grid">
             {/* Primary City */}
             <article className="chart-container">
-              {cityInfo && (
+              {cityInfo && 
                 <div className="city-info">
                   <h4>About {activeCity}</h4>
                   <p>
@@ -330,7 +330,7 @@ export default function DataExplorer() {
                     <strong>{cityInfo.AreaKm2}</strong> km².
                   </p>
                 </div>
-              )}
+              }
               <Chart
                 data={primaryData}
                 title={`${activeCity} – ${activeDataType}`}
@@ -342,9 +342,9 @@ export default function DataExplorer() {
             </article>
 
             {/* Comparison City */}
-            {activeComparisonCity && (
+            {activeComparisonCity && 
               <article className="chart-container">
-                {comparisonCityInfo && (
+                {comparisonCityInfo && 
                   <div className="city-info">
                     <h4>About {activeComparisonCity}</h4>
                     <p>
@@ -356,7 +356,7 @@ export default function DataExplorer() {
                       <strong>{comparisonCityInfo.AreaKm2}</strong> km².
                     </p>
                   </div>
-                )}
+                }
                 <Chart
                   data={comparisonData}
                   title={`${activeComparisonCity} – ${activeDataType}`}
@@ -368,10 +368,10 @@ export default function DataExplorer() {
                   }
                 />
               </article>
-            )}
+            }
           </div>
         </section>
-      ) : (
+        : 
         <section className="chart-section">
           <h3>Example Data Preview</h3>
           <div className="chart-grid">
@@ -405,7 +405,7 @@ export default function DataExplorer() {
             </article>
           </div>
         </section>
-      )}
+      }
     </>
   );
 }
