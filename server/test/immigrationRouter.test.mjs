@@ -297,15 +297,22 @@ describe(' placeholder immigration routes', ()=> {
     const response = await request(app).get(
       '/api/immigration/montreal/top/-countries'
     );
-    
+
     expect(response.statusCode).to.equal(200);
     expect(response.body)
       .to.have.property('message')
       .that.include('Most countries emmigrating towards montreal city');
   });
 
+  it('should return a message for /:city/summary', async ()=> {
+    const response = await request(app).get(
+      '/api/immigration/montreal/summary'
+    );
 
-
-
+    expect(response.statusCode).to.equal(200);
+    expect(response.body)
+      .to.have.property('message')
+      .that.include('Summary of stats for montreal city');
+  });
 
 });
