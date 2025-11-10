@@ -292,6 +292,7 @@ describe(' placeholder immigration routes', ()=> {
       .that.include('Specific immigration pattern of france into montreal city');
   });
 
+  // /api/immigration/:city/top-countries
   it('should retrun a message for /:city/top-country', async () => {
     // request => supertest
     const response = await request(app).get(
@@ -304,6 +305,7 @@ describe(' placeholder immigration routes', ()=> {
       .that.include('Most countries emmigrating towards montreal city');
   });
 
+  // /api/immigration/:city/summary
   it('should return a message for /:city/summary', async ()=> {
     const response = await request(app).get(
       '/api/immigration/montreal/summary'
