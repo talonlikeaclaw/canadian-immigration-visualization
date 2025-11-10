@@ -71,7 +71,7 @@ cp server/.env server/db/utils/.env
 
 ---
 
-### 4. Seed the database
+### 4. Seed the Database
 
 Seed your MongoDB database with the project data:
 
@@ -81,7 +81,7 @@ node server/db/utils/seed.mjs
 
 ---
 
-### 5. Build the project
+### 5. Build the Project
 
 From the root directory, build the frontend for production:
 
