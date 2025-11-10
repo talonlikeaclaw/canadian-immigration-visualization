@@ -16,7 +16,7 @@ function City({cityName, ref}){
 function displayHalifax(ref){
   return (
     <>
-      <p>Our journey starts in Halifax, the capital of Nova Scotia.</p>
+      <p className="transition">Our journey starts in Halifax, the capital of Nova Scotia.</p>
       <section className="halifax-section city-section" ref={ref}>
         <p>
           For centuries, Halifax&apos;s story was all about the British
@@ -61,7 +61,7 @@ function displayHalifax(ref){
 function displayMontreal(ref){
   return (
     <>
-      <p>
+      <p className="transition">
         Next, we head to Montreal, the vibrant cultural heart of French
         North America. This city&apos;s identity is defined by its powerful
         Francophone ties. Montreal’s exposure to the world got a huge boost
@@ -120,7 +120,7 @@ function displayMontreal(ref){
 function displayToronto(ref){
   return (
     <>
-      <p>
+      <p className="transition">
         We move west to Toronto, the massive, English-speaking metropolis
         that truly took off after World War II.
       </p>
@@ -163,7 +163,7 @@ function displayToronto(ref){
 function displayCalgary(ref){
   return (
     <>
-      <p>
+      <p className="transition">
         Now we explore the Prairies with Calgary and Edmonton, two cities
         whose fortunes are tied directly to the earth. Their histories are
         defined by natural resources.
@@ -221,7 +221,7 @@ function displayCalgary(ref){
 function displayVancouver(ref){
   return (
     <>
-      <p>
+      <p className="transition">
         Finally, we land in Vancouver, a stunning city whose identity has
         been completely remade by its role as Canada&apos;s bridge to the
         Pacific.
