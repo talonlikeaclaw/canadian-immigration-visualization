@@ -15,6 +15,7 @@ describe('GET /api/languages/:city', () => {
   // mocha hook runs beforeEach test
 
   beforeEach(() => {
+    sinon.stub(console, 'error');
     // stub (replace) db call with a fake call
     setCollectionStub = sinon.stub(db, 'setCollection').resolves();
     // stub db.find => simulate fake data
@@ -78,5 +79,12 @@ describe('GET /api/languages/:city', () => {
     const res = await request(app).get('/api/languages/MONTRÉAL');
     expect(res.statusCode).to.equal(200);
     expect(res.body[0].City).to.include('Montréal');
+  });
+
+  it('should return 500 if the database throws an error', async () => {
+    aggregateStub.rejects(new Error('Database failure'));
+    const res = await request(app).get('/api/languages/montreal');
+    expect(res.statusCode).to.equal(500);
+    expect(res.body).to.have.property('error');
   });
 });
