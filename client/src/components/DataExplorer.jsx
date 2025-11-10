@@ -204,7 +204,6 @@ export default function DataExplorer() {
 
   return (
     <>
-
       {/* === Selection Form === */}
       <form onSubmit={handleSubmit}>
         <fieldset>
@@ -304,7 +303,7 @@ export default function DataExplorer() {
       <section>{error && <p className="error">{error}</p>}</section>
 
       {/* Chart visualization */}
-      {data && (
+      {data && data.length > 0 ? (
         <section className="chart-section">
           <h3>
             {activeCity}
@@ -371,6 +370,40 @@ export default function DataExplorer() {
                 />
               </article>
             )}
+          </div>
+        </section>
+      ) : (
+        <section className="chart-section">
+          <h3>Example Data Preview</h3>
+          <div className="chart-grid">
+            <article className="chart-container">
+              <Chart
+                data={[
+                  { label: 'India', value: 4200 },
+                  { label: 'China', value: 3800 },
+                  { label: 'Philippines', value: 2500 },
+                  { label: 'United Kingdom', value: 1900 },
+                  { label: 'France', value: 1600 }
+                ]}
+                title="Sample Immigration Data"
+                xLabel="Number of Immigrants"
+                yLabel="Country of Origin"
+              />
+            </article>
+            <article className="chart-container">
+              <Chart
+                data={[
+                  { label: 'English', value: 850000 },
+                  { label: 'French', value: 600000 },
+                  { label: 'Mandarin', value: 95000 },
+                  { label: 'Arabic', value: 72000 },
+                  { label: 'Spanish', value: 65000 }
+                ]}
+                title="Sample Language Data"
+                xLabel="Number of Speakers"
+                yLabel="Language"
+              />
+            </article>
           </div>
         </section>
       )}
