@@ -1,4 +1,5 @@
 import '../assets/styles/City.css';
+import Chart from './Chart';
 
 function City({cityName, ref}){
   return (
@@ -111,7 +112,7 @@ function displayMontreal(ref){
           speakers.
         </p>
 
-        {/* <Chart city="montréal"></Chart> */}
+        <Chart city="montréal"></Chart>
       </section>
     </>
   );
@@ -154,7 +155,7 @@ function displayToronto(ref){
           linguistically diverse places on the planet.
         </p>
 
-        {/* <Chart city="toronto"></Chart> */}
+        <Chart city="toronto"></Chart>
       </section>
     </>
   );
@@ -211,8 +212,8 @@ function displayCalgary(ref){
           linguistic hubs right in the heart of the Prairies.
         </p>
 
-        {/* <Chart city="calgary"></Chart> */}
-        {/* <Chart city="edmonton"></Chart> */}
+        <Chart city="calgary"></Chart>
+        <Chart city="edmonton"></Chart>
       </section>
     </>
   );
@@ -257,7 +258,7 @@ function displayVancouver(ref){
           immigration trends.
         </p>
 
-        {/* <Chart city="vancouver"></Chart> */}
+        <Chart city="vancouver"></Chart>
       </section>
     </>
   );
