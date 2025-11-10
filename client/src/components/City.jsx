@@ -14,19 +14,8 @@ function City({cityName, ref, cityData}){
   );
 }
 
-function displayHalifax(ref, cityData){
-  let immigrationData = [];
-  if (cityData){
-    immigrationData = cityData.immigration.countries;
-  }
-
-  const immigrationEntries = Object.entries(immigrationData);
-
-  const immigrationChartData = immigrationEntries.map(([countryName, value]) => ({
-    label: countryName,
-    value: value
-  }));
-  
+function displayHalifax(ref, cityData){  
+  const immigrationChartData = convertImmigrationDataObjectToArray(cityData);
   return (
     <>
       <p className="transition">Our journey starts in Halifax, the capital of Nova Scotia.</p>
@@ -78,6 +67,7 @@ function displayHalifax(ref, cityData){
 }
 
 function displayMontreal(ref, cityData){
+  const immigrationChartData = convertImmigrationDataObjectToArray(cityData);
   return (
     <>
       <p className="transition">
@@ -131,13 +121,18 @@ function displayMontreal(ref, cityData){
         </p>
 
         <Chart 
-          data={cityData} title="Montréal" xLabel="Number of people" yLabel="Countries"></Chart>
+          data={immigrationChartData} 
+          title="Montréal" 
+          xLabel="Number of people" 
+          yLabel="Countries">
+        </Chart>
       </section>
     </>
   );
 }
 
 function displayToronto(ref, cityData){
+  const immigrationChartData = convertImmigrationDataObjectToArray(cityData);
   return (
     <>
       <p className="transition">
@@ -174,7 +169,12 @@ function displayToronto(ref, cityData){
           linguistically diverse places on the planet.
         </p>
 
-        <Chart data={cityData} title="Toronto" xLabel="Number of people" yLabel="Countries"></Chart>
+        <Chart
+          data={immigrationChartData}
+          title="Toronto"
+          xLabel="Number of people"
+          yLabel="Countries">
+        </Chart>
 
       </section>
     </>
@@ -182,6 +182,7 @@ function displayToronto(ref, cityData){
 }
 
 function displayCalgary(ref, cityData){
+  const immigrationChartData = convertImmigrationDataObjectToArray(cityData);
   return (
     <>
       <p className="transition">
@@ -232,9 +233,18 @@ function displayCalgary(ref, cityData){
           linguistic hubs right in the heart of the Prairies.
         </p>
 
-        <Chart data={cityData} title="Calgary" xLabel="Number of people" yLabel="Countries"></Chart>
+        <Chart
+          data={immigrationChartData}
+          title="Calgary"
+          xLabel="Number of people"
+          yLabel="Countries">
+        </Chart>
         <Chart 
-          data={cityData} title="Edmonton" xLabel="Number of people" yLabel="Countries"></Chart>
+          data={immigrationChartData}
+          title="Edmonton" 
+          xLabel="Number of people" 
+          yLabel="Countries">
+        </Chart>
 
       </section>
     </>
@@ -242,6 +252,7 @@ function displayCalgary(ref, cityData){
 }
 
 function displayVancouver(ref, cityData){
+  const immigrationChartData = convertImmigrationDataObjectToArray(cityData);
   return (
     <>
       <p className="transition">
@@ -281,11 +292,31 @@ function displayVancouver(ref, cityData){
         </p>
 
         <Chart 
-          data={cityData} title="Vancouver" xLabel="Number of people" yLabel="Countries"></Chart>
+          data={immigrationChartData}
+          title="Vancouver" 
+          xLabel="Number of people"
+          yLabel="Countries">
+        </Chart>
 
       </section>
     </>
   );
+}
+
+function convertImmigrationDataObjectToArray(immigrationDataObj){
+  let immigrationData = [];
+  if (immigrationDataObj){
+    immigrationData = immigrationDataObj.immigration.countries;
+  }
+
+  const immigrationEntries = Object.entries(immigrationData);
+
+  const immigrationChartData = immigrationEntries.map(([countryName, value]) => ({
+    label: countryName,
+    value: value
+  }));
+
+  return immigrationChartData;
 }
 
 export default City;
