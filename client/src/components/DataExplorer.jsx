@@ -290,7 +290,6 @@ export default function DataExplorer() {
             <option value={10}>Top 10</option>
             <option value={15}>Top 15</option>
             <option value={20}>Top 20</option>
-            <option value={25}>Top 25</option>
           </select>
 
           <button type="submit" disabled={!selectedCity || loading}>
