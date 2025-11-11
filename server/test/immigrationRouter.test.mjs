@@ -371,6 +371,7 @@ describe('GET /api/immigration/:city/period/:end (extra tests)', () => {
   beforeEach(() => {
     sinon.stub(db, 'setCollection').resolves();
     sinon.stub(db, 'aggregate').resolves([]);
+    sinon.stub(console, 'error'); 
   });
   afterEach(() => sinon.restore());
 
