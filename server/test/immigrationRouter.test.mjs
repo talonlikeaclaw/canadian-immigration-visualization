@@ -321,4 +321,39 @@ describe(' placeholder immigration routes', ()=> {
 
 });
 
+describe('GET /api/immigration/:city (error handling)', () => {
+  let setCollectionStub;
+  let aggregateStub;
+
+  beforeEach( ()=> {
+    setCollectionStub = sinon.stub(db, 'setCollection');
+    aggregateStub = sinon.stub(db, 'aggregate');
+  });
+
+  afterEach( ()=> sinon.restore() );
+
+  it('should return 500 if db.setCollection throws an error', async () => {
+    setCollectionStub.rejects(new Error('Database connection failed'));
+
+    const response = await request(app).get('/api/immigration/halifax');
+
+    expect(response.statusCode).to.equal(500);
+    expect(response.body).to.have.property('error');
+  });
+
+
+  it('should return 500 if db.aggregate throws an error', async () => {
+    setCollectionStub.resolves();
+    aggregateStub.rejects(new Error('Aggregate failure'));
+
+    const response = await request(app).get('/api/immigration/montreal');
+
+    expect(response.statusCode).to.equal(500);
+    expect(response.body).to.have.property('error');
+  });
+
+
+});
+
+
 // npm test => to run the tests
