@@ -321,33 +321,40 @@ describe(' placeholder immigration routes', ()=> {
 
 });
 
+// database operarion errors
 describe('GET /api/immigration/:city (error handling)', () => {
   let setCollectionStub;
   let aggregateStub;
 
   beforeEach( ()=> {
+    // fake version of db funcs
     setCollectionStub = sinon.stub(db, 'setCollection');
     aggregateStub = sinon.stub(db, 'aggregate');
-    // to prevent the errors stack trace
+    // prevent the errors stack trace
     sinon.stub(console, 'error'); 
   });
 
+  // restore stubs
   afterEach( ()=> sinon.restore() );
 
+  // db.setCollection fails
   it('should return 500 if db.setCollection throws an error', async () => {
     setCollectionStub.rejects(new Error('Database connection failed'));
 
+    // fake request
     const response = await request(app).get('/api/immigration/halifax');
-
+    
+    //assert
     expect(response.statusCode).to.equal(500);
     expect(response.body).to.have.property('error');
   });
 
-
+  // db.aggregate fails
   it('should return 500 if db.aggregate throws an error', async () => {
     setCollectionStub.resolves();
     aggregateStub.rejects(new Error('Aggregate failure'));
 
+    // request
     const response = await request(app).get('/api/immigration/montreal');
 
     expect(response.statusCode).to.equal(500);
@@ -355,32 +362,37 @@ describe('GET /api/immigration/:city (error handling)', () => {
   });
 });
 
+// accented cities
 it('Should accept city names with accents like Montréal', async () => {
+  // db mock/stub
   sinon.stub(db, 'setCollection').resolves();
   sinon.stub(db, 'aggregate').resolves([
     { totalImmigrants: 100, countries: { France: 50, Haiti: 50 } }
   ]);
-
+  // request
   const response = await request(app).get('/api/immigration/Montréal');
 
+  // assert
   expect(response.statusCode).to.equal(200);
   expect(response.body.city).to.equal('Montréal');
 });
 
+// /period/:end route
 describe('GET /api/immigration/:city/period/:end (extra tests)', () => {
   beforeEach(() => {
+    // db mock
     sinon.stub(db, 'setCollection').resolves();
     sinon.stub(db, 'aggregate').resolves([]);
     sinon.stub(console, 'error'); 
   });
   afterEach(() => sinon.restore());
-
+  // db.aggregate fails
   it('should return 500 if db.aggregate throws an error', async () => {
     db.aggregate.rejects(new Error('Database crash'));
     const response = await request(app).get('/api/immigration/halifax/period/1980');
     expect(response.statusCode).to.equal(500);
   });
-
+  // non existing year
   it('should handle non-existent year gracefully (404)', async () => {
     const response = await request(app).get('/api/immigration/halifax/period/1900');
     expect(response.statusCode).to.equal(404);
