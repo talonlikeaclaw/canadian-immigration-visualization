@@ -87,4 +87,20 @@ describe('GET /api/languages/:city', () => {
     expect(res.statusCode).to.equal(500);
     expect(res.body).to.have.property('error');
   });
+
+  it('should return language data sorted by Count in descending order', async () => {
+    const res = await request(app).get('/api/languages/montreal');
+    expect(res.statusCode).to.equal(200);
+
+    const languagesArray = res.body;
+
+    for (let i = 0; i < languagesArray.length - 1; i++) {
+      const currentCount = languagesArray[i].Count;
+      const nextCount = languagesArray[i + 1].Count;
+
+      // Assert that the current count is greater than or equal to the next count
+      expect(currentCount).to.be.at.least(nextCount);
+    }
+  });
+
 });
