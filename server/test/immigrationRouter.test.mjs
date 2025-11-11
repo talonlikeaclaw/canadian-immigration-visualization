@@ -328,6 +328,8 @@ describe('GET /api/immigration/:city (error handling)', () => {
   beforeEach( ()=> {
     setCollectionStub = sinon.stub(db, 'setCollection');
     aggregateStub = sinon.stub(db, 'aggregate');
+    // to prevent the errors stack trace
+    sinon.stub(console, 'error'); 
   });
 
   afterEach( ()=> sinon.restore() );
@@ -351,9 +353,40 @@ describe('GET /api/immigration/:city (error handling)', () => {
     expect(response.statusCode).to.equal(500);
     expect(response.body).to.have.property('error');
   });
-
-
 });
+
+it('Should accept city names with accents like Montréal', async () => {
+  sinon.stub(db, 'setCollection').resolves();
+  sinon.stub(db, 'aggregate').resolves([
+    { totalImmigrants: 100, countries: { France: 50, Haiti: 50 } }
+  ]);
+
+  const response = await request(app).get('/api/immigration/Montréal');
+
+  expect(response.statusCode).to.equal(200);
+  expect(response.body.city).to.equal('Montréal');
+});
+
+describe('GET /api/immigration/:city/period/:end (extra tests)', () => {
+  beforeEach(() => {
+    sinon.stub(db, 'setCollection').resolves();
+    sinon.stub(db, 'aggregate').resolves([]);
+  });
+  afterEach(() => sinon.restore());
+
+  it('should return 500 if db.aggregate throws an error', async () => {
+    db.aggregate.rejects(new Error('Database crash'));
+    const response = await request(app).get('/api/immigration/halifax/period/1980');
+    expect(response.statusCode).to.equal(500);
+  });
+
+  it('should handle non-existent year gracefully (404)', async () => {
+    const response = await request(app).get('/api/immigration/halifax/period/1900');
+    expect(response.statusCode).to.equal(404);
+    expect(response.body.error).to.include('No immigration data found');
+  });
+});
+
 
 
 // npm test => to run the tests
