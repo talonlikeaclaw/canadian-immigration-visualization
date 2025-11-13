@@ -110,7 +110,7 @@ build-app-archive:
 
   # to use the client built in build-client job
   dependencies:
-  - build-client
+    - build-client
 
   rules:
     # run only for tag pipelines
