@@ -156,7 +156,6 @@ build-app-archive:
           --exclude='server/db/utils' \
           --exclude='client/node_modules' \
           --exclude='client/.npm' \
-          
           server \
           client/dist \
           package.json \
