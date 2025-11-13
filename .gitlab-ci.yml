@@ -132,3 +132,25 @@ build-app-archive:
       when: always
     - when: never
 
+
+  # override the before_script
+  # install only production deps - omit dev
+  before_script:
+    - cd server
+    - npm ci --omit=dev --cache .npm --prefer-offline
+    - cd .. 
+  
+  script:
+    # remove any leftover archive in workspace
+    - rm -f "$RELEASE_FILE"
+
+    - tar -zcvf "$RELEASE_FILE" \
+      --exclude='server/.npm' \
+      --exclude='server/*.log' \
+      --exclude='client/node_modules' \
+      --exclude='client/.npm' \
+      server \
+      client/dist \
+      package.json \
+      package-lock.json \
+      README.md
