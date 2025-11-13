@@ -113,3 +113,22 @@ test-server:
 #     ...
 #     paths:
 #       - ...
+
+# produce a single tar.gz to scp to AWS
+# runs only on tag pipeline
+build-app-archive:
+  stage: release
+  
+  # same image as pipeline
+  image: node:24-bookworm-slim
+  
+  # name of the product
+  variables: 
+    RELEASE_FILE: release-$CI_PROJECT_NAME-$CI_COMMIT_TAG-$CI_COMMIT_SHORT_SHA.tar.gz
+
+  rules:
+    # run only for tag pipelines
+    - if: '$CI_COMMIT_TAG'
+      when: always
+    - when: never
+
