@@ -140,6 +140,9 @@ build-app-archive:
     - npm ci --omit=dev --cache .npm --prefer-offline
     - cd .. 
   
+
+  # create tar.gz with prodcuction needed files
+  # exclude cache and dev stuff
   script:
     # remove any leftover archive in workspace
     - rm -f "$RELEASE_FILE"
@@ -154,3 +157,10 @@ build-app-archive:
       package.json \
       package-lock.json \
       README.md
+
+  artifacts:
+    # downloadble archive
+    paths:
+      - "$RELEASE_FILE"
+    when: on_success
+    expire_in: 1 week
