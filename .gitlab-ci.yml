@@ -2,6 +2,7 @@ image: node:24-bookworm-slim
 
 workflow:
   rules:
+    - if: '$CI_COMMIT_TAG'
     # Run on merge requests
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
     # Run on pushes to main
@@ -9,7 +10,8 @@ workflow:
     # Run on pushes to staging
     - if: '$CI_COMMIT_BRANCH == "staging"'
 
-    - if: '$CI_COMMIT_BRANCH == "artifact"'
+    # to test if the artifacts are being created
+    # - if: '$CI_COMMIT_BRANCH == "artifact"'
 
 stages:
   - lint
@@ -48,6 +50,7 @@ build-client:
   stage: build
   script:
     - cd client && npm run build
+  # replaced by workflow Rules on top
   # only:
   #   refs:
   #     - main
@@ -79,7 +82,6 @@ check-bundlesize:
     expire_in: 1 day
     paths:
       - client/dist
-
 
 test-server:
   stage: test
@@ -116,10 +118,9 @@ build-app-archive:
 
   rules:
     # run only for tag pipelines
-    # - if: '$CI_COMMIT_TAG'
-    #   when: always
-    - when: always
-
+    - if: '$CI_COMMIT_TAG'
+      when: always
+    - when: never
 
   # override the before_script
   # install only production deps - omit dev
@@ -128,7 +129,6 @@ build-app-archive:
     - npm ci --omit=dev --cache .npm --prefer-offline
     - cd .. 
   
-
   # create tar.gz with prodcuction needed files
   # exclude cache and dev stuff
   script:
@@ -165,4 +165,4 @@ build-app-archive:
     paths:
       - "$RELEASE_FILE"
     when: on_success
-    expire_in: 1 week
+    expire_in: 1 day
