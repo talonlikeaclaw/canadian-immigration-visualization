@@ -128,7 +128,7 @@ build-app-archive:
     # remove any leftover archive in workspace
     - rm -f "$RELEASE_FILE"
     - |
-    - tar -zcvf "$RELEASE_FILE" \
+      tar -zcvf "$RELEASE_FILE" \
       --exclude='server/.npm' \
       --exclude='server/*.log' \
       --exclude='client/node_modules' \
