@@ -13,7 +13,6 @@ workflow:
     # Run on pushes to main
     - if: '$CI_COMMIT_BRANCH == "main"'
       when: always 
-
     # Run on pushes to staging
     - if: '$CI_COMMIT_BRANCH == "staging"'
       when: always
@@ -62,7 +61,10 @@ build-client:
 
   rules:
     - if: '$CI_COMMIT_BRANCH == "staging"'
+      when: always
     - if: '$CI_COMMIT_BRANCH == "main"'
+      when: always
+    - when: never
 
   artifacts:
     expire_in: 1 day
