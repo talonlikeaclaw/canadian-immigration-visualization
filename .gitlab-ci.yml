@@ -48,11 +48,11 @@ build-client:
   stage: build
   script:
     - cd client && npm run build
-  only:
-    refs:
-      - main
-      - staging
-      - artifact
+  # only:
+  #   refs:
+  #     - main
+  #     - staging
+  #     - artifact
   artifacts:
     expire_in: 1 day
     when: on_success
