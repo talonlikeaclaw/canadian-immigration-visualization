@@ -149,7 +149,7 @@ build-app-archive:
           package-lock.json \
           README.md
       else 
-        echo "no clien/dist found, building archive without frontend"
+        echo "no client/dist found, building archive without frontend"
         tar -zcvf "$RELEASE_FILE" \
           --exclude='server/.npm' \
           --exclude='server/*.log' \
