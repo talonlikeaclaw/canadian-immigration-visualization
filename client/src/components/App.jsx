@@ -1,14 +1,13 @@
 import { useInView } from 'react-intersection-observer';
-import { useEffect, useState } from 'react';
 import '../assets/styles/App.css';
 import HeroSection from './HeroSection';
 import DataExplorer from './DataExplorer';
 import Map from './Map';
-import City from './City';
 import HalifaxCity from './HalifaxCity';
 import MontrealCity from './MontrealCity'; 
 import TorontoCity from './TorontoCity';
 import CalgaryCity from './CalgaryCity';
+import VancouverCity from './VancouverCity';
 import Footer from './Footer';
 
 function App() {
@@ -23,14 +22,6 @@ function App() {
   const { ref: calgaryRef, inView: calgaryInView } = useInView();
   const { ref: vancouverRef, inView: vancouverInView } =
     useInView();
-
-  const [cityData, setCityData] = useState({
-    halifax: { immigration: [], languages: [] },
-    montreal: { immigration: [], languages: [] },
-    toronto: { immigration: [], languages: [] },
-    calgary: { immigration: [], languages: [] },
-    vancouver: { immigration: [], languages: [] },
-  });
 
   // Determine the currently zoomed city based on scroll position
   const currentZoomedCity = vancouverInView
@@ -71,48 +62,6 @@ function App() {
     );
   }
 
-  // fetch Halifax info when Halifax section is in view
-
-
-  // fetch Montreal info when Montreal section is in view
-
-
-  // fetch Toronto info when Toronto section is in view
-
-
-  // fetch Calgary info when Calgary section is in view
-
-  // fetch Vancouver info when Vancouver section is in view
-  useEffect(()=>{
-    if (vancouverInView){
-      // don't fetch data if already fetched
-      if (cityData['vancouver'].immigration.length > 0) return;
-      if (cityData['vancouver'].languages.length > 0) return;
-  
-      Promise.all([
-        fetch(`/api/immigration/vancouver`),
-        fetch(`/api/languages/vancouver`),
-      ]).
-        then(([immigrationResponse, languageResponse]) => {
-          // Process the responses into JSON concurrently
-          return Promise.all([
-            immigrationResponse.json(),
-            languageResponse.json(),
-          ]);
-        }).
-        then(([immigrationData, languageData]) => {
-          // Update the state with the combined data
-          setCityData(prevData => ({
-            ...prevData,
-            ['vancouver']: { immigration: immigrationData, languages: languageData },
-          }));
-        }).
-        catch(error => {
-          // Handle any errors that occurred in the chain
-          console.error(error);
-        });
-    }
-  }, [vancouverInView, cityData]);
 
   return (
     <>
@@ -125,7 +74,7 @@ function App() {
       <MontrealCity cityInView={montrealInView} reference={montrealRef}/>
       <TorontoCity cityInView={torontoInView} reference={torontoRef}/>
       <CalgaryCity cityInView={calgaryInView} reference={calgaryRef}/>
-      <City cityName="vancouver" ref={vancouverRef} cityData={cityData.vancouver}/>
+      <VancouverCity cityInView={vancouverInView} reference={vancouverRef}/>
 
       <DataExplorer />
       <Footer />
