@@ -50,6 +50,7 @@ build-client:
     refs:
       - main
       - staging
+      - artifact
   artifacts:
     expire_in: 1 day
     when: on_success
@@ -128,17 +129,31 @@ build-app-archive:
     # remove any leftover archive in workspace
     - rm -f "$RELEASE_FILE"
     - |
-      tar -zcvf "$RELEASE_FILE" \
-      --exclude='server/.npm' \
-      --exclude='server/*.log' \
-      --exclude='client/node_modules' \
-      --exclude='client/.npm' \
-      server \
-      client/dist \
-      package.json \
-      package-lock.json \
-      README.md
-
+    
+      if [ -d "client/dist"]; then
+        echo "Including client/dist in release archive"
+        tar -zcvf "$RELEASE_FILE" \
+          --exclude='server/.npm' \
+          --exclude='server/*.log' \
+          --exclude='client/node_modules' \
+          --exclude='client/.npm' \
+          server \
+          client/dist \
+          package.json \
+          package-lock.json \
+          README.md
+      else 
+        echo "no clien/dist found, building archive without frontend"
+        tar -zcvf "$RELEASE_FILE" \
+          --exclude='server/.npm' \
+          --exclude='server/*.log' \
+          --exclude='client/node_modules' \
+          --exclude='client/.npm' \
+          server \
+          package.json \
+          package-lock.json \
+          README.md
+      fi
   artifacts:
     # downloadble archive
     paths:
