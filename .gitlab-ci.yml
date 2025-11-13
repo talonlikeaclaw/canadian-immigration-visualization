@@ -153,8 +153,10 @@ build-app-archive:
         tar -zcvf "$RELEASE_FILE" \
           --exclude='server/.npm' \
           --exclude='server/*.log' \
+          --exclude='server/db/utils' \
           --exclude='client/node_modules' \
           --exclude='client/.npm' \
+          
           server \
           client/dist \
           package.json \
@@ -165,6 +167,7 @@ build-app-archive:
         tar -zcvf "$RELEASE_FILE" \
           --exclude='server/.npm' \
           --exclude='server/*.log' \
+          --exclude='server/db/utils' \
           --exclude='client/node_modules' \
           --exclude='client/.npm' \
           server \
