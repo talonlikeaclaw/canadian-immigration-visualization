@@ -8,6 +8,7 @@ import City from './City';
 import HalifaxCity from './HalifaxCity';
 import MontrealCity from './MontrealCity'; 
 import TorontoCity from './TorontoCity';
+import CalgaryCity from './CalgaryCity';
 import Footer from './Footer';
 
 function App() {
@@ -80,36 +81,6 @@ function App() {
 
 
   // fetch Calgary info when Calgary section is in view
-  useEffect(()=>{
-    if (calgaryInView){
-      // don't fetch data if already fetched
-      if (cityData['calgary'].immigration.length > 0) return;
-      if (cityData['calgary'].languages.length > 0) return;
-  
-      Promise.all([
-        fetch(`/api/immigration/calgary`),
-        fetch(`/api/languages/calgary`),
-      ]).
-        then(([immigrationResponse, languageResponse]) => {
-          // Process the responses into JSON concurrently
-          return Promise.all([
-            immigrationResponse.json(),
-            languageResponse.json(),
-          ]);
-        }).
-        then(([immigrationData, languageData]) => {
-          // Update the state with the combined data
-          setCityData(prevData => ({
-            ...prevData,
-            ['calgary']: { immigration: immigrationData, languages: languageData },
-          }));
-        }).
-        catch(error => {
-          // Handle any errors that occurred in the chain
-          console.error(error);
-        });
-    }
-  }, [calgaryInView, cityData]);
 
   // fetch Vancouver info when Vancouver section is in view
   useEffect(()=>{
@@ -153,7 +124,7 @@ function App() {
       <HalifaxCity cityInView={halifaxInView} reference={halifaxRef}/>
       <MontrealCity cityInView={montrealInView} reference={montrealRef}/>
       <TorontoCity cityInView={torontoInView} reference={torontoRef}/>
-      <City cityName="calgary" ref={calgaryRef} cityData={cityData.calgary}/>
+      <CalgaryCity cityInView={calgaryInView} reference={calgaryRef}/>
       <City cityName="vancouver" ref={vancouverRef} cityData={cityData.vancouver}/>
 
       <DataExplorer />
