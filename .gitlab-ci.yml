@@ -130,7 +130,7 @@ build-app-archive:
     - rm -f "$RELEASE_FILE"
     - |
     
-      if [ -d "client/dist"]; then
+      if [ -d "client/dist" ]; then
         echo "Including client/dist in release archive"
         tar -zcvf "$RELEASE_FILE" \
           --exclude='server/.npm' \
