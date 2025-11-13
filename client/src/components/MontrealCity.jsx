@@ -44,6 +44,7 @@ function MontrealCity({cityInView, reference}){
             from Expo 67, the spectacularly successful World’s Fair. It put
             Montréal on the global stage.
       </p>
+      
       <section className="montreal-section city-section" ref={reference}>
         <p>
               To protect its unique French identity, Quebec took control of
@@ -101,6 +102,8 @@ function MontrealCity({cityInView, reference}){
           yLabel="Languages">
         </Chart>
       </section>
+
+      <div className="city-divider"></div>
     </>
   );
 }

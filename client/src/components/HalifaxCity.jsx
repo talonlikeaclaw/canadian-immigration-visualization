@@ -38,6 +38,7 @@ function HalifaxCity({cityInView, reference}){
   return (
     <>
       <p className="transition">Our journey starts in Halifax, the capital of Nova Scotia.</p>
+      
       <section className="halifax-section city-section" ref={reference}>
         <p>
         For centuries, Halifax&apos;s story was all about the British

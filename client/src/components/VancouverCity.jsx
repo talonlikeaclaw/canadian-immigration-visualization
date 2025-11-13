@@ -42,6 +42,7 @@ function VancouverCity({cityInView, reference}){
             been completely remade by its role as Canada&apos;s bridge to the
             Pacific.
       </p>
+
       <section className="vancouver-section city-section" ref={reference}>
         <p>
               Vancouver had long-standing ties to Asia, but its modern era
@@ -88,6 +89,8 @@ function VancouverCity({cityInView, reference}){
         </Chart>
     
       </section>
+
+      <div className="city-divider"></div>
     </>
   );
 }

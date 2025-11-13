@@ -86,6 +86,8 @@ function TorontoCity({cityInView, reference}){
         </Chart>
     
       </section>
+
+      <div className="city-divider"></div>
     </>
   );
 }

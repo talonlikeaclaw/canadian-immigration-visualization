@@ -42,6 +42,7 @@ function CalgaryCity({cityInView, reference}){
         whose fortunes are tied directly to the earth. Their histories are
         defined by natural resources.
       </p>
+
       <section className="calgary-section city-section" ref={reference}>
         <p>
           While the region started with agriculture, the real game-changer
@@ -100,6 +101,8 @@ function CalgaryCity({cityInView, reference}){
         </Chart>
 
       </section>
+
+      <div className="city-divider"></div>
     </>
   );
 }
