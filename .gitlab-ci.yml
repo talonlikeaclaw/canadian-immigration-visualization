@@ -9,6 +9,8 @@ workflow:
     # Run on pushes to staging
     - if: '$CI_COMMIT_BRANCH == "staging"'
 
+    - if: '$CI_COMMIT_BRANCH == "artifact"'
+
 stages:
   - lint
   - build
