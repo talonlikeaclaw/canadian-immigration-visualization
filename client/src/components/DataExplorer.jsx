@@ -36,6 +36,8 @@ export default function DataExplorer() {
 
   const [period, setPeriod] = useState('All time');
   const [activePeriod, setActivePeriod] = useState('All time');
+  const [langToggle, setLangToggle] = useState('Include');
+  const [activeLangToggle, setActiveLangToggle] = useState('Include');
   const [resultLimit, setResultLimit] = useState(10);
 
   const [data, setData] = useState(null);
@@ -214,70 +216,84 @@ export default function DataExplorer() {
               immigration or language statistics.
             </p>
           </header>
-          {/* City selection */}
-          {/* === City 1 === */}
-          <label htmlFor="city-select">Primary City:</label>
-          <select
-            id="city-select"
-            value={selectedCity}
-            onChange={e => setSelectedCity(e.target.value)}
-          >
-            <option value="">Select a city</option>
-            {cities.map(c => 
-              <option key={c} value={c}>
-                {c}
-              </option>
-            )}
-          </select>
-
-          {/* === Optional comparison city === */}
-          <label htmlFor="comparison-select">
-            Comparison City (optional):
-          </label>
-          <select
-            id="comparison-select"
-            value={comparisonCity}
-            onChange={e => setComparisonCity(e.target.value)}
-          >
-            <option value="">None</option>
-            {cities.
-              filter(c => c !== selectedCity).
-              map(c => 
+          <section className="input-row">
+            {/* City selection */}
+            {/* === City 1 === */}
+            <label htmlFor="city-select">Primary City:</label>
+            <select
+              id="city-select"
+              value={selectedCity}
+              onChange={e => setSelectedCity(e.target.value)}
+            >
+              <option value="">Select a city</option>
+              {cities.map(c => 
                 <option key={c} value={c}>
                   {c}
                 </option>
               )}
-          </select>
+            </select>
 
-          {/* Dataset type (Immigration / Language) */}
-          <label htmlFor="dataset-select">Dataset:</label>
-          <select
-            name="dataset"
-            id="dataset-select"
-            value={dataType}
-            onChange={e => setDataType(e.target.value)}
-          >
-            <option value="immigration">Immigration</option>
-            <option value="language">Language</option>
-          </select>
-
-          {/* Period only shown for immigration */}
-          {dataType === 'immigration' && 
-            <>
-              <label htmlFor="period-select">Period:</label>
-              <select
-                id="period-select"
-                value={period}
-                onChange={e => setPeriod(e.target.value)}
-              >
-                {periods.map(p => 
-                  <option key={p} value={p}>
-                    {p}
+            {/* === Optional comparison city === */}
+            <label htmlFor="comparison-select">Comparison City:</label>
+            <select
+              id="comparison-select"
+              value={comparisonCity}
+              onChange={e => setComparisonCity(e.target.value)}
+            >
+              <option value="">None</option>
+              {cities.
+                filter(c => c !== selectedCity).
+                map(c => 
+                  <option key={c} value={c}>
+                    {c}
                   </option>
                 )}
-              </select>
-            </>
-          }
+            </select>
+          </section>
+
+          <section className="input-row">
+            {/* Dataset type (Immigration / Language) */}
+            <label htmlFor="dataset-select">Dataset:</label>
+            <select
+              name="dataset"
+              id="dataset-select"
+              value={dataType}
+              onChange={e => setDataType(e.target.value)}
+            >
+              <option value="immigration">Immigration</option>
+              <option value="language">Language</option>
+            </select>
+
+            {/* Period only shown for immigration */}
+            {dataType === 'immigration' ? 
+              <>
+                <label htmlFor="period-select">Period:</label>
+                <select
+                  id="period-select"
+                  value={period}
+                  onChange={e => setPeriod(e.target.value)}
+                >
+                  {periods.map(p => 
+                    <option key={p} value={p}>
+                      {p}
+                    </option>
+                  )}
+                </select>
+              </>
+              : 
+              <>
+                <label htmlFor="lang-select">Official Languages:</label>
+                <select
+                  id="lang-select"
+                  value={langToggle}
+                  onChange={e => setLangToggle(e.target.value)}
+                >
+                  <option value="Include">Include</option>
+                  <option value="Exclude">Exclude</option>
+                </select>
+              </>
+            }
+          </section>
 
           {/* Number of entries to display */}
           <label htmlFor="limit-select">Result Limit:</label>
