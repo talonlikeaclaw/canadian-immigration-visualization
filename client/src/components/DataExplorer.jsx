@@ -26,7 +26,7 @@ export default function DataExplorer() {
   const [dataType, setDataType] = useState('immigration');
   const [activeDataType, setActiveDataType] = useState('immigration');
 
-  const [selectedCity, setSelectedCity] = useState('');
+  const [selectedCity, setSelectedCity] = useState('Montréal');
   const [activeCity, setActiveCity] = useState('');
   const [comparisonCity, setComparisonCity] = useState('');
   const [activeComparisonCity, setActiveComparisonCity] = useState('');
