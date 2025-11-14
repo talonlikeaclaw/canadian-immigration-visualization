@@ -37,7 +37,6 @@ export default function DataExplorer() {
   const [period, setPeriod] = useState('All time');
   const [activePeriod, setActivePeriod] = useState('All time');
   const [langToggle, setLangToggle] = useState('Include');
-  const [activeLangToggle, setActiveLangToggle] = useState('Include');
   const [resultLimit, setResultLimit] = useState(10);
 
   const [data, setData] = useState(null);
@@ -66,7 +65,7 @@ export default function DataExplorer() {
    * @param {string} period - The selected time period.
    * @returns {Promise<Array<{ label: string, value: number }>>}
    */
-  async function fetchDataset(city, type, period) {
+  async function fetchDataset(city, type, period, lang) {
     try {
       // Build dataset URL based on type and period
       let datasetUrl;
@@ -105,8 +104,16 @@ export default function DataExplorer() {
           ([label, value]) => ({ label, value })
         );
       } else {
+        const filteredLanguages =
+          lang === 'Exclude'
+            ? datasetJson.filter(
+              ({ Language }) =>
+                Language !== 'French' && Language !== 'English'
+            )
+            : datasetJson;
+
         // Transform array of language objects into { label, value }
-        return datasetJson.map(({ Language, Count }) => ({
+        return filteredLanguages.map(({ Language, Count }) => ({
           label: Language,
           value: Count
         }));
@@ -167,7 +174,8 @@ export default function DataExplorer() {
       const primaryData = await fetchDataset(
         selectedCity,
         dataType,
-        period
+        period,
+        langToggle
       );
       let comparisonData = [];
 
@@ -175,7 +183,8 @@ export default function DataExplorer() {
         comparisonData = await fetchDataset(
           comparisonCity,
           dataType,
-          period
+          period,
+          langToggle
         );
       }
 
