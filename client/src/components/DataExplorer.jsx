@@ -194,58 +194,39 @@ export default function DataExplorer() {
     setActivePeriod(period);
 
     try {
-      // Fetch city info for primary city
-      const cityRes = await fetch(
-        `/api/city/${encodeURIComponent(selectedCity)}`
-      );
-      if (!cityRes.ok) throw new Error('Failed to fetch city info');
-      const cityJson = await cityRes.json();
-      setCityInfo(cityJson);
-
-      // Optionally fetch comparison city info
-      let comparisonJson = null;
-      if (comparisonCity) {
-        const comparisonRes = await fetch(
-          `/api/city/${encodeURIComponent(comparisonCity)}`
-        );
-        if (comparisonRes.ok) comparisonJson = await comparisonRes.json();
-        setComparisonCityInfo(comparisonJson);
-      } else {
-        setComparisonCityInfo(null);
-      }
-
-      const primaryData = await fetchDataset(
-        selectedCity,
-        dataType,
-        period,
-        langToggle
-      );
-      let comparisonData = [];
-
-      if (comparisonCity) {
-        comparisonData = await fetchDataset(
-          comparisonCity,
+      const promises = [
+        fetch(`/api/city/${encodeURIComponent(selectedCity)}`).then(r => r.json()),
+        fetchDataset(
+          selectedCity,
           dataType,
           period,
           langToggle
+        )
+      ];
+
+      // Optionally fetch comparison city info
+      if (comparisonCity) {
+        promises.push(
+          fetch(`/api/city/${encodeURIComponent(comparisonCity)}`).then(r => r.json()),
+          fetchDataset(
+            comparisonCity,
+            dataType,
+            period,
+            langToggle
+          )
         );
       }
 
-      const normalizedPrimary = primaryData.
-        slice(0, resultLimit).
-        map(d => ({
-          ...d,
-          city: selectedCity
-        }));
+      const results = await Promise.all(promises);
+      const [cityJson, primaryData, comparisonJson, comparisonData = []] = results;
 
-      const normalizedComparison = comparisonData.
-        slice(0, resultLimit).
-        map(d => ({
-          ...d,
-          city: comparisonCity
-        }));
+      setCityInfo(cityJson);
+      setComparisonCityInfo(comparisonJson || null);
 
-      const combined = [...normalizedPrimary, ...normalizedComparison];
+      const combined = [
+        ...primaryData.slice(0, resultLimit).map(d => ({ ...d, city: selectedCity })),
+        ...comparisonData.slice(0, resultLimit).map(d => ({ ...d, city: comparisonCity }))
+      ];
 
       setData(combined);
     } catch (err) {
