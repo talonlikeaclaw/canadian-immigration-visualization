@@ -344,9 +344,7 @@ export default function DataExplorer() {
           <div className="chart-grid">
             {/* Primary City */}
             <article className="chart-container">
-              {cityInfo && 
-                <CityInfoCard city={activeCity} info={cityInfo} />
-              }
+              <CityInfoCard city={activeCity} info={cityInfo} />
               <Chart
                 data={primaryData}
                 title={`${activeCity} - ${activeDataType}`}
@@ -360,12 +358,10 @@ export default function DataExplorer() {
             {/* Comparison City */}
             {activeComparisonCity && 
               <article className="chart-container">
-                {comparisonCityInfo && 
-                  <CityInfoCard
-                    city={activeComparisonCity}
-                    info={comparisonCityInfo}
-                  />
-                }
+                <CityInfoCard
+                  city={activeComparisonCity}
+                  info={comparisonCityInfo}
+                />
                 <Chart
                   data={comparisonData}
                   title={`${activeComparisonCity} - ${activeDataType}`}
