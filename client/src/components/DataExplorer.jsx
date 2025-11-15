@@ -430,20 +430,22 @@ export default function DataExplorer() {
                 yLabel="Country of Origin"
               />
             </article>
-            <article className="chart-container">
-              <Chart
-                data={[
-                  { label: 'English', value: 850000 },
-                  { label: 'French', value: 600000 },
-                  { label: 'Mandarin', value: 95000 },
-                  { label: 'Arabic', value: 72000 },
-                  { label: 'Spanish', value: 65000 }
-                ]}
-                title="Sample Language Data"
-                xLabel="Number of Speakers"
-                yLabel="Language"
-              />
-            </article>
+            {comparisonCity &&
+              <article className="chart-container">
+                <Chart
+                  data={[
+                    { label: 'English', value: 850000 },
+                    { label: 'French', value: 600000 },
+                    { label: 'Mandarin', value: 95000 },
+                    { label: 'Arabic', value: 72000 },
+                    { label: 'Spanish', value: 65000 }
+                  ]}
+                  title="Sample Language Data"
+                  xLabel="Number of Speakers"
+                  yLabel="Language"
+                />
+              </article>
+            }
           </div>
         </section>
       }
