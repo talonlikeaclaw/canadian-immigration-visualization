@@ -99,6 +99,27 @@ export default function DataExplorer() {
   };
 
   /**
+   * Builds the immigration URL for fetching immigration data.
+   * @param {string} city - the city to fetch data for.
+   * @param {string} period - the seleced period.
+   * @returns the url built depending on the parameters.
+   */
+  function buildImmigrationUrl(city, period) {
+    const baseUrl = `/api/immigration/${encodeURIComponent(city)}`;
+
+    if (period === 'All time') return baseUrl;
+    if (period === 'Before 1980') return `${baseUrl}/period/1980`;
+
+    const match = period.match(/(\d{4})\s*to\s*(\d{4})/);
+    if (match) {
+      const [, start, end] = match;
+      return `${baseUrl}/period/${start}/${end}`;
+    }
+
+    return baseUrl;
+  };
+
+  /**
    * Fetches and normalizes dataset information for a given city.
    * @param {string} city - The name of the city to fetch data for.
    * @param {string} type - The dataset category to retrieve.
@@ -110,25 +131,7 @@ export default function DataExplorer() {
       // Build dataset URL based on type and period
       let datasetUrl;
       if (type === 'immigration') {
-        if (period === 'All time') {
-          datasetUrl = `/api/immigration/${encodeURIComponent(city)}`;
-        } else if (period === 'Before 1980') {
-          datasetUrl = `/api/immigration/${encodeURIComponent(
-            city
-          )}/period/1980`;
-        } else {
-          // Regex created by ChatGPT.
-          const match = period.match(/(\d{4})\s*to\s*(\d{4})/);
-          if (match) {
-            const [, start, end] = match;
-            datasetUrl = `/api/immigration/${encodeURIComponent(
-              city
-            )}/period/${start}/${end}`;
-          } else {
-            // Fallback
-            datasetUrl = `/api/immigration/${encodeURIComponent(city)}`;
-          }
-        }
+        datasetUrl = buildImmigrationUrl(city, period);
       } else {
         datasetUrl = `/api/languages/${encodeURIComponent(city)}`;
       }
