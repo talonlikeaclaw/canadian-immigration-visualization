@@ -74,19 +74,23 @@ function VancouverCity({cityInView, reference}){
               immigration trends.
         </p>
     
-        <Chart 
-          data={immigrationChartData}
-          title="Vancouver" 
-          xLabel="Number of people"
-          yLabel="Countries">
-        </Chart>
+        <section className="chart-wrapper">
+          <Chart 
+            data={immigrationChartData}
+            title="Vancouver" 
+            xLabel="Number of people"
+            yLabel="Countries">
+          </Chart>
+        </section>
     
-        <Chart 
-          data={languagesChartData} 
-          title="Languages Spoken in Calgary"
-          xLabel="Number of people" 
-          yLabel="Languages">
-        </Chart>
+        <section className="chart-wrapper">
+          <Chart 
+            data={languagesChartData} 
+            title="Languages Spoken in Calgary"
+            xLabel="Number of people" 
+            yLabel="Languages">
+          </Chart>
+        </section>
     
       </section>
 
