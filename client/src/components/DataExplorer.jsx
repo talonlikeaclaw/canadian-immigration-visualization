@@ -84,6 +84,20 @@ export default function DataExplorer() {
     [data, activeComparisonCity]
   );
 
+  const getChartTitle = () => {
+    const cities = activeComparisonCity
+      ? `${activeCity} vs ${activeComparisonCity}`
+      : activeCity;
+    const dataset =
+      activeDataType.charAt(0).toUpperCase() + activeDataType.slice(1);
+    const period =
+      activeDataType === 'immigration' && activePeriod !== 'All time'
+        ? ` (${activePeriod})`
+        : '';
+
+    return `${cities} - ${dataset} Data${period}`;
+  };
+
   /**
    * Fetches and normalizes dataset information for a given city.
    * @param {string} city - The name of the city to fetch data for.
@@ -328,18 +342,7 @@ export default function DataExplorer() {
       {/* Chart visualization */}
       {data && data.length > 0 ? 
         <section className="chart-section">
-          <h3>
-            {activeCity}
-            {activeComparisonCity
-              ? ` vs ${activeComparisonCity}`
-              : ''} –{' '}
-            {activeDataType[0].toUpperCase() + activeDataType.slice(1)}{' '}
-            Data{' '}
-            {activeDataType === 'immigration' &&
-            activePeriod !== 'All time'
-              ? `(${activePeriod})`
-              : ''}
-          </h3>
+          <h3>{getChartTitle()}</h3>
 
           <div className="chart-grid">
             {/* Primary City */}
