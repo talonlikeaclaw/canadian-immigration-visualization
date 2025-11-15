@@ -49,24 +49,26 @@ const limitOptions = [
 ];
 
 export default function DataExplorer() {
-  const [dataType, setDataType] = useState('immigration');
-  const [activeDataType, setActiveDataType] = useState('immigration');
-
+  // Form state
   const [selectedCity, setSelectedCity] = useState('Montréal');
-  const [activeCity, setActiveCity] = useState('');
   const [comparisonCity, setComparisonCity] = useState('');
-  const [activeComparisonCity, setActiveComparisonCity] = useState('');
-
-  const [cityInfo, setCityInfo] = useState(null);
-  const [comparisonCityInfo, setComparisonCityInfo] = useState(null);
-
+  const [dataType, setDataType] = useState('immigration');
   const [period, setPeriod] = useState('All time');
-  const [activePeriod, setActivePeriod] = useState('All time');
   const [langToggle, setLangToggle] = useState('Include');
   const [resultLimit, setResultLimit] = useState(10);
 
-  const [data, setData] = useState(null);
+  // Active/committed state
+  const [activeCity, setActiveCity] = useState('');
+  const [activeComparisonCity, setActiveComparisonCity] = useState('');
+  const [activeDataType, setActiveDataType] = useState('immigration');
+  const [activePeriod, setActivePeriod] = useState('All time');
 
+  // Data state
+  const [data, setData] = useState(null);
+  const [cityInfo, setCityInfo] = useState(null);
+  const [comparisonCityInfo, setComparisonCityInfo] = useState(null);
+
+  // UI state
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
