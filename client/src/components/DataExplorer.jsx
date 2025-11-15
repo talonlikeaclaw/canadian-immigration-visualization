@@ -4,50 +4,6 @@ import CityInfoCard from './CityInfoCard';
 import SelectField from './SelectField';
 import '../assets/styles/DataExplorer.css';
 
-const cities = [
-  'Halifax',
-  'Montréal',
-  'Toronto',
-  'Calgary',
-  'Edmonton',
-  'Vancouver'
-];
-
-const periods = [
-  'All time',
-  'Before 1980',
-  '1980 to 1990',
-  '1991 to 2000',
-  '2001 to 2005',
-  '2006 to 2010',
-  '2011 to 2015',
-  '2016 to 2021'
-];
-
-const cityOptions = [
-  { value: '', label: 'Select a city' },
-  ...cities.map(c => ({ value: c, label: c }))
-];
-
-const datasetOptions = [
-  { value: 'immigration', label: 'Immigration' },
-  { value: 'language', label: 'Language' }
-];
-
-const periodOptions = periods.map(p => ({ value: p, label: p }));
-
-const langToggleOptions = [
-  { value: 'Include', label: 'Include' },
-  { value: 'Exclude', label: 'Exclude' }
-];
-
-const limitOptions = [
-  { value: 5, label: 'Top 5' },
-  { value: 10, label: 'Top 10' },
-  { value: 15, label: 'Top 15' },
-  { value: 20, label: 'Top 20' }
-];
-
 export default function DataExplorer() {
   // Form state
   const [selectedCity, setSelectedCity] = useState('Montréal');
@@ -372,20 +328,10 @@ export default function DataExplorer() {
             <article className="chart-container">
               <CityInfoCard
                 city="Example City 1"
-                info={{
-                  Province: 'Example Province',
-                  Population: 1999999,
-                  AreaKm2: 499.9
-                }}
+                info={EXAMPLE_CITY_INFO_1}
               />
               <Chart
-                data={[
-                  { label: 'India', value: 4200 },
-                  { label: 'China', value: 3800 },
-                  { label: 'Philippines', value: 2500 },
-                  { label: 'United Kingdom', value: 1900 },
-                  { label: 'France', value: 1600 }
-                ]}
+                data={EXAMPLE_IMMIGRATION_DATA}
                 title="Sample Immigration Data"
                 xLabel="Number of Immigrants"
                 yLabel="Country of Origin"
@@ -395,20 +341,10 @@ export default function DataExplorer() {
               <article className="chart-container">
                 <CityInfoCard
                   city="Example City 2"
-                  info={{
-                    Province: 'Example Province',
-                    Population: 2999999,
-                    AreaKm2: 399.9
-                  }}
+                  info={EXAMPLE_CITY_INFO_2}
                 />
                 <Chart
-                  data={[
-                    { label: 'English', value: 850000 },
-                    { label: 'French', value: 600000 },
-                    { label: 'Mandarin', value: 95000 },
-                    { label: 'Arabic', value: 72000 },
-                    { label: 'Spanish', value: 65000 }
-                  ]}
+                  data={EXAMPLE_LANGUAGE_DATA}
                   title="Sample Language Data"
                   xLabel="Number of Speakers"
                   yLabel="Language"
@@ -421,3 +357,75 @@ export default function DataExplorer() {
     </>
   );
 }
+
+const cities = [
+  'Halifax',
+  'Montréal',
+  'Toronto',
+  'Calgary',
+  'Edmonton',
+  'Vancouver'
+];
+
+const periods = [
+  'All time',
+  'Before 1980',
+  '1980 to 1990',
+  '1991 to 2000',
+  '2001 to 2005',
+  '2006 to 2010',
+  '2011 to 2015',
+  '2016 to 2021'
+];
+
+const cityOptions = [
+  { value: '', label: 'Select a city' },
+  ...cities.map(c => ({ value: c, label: c }))
+];
+
+const datasetOptions = [
+  { value: 'immigration', label: 'Immigration' },
+  { value: 'language', label: 'Language' }
+];
+
+const periodOptions = periods.map(p => ({ value: p, label: p }));
+
+const langToggleOptions = [
+  { value: 'Include', label: 'Include' },
+  { value: 'Exclude', label: 'Exclude' }
+];
+
+const limitOptions = [
+  { value: 5, label: 'Top 5' },
+  { value: 10, label: 'Top 10' },
+  { value: 15, label: 'Top 15' },
+  { value: 20, label: 'Top 20' }
+];
+
+const EXAMPLE_IMMIGRATION_DATA = [
+  { label: 'India', value: 4200 },
+  { label: 'China', value: 3800 },
+  { label: 'Philippines', value: 2500 },
+  { label: 'United Kingdom', value: 1900 },
+  { label: 'France', value: 1600 }
+];
+
+const EXAMPLE_LANGUAGE_DATA = [
+  { label: 'English', value: 850000 },
+  { label: 'French', value: 600000 },
+  { label: 'Mandarin', value: 95000 },
+  { label: 'Arabic', value: 72000 },
+  { label: 'Spanish', value: 65000 }
+];
+
+const EXAMPLE_CITY_INFO_1 = {
+  Province: 'Example Province',
+  Population: 1999999,
+  AreaKm2: 499.9
+};
+
+const EXAMPLE_CITY_INFO_2 = {
+  Province: 'Example Province',
+  Population: 2999999,
+  AreaKm2: 399.9
+};
