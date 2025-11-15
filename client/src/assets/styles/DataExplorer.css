@@ -34,20 +34,33 @@ fieldset {
 }
 
 fieldset > header {
-  padding: 1rem 0rem;
+  padding: 1rem 0rem 0.1rem 0rem;
 }
 
+.input-row {
+  display: flex;
+  align-items: center;
+}
+
+.field-select {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0rem 1rem;
+}
 
 /* === Labels === */
 label {
+  flex-wrap: wrap;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.4rem;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 500;
   color: #ddd;
-  padding: 0.5em 0.5em 0.5em 0.2em;
+  padding: 0.7em 0.2em 0.3em 0.2em;
 }
 
 /* === Inputs & Selects === */
@@ -55,9 +68,8 @@ select,
 button {
   width: 100%;
   font-family: inherit;
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   padding: 0.6rem 0.8rem;
-
   border-radius: 8px;
   border: 1px solid #444;
   background: #2a2a2a;
@@ -111,7 +123,7 @@ h3 {
 
 .chart-section h3 {
   font-size: 1.3rem;
-  margin-bottom: 1.5rem;
+  margin: 0;
 }
 
 /* === Chart Grid === */
