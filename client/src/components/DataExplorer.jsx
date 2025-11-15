@@ -226,100 +226,116 @@ export default function DataExplorer() {
             </p>
           </header>
           <section className="input-row">
-            {/* City selection */}
-            {/* === City 1 === */}
-            <label htmlFor="city-select">Primary City:</label>
-            <select
-              id="city-select"
-              value={selectedCity}
-              onChange={e => setSelectedCity(e.target.value)}
-            >
-              <option value="">Select a city</option>
-              {cities.map(c => 
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              )}
-            </select>
-
-            {/* === Optional comparison city === */}
-            <label htmlFor="comparison-select">Comparison City:</label>
-            <select
-              id="comparison-select"
-              value={comparisonCity}
-              onChange={e => setComparisonCity(e.target.value)}
-            >
-              <option value="">None</option>
-              {cities.
-                filter(c => c !== selectedCity).
-                map(c => 
+            <div className="field-select">
+              {/* City selection */}
+              {/* === City 1 === */}
+              <label htmlFor="city-select">Primary City:</label>
+              <select
+                id="city-select"
+                value={selectedCity}
+                onChange={e => setSelectedCity(e.target.value)}
+              >
+                <option value="">Select a city</option>
+                {cities.map(c => 
                   <option key={c} value={c}>
                     {c}
                   </option>
                 )}
-            </select>
+              </select>
+            </div>
+            <div className="field-select">
+              {/* === Optional comparison city === */}
+              <label htmlFor="comparison-select">
+                Secondary City (Optional):
+              </label>
+              <select
+                id="comparison-select"
+                value={comparisonCity}
+                onChange={e => setComparisonCity(e.target.value)}
+              >
+                <option value="">None</option>
+                {cities.
+                  filter(c => c !== selectedCity).
+                  map(c => 
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
+                  )}
+              </select>
+            </div>
           </section>
 
           <section className="input-row">
-            {/* Dataset type (Immigration / Language) */}
-            <label htmlFor="dataset-select">Dataset:</label>
-            <select
-              name="dataset"
-              id="dataset-select"
-              value={dataType}
-              onChange={e => setDataType(e.target.value)}
-            >
-              <option value="immigration">Immigration</option>
-              <option value="language">Language</option>
-            </select>
+            <div className="field-select">
+              {/* Dataset type (Immigration / Language) */}
+              <label htmlFor="dataset-select">Choose a Dataset:</label>
+              <select
+                name="dataset"
+                id="dataset-select"
+                value={dataType}
+                onChange={e => setDataType(e.target.value)}
+              >
+                <option value="immigration">Immigration</option>
+                <option value="language">Language</option>
+              </select>
+            </div>
 
-            {/* Period only shown for immigration */}
-            {dataType === 'immigration' ? 
-              <>
-                <label htmlFor="period-select">Period:</label>
-                <select
-                  id="period-select"
-                  value={period}
-                  onChange={e => setPeriod(e.target.value)}
-                >
-                  {periods.map(p => 
-                    <option key={p} value={p}>
-                      {p}
-                    </option>
-                  )}
-                </select>
-              </>
-              : 
-              <>
-                <label htmlFor="lang-select">Official Languages:</label>
-                <select
-                  id="lang-select"
-                  value={langToggle}
-                  onChange={e => setLangToggle(e.target.value)}
-                >
-                  <option value="Include">Include</option>
-                  <option value="Exclude">Exclude</option>
-                </select>
-              </>
-            }
+            <div className="field-select">
+              {/* Period only shown for immigration */}
+              {dataType === 'immigration' ? 
+                <>
+                  <label htmlFor="period-select">Period:</label>
+                  <select
+                    id="period-select"
+                    value={period}
+                    onChange={e => setPeriod(e.target.value)}
+                  >
+                    {periods.map(p => 
+                      <option key={p} value={p}>
+                        {p}
+                      </option>
+                    )}
+                  </select>
+                </>
+                : 
+                <>
+                  <label htmlFor="lang-select">
+                    Include Official Languages:
+                  </label>
+                  <select
+                    id="lang-select"
+                    value={langToggle}
+                    onChange={e => setLangToggle(e.target.value)}
+                  >
+                    <option value="Include">Include</option>
+                    <option value="Exclude">Exclude</option>
+                  </select>
+                </>
+              }
+            </div>
           </section>
 
-          {/* Number of entries to display */}
-          <label htmlFor="limit-select">Result Limit:</label>
-          <select
-            id="limit-select"
-            value={resultLimit}
-            onChange={e => setResultLimit(parseInt(e.target.value))}
-          >
-            <option value={5}>Top 5</option>
-            <option value={10}>Top 10</option>
-            <option value={15}>Top 15</option>
-            <option value={20}>Top 20</option>
-          </select>
-
-          <button type="submit" disabled={!selectedCity || loading}>
-            {loading ? 'Loading...' : 'Show Data'}
-          </button>
+          <section className="input-row">
+            {/* Number of entries to display */}
+            <div className="field-select">
+              <label htmlFor="limit-select">Result Limit:</label>
+              <select
+                id="limit-select"
+                value={resultLimit}
+                onChange={e => setResultLimit(parseInt(e.target.value))}
+              >
+                <option value={5}>Top 5</option>
+                <option value={10}>Top 10</option>
+                <option value={15}>Top 15</option>
+                <option value={20}>Top 20</option>
+              </select>
+            </div>
+          </section>
+          <section className="input-row">
+            <button type="submit" disabled={!selectedCity || loading}>
+              {loading ? 'Loading...' : 'Show Data'}
+            </button>
+          </section>
         </fieldset>
       </form>
 
