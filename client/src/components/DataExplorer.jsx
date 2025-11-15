@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import Chart from './Chart';
+import CityInfoCard from './CityInfoCard';
 import '../assets/styles/DataExplorer.css';
 
 const cities = [
@@ -362,15 +363,7 @@ export default function DataExplorer() {
             {/* Primary City */}
             <article className="chart-container">
               {cityInfo && 
-                <div className="city-info">
-                  <h4>About {activeCity}</h4>
-                  <p>
-                    {activeCity} in the province of{' '}
-                    <strong>{cityInfo.Province}</strong> has a population
-                    of <strong>{cityInfo.Population}</strong> people over{' '}
-                    <strong>{cityInfo.AreaKm2}</strong> km².
-                  </p>
-                </div>
+                <CityInfoCard city={activeCity} info={cityInfo} />
               }
               <Chart
                 data={primaryData}
@@ -386,17 +379,10 @@ export default function DataExplorer() {
             {activeComparisonCity && 
               <article className="chart-container">
                 {comparisonCityInfo && 
-                  <div className="city-info">
-                    <h4>About {activeComparisonCity}</h4>
-                    <p>
-                      {activeComparisonCity} in the province of{' '}
-                      <strong>{comparisonCityInfo.Province}</strong> has a
-                      population of{' '}
-                      <strong>{comparisonCityInfo.Population}</strong>{' '}
-                      people over{' '}
-                      <strong>{comparisonCityInfo.AreaKm2}</strong> km².
-                    </p>
-                  </div>
+                  <CityInfoCard
+                    city={activeComparisonCity}
+                    info={comparisonCityInfo}
+                  />
                 }
                 <Chart
                   data={comparisonData}
@@ -414,18 +400,17 @@ export default function DataExplorer() {
         </section>
         : 
         <section className="chart-section">
-          <h3>Example Data Preview</h3>
+          <h3>Example Data Preview - Immigration Data</h3>
           <div className="chart-grid">
             <article className="chart-container">
-              <div className="city-info">
-                <h4>About Example City 1</h4>
-                <p>
-                  Example City 1 in the province of{' '}
-                  <strong>Example Province</strong> has a population of{' '}
-                  <strong>Example Population</strong> people over{' '}
-                  <strong>Example Area</strong> km².
-                </p>
-              </div>
+              <CityInfoCard
+                city="Example City 1"
+                info={{
+                  Province: 'Example Province',
+                  Population: 1999999,
+                  AreaKm2: 499.9
+                }}
+              />
               <Chart
                 data={[
                   { label: 'India', value: 4200 },
@@ -441,15 +426,14 @@ export default function DataExplorer() {
             </article>
             {comparisonCity &&
               <article className="chart-container">
-                <div className="city-info">
-                  <h4>About Example City 2</h4>
-                  <p>
-                    Example City 2 in the province of{' '}
-                    <strong>Example Province</strong> has a population of{' '}
-                    <strong>Example Population</strong> people over{' '}
-                    <strong>Example Area</strong> km².
-                  </p>
-                </div>
+                <CityInfoCard
+                  city="Example City 2"
+                  info={{
+                    Province: 'Example Province',
+                    Population: 2999999,
+                    AreaKm2: 399.9
+                  }}
+                />
                 <Chart
                   data={[
                     { label: 'English', value: 850000 },
