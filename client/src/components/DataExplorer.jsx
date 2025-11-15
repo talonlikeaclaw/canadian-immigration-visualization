@@ -417,6 +417,15 @@ export default function DataExplorer() {
           <h3>Example Data Preview</h3>
           <div className="chart-grid">
             <article className="chart-container">
+              <div className="city-info">
+                <h4>About Example City 1</h4>
+                <p>
+                  Example City 1 in the province of{' '}
+                  <strong>Example Province</strong> has a population of{' '}
+                  <strong>Example Population</strong> people over{' '}
+                  <strong>Example Area</strong> km².
+                </p>
+              </div>
               <Chart
                 data={[
                   { label: 'India', value: 4200 },
@@ -432,6 +441,15 @@ export default function DataExplorer() {
             </article>
             {comparisonCity &&
               <article className="chart-container">
+                <div className="city-info">
+                  <h4>About Example City 2</h4>
+                  <p>
+                    Example City 2 in the province of{' '}
+                    <strong>Example Province</strong> has a population of{' '}
+                    <strong>Example Population</strong> people over{' '}
+                    <strong>Example Area</strong> km².
+                  </p>
+                </div>
                 <Chart
                   data={[
                     { label: 'English', value: 850000 },
