@@ -1,11 +1,14 @@
 .hero-section{
-	/* background-color: rgba(255, 0, 0, .3); */
-	height: 40rem;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	gap: 5rem;
 	padding: 3rem 5rem;
 	text-align: center;
+	z-index: -2;
 }
 
 .blue-waves{

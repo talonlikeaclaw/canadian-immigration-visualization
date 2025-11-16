@@ -5,11 +5,12 @@
 }
 
 .map-wrapper {
+	margin-top: 100vh;
 	display: grid;
 	place-content: center;
 
 	position: sticky;
     top: 1rem;
 
-	z-index: -10;
+	z-index: -1;
 }
