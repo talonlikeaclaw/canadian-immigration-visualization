@@ -9,6 +9,13 @@ import swaggerUi from 'swagger-ui-express';
 import { SwaggerTheme, SwaggerThemeNameEnum } from 'swagger-themes';
 import express from 'express';
 
+// Helpful Docmentation:
+// https://expressjs.com/en/5x/api.html
+
+// - Browser Caching:
+//   https://dawsoncollege.gitlab.io/520JS/520-Web/lectures/10_2_browser_cache.html
+//   https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control
+
 const app = express();
 const theme = new SwaggerTheme();
 
@@ -34,6 +41,27 @@ const uiOptions = {
 
 // middlewares
 app.use(compression());
+
+// Source provided in lecture notes:
+// https://web.dev/articles/codelab-http-cache
+app.use(
+  express.static('../client/dist', {
+    etag: true,
+    lastModified: true,
+    setHeaders: (res, path) => {
+      // Regex for vite hash created by ChatGPT.
+      const hashRegExp = /-[A-Za-z0-9_-]{6,}\./;
+
+      if (path.endsWith('.html')) {
+        res.setHeader('Cache-Control', 'no-cache');
+      } else if (hashRegExp.test(path)) {
+        // If the RegExp matched, then we have a versioned URL.
+        res.setHeader('Cache-Control', 'max-age=31536000, immutable');
+      }
+    }
+  })
+);
+
 // api routes
 // app.use('/', );
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, uiOptions));
@@ -41,9 +69,6 @@ app.use('/api/city', city);
 app.use('/api/immigration', immigration);
 app.use('/api/languages', languages);
 app.use('/api/cities', cities);
-
-// middlewares
-app.use(express.static('../client/dist'));
 
 // 404 handler
 // eslint-disable-next-line
