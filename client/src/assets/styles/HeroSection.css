@@ -8,6 +8,14 @@
 	text-align: center;
 }
 
+.blue-waves{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -3;
+	height: 100%;
+}
+
 .hero-section h1 {
 	margin-bottom: 3rem;
 }
