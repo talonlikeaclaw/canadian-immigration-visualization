@@ -3,7 +3,7 @@ import Plot from 'react-plotly.js';
 
 function Chart({ data, title, xLabel, yLabel }) {
   if (!data || data.length === 0) {
-    return <p>No data available to display.</p>;
+    return <span>There was an error fetching the data. <br/> No data available to display.</span>;
   }
 
   const labels = data.map(item => item.label);
