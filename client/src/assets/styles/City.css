@@ -46,4 +46,8 @@
 	.chart-wrapper>*{
 		max-width: 95vw;
 	}
+
+	.city-section p, .transition{
+		width: 95vw;
+	}
 }
