@@ -85,24 +85,29 @@ function CalgaryCity({cityInView, reference}){
           sector has created two modern, vibrant, and incredibly diverse
           linguistic hubs right in the heart of the Prairies.
         </p>
-          
-        <section className="chart-wrapper">
-          <Chart
-            data={immigrationChartData}
-            title="Calgary"
-            xLabel="Number of people"
-            yLabel="Countries">
-          </Chart>
-        </section>
+        
+        {cityInView && 
+        <>
+          <section className="chart-wrapper">
+            <Chart
+              data={immigrationChartData}
+              title="Calgary"
+              xLabel="Number of people"
+              yLabel="Countries">
+            </Chart>
+          </section>
 
-        <section className="chart-wrapper">
-          <Chart 
-            data={languagesChartData} 
-            title="Languages Spoken in Calgary"
-            xLabel="Number of people" 
-            yLabel="Languages">
-          </Chart>
-        </section>
+          <section className="chart-wrapper">
+            <Chart 
+              data={languagesChartData} 
+              title="Languages Spoken in Calgary"
+              xLabel="Number of people" 
+              yLabel="Languages">
+            </Chart>
+          </section>
+        </>
+        }
+
 
       </section>
 

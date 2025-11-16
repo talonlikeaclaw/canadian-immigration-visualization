@@ -71,23 +71,27 @@ function TorontoCity({cityInView, reference}){
               linguistically diverse places on the planet.
         </p>
     
-        <section className="chart-wrapper">
-          <Chart
-            data={immigrationChartData}
-            title="Toronto"
-            xLabel="Number of people"
-            yLabel="Countries">
-          </Chart>
-        </section>
-    
-        <section className="chart-wrapper">
-          <Chart 
-            data={languagesChartData} 
-            title="Languages Spoken in Toronto"
-            xLabel="Number of people" 
-            yLabel="Languages">
-          </Chart>
-        </section>
+        {cityInView && 
+        <>
+          <section className="chart-wrapper">
+            <Chart
+              data={immigrationChartData}
+              title="Toronto"
+              xLabel="Number of people"
+              yLabel="Countries">
+            </Chart>
+          </section>
+      
+          <section className="chart-wrapper">
+            <Chart 
+              data={languagesChartData} 
+              title="Languages Spoken in Toronto"
+              xLabel="Number of people" 
+              yLabel="Languages">
+            </Chart>
+          </section>
+        </>
+        }
     
       </section>
 
