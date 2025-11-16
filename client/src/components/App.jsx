@@ -9,6 +9,7 @@ import TorontoCity from './TorontoCity';
 import CalgaryCity from './CalgaryCity';
 import VancouverCity from './VancouverCity';
 import Footer from './Footer';
+import whiteCurve from '../assets/images/white-curve.png';
 
 function App() {
   // A google search on how I can track the position of React elements
@@ -66,18 +67,21 @@ function App() {
   return (
     <>
       <HeroSection />
-      <Map zoomedInCity={currentZoomedCity} />
+      <section className="scroll-content">
+        <img src={whiteCurve} alt="white curve"  className="white-curve"/>
+        <Map zoomedInCity={currentZoomedCity} />
 
-      {displayContextText()}
+        {displayContextText()}
 
-      <HalifaxCity cityInView={halifaxInView} reference={halifaxRef}/>
-      <MontrealCity cityInView={montrealInView} reference={montrealRef}/>
-      <TorontoCity cityInView={torontoInView} reference={torontoRef}/>
-      <CalgaryCity cityInView={calgaryInView} reference={calgaryRef}/>
-      <VancouverCity cityInView={vancouverInView} reference={vancouverRef}/>
+        <HalifaxCity cityInView={halifaxInView} reference={halifaxRef}/>
+        <MontrealCity cityInView={montrealInView} reference={montrealRef}/>
+        <TorontoCity cityInView={torontoInView} reference={torontoRef}/>
+        <CalgaryCity cityInView={calgaryInView} reference={calgaryRef}/>
+        <VancouverCity cityInView={vancouverInView} reference={vancouverRef}/>
 
-      <DataExplorer />
-      <Footer />
+        <DataExplorer />
+        <Footer />
+      </section>
     </>
   );
 }
