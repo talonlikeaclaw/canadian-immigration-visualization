@@ -5,6 +5,8 @@
     color: #333;
     font-size: 0.9rem;
     border-top: 1px solid #e0e0e0;
+    position: relative;
+  	z-index: 5;
 }
 .footer-disclaimer {
   font-size: 0.85rem;

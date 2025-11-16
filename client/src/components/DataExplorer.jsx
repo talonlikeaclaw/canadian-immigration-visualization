@@ -196,7 +196,7 @@ export default function DataExplorer() {
   }
 
   return (
-    <>
+    <section className="data-explorer-section">
       {/* === Selection Form === */}
       <form onSubmit={handleSubmit}>
         <fieldset>
@@ -354,7 +354,7 @@ export default function DataExplorer() {
           </div>
         </section>
       }
-    </>
+    </section>
   );
 }
 

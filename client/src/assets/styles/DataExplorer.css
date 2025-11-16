@@ -1,3 +1,8 @@
+/* to ensure data explorer appears over map*/
+.data-explorer-section {
+  position: relative;
+  z-index: 5;
+}
 /* CSS styles assisted by ChatGPT. */
 header h2 {
   color: #ddd;
