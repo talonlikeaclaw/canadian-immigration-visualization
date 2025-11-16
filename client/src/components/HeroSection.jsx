@@ -1,9 +1,12 @@
 import '../assets/styles/HeroSection.css';
 import arrow from'../assets/images/arrow.svg';
+import blueWaves from '../assets/images/blue_waves.png';
+
 
 function HeroSection(){
   return(
     <section className="hero-section">
+      <img src={blueWaves} alt="gradiant blue waves" className="blue-waves" />
       <h1>A Linguistic Journey from Coast to Coast</h1>
       <section className="mini-intro">
         <p> 
