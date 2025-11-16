@@ -1,3 +1,4 @@
+import compression from 'compression';
 import city from './routers/cityRouter.mjs';
 import immigration from './routers/immigrationRouter.mjs';
 import languages from './routers/languagesRouter.mjs';
@@ -31,6 +32,8 @@ const uiOptions = {
   customCss: theme.getBuffer(SwaggerThemeNameEnum.DRACULA)
 };
 
+// middlewares
+app.use(compression());
 // api routes
 // app.use('/', );
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, uiOptions));
