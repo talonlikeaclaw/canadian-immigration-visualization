@@ -28,7 +28,7 @@
 
 .chart-wrapper{
 	margin: auto;
-	width: 50vw;
+	width: fit-content;
 	height: 30rem;
 	display: grid;
 	place-content: center;
