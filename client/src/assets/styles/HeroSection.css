@@ -75,3 +75,13 @@ scroll over it
         transform: translateY(-10px);
     }
 }
+
+@media (max-width: 450px) {
+	.hero-section h1 {
+		margin-bottom: 1rem;
+	}
+
+	.mini-intro{
+		padding: 0;
+	}
+}
