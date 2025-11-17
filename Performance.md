@@ -68,10 +68,20 @@ User Timing marks and measures 10 user timings
 <!-- Summarize initial results for each tool that you used. Did the tools
 detect all the performance issues you see as a user? -->
 
+- here we started to test our website.
+- tools we will use to test performance  
+    - Browser lighthouse report 
+    - https://portal.catchpoint.com
+    - https://www.webpagetest.org/  
+
 ## Summary of Changes 
 
 <!-- Briefly describe each change and the impact it had on performance (be specific). If there
 was no performance improvement, explain why that might be the case -->
+
+
+
+
 
 ### <!-- Change 1 -->
 
@@ -94,9 +104,7 @@ things you learned from this experience. -->
  on AWS
  http://16.52.46.206/index.html -->
 
-<!--
-    testing performance website
- https://portal.catchpoint.com -->
+
  
 <!-- 
     on Render 
