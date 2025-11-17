@@ -117,6 +117,8 @@ width and height of viewport as reported in the console with `window.screen`) --
     - ![alt text](image-4.png)
     - ![alt text](image-5.png)
 
+- accessibility 
+    - 
 
 ## Summary of Changes 
 
