@@ -2,6 +2,18 @@ import express from 'express';
 import { db } from '../db/db.mjs';
 
 const router = express.Router();
+const immigrationCache = new Map();
+
+// Creates a cache key based on the inputs for caching.
+const getCacheKey = (city, start = null, end = null) => {
+  const normalizedCity = city.toLowerCase();
+  if (start && end) {
+    return `${normalizedCity}:${start}-${end}`;
+  } else if (end) {
+    return `${normalizedCity}:before-${end}`;
+  }
+  return `${normalizedCity}:all`;
+};
 
 /**
  * @swagger
@@ -93,6 +105,12 @@ router.get('/:city', async (req, res, next) => {
       return res.status(400).json({ error: 'Invalid city name' });
     }
 
+    // Check cache first
+    const cacheKey = getCacheKey(city);
+    if (immigrationCache.has(cacheKey)) {
+      return res.json(immigrationCache.get(cacheKey));
+    }
+
     await db.setCollection('immigration');
 
     const pipeline = [
@@ -130,11 +148,16 @@ router.get('/:city', async (req, res, next) => {
       });
     }
 
-    res.json({
+    const response = {
       city,
       period: 'before 1980 to 2021',
       ...result
-    });
+    };
+
+    // Store in cache
+    immigrationCache.set(cacheKey, response);
+
+    res.json(response);
   } catch (e) {
     next(e);
   }
@@ -243,6 +266,12 @@ router.get('/:city/period/:end', async (req, res, next) => {
       return res.status(400).json({ error: 'Invalid ending year' });
     }
 
+    // Check cache first
+    const cacheKey = getCacheKey(city, null, end);
+    if (immigrationCache.has(cacheKey)) {
+      return res.json(immigrationCache.get(cacheKey));
+    }
+
     await db.setCollection('immigration');
 
     // must match period format in DB
@@ -289,11 +318,16 @@ router.get('/:city/period/:end', async (req, res, next) => {
       });
     }
 
-    res.json({
+    const response = {
       city,
       period: periodString,
       ...result
-    });
+    };
+
+    // Store in cache
+    immigrationCache.set(cacheKey, response);
+
+    res.json(response);
   } catch (e) {
     next(e);
   }
@@ -425,6 +459,12 @@ router.get('/:city/period/:start/:end', async (req, res, next) => {
       }
     }
 
+    // Check cache first
+    const cacheKey = getCacheKey(city, start, end);
+    if (immigrationCache.has(cacheKey)) {
+      return res.json(immigrationCache.get(cacheKey));
+    }
+
     await db.setCollection('immigration');
 
     // must match period format in DB
@@ -475,11 +515,16 @@ router.get('/:city/period/:start/:end', async (req, res, next) => {
       });
     }
 
-    res.json({
+    const response = {
       city,
       period: periodString,
       ...result
-    });
+    };
+
+    // Store in cache
+    immigrationCache.set(cacheKey, response);
+
+    res.json(response);
   } catch (e) {
     next(e);
   }
