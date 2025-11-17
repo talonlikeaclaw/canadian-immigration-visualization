@@ -153,10 +153,14 @@ h3 {
   padding: 1rem 1.25rem 1.5rem;
 
   flex: 1 1 420px;
-  max-width: 580px;
+  max-width: 780px;
   min-width: 280px;
   min-height: 540px;
   box-sizing: border-box;
+}
+
+.chart-container .chart-wrapper{
+  width: 100%;
 }
 
 /* === City Info === */
