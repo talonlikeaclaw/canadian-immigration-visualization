@@ -87,8 +87,6 @@ detect all the performance issues you see as a user? -->
 
 
 
-.
-
 ## Summary of Changes 
 
 <!-- Briefly describe each change and the impact it had on performance (be specific). If there
