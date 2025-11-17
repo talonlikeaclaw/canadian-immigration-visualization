@@ -102,10 +102,15 @@ width and height of viewport as reported in the console with `window.screen`) --
 
 ## Baseline Performance
 
-- ![alt text](assets/opp1.png) 
+- opportunities 
+- ![alt text](assets/opps1.png) 
+- ![alt text](assets/opps2.png)
+- ![alt text](assets/opps3.png)
+- ![alt text](assets/opps4.png)
+- ![alt text](image.png)
 
-
-
+- diagnostics
+- 
 
 ## Summary of Changes 
 
