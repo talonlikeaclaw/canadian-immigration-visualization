@@ -105,7 +105,9 @@ width and height of viewport as reported in the console with `window.screen`) --
 ## Baseline Performance
 
 ### Performance overall numbers
+**AWS**
 - ![ AWS overall nums ](assets/overall.png)
+**Render**
 - ![ Render overall nums](assets/renderOverall.png)
 
 ### Opportunities  
@@ -115,7 +117,7 @@ width and height of viewport as reported in the console with `window.screen`) --
 - ![opportunity1](assets/opps1.png)
 - ![opportunity2](assets/opps2.png)
 - ![opportunity3](assets/opps3.png)
-- ![opportunity4](assete/opps4.png)
+- ![opportunity4](assets/opps4.png)
 
 - **Render** 
 - ![opportunity0](assets/renderOpps0.png)
