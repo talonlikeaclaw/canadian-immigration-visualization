@@ -110,7 +110,7 @@ width and height of viewport as reported in the console with `window.screen`) --
 - ![opportunity1](assets/opps1.png)
 - ![opportunity2](assets/opps2.png)
 - ![opportunity3](assets/opps3.png)
-- ![opportunity4](assete/oops4.png)
+- ![opportunity4](assete/opps4.png)
 
 ### Diagnostics
 
