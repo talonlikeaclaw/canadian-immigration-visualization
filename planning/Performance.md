@@ -125,7 +125,14 @@ width and height of viewport as reported in the console with `window.screen`) --
 - ![diagnostic5](assets/diag5.png)
 
 ### Accessibility 
-    - 
+- ![accessibility0](assets/access0.png) 
+- ![accessibility1](assets/access1.png)
+- ![accessibility0](assets/access2.png)
+
+### Best practices 
+- ![best practice](assets/best0.png)
+
+
 
 ## Summary of Changes 
 
