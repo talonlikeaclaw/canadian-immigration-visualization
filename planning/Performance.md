@@ -31,7 +31,7 @@ was no performance improvement, explain why that might be the case -->
     - end of phase 2 => 37.2 s
     - now => 1.5 s 
 --- 
-- End of phase 2 diagnostics:
+### End of phase 2 diagnostics:
 
 - Minimize main-thread work 10.0 s
 - Reduce JavaScript execution time 6.2 s
@@ -45,7 +45,7 @@ was no performance improvement, explain why that might be the case -->
 User Timing marks and measures 10 user timings
 
 --- 
-- insights:
+### insights:
 
 - Forced reflow
 - LCP request discovery
@@ -55,7 +55,7 @@ User Timing marks and measures 10 user timings
 - LCP breakdown
 - 3rd parties
 
-- Diagnostics now ! 
+### Diagnostics now ! 
 
 - Serve images in next-gen formats Est savings of 1,073 KiB
 - Largest Contentful Paint element 2,630 ms
@@ -104,7 +104,7 @@ width and height of viewport as reported in the console with `window.screen`) --
 
 ## Baseline Performance
 
-- opportunities  
+### Opportunities  
     - opportunities is basically the testing websites suggestions to improve the website
     - ![opportunity 0](assets/opps0.png) 
     - ![opportunity 1](assets/opps1.png)
@@ -112,7 +112,7 @@ width and height of viewport as reported in the console with `window.screen`) --
     - ![opportunity 3](assets/opps3.png)
     - ![opportunity 4](assete/oops4.png)
 
-- diagnostics
+### Diagnostics
     - ![diagnostic 0](diag0.png)
     - ![diagnostic 1](diag1.png)
     - ![diagnostic 2](diag2.png)
@@ -120,7 +120,7 @@ width and height of viewport as reported in the console with `window.screen`) --
     - ![diagnostic 4](diag4.png)
     - ![diagnostic 5](diag5.png)
 
-- accessibility 
+### Accessibility 
     - 
 
 ## Summary of Changes 
