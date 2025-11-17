@@ -2,6 +2,7 @@ import express from 'express';
 import { db } from '../db/db.mjs';
 
 const router = express.Router();
+const languageCache = new Map();
 
 /**
  * @swagger
@@ -72,15 +73,19 @@ const router = express.Router();
  */
 router.get('/:city', async (req, res, next) => {
   try {
-    let { city } = req.params;
+    const { city } = req.params;
     if (!city) {
-      return res
-        .status(400)
-        .json({ error: 'Invalid city name' });
-    } else if (city.toLowerCase() === 'montreal') {
-      // a quick fix for now => in db montreal has accent
-      city = 'Montréal';
+      return res.status(400).json({ error: 'Invalid city name' });
     }
+
+    const normalizedCity =
+      city.toLowerCase() === 'montreal' ? 'montréal' : city.toLowerCase();
+
+    // check cache first
+    if (languageCache.has(normalizedCity)) {
+      return res.json(languageCache.get(normalizedCity));
+    }
+
     // connect to db
     await db.setCollection('languages');
 
@@ -88,7 +93,12 @@ router.get('/:city', async (req, res, next) => {
     // i => ignore case
     const pipeline = [
       // Filter the documents
-      { $match: { City: new RegExp(city, 'i'), Count: { $gt: 0 } } },
+      {
+        $match: {
+          City: new RegExp(normalizedCity, 'i'),
+          Count: { $gt: 0 }
+        }
+      },
       // Sort by count
       { $sort: { Count: -1 } }
     ];
@@ -100,6 +110,10 @@ router.get('/:city', async (req, res, next) => {
         .status(404)
         .json({ error: `No language data found for ${city}` });
     }
+
+    // store in cache
+    languageCache.set(normalizedCity, languages);
+
     // return json format langauges for city
     res.json(languages);
   } catch (error) {
