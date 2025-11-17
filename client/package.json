@@ -22,11 +22,11 @@
   ],
   "dependencies": {
     "bundlesize2": "^0.2.1",
-    "plotly.js": "^3.1.2",
+    "chart.js": "^4.5.1",
     "react": "^19.1.1",
+    "react-chartjs-2": "^5.3.1",
     "react-dom": "^19.1.1",
-    "react-intersection-observer": "^10.0.0",
-    "react-plotly.js": "^2.6.0"
+    "react-intersection-observer": "^10.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
