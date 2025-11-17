@@ -1,4 +1,6 @@
-# Performance of <!-- Project Title -->
+# Performance of 
+- [On AWS](http://16.52.46.206/index.html) 
+- [On Render](https://five20-project-safari-chiru-dunbar.onrender.com/)
 
 ## Introduction and Methodology
 
@@ -133,18 +135,3 @@ Link: <!-- gitlab url to specific lines of code -->
 
 <!-- Summarize which changes had the greatest impact, note any surprising results and list 2-3 main 
 things you learned from this experience. -->
-
-
-
-
-
-
-
-<!--
- on AWS
- http://16.52.46.206/index.html -->
-
-<!-- 
-    on Render 
-    https://five20-project-safari-chiru-dunbar.onrender.com/
- -->
