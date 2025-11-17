@@ -2,6 +2,7 @@ import * as chai from 'chai';
 import request from 'supertest';
 import sinon from 'sinon';
 import app from '../app.mjs';
+import { clearLanguageCache } from '../routers/languagesRouter.mjs';
 import { db } from '../db/db.mjs';
 
 const expect = chai.expect;
@@ -45,6 +46,7 @@ describe('GET /api/languages/:city', () => {
 
   afterEach(() => {
     sinon.restore();
+    clearLanguageCache();
   });
 
   // Act => supertest

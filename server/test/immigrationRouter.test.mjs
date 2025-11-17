@@ -2,6 +2,7 @@ import * as chai from 'chai';
 import request from 'supertest';
 import sinon from 'sinon';
 import app from '../app.mjs';
+import { clearImmigrationCache } from '../routers/immigrationRouter.mjs';
 import { db } from '../db/db.mjs';
 
 const expect = chai.expect;
@@ -21,6 +22,7 @@ describe('GET /api/immigration/:city', () => {
 
   afterEach(() => {
     sinon.restore();
+    clearImmigrationCache();
   });
 
   // Act
@@ -335,7 +337,10 @@ describe('GET /api/immigration/:city (error handling)', () => {
   });
 
   // restore stubs
-  afterEach( ()=> sinon.restore() );
+  afterEach( ()=> {
+    sinon.restore();
+    clearImmigrationCache();
+  });
 
   // db.setCollection fails
   it('should return 500 if db.setCollection throws an error', async () => {
@@ -379,16 +384,21 @@ it('Should accept city names with accents like Montréal', async () => {
 
 // /period/:end route
 describe('GET /api/immigration/:city/period/:end (extra tests)', () => {
+  let aggregateStub;
+
   beforeEach(() => {
     // db mock
     sinon.stub(db, 'setCollection').resolves();
-    sinon.stub(db, 'aggregate').resolves([]);
+    aggregateStub = sinon.stub(db, 'aggregate').resolves([]);
     sinon.stub(console, 'error'); 
   });
-  afterEach(() => sinon.restore());
+  afterEach(() => {
+    sinon.restore();
+    clearImmigrationCache();
+  });
   // db.aggregate fails
   it('should return 500 if db.aggregate throws an error', async () => {
-    db.aggregate.rejects(new Error('Database crash'));
+    aggregateStub.rejects(new Error('Database crash'));
     const response = await request(app).get('/api/immigration/halifax/period/1980');
     expect(response.statusCode).to.equal(500);
   });

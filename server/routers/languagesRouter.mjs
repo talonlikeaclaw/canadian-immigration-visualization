@@ -4,6 +4,10 @@ import { db } from '../db/db.mjs';
 const router = express.Router();
 const languageCache = new Map();
 
+export const clearLanguageCache = () => {
+  languageCache.clear();
+};
+
 /**
  * @swagger
  * /api/languages/{city}:

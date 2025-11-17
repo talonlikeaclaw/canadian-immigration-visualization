@@ -4,6 +4,10 @@ import { db } from '../db/db.mjs';
 const router = express.Router();
 const immigrationCache = new Map();
 
+export const clearImmigrationCache = () => {
+  immigrationCache.clear();
+};
+
 // Creates a cache key based on the inputs for caching.
 const getCacheKey = (city, start = null, end = null) => {
   const normalizedCity = city.toLowerCase();
