@@ -3,26 +3,6 @@
 ## Introduction and Methodology
 
 
-<!-- Briefly state how you gathered data about app performance, and in what environment 
-(which browsers, what browser versions, what kind of device, OS,
-width and height of viewport as reported in the console with `window.screen`) -->
-### Tests
-
-- Here we started to test our website
-- tools we will use to test performance  
-    - Browser lighthouse report    
-    - https://www.webpagetest.org/  
-
-- Chrome browser 
-- https://portal.catchpoint.com
-    - Device => desktop - Chrome
-    - location => Toronto, Canada 
-    - connection => Cable(5/1 Mbps 28ms RTT)
-    - Number of runs => (1-3)
-    - Tests performed both ( site performance, lighthouse)
-    - ![first test with catchpoint ](/assets/test1.png)
-
-
 ## Baseline Performance
 
 <!-- Summarize initial results for each tool that you used. Did the tools
@@ -97,8 +77,34 @@ Lead: <!-- name of main contributor to this change -->
 Link: <!-- gitlab url to specific lines of code -->
 
 
+
+
+
+
+### Tests
+<!-- Briefly state how you gathered data about app performance, and in what environment 
+(which browsers, what browser versions, what kind of device, OS,
+width and height of viewport as reported in the console with `window.screen`) -->
+
+- Here we started to test our website
+- tools we will use to test performance  
+    - Browser lighthouse report    
+    - https://www.webpagetest.org/  
+
+- Chrome browser 
+- https://portal.catchpoint.com
+    - Device => desktop - Chrome
+    - location => Toronto, Canada 
+    - connection => Cable(5/1 Mbps 28ms RTT)
+    - Number of runs => (1-3)
+    - Tests performed both ( site performance, lighthouse)
+    - ![first test with catchpoint ](/assets/test1.png)
+
 ## Baseline Performance
-- 
+
+- ![alt text](assets/opp1.png) 
+
+
 
 
 ## Summary of Changes 
