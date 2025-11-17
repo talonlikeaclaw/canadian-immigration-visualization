@@ -100,7 +100,7 @@ width and height of viewport as reported in the console with `window.screen`) --
     - connection => Cable(5/1 Mbps 28ms RTT)
     - Number of runs => (1-3)
     - Tests performed both ( site performance, lighthouse)
-    - ![first test with catchpoint ](/assets/test1.png)
+    - ![first test with catchpoint ](assets/test1.png)
 
 ## Baseline Performance
 
