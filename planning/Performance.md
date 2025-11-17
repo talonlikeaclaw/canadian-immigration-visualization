@@ -110,6 +110,8 @@ width and height of viewport as reported in the console with `window.screen`) --
 **Render**
 - ![ Render overall nums](assets/renderOverall.png)
 
+---
+
 ### Opportunities  
 - opportunities is basically the testing websites suggestions to improve the website
 - **AWS**
@@ -123,6 +125,8 @@ width and height of viewport as reported in the console with `window.screen`) --
 - ![opportunity0](assets/renderOpps0.png)
 - ![opportunity1](assets/renderOpps1.png)
 - ![opportunity2](assets/renderOpps2.png)
+---
+
 ### Diagnostics
 **AWS**
 - ![diagnostic0](assets/diag0.png)
@@ -138,6 +142,8 @@ width and height of viewport as reported in the console with `window.screen`) --
 - ![diagnostics2](assets/renderDiag2.png)
 - ![diagnostics3](assets/renderDiag3.png)
 
+---
+
 ### Accessibility 
 **AWS**
 - ![accessibility0](assets/access0.png) 
@@ -149,6 +155,8 @@ width and height of viewport as reported in the console with `window.screen`) --
 - ![accessibility1](assets/renderAccess1.png)
 - ![accessibility2](assets/renderAccess2.png)
 
+---
+
 ### Best practices 
 **AWS**
 - ![best practice](assets/best0.png)
@@ -156,12 +164,15 @@ width and height of viewport as reported in the console with `window.screen`) --
 **Render**
 - ![best practice](assets/renderBest0.png)
 
+---
 ### SEO => content best practice
 **AWS**
 - ![seo0](assets/seo0.png)
 
 **Render**
 - ![seo0](assets/renderSeo0.png)
+
+---
 
 ### PWA 
 **AWS**
@@ -171,6 +182,7 @@ width and height of viewport as reported in the console with `window.screen`) --
 ![pwa](assets/renderPwa0.png)
 ## Summary of Changes 
 
+---
 
 ### <!-- Change n -->
 
