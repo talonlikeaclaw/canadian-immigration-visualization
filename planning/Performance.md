@@ -102,20 +102,21 @@ width and height of viewport as reported in the console with `window.screen`) --
 
 ## Baseline Performance
 
-- opportunities 
-    - ![alt text](assets/opps1.png) 
-    - ![alt text](assets/opps2.png)
-    - ![alt text](assets/opps3.png)
-    - ![alt text](assets/opps4.png)
-    - ![alt text](assete/oops5.png)
+- opportunities  
+    - opportunities is basically the testing websites suggestions to improve the website
+    - ![opportunity 0](assets/opps0.png) 
+    - ![opportunity 1](assets/opps1.png)
+    - ![opportunity 2](assets/opps2.png)
+    - ![opportunity 3](assets/opps3.png)
+    - ![opportunity 4](assete/oops4.png)
 
 - diagnostics
-    - ![alt text](image.png)
-    - ![alt text](image-1.png)
-    - ![alt text](image-2.png)
-    - ![alt text](image-3.png)
-    - ![alt text](image-4.png)
-    - ![alt text](image-5.png)
+    - ![diagnostic 0](diag0.png)
+    - ![diagnostic 1](diag1.png)
+    - ![diagnostic 2](diag2.png)
+    - ![diagnostic 3](diag3.png)
+    - ![diagnostic 4](diag4.png)
+    - ![diagnostic 5](diag5.png)
 
 - accessibility 
     - 
