@@ -145,17 +145,28 @@ width and height of viewport as reported in the console with `window.screen`) --
 **Render**
 - ![accessibility0](assets/renderAccess0.png)
 - ![accessibility1](assets/renderAccess1.png)
-
+- ![accessibility2](assets/renderAccess2.png)
 
 ### Best practices 
+**AWS**
 - ![best practice](assets/best0.png)
 
+**Render**
+- ![best practice](assets/renderBest0.png)
+
 ### SEO => content best practice
+**AWS**
 - ![seo0](assets/seo0.png)
 
+**Render**
+- ![seo0](assets/renderSeo0.png)
+
 ### PWA 
+**AWS**
 - ![pwa](assets/pwa0.png)
 
+**Render**
+![pwa](assets/renderPwa0.png)
 ## Summary of Changes 
 
 
