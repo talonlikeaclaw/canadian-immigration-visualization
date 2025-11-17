@@ -64,7 +64,7 @@ app.use(
 
 // api routes
 // app.use('/', );
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, uiOptions));
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, uiOptions));
 app.use('/api/city', city);
 app.use('/api/immigration', immigration);
 app.use('/api/languages', languages);
