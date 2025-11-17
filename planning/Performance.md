@@ -2,9 +2,6 @@
 
 ## Introduction and Methodology
 
-<!-- Briefly state how you gathered data about app performance, and in what environment 
-(which browsers, what browser versions, what kind of device, OS,
-width and height of viewport as reported in the console with `window.screen`) -->
 
 ### context 
 - this part is just at the end of phase 2 and the start of third ! and we noticed that the lighthouse performance numbers have jumped from 40-50% to 76%s, even though the goal was not improving performance. Melania and Talon were working on some bugs/chnages that they were thinking from phase 2 and that ended up improving the overall performance as well. so I will just do a comparaison of the changes before we start to work on actual optimizations and improving of our website. note when I say "now" it means when we start phase 3 and not the final results now! 
@@ -63,16 +60,34 @@ User Timing marks and measures 10 user timings
 - Avoid chaining critical requests 2 chains found
 - Minimize third-party usage Third-party code blocked the main thread for 0 ms
 
+<!-- Briefly state how you gathered data about app performance, and in what environment 
+(which browsers, what browser versions, what kind of device, OS,
+width and height of viewport as reported in the console with `window.screen`) -->
+### Tests
+
+- Here we started to test our website
+- tools we will use to test performance  
+    - Browser lighthouse report    
+    - https://www.webpagetest.org/  
+
+- Chrome browser 
+- https://portal.catchpoint.com
+    - Device => desktop - Chrome
+    - location => Beijing, China 
+    - connection => Cable(5/1 Mbps 28ms RTT)
+    - Number of runs => 3
+    - Tests performed both ( site performance, lighthouse)
+
+
+
 ## Baseline Performance
 
 <!-- Summarize initial results for each tool that you used. Did the tools
 detect all the performance issues you see as a user? -->
 
-- here we started to test our website.
-- tools we will use to test performance  
-    - Browser lighthouse report 
-    - https://portal.catchpoint.com
-    - https://www.webpagetest.org/  
+
+
+.
 
 ## Summary of Changes 
 
