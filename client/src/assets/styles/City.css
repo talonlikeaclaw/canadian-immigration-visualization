@@ -32,9 +32,8 @@
 
 .chart-wrapper{
 	margin: auto;
-	width: fit-content;
-	max-width: 95vw;
-	height: 30rem;
+	padding: 1rem 3rem;
+	width: 75vw;
 	display: grid;
 	place-content: center;
 	border-radius: 12px;
