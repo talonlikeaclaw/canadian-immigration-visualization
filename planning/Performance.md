@@ -130,14 +130,22 @@ width and height of viewport as reported in the console with `window.screen`) --
 - ![diagnostic4](assets/diag4.png)
 - ![diagnostic5](assets/diag5.png)
 
-**Diagnostics**
+**Render**
 - ![diagnostics0](assets/renderDiag0.png)
-
+- ![diagnostics1](assets/renderDiag1.png)
+- ![diagnostics2](assets/renderDiag2.png)
+- ![diagnostics3](assets/renderDiag3.png)
 
 ### Accessibility 
+**AWS**
 - ![accessibility0](assets/access0.png) 
 - ![accessibility1](assets/access1.png)
 - ![accessibility0](assets/access2.png)
+
+**Render**
+- ![accessibility0](assets/renderAccess0.png)
+- ![accessibility1](assets/renderAccess1.png)
+
 
 ### Best practices 
 - ![best practice](assets/best0.png)
