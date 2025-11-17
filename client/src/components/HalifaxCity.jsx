@@ -71,26 +71,8 @@ function HalifaxCity({cityInView, reference}){
         from the Middle East, South Asia, and East Asia.
         </p>
 
-        {cityInView && 
-          <>
-            <section className="chart-wrapper">
-              <Chart 
-                data={immigrationChartData} 
-                title="Halifax immigration pattern"
-                xLabel="Number of people" 
-                yLabel="Countries">
-              </Chart>
-            </section>
-            <section className="chart-wrapper">
-              <Chart 
-                data={languagesChartData} 
-                title="Languages Spoken in Halifax"
-                xLabel="Number of people" 
-                yLabel="Languages">
-              </Chart>
-            </section>
-          </>
-        }
+        <Chart data={immigrationChartData} title="halifax" />
+        <Chart data={languagesChartData} title="halifax" />
       </section>
 
       <div className="city-divider"></div>

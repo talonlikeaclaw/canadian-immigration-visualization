@@ -86,29 +86,8 @@ function CalgaryCity({cityInView, reference}){
           linguistic hubs right in the heart of the Prairies.
         </p>
         
-        {cityInView && 
-        <>
-          <section className="chart-wrapper">
-            <Chart
-              data={immigrationChartData}
-              title="Calgary"
-              xLabel="Number of people"
-              yLabel="Countries">
-            </Chart>
-          </section>
-
-          <section className="chart-wrapper">
-            <Chart 
-              data={languagesChartData} 
-              title="Languages Spoken in Calgary"
-              xLabel="Number of people" 
-              yLabel="Languages">
-            </Chart>
-          </section>
-        </>
-        }
-
-
+        <Chart data={immigrationChartData} title="calgary" />
+        <Chart data={languagesChartData} title="calgary" />
       </section>
 
       <div className="city-divider"></div>

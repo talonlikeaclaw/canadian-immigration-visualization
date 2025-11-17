@@ -88,27 +88,8 @@ function MontrealCity({cityInView, reference}){
               speakers.
         </p>
     
-        {cityInView && 
-        <>
-          <section className="chart-wrapper">
-            <Chart 
-              data={immigrationChartData} 
-              title="Montréal" 
-              xLabel="Number of people" 
-              yLabel="Countries">
-            </Chart>
-          </section>
-      
-          <section className="chart-wrapper">
-            <Chart 
-              data={languagesChartData} 
-              title="Languages Spoken in Montreal"
-              xLabel="Number of people" 
-              yLabel="Languages">
-            </Chart>
-          </section>
-        </>
-        }
+        <Chart data={immigrationChartData} title="montreal" />
+        <Chart data={languagesChartData} title="montreal" />
 
       </section>
 
