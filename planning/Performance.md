@@ -132,7 +132,11 @@ width and height of viewport as reported in the console with `window.screen`) --
 ### Best practices 
 - ![best practice](assets/best0.png)
 
+### SEO => content best practice
+- ![seo0](assets/seo0.png)
 
+### PWA 
+- ![pwa](assets/pwa0.png)
 
 ## Summary of Changes 
 
