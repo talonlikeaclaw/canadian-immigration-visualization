@@ -104,25 +104,35 @@ width and height of viewport as reported in the console with `window.screen`) --
 
 ## Baseline Performance
 
-### Performance overall numbers 
-![ overall nums ](assets/overall.png)
+### Performance overall numbers
+- ![ AWS overall nums ](assets/overall.png)
+- ![ Render overall nums](assets/renderOverall.png)
 
 ### Opportunities  
 - opportunities is basically the testing websites suggestions to improve the website
+- **AWS**
 - ![opportunity0](assets/opps0.png) 
 - ![opportunity1](assets/opps1.png)
 - ![opportunity2](assets/opps2.png)
 - ![opportunity3](assets/opps3.png)
 - ![opportunity4](assete/opps4.png)
 
+- **Render** 
+- ![opportunity0](assets/renderOpps0.png)
+- ![opportunity1](assets/renderOpps1.png)
+- ![opportunity2](assets/renderOpps2.png)
 ### Diagnostics
-
+**AWS**
 - ![diagnostic0](assets/diag0.png)
 - ![diagnostic1](assets/diag1.png)
 - ![diagnostic2](assets/diag2.png)
 - ![diagnostic3](assets/diag3.png)
 - ![diagnostic4](assets/diag4.png)
 - ![diagnostic5](assets/diag5.png)
+
+**Diagnostics**
+- ![diagnostics0](assets/renderDiag0.png)
+
 
 ### Accessibility 
 - ![accessibility0](assets/access0.png) 
