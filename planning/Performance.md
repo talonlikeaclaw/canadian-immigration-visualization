@@ -102,17 +102,17 @@ width and height of viewport as reported in the console with `window.screen`) --
   - connection => Cable(5/1 Mbps 28ms RTT)
   - Number of runs => (1-3)
   - Tests performed both ( site performance, lighthouse)
-  - <img src="assets/test1.png" alt="first test with catchoint" width="300" />
+  - <img src="assets/test1.png" alt="first test with catchoint" width="800" />
 
 ## Baseline Performance
 
 ### Performance overall numbers
 
 **AWS**
-<img src="assets/overall.png" alt="AWS overall numbers" width="300" />
+<img src="assets/overall.png" alt="AWS overall numbers" width="800" />
 
 **Render**
-<img src="assets/renderOverall.png" alt="Render overall numbers" width="300" />
+<img src="assets/renderOverall.png" alt="Render overall numbers" width="800" />
 
 ---
 
@@ -120,20 +120,19 @@ width and height of viewport as reported in the console with `window.screen`) --
 
 - opportunities is basically the testing websites suggestions to improve the website
 - **AWS**
-<div align="center">
-    <img src="assets/opps0.png" alt="Opportunity 0" width="300" />
-    <img src="assets/opps1.png" alt="Opportunity 1" width="300" />
-    <img src="assets/opps2.png" alt="Opportunity 2" width="300" />
-    <img src="assets/opps3.png" alt="Opportunity 3" width="300" />
-    <img src="assets/opps4.png" alt="Opportunity 4" width="300" />
-</div>
+
+    <img src="assets/opps0.png" alt="Opportunity 0" width="800" />
+    <img src="assets/opps1.png" alt="Opportunity 1" width="800" />
+    <img src="assets/opps2.png" alt="Opportunity 2" width="800" />
+    <img src="assets/opps3.png" alt="Opportunity 3" width="800" />
+    <img src="assets/opps4.png" alt="Opportunity 4" width="800" />
+
 
 - **Render**
-<div align="center">
-    <img src="assets/renderOpps0.png" alt="Opportunity 0" width="300" />
-    <img src="assets/renderOpps1.png" alt="Opportunity 0" width="300" /> 
-    <img src="assets/renderOpps2.png" alt="Opportunity 0" width="300" />
-</div>
+
+    <img src="assets/renderOpps0.png" alt="Opportunity 0" width="800" />
+    <img src="assets/renderOpps1.png" alt="Opportunity 0" width="800" /> 
+    <img src="assets/renderOpps2.png" alt="Opportunity 0" width="800" />
 
 ---
 
@@ -141,23 +140,19 @@ width and height of viewport as reported in the console with `window.screen`) --
 
 **AWS**
 
-<div align="center">
-    <img src="assets/diag0.png" alt="diagnostic 0" width="300" />
-    <img src="assets/diag1.png" alt="diagnostic 1" width="300" />
-    <img src="assets/diag2.png" alt="diagnostic 2" width="300" />
-    <img src="assets/diag3.png" alt="diagnostic 3" width="300" />
-    <img src="assets/diag4.png" alt="diagnostic 4" width="300" />
-    <img src="assets/diag5.png" alt="diagnostic 5" width="300" />
-</div>
+    <img src="assets/diag0.png" alt="diagnostic 0" width="800" />
+    <img src="assets/diag1.png" alt="diagnostic 1" width="800" />
+    <img src="assets/diag2.png" alt="diagnostic 2" width="800" />
+    <img src="assets/diag3.png" alt="diagnostic 3" width="800" />
+    <img src="assets/diag4.png" alt="diagnostic 4" width="800" />
+    <img src="assets/diag5.png" alt="diagnostic 5" width="800" />
 
 **Render**
 
-<div align="center">
-    <img src="assets/renderDiag0.png" alt="diagnostic 0" width="300" />
-    <img src="assets/renderDiag1.png" alt="diagnostic 1" width="300" />
-    <img src="assets/renderDiag2.png" alt="diagnostic 2" width="300" />
-    <img src="assets/renderDiag3.png" alt="diagnostic 3" width="300" />
-</div>
+    <img src="assets/renderDiag0.png" alt="diagnostic 0" width="800" />
+    <img src="assets/renderDiag1.png" alt="diagnostic 1" width="800" />
+    <img src="assets/renderDiag2.png" alt="diagnostic 2" width="800" />
+    <img src="assets/renderDiag3.png" alt="diagnostic 3" width="800" />
 
 ---
 
@@ -165,18 +160,15 @@ width and height of viewport as reported in the console with `window.screen`) --
 
 **AWS**
 
-<div align="center">
-    <img src="assets/access0.png" alt="accessibility 0" width="300" />
-    <img src="assets/access1.png" alt="accessibility 1" width="300" />
-    <img src="assets/access2.png" alt="accessibility 2" width="300" />
-</div>
+    <img src="assets/access0.png" alt="accessibility 0" width="800" />
+    <img src="assets/access1.png" alt="accessibility 1" width="800" />
+    <img src="assets/access2.png" alt="accessibility 2" width="800" />
 
 **Render**
 
-<div align="center">
-    <img src="assets/renderAccess0.png" alt="accessibility 0" width="300" />
-    <img src="assets/renderAccess1.png" alt="accessibility 1" width="300" />
-    <img src="assets/renderAccess2.png" alt="accessibility 2" width="300" />
+    <img src="assets/renderAccess0.png" alt="accessibility 0" width="800" />
+    <img src="assets/renderAccess1.png" alt="accessibility 1" width="800" />
+    <img src="assets/renderAccess2.png" alt="accessibility 2" width="800" />
 </div>
 
 ---
@@ -184,10 +176,10 @@ width and height of viewport as reported in the console with `window.screen`) --
 ### Best practices
 
 **AWS**
-<img src="assets/best0.png" alt="best practice" width="300" />
+<img src="assets/best0.png" alt="best practice" width="800" />
 
 **Render**
-<img src="assets/renderBest0.png" alt="best practice" width="300" />
+<img src="assets/renderBest0.png" alt="best practice" width="800" />
 
 ---
 
@@ -195,20 +187,20 @@ width and height of viewport as reported in the console with `window.screen`) --
 
 **AWS**
 
-<img src="assets/seo0.png" alt="Seo 0" width="300" />
+<img src="assets/seo0.png" alt="Seo 0" width="800" />
 
 **Render**
-<img src="assets/renderSeo0.png" alt="Seo 0" width="300" />
+<img src="assets/renderSeo0.png" alt="Seo 0" width="800" />
 
 ---
 
 ### PWA
 
 **AWS**
-<img src="assets/pwa0.png" alt="pwa 0" width="300" />
+<img src="assets/pwa0.png" alt="pwa 0" width="800" />
 
 **Render**
-<img src="assets/renderPwa0.png" alt="pwa 0" width="300" />
+<img src="assets/renderPwa0.png" alt="pwa 0" width="800" />
 
 ## Summary of Changes
 
