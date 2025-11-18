@@ -2,6 +2,7 @@ import express from 'express';
 
 const router = express.Router();
 
+// Stub route for future implementation
 router.get('/comparison', (req, res) => {
   const { cities } = req.query;
   if (!cities) {

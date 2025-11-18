@@ -534,6 +534,7 @@ router.get('/:city/period/:start/:end', async (req, res, next) => {
   }
 });
 
+// Stub route for future implementation
 router.get('/:city/country/:country', (req, res) => {
   const { city, country } = req.params;
   if (city) {
@@ -545,6 +546,7 @@ router.get('/:city/country/:country', (req, res) => {
   }
 });
 
+// Stub route for future implementation
 // Limit to top 5-10 countries that have immigrated the most to given city
 router.get('/:city/top-countries', (req, res) => {
   const { city } = req.params;
@@ -557,6 +559,7 @@ router.get('/:city/top-countries', (req, res) => {
   }
 });
 
+// Stub route for future implementation
 router.get('/:city/summary', (req, res) => {
   const { city } = req.params;
   if (city) {

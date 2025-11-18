@@ -6,6 +6,8 @@ import { db } from '../db/db.mjs';
 
 const expect = chai.expect;
 
+// Test Driven Development
+// These tests are intentionally skipped
 describe('GET /api/cities/comparison?cities=City1,City2', () => {
   let setCollectionStub;
   let findStub;

@@ -7,10 +7,12 @@ import { db } from '../db/db.mjs';
 
 const expect = chai.expect;
 
+// Test Driven Development
+// These tests are intentionally skipped
+
 // GET /api/city/:city/profile
 // returns a combined city profile: basic info, languages spoken,
 //   and immigration origins (by period)
-
 
 /*
 {
