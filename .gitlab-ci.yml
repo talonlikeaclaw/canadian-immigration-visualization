@@ -153,11 +153,12 @@ build-app-archive:
         tar -zcvf "$RELEASE_FILE" \
           --exclude='server/.npm' \
           --exclude='server/*.log' \
-          --exclude='server/db/utils' \
-          --exclude='server/db/test' \
+         --exclude='server/db/utils/data/immigration_data.csv' \
+         --exclude='server/db/utils/data/language_data.csv' \
+          --exclude='server/test' \
           --exclude='client/node_modules' \
           --exclude='client/.npm' \
-          --exclude='README.md'
+          --exclude='README.md' \
           server \
           client/dist \
           package.json \
@@ -167,11 +168,12 @@ build-app-archive:
         tar -zcvf "$RELEASE_FILE" \
           --exclude='server/.npm' \
           --exclude='server/*.log' \
-          --exclude='server/db/utils' \
-          --exclude='server/db/test' \
+          --exclude='server/db/utils/data/immigration_data.csv' \
+          --exclude='server/db/utils/data/language_data.csv' \
+          --exclude='server/test' \
           --exclude='client/node_modules' \
           --exclude='client/.npm' \
-          --exclude='README.md'
+          --exclude='README.md' \
           server \
           package.json \
           package-lock.json \
