@@ -103,6 +103,7 @@ width and height of viewport as reported in the console with `window.screen`) --
     - Number of runs => (1-3)
     - Tests performed both ( site performance, lighthouse)
     - ![first test with catchpoint ](assets/test1.png)
+    - 
 
 ## Baseline Performance
 
@@ -117,16 +118,21 @@ width and height of viewport as reported in the console with `window.screen`) --
 ### Opportunities  
 - opportunities is basically the testing websites suggestions to improve the website
 - **AWS**
-- ![opportunity0](assets/opps0.png) 
-- ![opportunity1](assets/opps1.png)
-- ![opportunity2](assets/opps2.png)
-- ![opportunity3](assets/opps3.png)
-- ![opportunity4](assets/opps4.png)
+<div align="center">
+    <img src="assets/opps0.png" alt="Opportunity 0" width="300" />
+    <img src="assets/opps1.png" alt="Opportunity 1" width="300" />
+    <img src="assets/opps2.png" alt="Opportunity 2" width="300" />
+    <img src="assets/opps3.png" alt="Opportunity 3" width="300" />
+    <img src="assets/opps4.png" alt="Opportunity 4" width="300" />
+</div>
 
 - **Render** 
-- ![opportunity0](assets/renderOpps0.png)
-- ![opportunity1](assets/renderOpps1.png)
-- ![opportunity2](assets/renderOpps2.png)
+<div align="center">
+    <img src="assets/renderOpps0.png" alt="Opportunity 0" width="300" />
+    <img src="assets/renderOpps1.png" alt="Opportunity 0" width="300" /> 
+    <img src="assets/renderOpps2.png" alt="Opportunity 0" width="300" />
+</div>
+
 ---
 
 ### Diagnostics
