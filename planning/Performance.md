@@ -127,7 +127,6 @@ width and height of viewport as reported in the console with `window.screen`) --
     <img src="assets/opps3.png" alt="Opportunity 3" width="800" />
     <img src="assets/opps4.png" alt="Opportunity 4" width="800" />
 
-
 - **Render**
 
     <img src="assets/renderOpps0.png" alt="Opportunity 0" width="800" />
@@ -169,6 +168,7 @@ width and height of viewport as reported in the console with `window.screen`) --
     <img src="assets/renderAccess0.png" alt="accessibility 0" width="800" />
     <img src="assets/renderAccess1.png" alt="accessibility 1" width="800" />
     <img src="assets/renderAccess2.png" alt="accessibility 2" width="800" />
+
 </div>
 
 ---
