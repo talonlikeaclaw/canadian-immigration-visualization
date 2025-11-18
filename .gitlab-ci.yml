@@ -157,11 +157,11 @@ build-app-archive:
           --exclude='server/db/test' \
           --exclude='client/node_modules' \
           --exclude='client/.npm' \
+          --exclude='README.md'
           server \
           client/dist \
           package.json \
           package-lock.json \
-          README.md
       else 
         echo "no client/dist found, building archive without frontend"
         tar -zcvf "$RELEASE_FILE" \
@@ -171,10 +171,10 @@ build-app-archive:
           --exclude='server/db/test' \
           --exclude='client/node_modules' \
           --exclude='client/.npm' \
+          --exclude='README.md'
           server \
           package.json \
           package-lock.json \
-          README.md
       fi
   artifacts:
     # downloadble archive
