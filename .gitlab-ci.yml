@@ -152,8 +152,11 @@ build-app-archive:
         tar -zcvf "$RELEASE_FILE" \
           --exclude='server/.npm' \
           --exclude='server/*.log' \
-         --exclude='server/db/utils/data/immigration_data.csv' \
-         --exclude='server/db/utils/data/language_data.csv' \
+          --exclude='server/db/utils/data/immigration_data.csv' \
+          --exclude='server/db/utils/data/language_data.csv' \
+          --exclude='server/db/utils/csvParser.mjs' \
+          --exclude='server/db/utils/seed.mjs' \
+          --exclude='server/eslint.config.mjs' \
           --exclude='server/test' \
           --exclude='client/node_modules' \
           --exclude='client/.npm' \
@@ -169,6 +172,9 @@ build-app-archive:
           --exclude='server/*.log' \
           --exclude='server/db/utils/data/immigration_data.csv' \
           --exclude='server/db/utils/data/language_data.csv' \
+          --exclude='server/db/utils/csvParser.mjs' \
+          --exclude='server/db/utils/seed.mjs' \
+          --exclude='server/eslint.config.mjs' \
           --exclude='server/test' \
           --exclude='client/node_modules' \
           --exclude='client/.npm' \
