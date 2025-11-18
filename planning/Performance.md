@@ -81,10 +81,6 @@ Lead: <!-- name of main contributor to this change -->
 Link: <!-- gitlab url to specific lines of code -->
 
 
-
-
-
-
 ### Tests
 <!-- Briefly state how you gathered data about app performance, and in what environment 
 (which browsers, what browser versions, what kind of device, OS,
@@ -102,17 +98,16 @@ width and height of viewport as reported in the console with `window.screen`) --
     - connection => Cable(5/1 Mbps 28ms RTT)
     - Number of runs => (1-3)
     - Tests performed both ( site performance, lighthouse)
-    - ![first test with catchpoint ](assets/test1.png)
-    - 
+    - <img src="assets/test1.png" alt="first test with catchoint" width="300" />
 
 ## Baseline Performance
 
 ### Performance overall numbers
 **AWS**
-- ![ AWS overall nums ](assets/overall.png)
-**Render**
-- ![ Render overall nums](assets/renderOverall.png)
+<img src="assets/overall.png" alt="AWS overall numbers" width="300" />
 
+**Render**
+<img src="assets/renderOverall.png" alt="Render overall numbers" width="300" />
 ---
 
 ### Opportunities  
@@ -137,57 +132,68 @@ width and height of viewport as reported in the console with `window.screen`) --
 
 ### Diagnostics
 **AWS**
-- ![diagnostic0](assets/diag0.png)
-- ![diagnostic1](assets/diag1.png)
-- ![diagnostic2](assets/diag2.png)
-- ![diagnostic3](assets/diag3.png)
-- ![diagnostic4](assets/diag4.png)
-- ![diagnostic5](assets/diag5.png)
+<div align="center">
+    <img src="assets/diag0.png" alt="diagnostic 0" width="300" />
+    <img src="assets/diag1.png" alt="diagnostic 1" width="300" />
+    <img src="assets/diag2.png" alt="diagnostic 2" width="300" />
+    <img src="assets/diag3.png" alt="diagnostic 3" width="300" />
+    <img src="assets/diag4.png" alt="diagnostic 4" width="300" />
+    <img src="assets/diag5.png" alt="diagnostic 5" width="300" />
+</div>
 
 **Render**
-- ![diagnostics0](assets/renderDiag0.png)
-- ![diagnostics1](assets/renderDiag1.png)
-- ![diagnostics2](assets/renderDiag2.png)
-- ![diagnostics3](assets/renderDiag3.png)
+<div align="center">
+    <img src="assets/renderDiag0.png" alt="diagnostic 0" width="300" />
+    <img src="assets/renderDiag1.png" alt="diagnostic 1" width="300" />
+    <img src="assets/renderDiag2.png" alt="diagnostic 2" width="300" />
+    <img src="assets/renderDiag3.png" alt="diagnostic 3" width="300" />
+</div>
 
 ---
 
 ### Accessibility 
 **AWS**
-- ![accessibility0](assets/access0.png) 
-- ![accessibility1](assets/access1.png)
-- ![accessibility0](assets/access2.png)
+<div align="center">
+    <img src="assets/access0.png" alt="accessibility 0" width="300" />
+    <img src="assets/access1.png" alt="accessibility 1" width="300" />
+    <img src="assets/access2.png" alt="accessibility 2" width="300" />
+</div>
 
 **Render**
-- ![accessibility0](assets/renderAccess0.png)
-- ![accessibility1](assets/renderAccess1.png)
-- ![accessibility2](assets/renderAccess2.png)
+<div align="center">
+    <img src="assets/renderAccess0.png" alt="accessibility 0" width="300" />
+    <img src="assets/renderAccess1.png" alt="accessibility 1" width="300" />
+    <img src="assets/renderAccess2.png" alt="accessibility 2" width="300" />
+</div>
 
 ---
 
 ### Best practices 
 **AWS**
-- ![best practice](assets/best0.png)
+<img src="assets/best0.png" alt="best practice" width="300" />
 
 **Render**
-- ![best practice](assets/renderBest0.png)
+<img src="assets/renderBest0.png" alt="best practice" width="300" />
 
 ---
+
 ### SEO => content best practice
 **AWS**
-- ![seo0](assets/seo0.png)
+
+<img src="assets/seo0.png" alt="Seo 0" width="300" />
 
 **Render**
-- ![seo0](assets/renderSeo0.png)
+<img src="assets/renderSeo0.png" alt="Seo 0" width="300" />
 
 ---
 
 ### PWA 
 **AWS**
-- ![pwa](assets/pwa0.png)
+<img src="assets/pwa0.png" alt="pwa 0" width="300" />
 
 **Render**
-![pwa](assets/renderPwa0.png)
+<img src="assets/renderPwa0.png" alt="pwa 0" width="300" />
+
 ## Summary of Changes 
 
 ---
