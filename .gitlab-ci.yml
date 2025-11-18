@@ -147,7 +147,6 @@ build-app-archive:
     # remove any leftover archive in workspace
     - rm -f "$RELEASE_FILE"
     - |
-    
       if [ -d "client/dist" ]; then
         echo "Including client/dist in release archive"
         tar -zcvf "$RELEASE_FILE" \
@@ -162,7 +161,7 @@ build-app-archive:
           server \
           client/dist \
           package.json \
-          package-lock.json \
+          package-lock.json
       else 
         echo "no client/dist found, building archive without frontend"
         tar -zcvf "$RELEASE_FILE" \
@@ -176,7 +175,7 @@ build-app-archive:
           --exclude='README.md' \
           server \
           package.json \
-          package-lock.json \
+          package-lock.json
       fi
   artifacts:
     # downloadble archive
