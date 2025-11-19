@@ -215,48 +215,44 @@ width and height of viewport as reported in the console with `window.screen`) --
 ### V1.0.1
 
 ## Summary of Changes
-    - Caching Enhancements
-        - Added immigrationCache and languageCache directly into their routers.
-        - Implemented browser caching rules for client/dist:
-        - index.html => `no-cache`
-        - Hashed files => `max-age=31536000`, `immutable`
-    - Improved overall client-side and localhost load performance.
-    - Server Optimization
-        - Installed and configured compression middleware to reduce payload size and speed up responses.
-        - Testing & Code Quality
-        - Added clarifying comments for TDD stubs.
-        - Fixed tests that were incorrectly triggering the cache.
-    - Renamed Swagger route from /api-docs to /docs.
-    - Removed unused files from the public directory.
+
+- Caching Enhancements - Added immigrationCache and languageCache directly into their routers. - Implemented browser caching rules for client/dist: - index.html => `no-cache` - Hashed files => `max-age=31536000`, `immutable`
+
+  - Improved overall client-side and localhost load performance.
+  - Server Optimization
+    - Installed and configured compression middleware to reduce payload size and speed up responses.
+    - Testing & Code Quality
+    - Added clarifying comments for TDD stubs.
+    - Fixed tests that were incorrectly triggering the cache.
+  - Renamed Swagger route from /api-docs to /docs.
+  - Removed unused files from the public directory.
 
 - This change resulted in great optimization and gave the following change in results
-    - ## AWS Latency Improvement Summary
+  - **AWS Latency Improvement Summary**
 
-| City       | Avg Pre | Avg Post | Improvement |
-|------------|---------|----------|-------------|
-| Halifax    | 57.5ms  | 24.5ms   | 57%         |
-| Montreal   | 57.5ms  | 36ms     | 36%         |
-| Toronto    | 48ms    | 26.5ms   | 44%         |
-| Calgary    | 49ms    | 19ms     | 61%         |
-| Vancouver  | 43.5ms  | 26ms     | 40%         |
+| City      | Avg Pre | Avg Post | Improvement |
+| --------- | ------- | -------- | ----------- |
+| Halifax   | 57.5ms  | 24.5ms   | 57%         |
+| Montreal  | 57.5ms  | 36ms     | 36%         |
+| Toronto   | 48ms    | 26.5ms   | 44%         |
+| Calgary   | 49ms    | 19ms     | 61%         |
+| Vancouver | 43.5ms  | 26ms     | 40%         |
 
 **Average response latency gains: 47.6%!!!**
 
 - Lead: Talon
 - Link: [serverside optimization](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs)
 
-
 ### V1.0.1
 
 ## Summary of Changes
+
 - switched from plotly to chart.js
 
 - biggest differnce with this change was the size js file in dist/assets/index-SomeHash.js which went from 5095.92kb (1535.73 compressed) to 375.19 kb (123.83 compressed)
 
-
-- Lead: Melania 
-- Link: [ plotly to chart.js](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/48/diffs) 
-
+- Lead: Melania
+- Link: [ plotly to chart.js](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/48/diffs)
 
 ## Conclusion
 
