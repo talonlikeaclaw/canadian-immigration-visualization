@@ -199,7 +199,45 @@ Link:
 **AWS**
 
 - Background and foreground colors do not have a sufficient contrast ratio.
+    - Low-contrast text is difficult or impossible for many users to read. 
+    - Failing Elements
+        - form > fieldset > section.input-row > button
+        - Fix any of the following:
+            - Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 13.2pt (17.6px), font weight: normal). Expected contrast ratio of 4.5:1
+        - div.chart-grid > article.chart-container > div.city-info > h4
+        - Fix any of the following:
+            - Element has insufficient color contrast of 4.18 (foreground color: #1e6ffb, background color: #f8f8f8, font size: 12.6pt (16.8px), font weight: bold). Expected contrast ratio of 4.5:1
+    - relatedNode
+        - section.chart-section > div.chart-grid > article.chart-container > div.city-info
+        - div#root > section.scroll-content > footer.footer > a
+        - Fix any of the following:
+            - Element has insufficient color contrast of 3.85 (foreground color: #646cff, background color: #f8f8f8, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1
+    - relatedNode
+        - body > div#root > section.scroll-content > footer.footer
+        - div#root > section.scroll-content > footer.footer > a
+        - Fix any of the following:
+            - Element has insufficient color contrast of 3.85 (foreground color: #646cff, background color: #f8f8f8, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1
+    - relatedNode
+        - body > div#root > section.scroll-content > footer.footer
+        - div#root > section.scroll-content > footer.footer > a
+        - Fix any of the following:
+            - Element has insufficient color contrast of 3.85 (foreground color: #646cff, background color: #f8f8f8, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1
+    - relatedNode
+    - body > div#root > section.scroll-content > footer.footer
+    - div#root > section.scroll-content > footer.footer > em.footer-disclaimer
+    - Fix any of the following:
+        - Element has insufficient color contrast of 2.68 (foreground color: #999999, background color: #f8f8f8, font size: 10.2pt (13.6px), font weight: normal). Expected contrast ratio of 4.5:1
+    - relatedNode
+    - body > div#root > section.scroll-content > footer.footer
 - Image elements do not have [alt] attributes
+    - Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. 
+    - Failing Elements
+        - section.scroll-content > section.map-wrapper > section.country-map > imgFix any of the following:
+        - Element does not have an alt attribute
+        - aria-label attribute does not exist or is empty
+        - aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+        - Element has no title attribute
+        - Element's default semantics were not overridden with role="none" or role="presentation"
 
 **Additional Items to Check Manually**
 
@@ -227,8 +265,9 @@ Link:
 **Render**
 
 - Background and foreground colors do not have a sufficient contrast ratio.
-  Names and labels
+  - low-contrast text is difficult or impossible for many users to read.
 - Image elements do not have [alt] attributes
+    - infomative elements should aim for short, descriptive alternate text. decoratice elements can be ignored with an empty alt attribute. 
 
 **Additional Items to Check Manually**
 
@@ -258,9 +297,7 @@ Link:
 **AWS**
 
 - trust and safety
-- Does not use HTTPS => 7 insecure requests found
 - Ensure CSP is effective against XSS attacks
-
   - A strong Content Security Policy (CSP) significantly reduces the risk of cross-site scripting (XSS) attacks.
   - Severity => High
   - No CSP found in enforcement mode
@@ -270,6 +307,9 @@ Link:
   - Image display dimensions should match natural aspect ratio.
   - http://16.52.46.206/assets/white-curve-DKXaIjeq.png 1366 x 136 (10.04) 2940 x 383 (7.68)
   - http://16.52.46.206/assets/blue_waves-C6c1mKYc.png 1366 x 681 (2.01) 1262 x 768 (1.64)
+
+- General 
+- Missing source maps for large first-party javascript
 
 **Render**
 
@@ -285,6 +325,10 @@ Link:
   - https://five20-project-safari-chiru-dunbar.onrender.com/assets/white-curve-DKXaIjeq.png 1366 x 136 (10.04) 2940 x 383 (7.68)
   - https://five20-project-safari-chiru-dunbar.onrender.com/assets/blue_waves-C6c1mKYc.png 1366 x 681 (2.01) 1262 x 768 (1.64)
 
+- General 
+- Missing source maps for large first-party java script
+    - source maps translate minified code to the original source code. this helps developers debug in production. in addition, lighthouse is able to provide furthure insights. consider deploying source maps to take advantage of these benefits.
+    
 ### SEO
 
 **AWS**
