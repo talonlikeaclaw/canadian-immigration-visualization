@@ -60,11 +60,16 @@ function TorontoCity({cityInView, reference}){
           <Chart
             data={immigrationChartData}
             title="The Top 20 Countries Driving Immigration (All Time)"
+            classes="text-chart-group__chart"
           />
         </section>
 
         <section className="text-chart-group__left">
-          <Chart data={languagesChartData} title="Top 20 spoken languages (excluding English)" />
+          <Chart
+            data={languagesChartData} 
+            title="Top 20 spoken languages (excluding English)"
+            classes="text-chart-group__chart"
+          />
           <section className="text-chart-group__texts">
             <p>
               The most spoken non-official language is Punjabi (Panjabi) with
