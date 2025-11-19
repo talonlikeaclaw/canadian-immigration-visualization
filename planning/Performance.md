@@ -1,4 +1,4 @@
-# Performance of
+# Performance of Canadian Liguistic journey
 
 - [On AWS](http://16.52.46.206/index.html)
 - [On Render](https://five20-project-safari-chiru-dunbar.onrender.com/)
@@ -9,103 +9,47 @@
 
 - For testing, we used Chrome’s Lighthouse reports and Catchpoint’s WebPageTest tool. Both were run on desktop (Chrome, Toronto location, Cable 5/1 Mbps, 28 ms RTT). We looked mainly at metrics like First Contentful Paint (FCP), Largest Contentful Paint (LCP), Total Blocking Time (TBT), and Speed Index. These tests help us compare results from the end of Phase 2 to now and see how much the site improved even before doing focused optimizations.
 
-## Baseline Performance
+- [**Conext before we start**](Backup.md#context) 
 
-<!-- Summarize initial results for each tool that you used. Did the tools
-detect all the performance issues you see as a user? -->
-
-[before we start](Backup.md#context) 
-
-### Tests
-
-<!-- Briefly state how you gathered data about app performance, and in what environment
-(which browsers, what browser versions, what kind of device, OS,
-width and height of viewport as reported in the console with `window.screen`) -->
-
-- Here we started to test our website
-- tools we will use to test performance
-
-  - Browser lighthouse report
-  - https://www.webpagetest.org/
-
-- Chrome browser
-- https://ioapp.catchpoint.com/auth/WptAccount/Login
-  - Device => desktop - Chrome
-  - location => Toronto, Canada
-  - connection => Cable(5/1 Mbps 28ms RTT)
-  - Number of runs => (1-3)
-  - Tests performed both ( site performance, lighthouse)
-  - <img src="assets/test1.png" alt="first test with catchoint" width="800" />
+- **tools we will use to test performance**
+    - Browser lighthouse report
+    - https://www.webpagetest.org
+    - Chrome browser
+    - https://ioapp.catchpoint.com/auth/WptAccount/Login
+    - Device => desktop - Chrome
+    - location => Toronto, Canada
+    - connection => Cable(5/1 Mbps 28ms RTT)
+    - Number of runs => (1-3)
+    - Tests performed both ( site performance, lighthouse)
 
 ## Baseline Performance
-
-### Performance overall numbers
 
 **AWS**
 
+<img src="assets/test1.png" alt="first test with catchoint" width="800" />
 <img src="assets/overall.png" alt="AWS overall numbers" width="800" />
 
 **Render**
 
 <img src="assets/renderOverall.png" alt="Render overall numbers" width="800" />
 
----
 
-### Opportunities
+**The follwing is the links will bring you to another page where we have added complet details about our website tests**
 
-- opportunities is basically the testing websites suggestions to improve the website
 - [Go to Opportunites](Backup.md#opportunities)
-
 ---
-
-### Diagnostics 
 - [Go to diagnostics](Backup.md#diagnostics)
-
 --- 
-
-### Accessibility
-- [Go to accesibility](Backup.md#diagnostics)
-
+- [Go to accesibility](Backup.md#accessibility)
 ---
-
-### Best practices
-
-**AWS**
-
-<img src="assets/best0.png" alt="best practice" width="800" />
-
-**Render**
-
-<img src="assets/renderBest0.png" alt="best practice" width="800" />
-
+- [Go to Best practice](Backup.md#best-practices)
 ---
-
-### SEO => content best practice
-
-**AWS**
-
-<img src="assets/seo0.png" alt="Seo 0" width="800" />
-
-**Render**
-
-<img src="assets/renderSeo0.png" alt="Seo 0" width="800" />
-
+- [Go to SEO](Backup.md#seo)
 ---
-
-### PWA
-
-**AWS**
-
-<img src="assets/pwa0.png" alt="pwa 0" width="800" />
-
-**Render**
-
-<img src="assets/renderPwa0.png" alt="pwa 0" width="800" />
-
+- [Go to PWA](Backup.md#pwa)
 ---
 
 ### V1.0.1
-
 #### Summary of Changes
 
 #### Caching Enhancements
@@ -123,13 +67,13 @@ width and height of viewport as reported in the console with `window.screen`) --
 - This change resulted in great optimization and gave the following change in results
 
 - Lead: Talon
-- Link: [serverside optimization](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs)
+- Link: 
+    - [serverside optimization](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs)
 
-[pre/post memory cache ](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897619430)
+    - [pre/post memory cache ](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897619430)
 
-[AWS latency improvement summary ](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897637516)
+    - [AWS latency improvement summary ](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897637516)
 
-- AWS Latency Improvement Summary
 
 | City      | Avg Pre | Avg Post | Improvement |
 | --------- | ------- | -------- | ----------- |
@@ -151,31 +95,6 @@ width and height of viewport as reported in the console with `window.screen`) --
 - [ with chart.js](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2893450729)
 
 - after these changes our overall numbers have changed [here](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897859910) is before and after the changes were applied.
-
-### V1.0.2
-
-### Opportunities
-
-**AWS**
-
-- Serve images in next-gen formats => Estimated savings 1.2s
-- Reduce unused JavaScript => Estimated savings 0.1s
-- Avoid multiple page redirects => Estimated savings 0.1s
-- Properly size images => Estimated savings 0.1s
-- Eliminate render-blocking resources => Estimated savings 0s
-- Preload Largest Contentful Paint image
-
-**Render**
-
-- Reduce unused JavaScript => Estimated savings 0.1s
-- Initial server response time was short => Root document took 90 ms
-- Preload Largest Contentful Paint image
-- Properly size images => Potential savings of 88 KiB
-- Serve images in next-gen formats
-
-### Diagnostics
-
-**AWS**
 
 - Avoid chaining critical requests => 2 chains found
 - Largest Contentful Paint element => 1,120 ms
@@ -204,214 +123,8 @@ width and height of viewport as reported in the console with `window.screen`) --
   - http://16.52.46.206/index.html
     - before => 741
     - now => 730
-- Avoid long main-thread tasks => 1 long task found
-- Minimize third-party usage
-- Third-party code blocked the main thread for 0 ms
-- JavaScript execution time => 0.1 s
-- Minimizes main-thread work => 0.4 s
-- Avoids an excessive DOM size => 154 elements
-- Image elements do not have explicit width and height
-- Serve static assets with an efficient cache policy => 1 resource found
 
-**Render**
-
-- Avoid chaining critical requests => 2 chains found
-- Largest Contentful Paint element => 1,090 ms
-- Avoids enormous network payloads => Total size was 1,330 KiB
-- Avoid long main-thread tasks => 1 long task found
-- Minimize third-party usage => Third-party code blocked the main thread for 0 ms
-- JavaScript execution time => 0.1 s
-- Minimizes main-thread work => 0.6 s
-- Avoids an excessive DOM size => 154 elements
-- Image elements do not have explicit width and height
-- Serve static assets with an efficient cache policy => 1 resource found
-
-### Accessibility
-
-**AWS**
-
-- Background and foreground colors do not have a sufficient contrast ratio.
-- Image elements do not have [alt] attributes
-
-**Additional Items to Check Manually**
-
-- Interactive controls are keyboard focusable
-  - Custom interactive controls are keyboard focusable and display a focus indicator.
-- Interactive elements indicate their purpose and state
-  - Interactive elements, such as links and buttons, should indicate their state and be distinguishable from non-interactive elements.
-- The page has a logical tab order
-  - Tabbing through the page follows the visual layout. Users cannot focus elements that are offscreen.
-- Visual order on the page follows DOM order
-  - DOM order matches the visual order, improving navigation for assistive technology.
-- User focus is not accidentally trapped in a region
-  - A user can tab into and out of any control or region without accidentally trapping their focus.
-- The user's focus is directed to new content added to the page
-  - If new content, such as a dialog, is added to the page, the user's focus is directed to it.
-- HTML5 landmark elements are used to improve navigation
-  - Landmark elements (<main>, <nav>, etc.) are used to improve the keyboard navigation of the page for assistive technology.
-- Offscreen content is hidden from assistive technology
-  - Offscreen content is hidden with display: none or aria-hidden=true.
-- Custom controls have associated labels
-  - Custom interactive controls have associated labels, provided by aria-label or aria-labelledby.
-- Custom controls have ARIA roles
-  - Custom interactive controls have appropriate ARIA roles.
-
-**Render**
-
-- Background and foreground colors do not have a sufficient contrast ratio.
-  Names and labels
-- Image elements do not have [alt] attributes
-
-**Additional Items to Check Manually**
-
-- Interactive controls are keyboard focusable
-  - Custom interactive controls are keyboard focusable and display a focus indicator.
-- Interactive elements indicate their purpose and state
-  - Interactive elements, such as links and buttons, should indicate their state and be distinguishable from non-interactive elements.
-- The page has a logical tab order
-  - Tabbing through the page follows the visual layout. Users cannot focus elements that are offscreen.
-- Visual order on the page follows DOM order
-  - DOM order matches the visual order, improving navigation for assistive technology.
-- User focus is not accidentally trapped in a region
-  - A user can tab into and out of any control or region without accidentally trapping their focus.
-- The user's focus is directed to new content added to the page
-  - If new content, such as a dialog, is added to the page, the user's focus is directed to it.
-- HTML5 landmark elements are used to improve navigation
-  - Landmark elements (<main>, <nav>, etc.) are used to improve the keyboard navigation of the page for assistive technology.
-- Offscreen content is hidden from assistive technology
-  - Offscreen content is hidden with display: none or aria-hidden=true.
-- Custom controls have associated labels
-  - Custom interactive controls have associated labels, provided by aria-label or aria-labelledby.
-- Custom controls have ARIA roles
-  - Custom interactive controls have appropriate ARIA roles.
-
-### Best practices
-
-**AWS**
-
-- trust and safety
-- Does not use HTTPS => 7 insecure requests found
-- Ensure CSP is effective against XSS attacks
-
-  - A strong Content Security Policy (CSP) significantly reduces the risk of cross-site scripting (XSS) attacks.
-  - Severity => High
-  - No CSP found in enforcement mode
-
-- User Experience
-- Displays images with incorrect aspect ratio
-  - Image display dimensions should match natural aspect ratio.
-  - http://16.52.46.206/assets/white-curve-DKXaIjeq.png 1366 x 136 (10.04) 2940 x 383 (7.68)
-  - http://16.52.46.206/assets/blue_waves-C6c1mKYc.png 1366 x 681 (2.01) 1262 x 768 (1.64)
-
-**Render**
-
-- Ensure CSP is effective against XSS attacks
-
-  - A strong Content Security Policy (CSP) significantly reduces the risk of cross-site scripting (XSS) attacks.
-  - Severity => High
-    - No CSP found in enforcement mode
-
-- User Experience
-- Displays images with incorrect aspect ratio
-  - Image display dimensions should match natural aspect ratio.
-  - https://five20-project-safari-chiru-dunbar.onrender.com/assets/white-curve-DKXaIjeq.png 1366 x 136 (10.04) 2940 x 383 (7.68)
-  - https://five20-project-safari-chiru-dunbar.onrender.com/assets/blue_waves-C6c1mKYc.png 1366 x 681 (2.01) 1262 x 768 (1.64)
-
-### SEO
-
-**AWS**
-
-- Document does not have a meta description
-  - Meta descriptions may be included in search results to concisely summarize page content.
-- Image elements do not have [alt] attributes
-  - Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute.
-  - Failing Elements
-    - section.scroll-content > section.map-wrapper > section.country-map > imgFix any of the following:
-    - Element does not have an alt attribute
-    - aria-label attribute does not exist or is empty
-    - aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-    - Element has no title attribute
-    - Element's default semantics were not overridden with role="none" or role="presentation"
-
-**Additional Items to Check Manually**
-
-- Structured data is valid
-  - Run the Structured Data Testing Tool and the Structured Data Linter to validate structured data.
-
-**Render**
-
-- Document does not have a meta description
-  - Meta descriptions may be included in search results to concisely summarize page content.
-- Image elements do not have [alt] attributes
-  - Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute.
-  - Failing Elements
-    - section.scroll-content > section.map-wrapper > section.country-map > imgFix any of the following:
-    - Element does not have an alt attribute
-    - aria-label attribute does not exist or is empty
-    - aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-    - Element has no title attribute
-    - Element's default semantics were not overridden with role="none" or role="presentation"
-
-**Additional Items to Check Manually**
-
-- Structured data is valid
-  - Run the Structured Data Testing Tool and the Structured Data Linter to validate structured data.
-
-### PWA
-
-**AWS**
-
-- Web app manifest or service worker do not meet the installability requirements => 2 reasons
-  - Service worker is the technology that enables your app to use many Progressive Web App features, such as offline, add to homescreen, and push notifications. With proper service worker and manifest implementations, browsers can proactively prompt users to add your app to their homescreen, which can lead to higher engagement.
-  - Failure reason
-    - Page is not served from a secure origin
-    - Page has no manifest <link> URL
-- Is not configured for a custom splash screen
-  - A themed splash screen ensures a high-quality experience when users launch your app from their homescreens.
-  - Failures => No manifest was fetched
-- Does not set a theme color for the address bar.
-  - The browser address bar can be themed to match your site.
-  - Failures:
-    - No manifest was fetched
-    - No `<meta name="theme-color">` tag found
-- Content is sized correctly for the viewport
-  - If the width of your app's content doesn't match the width of the viewport, your app might not be optimized for mobile screens.
-- Manifest doesn't have a maskable icon
-  - A maskable icon ensures that the image fills the entire shape without being letterboxed when installing the app on a device.
-
-**Additional Items to Check Manually**
-
-- Site works cross-browse
-  - To reach the most number of users, sites should work across every major browser.
-- Page transitions don't feel like they block on the network
-  - Transitions should feel snappy as you tap around, even on a slow network. This experience is key to a user's perception of performance.
-- Each page has a URL
-  - Ensure individual pages are deep linkable via URL and that URLs are unique for the purpose of shareability on social media.
-
-**Render**
-
-- Web app manifest or service worker do not meet the installability requirements
-  - Service worker is the technology that enables your app to use many Progressive Web App features, such as offline, add to homescreen, and push notifications. With proper service worker and manifest implementations, browsers can proactively prompt users to add your app to their homescreen, which can lead to higher engagement.
-  - Failure reason => Page has no manifest <link> URL
-- Is not configured for a custom splash screen
-  - A themed splash screen ensures a high-quality experience when users launch your app from their homescreens.
-  - Failure => No manifest was fetched
-- Does not set a theme color for the address bar
-  - The browser address bar can be themed to match your site.
-  - Failures =>
-    - No manifest was fetched
-    - No `<meta name="theme-color">` tag found
-- Content is sized correctly for the viewport
-  - If the width of your app's content doesn't match the width of the viewport, your app might not be optimized for mobile screens.
-- A <meta name="viewport"> not only optimizes your app for mobile screen sizes, but also prevents a 300 millisecond delay to user input.
-- Manifest doesn't have a maskable icon
-  - A maskable icon ensures that the image fills the entire shape without being letterboxed when installing the app on a device.
-- Site works cross-browser
-  - To reach the most number of users, sites should work across every major browser.
-- Page transitions don't feel like they block on the network
-  - Transitions should feel snappy as you tap around, even on a slow network. This experience is key to a user's perception of performance.
-- Each page has a URL
-  - Ensure individual pages are deep linkable via URL and that URLs are unique for the purpose of shareability on social media.
+### V1.0.2
 
 ## Summary of Changes
 

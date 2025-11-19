@@ -328,7 +328,7 @@ Link:
 - General 
 - Missing source maps for large first-party java script
     - source maps translate minified code to the original source code. this helps developers debug in production. in addition, lighthouse is able to provide furthure insights. consider deploying source maps to take advantage of these benefits.
-    
+
 ### SEO
 
 **AWS**
@@ -426,6 +426,8 @@ Link:
   - Ensure individual pages are deep linkable via URL and that URLs are unique for the purpose of shareability on social media.
 
 
+
+
 ### screenshot dump
 
 - Opportunity
@@ -466,3 +468,33 @@ Link:
 <img src="assets/renderAccess0.png" alt="accessibility 0" width="800" />
 <img src="assets/renderAccess1.png" alt="accessibility 1" width="800" />
 <img src="assets/renderAccess2.png" alt="accessibility 2" width="800" />
+
+- best practice 
+**AWS**
+
+<img src="assets/best0.png" alt="best practice" width="800" />
+
+**Render**
+
+<img src="assets/renderBest0.png" alt="best practice" width="800" />
+
+- SEO
+
+**AWS**
+
+<img src="assets/seo0.png" alt="Seo 0" width="800" />
+
+**Render**
+
+<img src="assets/renderSeo0.png" alt="Seo 0" width="800" />
+
+
+- PWA 
+
+**AWS**
+
+<img src="assets/pwa0.png" alt="pwa 0" width="800" />
+
+**Render**
+
+<img src="assets/renderPwa0.png" alt="pwa 0" width="800" />
