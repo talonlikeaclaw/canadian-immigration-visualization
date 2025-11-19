@@ -3,38 +3,52 @@ import '../assets/styles/City.css';
 import Chart from './Chart';
 
 function MontrealCity({cityInView, reference}){
-  const [cityData, setCityData] = useState({ immigration: [], languages: [] });
-
-  const immigrationChartData = convertImmigrationDataObjectToArray(cityData);
-  const languagesChartData = simplifyLanguageArray(cityData);
+  const [languageData, setLanguageData] = useState([]);
+  const [immigrationDataset1, setImmigrationDataset1] = useState([]);
+  const [immigrationDataset2, setImmigrationDataset2] = useState([]);
 
   useEffect(()=>{
     if (cityInView){
       // don't fetch data if already fetched
-      if (cityData.immigration.length  > 0) return;
-      if (cityData.languages.length > 0) return;
-  
+      if (languageData.length > 0) return;
+      if (immigrationDataset1.length > 0) return;
+      if (immigrationDataset2.length > 0) return;
       Promise.all([
-        fetch(`/api/immigration/montréal`),
         fetch(`/api/languages/montréal`),
+        fetch(`/api/immigration/montréal/period/1980/1990`),
+        fetch(`/api/immigration/montréal`),
       ]).
-        then(([immigrationResponse, languageResponse]) => {
-          // Process the responses into JSON concurrently
-          return Promise.all([
-            immigrationResponse.json(),
-            languageResponse.json(),
-          ]);
+        then(([languageResponse, immigration1Response, immigration2Response]) => {
+          if (languageResponse.ok && immigration1Response.ok && immigration2Response.ok){
+            return Promise.all([
+              languageResponse.json(),
+              immigration1Response.json(),
+              immigration2Response.json(),
+            ]);
+  
+          }
         }).
-        then(([immigrationData, languageData]) => {
-          // Update the state with the combined data
-          setCityData({ immigration: immigrationData, languages: languageData });
+        then(([languageData, immigration1Data, immigration2Data]) => {
+          // Update the states
+          const simplifiedLanguagesArray = simplifyLanguageArray(languageData);
+          setLanguageData(simplifiedLanguagesArray);
+  
+          const convertedImmigration1Array = convertImmigrationDataObjectToArray(immigration1Data);
+          setImmigrationDataset1(convertedImmigration1Array);
+  
+          const convertedImmigration2Array = 
+            convertImmigrationDataObjectToArray(immigration2Data, 15);
+          setImmigrationDataset2(convertedImmigration2Array);
+  
         }).
         catch(error => {
           // Handle any errors that occurred in the chain
           console.error(error);
         });
     }
-  }, [cityInView, cityData]);
+    
+  }, [cityInView, languageData, immigrationDataset1, immigrationDataset2]);
+
   return (
     <>
       <p className="transition">
@@ -49,8 +63,8 @@ function MontrealCity({cityInView, reference}){
 
         <section className="text-chart-group__left">
           <Chart
-            data={immigrationChartData} 
-            title="Immigration patterns from 1980 to 1990"
+            data={immigrationDataset1} 
+            title="Immigration patterns from 1980 to 1990 (Top 10 countries)"
             classes="text-chart-group__chart"
           />
           <section className="text-chart-group__texts">
@@ -95,8 +109,8 @@ function MontrealCity({cityInView, reference}){
             </p>
           </section>
           <Chart
-            data={immigrationChartData} 
-            title="The Leading 20 Origin Countries of Immigrants (All recorded years)"
+            data={immigrationDataset2} 
+            title="The Leading 15 Origin Countries of Immigrants (All recorded years)"
             classes="text-chart-group__chart"
           />
         </section>
@@ -104,8 +118,8 @@ function MontrealCity({cityInView, reference}){
         <section className="text-chart-group__left">
       
           <Chart
-            data={languagesChartData} 
-            title="Top 15 spoken languages"
+            data={languageData} 
+            title="Top 10 spoken languages"
             classes="text-chart-group__chart"
           />
 
@@ -136,11 +150,19 @@ function MontrealCity({cityInView, reference}){
   );
 }
 
-function convertImmigrationDataObjectToArray(cityDataObj){
+/**
+ * Transforms the object returned by the immigration APIs into an
+ *  array accepted by the Chart component
+ * This function allows
+ * @param {Object} cityDataObj the object returned by the immigration APIs
+ * @param {number} limit optional parameter determining how long the end array will be
+ * @returns an array of {label, value} objects accepted by the Chart component
+ */
+function convertImmigrationDataObjectToArray(immigrationDataset, limit = 10){
   let immigrationData = [];
   
-  if (cityDataObj.immigration.length !== 0){
-    immigrationData = cityDataObj.immigration.countries;
+  if (immigrationDataset.length !== 0){
+    immigrationData = immigrationDataset.countries;
   }
 
   const immigrationEntries = Object.entries(immigrationData);
@@ -150,15 +172,24 @@ function convertImmigrationDataObjectToArray(cityDataObj){
     value: value
   }));
 
+  immigrationChartData.length = limit;
+
   return immigrationChartData;
 }
 
-function simplifyLanguageArray(cityDataObj){
+/**
+ * Simplifies the array retrieved from the language API
+ * to an array accepted by the Chart component
+ * This function also trims the original data to only be of length 10
+ * @param {Object} languagesArray 
+ * @returns an array of {label, value} objects accepted by the Chart component
+ */
+function simplifyLanguageArray(languagesArray){
   let languagesData = [];
 
 
-  if (cityDataObj.languages.length !== 0){
-    languagesData = cityDataObj.languages.map(data =>{
+  if (languagesArray.length !== 0){
+    languagesData = languagesArray.map(data =>{
       return {
         label: data.Language,
         value: data.Count
@@ -166,6 +197,7 @@ function simplifyLanguageArray(cityDataObj){
     });
   }
 
+  languagesData.length = 10;
   return languagesData;
 }
 
