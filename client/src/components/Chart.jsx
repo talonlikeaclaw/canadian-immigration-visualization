@@ -25,8 +25,8 @@ function Chart({ data, title, xLabel, yLabel, classes}) {
     return <span>There was an error fetching the data. <br/> No data available to display.</span>;
   }
 
-  const labels = data.map(item => item.label).reverse();
-  const values = data.map(item => item.value).reverse();
+  const labels = data.map(item => item.label);
+  const values = data.map(item => item.value);
 
   const userData = {
     labels: labels,
@@ -44,7 +44,7 @@ function Chart({ data, title, xLabel, yLabel, classes}) {
       <Bar
         data={userData}
         options={{
-          indexAxis: 'y',
+          indexAxis: 'x',
           plugins: {
             title: {
               display: false
