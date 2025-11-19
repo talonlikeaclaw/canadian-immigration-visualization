@@ -20,7 +20,7 @@ ChartJS.register(
   Legend
 );
 
-function Chart({ data, title, xLabel, yLabel }) {
+function Chart({ data, title, xLabel, yLabel, classes}) {
   if (!data || data.length === 0) {
     return <span>There was an error fetching the data. <br/> No data available to display.</span>;
   }
@@ -39,7 +39,7 @@ function Chart({ data, title, xLabel, yLabel }) {
   };
 
   return (
-    <div className="chart-wrapper">
+    <div className={`chart-wrapper ${classes}`}>
       <h2 style={{ textAlign: 'center' }}>{title}</h2>
       <Bar
         data={userData}
