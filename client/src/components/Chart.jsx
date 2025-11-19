@@ -67,7 +67,10 @@ function Chart({ data, title, xLabel, yLabel, classes}) {
               },
               beginAtZero: true,
             }
-          }
+          },
+          responsive: true,
+          maintainAspectRatio: false,
+          resizeDelay: 0,
         }}
       />
     </div>
