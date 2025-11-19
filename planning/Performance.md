@@ -235,6 +235,19 @@ width and height of viewport as reported in the console with `window.screen`) --
 
 [AWS latency improvement summary ](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897637516)
 
+- AWS Latency Improvement Summary
+
+| City       | Avg Pre | Avg Post | Improvement |
+|------------|---------|----------|-------------|
+| Halifax    | 57.5ms  | 24.5ms   | 57%         |
+| Montreal   | 57.5ms  | 36ms     | 36%         |
+| Toronto    | 48ms    | 26.5ms   | 44%         |
+| Calgary    | 49ms    | 19ms     | 61%         |
+| Vancouver  | 43.5ms  | 26ms     | 40%         |
+
+**Average response latency gains: 47.6%!!!**
+
+
 ### V1.0.1
 
 ## Summary of Changes
@@ -249,6 +262,8 @@ width and height of viewport as reported in the console with `window.screen`) --
 - [ with chart.js](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2893450729)
 
 - after these changes our overall numbers have changed [here](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897859910) is before and after the changes were applied.
+
+
 
 ## Baseline Performance
 
