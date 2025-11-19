@@ -222,25 +222,18 @@ width and height of viewport as reported in the console with `window.screen`) --
   - index.html => no-cache - Hashed files => max-age=31536000, immutable
   - Improved overall client-side and localhost load performance.
 - Server Optimization
-
   - Installed and configured compression middleware to reduce payload size and speed up responses.
 
 - This change resulted in great optimization and gave the following change in results
 
-  - **AWS Latency Improvement Summary**
-
-| City      | Avg Pre | Avg Post | Improvement |
-| --------- | ------- | -------- | ----------- |
-| Halifax   | 57.5ms  | 24.5ms   | 57%         |
-| Montreal  | 57.5ms  | 36ms     | 36%         |
-| Toronto   | 48ms    | 26.5ms   | 44%         |
-| Calgary   | 49ms    | 19ms     | 61%         |
-| Vancouver | 43.5ms  | 26ms     | 40%         |
-
-**Average response latency gains: 47.6%!!!**
-
 - Lead: Talon
 - Link: [serverside optimization](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs)
+
+[pre/post memory cache ](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897619430)
+
+[AWS latency improvement summary ](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897637516)
+
+
 
 ### V1.0.1
 
@@ -251,7 +244,10 @@ width and height of viewport as reported in the console with `window.screen`) --
 - biggest differnce with this change was the size js file in dist/assets/index-SomeHash.js which went from 5095.92kb (1535.73 compressed) to 375.19 kb (123.83 compressed)
 
 - Lead: Melania
-- Link: [ plotly to chart.js](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/48/diffs)
+- [with plotly](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2893449310) 
+
+-[ with chart.js](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2893450729)
+
 
 ## Conclusion
 
