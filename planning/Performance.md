@@ -252,7 +252,10 @@ width and height of viewport as reported in the console with `window.screen`) --
 ## Baseline Performance
 ### V1.0.2
 
-**Opportunities**
+### Opportunities
+
+**AWS**
+
 - Serve images in next-gen formats => Estimated savings 1.2s
 - Reduce unused JavaScript => Estimated savings 0.1s
 - Avoid multiple page redirects => Estimated savings 0.1s
@@ -260,7 +263,18 @@ width and height of viewport as reported in the console with `window.screen`) --
 - Eliminate render-blocking resources => Estimated savings 0s
 - Preload Largest Contentful Paint image
 
-**Diagnostics**
+**Render**
+
+- Reduce unused JavaScript => Estimated savings 0.1s
+- Initial server response time was short => Root document took 90 ms
+- Preload Largest Contentful Paint image
+- Properly size images => Potential savings of 88 KiB
+- Serve images in next-gen formats
+
+### Diagnostics
+
+**AWS**
+
 - Avoid chaining critical requests => 2 chains found
 - Largest Contentful Paint element => 1,120 ms
 - Avoids enormous network payloads => Total size was 1,329 KiB
@@ -273,8 +287,18 @@ width and height of viewport as reported in the console with `window.screen`) --
 - Image elements do not have explicit width and height
 - Serve static assets with an efficient cache policy => 1 resource found
 
+**Render**
 
-
+- Avoid chaining critical requests => 2 chains found
+- Largest Contentful Paint element => 1,090 ms
+- Avoids enormous network payloads => Total size was 1,330 KiB
+- Avoid long main-thread tasks => 1 long task found
+- Minimize third-party usage => Third-party code blocked the main thread for 0 ms
+- JavaScript execution time => 0.1 s
+- Minimizes main-thread work => 0.6 s
+- Avoids an excessive DOM size => 154 elements
+- Image elements do not have explicit width and height
+- Serve static assets with an efficient cache policy => 1 resource found 
 
 ## Summary of Changes
 
