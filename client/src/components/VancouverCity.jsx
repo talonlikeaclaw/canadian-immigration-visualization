@@ -130,6 +130,8 @@ function simplifyLanguageArray(cityDataObj){
     });
   }
 
+  languagesData.length = 10;
+
   return languagesData;
 }
 
