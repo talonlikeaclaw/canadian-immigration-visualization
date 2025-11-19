@@ -196,7 +196,6 @@ function simplifyLanguageArray(languagesArray){
       };
     });
   }
-
   languagesData.length = 10;
   return languagesData;
 }

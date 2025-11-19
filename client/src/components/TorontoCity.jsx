@@ -42,38 +42,44 @@ function TorontoCity({cityInView, reference}){
             that truly took off after World War II.
       </p>
       <section className="toronto-section city-section" ref={reference}>
-        <p>
-              During Word War II, Toronto was transformed into a vital
-              industrial city. After the war, Canada needed workers, and the
-              federal government opened the immigration doors wide to fuel the
-              country&apos;s industrial and economic growth.
-        </p>
-        <p>
-              Toronto then became the ultimate destination! Early waves brought
-              not only European communities like Italians, British and
-              Portuguese, but communities from all over the world from India,
-              Guyana, the Philippines and so much more.
-        </p>
-    
-        <p>
+        <section className="text-chart-group">
+          <section className="text-chart-group__texts">
+            <p>
+                  During Word War II, Toronto was transformed into a vital
+                  industrial city. After the war, Canada needed workers, and the
+                  federal government opened the immigration doors wide to fuel the
+                  country&apos;s industrial and economic growth.
+            </p>
+            <p>
+                  Toronto then became the ultimate destination! Early waves brought
+                  not only European communities like Italians, British and
+                  Portuguese, but communities from all over the world from India,
+                  Guyana, the Philippines and so much more.
+            </p>
+          </section>
+          <Chart data={immigrationChartData} title="toronto" />
+        </section>
+
+        <section className="text-chart-group__left">
+          <Chart data={languagesChartData} title="Top 20 spoken languages (excluding English)" />
+          <section className="text-chart-group__texts">
+            <p>
               The most spoken non-official language is Punjabi (Panjabi) with
               161,965 speakers. This is followed by Urdu (89,120 speakers) and
               Tamil (83,225 speakers), clearly showing Toronto&apos;s powerful
               ties to India, Pakistan, and Sri Lanka. Other huge communities
               include speakers of Spanish (78,275), Tagalog (77,925), and
               Iranian Persian (57,085).
-        </p>
+            </p>
     
-        <p>
+            <p>
               The city quickly transformed from a relatively Anglo-centric
               place to the dynamic, multicultural mosaic it is today. That
               postwar need for labor is why Toronto is now one of the most
               linguistically diverse places on the planet.
-        </p>
-    
-        <Chart data={immigrationChartData} title="toronto" />
-        <Chart data={languagesChartData} title="toronto" />
-    
+            </p>
+          </section>
+        </section>
       </section>
 
       <div className="city-divider"></div>
@@ -95,6 +101,8 @@ function convertImmigrationDataObjectToArray(cityDataObj){
     value: value
   }));
 
+  immigrationChartData.length = 20;
+
   return immigrationChartData;
 }
 
@@ -110,6 +118,10 @@ function simplifyLanguageArray(cityDataObj){
       };
     });
   }
+
+  languagesData.shift();
+
+  languagesData.length = 20;
 
   return languagesData;
 }
