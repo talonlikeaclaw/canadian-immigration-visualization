@@ -81,7 +81,13 @@ function HalifaxCity({cityInView, reference}){
           />
         </section>
 
-        <section className="text-chart-group">
+        <section className="text-chart-group__left">
+          <Chart
+            data={languageData}
+            title="Top 10 languages spoken (excluding English)"
+            classes="text-chart-group__chart"
+          />
+
           <section className="text-chart-group__texts">
             <p>
             This deep British heritage laid the linguistic foundation. Today,
@@ -103,11 +109,6 @@ function HalifaxCity({cityInView, reference}){
             from the Middle East, South Asia, and East Asia.
             </p>
           </section>
-          <Chart
-            data={languageData}
-            title="Top 10 languages spoken (excluding English)"
-            classes="text-chart-group__chart"
-          />
         </section>
 
         <section className="text-chart-group">
