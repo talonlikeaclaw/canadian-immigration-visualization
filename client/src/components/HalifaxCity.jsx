@@ -29,6 +29,7 @@ function HalifaxCity({cityInView, reference}){
             return Promise.all([
               languageResponse.json(),
               immigration1Response.json(),
+              immigration2Response.json(),
             ]);
 
           }
@@ -105,6 +106,35 @@ function HalifaxCity({cityInView, reference}){
           <Chart
             data={languageData}
             title="Top 10 languages spoken (excluding English)"
+            classes="text-chart-group__chart"
+          />
+        </section>
+
+        <section className="text-chart-group">
+          <section className="text-chart-group__texts">
+            <p>
+            In late 2015, Halifax moved from watching the Syrian refugee
+            crisis on the news to becoming one of the places where that
+            crisis was felt in real lives and real neighbourhoods.
+            </p>
+            <p>
+            The city expected to receive 500 to 1,200 refugees over just 
+            three months, compared to the 123–252 refugees per year it 
+            had usually received since 2004, and by April 1, 2016 more 
+            than 500 special ID cards had already been distributed, with 
+            about 800 cards projected for the year.
+            </p>
+            <p>
+            Almost all (87.5%) Syrian immigrants arrived after 2016, directly 
+            tied to Canada’s 2015–2016 Syrian refugee resettlement program, 
+            and Halifax&apos;s “Welcomed in Halifax” initiative, a program that gives 
+            newly arrived refugees one year of free access to Halifax Transit and 
+            free admission to municipal recreation facilities and programs
+            </p>
+          </section>
+          <Chart
+            data={immigrationDataset2}
+            title="Immigration patterns from 2016 to 2021"
             classes="text-chart-group__chart"
           />
         </section>
