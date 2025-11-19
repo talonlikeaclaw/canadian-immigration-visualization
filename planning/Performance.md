@@ -303,6 +303,34 @@ width and height of viewport as reported in the console with `window.screen`) --
 
 ### Accessibility
 
+**AWS**
+
+- Background and foreground colors do not have a sufficient contrast ratio.
+- Image elements do not have [alt] attributes
+
+**Additional Items to Check Manually**
+
+- Interactive controls are keyboard focusable
+    - Custom interactive controls are keyboard focusable and display a focus indicator.
+- Interactive elements indicate their purpose and state
+    - Interactive elements, such as links and buttons, should indicate their state and be distinguishable from non-interactive elements.
+- The page has a logical tab order
+    - Tabbing through the page follows the visual layout. Users cannot focus elements that are offscreen.
+- Visual order on the page follows DOM order
+    - DOM order matches the visual order, improving navigation for assistive technology.
+- User focus is not accidentally trapped in a region
+    - A user can tab into and out of any control or region without accidentally trapping their focus.
+- The user's focus is directed to new content added to the page
+    - If new content, such as a dialog, is added to the page, the user's focus is directed to it.
+- HTML5 landmark elements are used to improve navigation
+    - Landmark elements (<main>, <nav>, etc.) are used to improve the keyboard navigation of the page for assistive technology.
+- Offscreen content is hidden from assistive technology
+    - Offscreen content is hidden with display: none or aria-hidden=true.
+- Custom controls have associated labels
+    - Custom interactive controls have associated labels, provided by aria-label or aria-labelledby.
+- Custom controls have ARIA roles
+    - Custom interactive controls have appropriate ARIA roles.
+
 **Render**
 
 - Background and foreground colors do not have a sufficient contrast ratio.
@@ -330,7 +358,7 @@ width and height of viewport as reported in the console with `window.screen`) --
 - Custom controls have associated labels
     - Custom interactive controls have associated labels, provided by aria-label or aria-labelledby.
 - Custom controls have ARIA roles
-    - Custom interactive controls have appropriate ARIA roles. Learn how to add roles to custom controls.
+    - Custom interactive controls have appropriate ARIA roles.
 
 ## Summary of Changes
 
