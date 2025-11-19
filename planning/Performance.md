@@ -212,18 +212,14 @@ width and height of viewport as reported in the console with `window.screen`) --
 
 ---
 
-### <!-- Change 2 -->
-
-- Lead: Talon
-- Link: [serverside optimization](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs)
+### V1.0.1
 
 ## Summary of Changes
-
     - Caching Enhancements
         - Added immigrationCache and languageCache directly into their routers.
         - Implemented browser caching rules for client/dist:
-        - index.html => no-cache
-        - Hashed files => max-age=31536000, immutable
+        - index.html => `no-cache`
+        - Hashed files => `max-age=31536000`, `immutable`
     - Improved overall client-side and localhost load performance.
     - Server Optimization
         - Installed and configured compression middleware to reduce payload size and speed up responses.
@@ -246,10 +242,21 @@ width and height of viewport as reported in the console with `window.screen`) --
 
 **Average response latency gains: 47.6%!!!**
 
-### <!-- Change n -->
+- Lead: Talon
+- Link: [serverside optimization](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs)
 
-Lead: 
-Link: 
+
+### V1.0.1
+
+## Summary of Changes
+- switched from plotly to chart.js
+
+- biggest differnce with this change was the size js file in dist/assets/index-SomeHash.js which went from 5095.92kb (1535.73 compressed) to 375.19 kb (123.83 compressed)
+
+
+- Lead: Melania 
+- Link: [ plotly to chart.js](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/48/diffs) 
+
 
 ## Conclusion
 
