@@ -216,16 +216,10 @@ width and height of viewport as reported in the console with `window.screen`) --
 
 ## Summary of Changes
 
-- Caching Enhancements - Added immigrationCache and languageCache directly into their routers. - Implemented browser caching rules for client/dist: - index.html => `no-cache` - Hashed files => `max-age=31536000`, `immutable`
-
-  - Improved overall client-side and localhost load performance.
-  - Server Optimization
-    - Installed and configured compression middleware to reduce payload size and speed up responses.
-    - Testing & Code Quality
-    - Added clarifying comments for TDD stubs.
-    - Fixed tests that were incorrectly triggering the cache.
-  - Renamed Swagger route from /api-docs to /docs.
-  - Removed unused files from the public directory.
+- Caching Enhancements - Added immigrationCache and languageCache directly into their routers. - Implemented browser caching rules for client/dist: - index.html => no-cache - Hashed files => max-age=31536000, immutable 
+- Improved overall client-side and localhost load performance.
+- Server Optimization
+- Installed and configured compression middleware to reduce payload size and speed up responses.
 
 - This change resulted in great optimization and gave the following change in results
   - **AWS Latency Improvement Summary**
