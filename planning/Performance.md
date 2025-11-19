@@ -250,8 +250,31 @@ width and height of viewport as reported in the console with `window.screen`) --
 - after these changes our overall numbers have changed [here](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897859910) is before and after the changes were applied.
 
 ## Baseline Performance
-
 ### V1.0.2
+
+**Opportunities**
+- Serve images in next-gen formats => Estimated savings 1.2s
+- Reduce unused JavaScript => Estimated savings 0.1s
+- Avoid multiple page redirects => Estimated savings 0.1s
+- Properly size images => Estimated savings 0.1s
+- Eliminate render-blocking resources => Estimated savings 0s
+- Preload Largest Contentful Paint image
+
+**Diagnostics**
+- Avoid chaining critical requests => 2 chains found
+- Largest Contentful Paint element => 1,120 ms
+- Avoids enormous network payloads => Total size was 1,329 KiB
+- Avoid long main-thread tasks => 1 long task found
+- Minimize third-party usage
+- Third-party code blocked the main thread for 0 ms
+- JavaScript execution time => 0.1 s
+- Minimizes main-thread work => 0.4 s
+- Avoids an excessive DOM size => 154 elements
+- Image elements do not have explicit width and height
+- Serve static assets with an efficient cache policy => 1 resource found
+
+
+
 
 ## Summary of Changes
 
