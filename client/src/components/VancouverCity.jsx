@@ -15,7 +15,7 @@ function VancouverCity({cityInView, reference}){
       if (cityData.languages.length > 0) return;
   
       Promise.all([
-        fetch(`/api/immigration/vancouver`),
+        fetch(`/api/immigration/vancouver/period/2001/2005`),
         fetch(`/api/languages/vancouver`),
       ]).
         then(([immigrationResponse, languageResponse]) => {
@@ -44,20 +44,36 @@ function VancouverCity({cityInView, reference}){
       </p>
 
       <section className="vancouver-section city-section" ref={reference}>
-        <p>
-              Vancouver had long-standing ties to Asia, but its modern era
-              began in the 1980s. Key events included the international
-              spotlight of Expo 86 and a new immigration program that welcomed
-              wealthy investors.
-        </p>
-        <p>
-              This coincided perfectly with political uncertainty surrounding
-              the 1997 Handover of Hong Kong to China. Huge numbers of
-              capital-rich immigrants from Hong Kong, and later Mainland China,
-              chose Vancouver as their new home.
-        </p>
-    
-        <p>
+        <section className="text-chart-group">
+          <section className="text-chart-group__texts">
+            <p>
+                  Vancouver had long-standing ties to Asia, but its modern era
+                  began in the 1980s. Key events included the international
+                  spotlight of Expo 86 and a new immigration program that welcomed
+                  wealthy investors.
+            </p>
+            <p>
+                  This coincided perfectly with political uncertainty surrounding
+                  the 1997 Handover of Hong Kong to China. Huge numbers of
+                  capital-rich immigrants from Hong Kong, and later Mainland China,
+                  chose Vancouver as their new home.
+            </p>
+          </section>
+          <Chart
+            data={immigrationChartData}
+            title="Top 10 Countries Shaping Immigration (2001 - 2005)"
+            classes="text-chart-group__chart"
+          />
+        </section>
+
+        <section className="text-chart-group__left">
+          <Chart
+            data={languagesChartData}
+            title="Languages Spoken"
+            classes="text-chart-group__chart"
+          />
+          <section className="text-chart-group__texts">
+            <p>
               The list of most common non-official languages reads like a map
               of the Asia-Pacific. Vancouver has substantial populations
               speaking Korean (40,045 speakers) and Tagalog (37,890 speakers).
@@ -66,17 +82,15 @@ function VancouverCity({cityInView, reference}){
               global languages, especially compared to the relatively small
               number of French speakers (8,685), highlights Vancouver&apos;s
               identity as a deeply Pacific-focused global city.
-        </p>
+            </p>
     
-        <p>
+            <p>
               The 2010 Winter Olympic Games held in Vancouver provided a global
               marketing platform for the city, and reinforced existing
               immigration trends.
-        </p>
-    
-        <Chart data={immigrationChartData} title="vancouver" />
-        <Chart data={languagesChartData} title="vancouver" />
-    
+            </p>
+          </section>
+        </section>
       </section>
 
       <div className="city-divider"></div>
@@ -97,6 +111,8 @@ function convertImmigrationDataObjectToArray(cityDataObj){
     label: countryName,
     value: value
   }));
+
+  immigrationChartData.length = 10;
 
   return immigrationChartData;
 }
