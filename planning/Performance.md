@@ -250,6 +250,7 @@ width and height of viewport as reported in the console with `window.screen`) --
 - after these changes our overall numbers have changed [here](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897859910) is before and after the changes were applied.
 
 ## Baseline Performance
+
 ### V1.0.2
 
 ### Opportunities
@@ -298,7 +299,38 @@ width and height of viewport as reported in the console with `window.screen`) --
 - Minimizes main-thread work => 0.6 s
 - Avoids an excessive DOM size => 154 elements
 - Image elements do not have explicit width and height
-- Serve static assets with an efficient cache policy => 1 resource found 
+- Serve static assets with an efficient cache policy => 1 resource found
+
+### Accessibility
+
+**Render**
+
+- Background and foreground colors do not have a sufficient contrast ratio.
+  Names and labels
+- Image elements do not have [alt] attributes
+
+**Additional Items to Check Manually**
+
+- Interactive controls are keyboard focusable
+  - Custom interactive controls are keyboard focusable and display a focus indicator.
+- Interactive elements indicate their purpose and state
+  - Interactive elements, such as links and buttons, should indicate their state and be distinguishable from non-interactive elements.
+- The page has a logical tab order
+  - Tabbing through the page follows the visual layout. Users cannot focus elements that are offscreen.
+- Visual order on the page follows DOM order
+    - DOM order matches the visual order, improving navigation for assistive technology. 
+- User focus is not accidentally trapped in a region
+    - A user can tab into and out of any control or region without accidentally trapping their focus.
+- The user's focus is directed to new content added to the page
+    - If new content, such as a dialog, is added to the page, the user's focus is directed to it.
+- HTML5 landmark elements are used to improve navigation
+    - Landmark elements (<main>, <nav>, etc.) are used to improve the keyboard navigation of the page for assistive technology.
+- Offscreen content is hidden from assistive technology
+    - Offscreen content is hidden with display: none or aria-hidden=true.
+- Custom controls have associated labels
+    - Custom interactive controls have associated labels, provided by aria-label or aria-labelledby.
+- Custom controls have ARIA roles
+    - Custom interactive controls have appropriate ARIA roles. Learn how to add roles to custom controls.
 
 ## Summary of Changes
 
