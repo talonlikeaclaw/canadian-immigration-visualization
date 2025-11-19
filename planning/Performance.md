@@ -247,11 +247,6 @@ width and height of viewport as reported in the console with `window.screen`) --
 
 **Average response latency gains: 47.6%!!!**
 
-
-### V1.0.1
-
-## Summary of Changes
-
 #### switched from plotly to chart.js
 
 - biggest differnce with this change was the size js file in dist/assets/index-SomeHash.js which went from 5095.92kb (1535.73 compressed) to 375.19 kb (123.83 compressed)
