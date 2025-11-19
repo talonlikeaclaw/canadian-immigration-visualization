@@ -68,6 +68,11 @@ scroll over it
 	height: 3rem;
 }
 
+.hero-section__content{
+	color: black;
+	font-weight: bold;
+}
+
 @keyframes bounce {
     0% {
         transform: translateY(0);
