@@ -214,17 +214,19 @@ width and height of viewport as reported in the console with `window.screen`) --
 
 ### V1.0.1
 
-## Summary of Changes
+#### Summary of Changes
 
 #### Caching Enhancements
-  - Added immigrationCache and languageCache directly into their routers.
-  - Implemented browser caching rules for client/dist:
-  - index.html => no-cache 
-  - Hashed files => max-age=31536000, immutable
-  - Improved overall client-side and localhost load performance.
+
+- Added immigrationCache and languageCache directly into their routers.
+- Implemented browser caching rules for client/dist:
+- index.html => no-cache
+- Hashed files => max-age=31536000, immutable
+- Improved overall client-side and localhost load performance.
 
 #### Server Optimization
-  - Installed and configured compression middleware to reduce payload size and speed up responses.
+
+- Installed and configured compression middleware to reduce payload size and speed up responses.
 
 - This change resulted in great optimization and gave the following change in results
 
@@ -237,13 +239,13 @@ width and height of viewport as reported in the console with `window.screen`) --
 
 - AWS Latency Improvement Summary
 
-| City       | Avg Pre | Avg Post | Improvement |
-|------------|---------|----------|-------------|
-| Halifax    | 57.5ms  | 24.5ms   | 57%         |
-| Montreal   | 57.5ms  | 36ms     | 36%         |
-| Toronto    | 48ms    | 26.5ms   | 44%         |
-| Calgary    | 49ms    | 19ms     | 61%         |
-| Vancouver  | 43.5ms  | 26ms     | 40%         |
+| City      | Avg Pre | Avg Post | Improvement |
+| --------- | ------- | -------- | ----------- |
+| Halifax   | 57.5ms  | 24.5ms   | 57%         |
+| Montreal  | 57.5ms  | 36ms     | 36%         |
+| Toronto   | 48ms    | 26.5ms   | 44%         |
+| Calgary   | 49ms    | 19ms     | 61%         |
+| Vancouver | 43.5ms  | 26ms     | 40%         |
 
 **Average response latency gains: 47.6%!!!**
 
@@ -257,10 +259,6 @@ width and height of viewport as reported in the console with `window.screen`) --
 - [ with chart.js](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2893450729)
 
 - after these changes our overall numbers have changed [here](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897859910) is before and after the changes were applied.
-
-
-
-## Baseline Performance
 
 ### V1.0.2
 
@@ -290,6 +288,30 @@ width and height of viewport as reported in the console with `window.screen`) --
 - Avoid chaining critical requests => 2 chains found
 - Largest Contentful Paint element => 1,120 ms
 - Avoids enormous network payloads => Total size was 1,329 KiB
+  - http://16.52.46.206/assets/blue_waves-C6c1mKYc.png
+    - before => 1072982
+    - now => 1072992
+  - http://16.52.46.206/assets/index-G9nAvfbF.js
+    - before => 1538536
+    - now => 123863
+  - https://cdn.jsdelivr.net/npm/chart.js
+    - before => 72565
+    - now => 72220
+  - http://16.52.46.206/assets/white-curve-DKXaIjeq.png
+    - before => 57149
+    - now => 57159
+  - http://16.52.46.206/assets/map-e_IAmjJw.jpg
+    - before => 30569
+    - now => 30579
+  - http://16.52.46.206/assets/index-CB-ig7zV.css
+    - before => 2253
+    - now => 2277
+  - http://16.52.46.206/canada.svg
+    - before => 1368
+    - now => 1054
+  - http://16.52.46.206/index.html
+    - before => 741
+    - now => 730
 - Avoid long main-thread tasks => 1 long task found
 - Minimize third-party usage
 - Third-party code blocked the main thread for 0 ms
