@@ -18,6 +18,8 @@ export default function DataExplorer() {
   const [activeComparisonCity, setActiveComparisonCity] = useState('');
   const [activeDataType, setActiveDataType] = useState('immigration');
   const [activePeriod, setActivePeriod] = useState('All time');
+  const [activeLangToggle, setActiveLangToggle] = useState('Include');
+  const [activeResultLimit, setActiveResultLimit] = useState(10);
 
   // Data state
   const [data, setData] = useState(null);
@@ -138,6 +140,20 @@ export default function DataExplorer() {
       return;
     }
 
+    // Prevent refetching if same request
+    const isSameRequest =
+      selectedCity === activeCity &&
+      comparisonCity === activeComparisonCity &&
+      dataType === activeDataType &&
+      (dataType === 'immigration'
+        ? period === activePeriod
+        : langToggle === activeLangToggle) &&
+      resultLimit === activeResultLimit;
+
+    if (isSameRequest) {
+      return;
+    }
+
     // Reset UI
     setError('');
     setLoading(true);
@@ -150,6 +166,8 @@ export default function DataExplorer() {
     setActiveComparisonCity(comparisonCity || '');
     setActiveDataType(dataType);
     setActivePeriod(period);
+    setActiveLangToggle(langToggle);
+    setActiveResultLimit(resultLimit);
 
     try {
       const promises = [
