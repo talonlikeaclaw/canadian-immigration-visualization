@@ -57,7 +57,10 @@ function TorontoCity({cityInView, reference}){
                   Guyana, the Philippines and so much more.
             </p>
           </section>
-          <Chart data={immigrationChartData} title="toronto" />
+          <Chart
+            data={immigrationChartData}
+            title="The Top 20 Countries Driving Immigration (All Time)"
+          />
         </section>
 
         <section className="text-chart-group__left">
