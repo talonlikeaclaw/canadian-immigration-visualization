@@ -80,7 +80,7 @@ was no performance improvement, explain why that might be the case -->
 
 ### <!-- Change 1 -->
 
-Lead: <!-- name of main contributor to this change -->
+Lead: Talon, Melania
 Link: <!-- gitlab url to specific lines of code -->
 
 ### Tests
@@ -210,14 +210,46 @@ width and height of viewport as reported in the console with `window.screen`) --
 
 <img src="assets/renderPwa0.png" alt="pwa 0" width="800" />
 
+---
+
+### <!-- Change 2 -->
+
+- Lead: Talon
+- Link: [serverside optimization](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs)
+
 ## Summary of Changes
 
----
+    - Caching Enhancements
+        - Added immigrationCache and languageCache directly into their routers.
+        - Implemented browser caching rules for client/dist:
+        - index.html => no-cache
+        - Hashed files => max-age=31536000, immutable
+    - Improved overall client-side and localhost load performance.
+    - Server Optimization
+        - Installed and configured compression middleware to reduce payload size and speed up responses.
+        - Testing & Code Quality
+        - Added clarifying comments for TDD stubs.
+        - Fixed tests that were incorrectly triggering the cache.
+    - Renamed Swagger route from /api-docs to /docs.
+    - Removed unused files from the public directory.
+
+- This change resulted in great optimization and gave the following change in results
+    - ## AWS Latency Improvement Summary
+
+| City       | Avg Pre | Avg Post | Improvement |
+|------------|---------|----------|-------------|
+| Halifax    | 57.5ms  | 24.5ms   | 57%         |
+| Montreal   | 57.5ms  | 36ms     | 36%         |
+| Toronto    | 48ms    | 26.5ms   | 44%         |
+| Calgary    | 49ms    | 19ms     | 61%         |
+| Vancouver  | 43.5ms  | 26ms     | 40%         |
+
+**Average response latency gains: 47.6%!!!**
 
 ### <!-- Change n -->
 
-Lead: <!-- name of main contributor to this change -->
-Link: <!-- gitlab url to specific lines of code -->
+Lead: 
+Link: 
 
 ## Conclusion
 
