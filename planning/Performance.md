@@ -360,6 +360,133 @@ width and height of viewport as reported in the console with `window.screen`) --
 - Custom controls have ARIA roles
     - Custom interactive controls have appropriate ARIA roles.
 
+### Best practices
+
+**AWS**
+
+- trust and safety 
+- Does not use HTTPS => 7 insecure requests found
+- Ensure CSP is effective against XSS attacks
+    - A strong Content Security Policy (CSP) significantly reduces the risk of cross-site scripting (XSS) attacks.	
+    - Severity => High
+    - No CSP found in enforcement mode		
+
+- User Experience
+- Displays images with incorrect aspect ratio
+    - Image display dimensions should match natural aspect ratio. 	
+    - http://16.52.46.206/assets/white-curve-DKXaIjeq.png	1366 x 136 (10.04)	2940 x 383 (7.68)
+    - http://16.52.46.206/assets/blue_waves-C6c1mKYc.png	1366 x 681 (2.01)	1262 x 768 (1.64)
+
+**Render**
+
+- Ensure CSP is effective against XSS attacks
+    - A strong Content Security Policy (CSP) significantly reduces the risk of cross-site scripting (XSS) attacks. 
+	- Severity => High
+    - No CSP found in enforcement mode
+
+- User Experience
+- Displays images with incorrect aspect ratio
+    - Image display dimensions should match natural aspect ratio. 
+    - https://five20-project-safari-chiru-dunbar.onrender.com/assets/white-curve-DKXaIjeq.png	1366 x 136 (10.04)	2940 x 383 (7.68)
+    - https://five20-project-safari-chiru-dunbar.onrender.com/assets/blue_waves-C6c1mKYc.png	1366 x 681 (2.01)	1262 x 768 (1.64)
+
+### SEO
+
+**AWS**
+
+- Document does not have a meta description
+    - Meta descriptions may be included in search results to concisely summarize page content.
+- Image elements do not have [alt] attributes
+    - Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute.
+    - Failing Elements
+        - section.scroll-content > section.map-wrapper > section.country-map > imgFix any of the following:
+        - Element does not have an alt attribute
+        - aria-label attribute does not exist or is empty
+        - aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+        - Element has no title attribute
+        - Element's default semantics were not overridden with role="none" or role="presentation"
+
+**Additional Items to Check Manually**
+
+- Structured data is valid
+    - Run the Structured Data Testing Tool and the Structured Data Linter to validate structured data.
+
+**Render**
+
+- Document does not have a meta description
+    - Meta descriptions may be included in search results to concisely summarize page content.
+- Image elements do not have [alt] attributes
+    - Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute.
+    - Failing Elements
+        - section.scroll-content > section.map-wrapper > section.country-map > imgFix any of the following:
+        - Element does not have an alt attribute
+        - aria-label attribute does not exist or is empty
+        - aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+        - Element has no title attribute
+        - Element's default semantics were not overridden with role="none" or role="presentation"
+
+**Additional Items to Check Manually**  
+
+- Structured data is valid
+    - Run the Structured Data Testing Tool and the Structured Data Linter to validate structured data.
+
+### PWA 
+
+**AWS**
+
+- Web app manifest or service worker do not meet the installability requirements => 2 reasons
+    - Service worker is the technology that enables your app to use many Progressive Web App features, such as offline, add to homescreen, and push notifications. With proper service worker and manifest implementations, browsers can proactively prompt users to add your app to their homescreen, which can lead to higher engagement.
+    - Failure reason
+        - Page is not served from a secure origin
+        - Page has no manifest <link> URL
+- Is not configured for a custom splash screen
+    - A themed splash screen ensures a high-quality experience when users launch your app from their homescreens.
+    - Failures => No manifest was fetched
+- Does not set a theme color for the address bar.
+    - The browser address bar can be themed to match your site.
+    - Failures:
+        - No manifest was fetched
+        - No `<meta name="theme-color">` tag found
+- Content is sized correctly for the viewport
+    - If the width of your app's content doesn't match the width of the viewport, your app might not be optimized for mobile screens.
+- Manifest doesn't have a maskable icon
+    - A maskable icon ensures that the image fills the entire shape without being letterboxed when installing the app on a device.
+
+**Additional Items to Check Manually**  
+
+- Site works cross-browse
+    - To reach the most number of users, sites should work across every major browser.
+- Page transitions don't feel like they block on the network
+    - Transitions should feel snappy as you tap around, even on a slow network. This experience is key to a user's perception of performance.
+- Each page has a URL
+    - Ensure individual pages are deep linkable via URL and that URLs are unique for the purpose of shareability on social media. 
+
+**Render**
+- Web app manifest or service worker do not meet the installability requirements
+    - Service worker is the technology that enables your app to use many Progressive Web App features, such as offline, add to homescreen, and push notifications. With proper service worker and manifest implementations, browsers can proactively prompt users to add your app to their homescreen, which can lead to higher engagement. 
+    - Failure reason => Page has no manifest <link> URL
+- Is not configured for a custom splash screen
+    - A themed splash screen ensures a high-quality experience when users launch your app from their homescreens.
+    - Failure => No manifest was fetched
+- Does not set a theme color for the address bar
+    - The browser address bar can be themed to match your site.
+    - Failures => 
+        - No manifest was fetched
+        - No `<meta name="theme-color">` tag found
+- Content is sized correctly for the viewport
+    - If the width of your app's content doesn't match the width of the viewport, your app might not be optimized for mobile screens.
+- A <meta name="viewport"> not only optimizes your app for mobile screen sizes, but also prevents a 300 millisecond delay to user input.
+- Manifest doesn't have a maskable icon
+    - A maskable icon ensures that the image fills the entire shape without being letterboxed when installing the app on a device.
+- Site works cross-browser
+    - To reach the most number of users, sites should work across every major browser.
+- Page transitions don't feel like they block on the network
+    - Transitions should feel snappy as you tap around, even on a slow network. This experience is key to a user's perception of performance.
+- Each page has a URL
+    - Ensure individual pages are deep linkable via URL and that URLs are unique for the purpose of shareability on social media.
+
+
+
 ## Summary of Changes
 
 ## Conclusion
