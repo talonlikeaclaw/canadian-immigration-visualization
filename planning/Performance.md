@@ -1,4 +1,4 @@
-# Performance of Canadian Liguistic journey
+# Performance of Canadian Linguistic journey
 
 - [On AWS](http://16.52.46.206/index.html)
 - [On Render](https://five20-project-safari-chiru-dunbar.onrender.com/)
