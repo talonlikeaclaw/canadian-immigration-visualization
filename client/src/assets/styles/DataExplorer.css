@@ -99,8 +99,8 @@ button:focus {
 button {
   margin-top: 2em;
   border: none;
-  background: #3b82f6;
-  color: #fff;
+  background: #AED9F3;
+  color: Black;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.25s;
@@ -179,7 +179,7 @@ h3 {
 .city-info h4 {
   margin: 0 0 0.25rem;
   font-size: 1.05rem;
-  color: #1e6ffb;
+  color: #14449D;
 }
 
 .city-info p {
