@@ -77,14 +77,26 @@ function MontrealCity({cityInView, reference}){
         <section className="text-chart-group">
           <section className="text-chart-group__texts">
             <p>
-                  The top countries of origin show a clear global Francophone
-                  attraction: France (15,295), Algeria (12,840), and Syria (11,595)
-                  led the way.
+              In the years recorded of data from Stats Canada,
+              Montréal welcomed a total of 1,020,835 immigrants (until 2021).
+              The top origin country was Haiti, accounting for 79,720 immigrants, 
+              which represented approximately 7.8% of the total.
+            </p>
+            <p>
+              The remaining top five origin countries show a clear global Francophone
+              attraction: Algeria (66,730 immigrants), France (63,235), Morocco (60,545), 
+              and China (48,080). Collectively, these five nations contributed 318,310 immigrants, 
+              or roughly 31.2% of the total immigrant population.
+            </p>
+            <p>
+              Following this group, significant numbers also arrived from Italy (41,855),
+              Lebanon (38,580), and the Philippines (28,965), further illustrating the diverse
+              sources of new residents that have contributed to the demographic makeup of Montréal.
             </p>
           </section>
           <Chart
             data={immigrationChartData} 
-            title="The Leading 20 Origin Countries of Immigrants (1980 - 2021)"
+            title="The Leading 20 Origin Countries of Immigrants (All recorded years)"
             classes="text-chart-group__chart"
           />
         </section>
