@@ -222,6 +222,7 @@ width and height of viewport as reported in the console with `window.screen`) --
   - index.html => no-cache - Hashed files => max-age=31536000, immutable
   - Improved overall client-side and localhost load performance.
 - Server Optimization
+
   - Installed and configured compression middleware to reduce payload size and speed up responses.
 
 - This change resulted in great optimization and gave the following change in results
@@ -233,8 +234,6 @@ width and height of viewport as reported in the console with `window.screen`) --
 
 [AWS latency improvement summary ](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897637516)
 
-
-
 ### V1.0.1
 
 ## Summary of Changes
@@ -244,10 +243,15 @@ width and height of viewport as reported in the console with `window.screen`) --
 - biggest differnce with this change was the size js file in dist/assets/index-SomeHash.js which went from 5095.92kb (1535.73 compressed) to 375.19 kb (123.83 compressed)
 
 - Lead: Melania
-- [with plotly](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2893449310) 
+- [with plotly](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2893449310)
 
--[ with chart.js](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2893450729)
+- [ with chart.js](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2893450729)
 
+## Baseline Performance
+
+### V1.0.2
+
+## Summary of Changes
 
 ## Conclusion
 
