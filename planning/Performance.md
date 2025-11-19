@@ -33,7 +33,6 @@
 
 <img src="assets/renderOverall.png" alt="Render overall numbers" width="800" />
 
-
 **The follwing is the links will bring you to another page where we have added complet details about our website tests**
 
 - [Go to Opportunites](Backup.md#opportunities)
@@ -123,9 +122,9 @@
   - http://16.52.46.206/index.html
     - before => 741
     - now => 730
+--- 
 
 ### V1.0.2
-
 ## Summary of Changes
 
 ## Conclusion

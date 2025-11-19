@@ -64,6 +64,7 @@
 Lead: Talon, Melania
 Link:
 
+--- 
 
 ### V1.0.0
 
@@ -428,7 +429,7 @@ Link:
 
 
 
-### screenshot dump
+### screenshots
 
 - Opportunity
 
