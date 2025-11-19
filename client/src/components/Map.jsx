@@ -11,37 +11,37 @@ function Map({zoomedInCity = ''}){
     <section className="map-wrapper">
       {zoomedInCity === '' &&
       <section className="country-map">
-        <img src={countryMap}/>
+        <img src={countryMap} alt="Map of Canada"/>
       </section>
       }
   
       {zoomedInCity === 'halifax' && 
         <section className="city-map">
-          <img src={halifax}/>
+          <img src={halifax} alt="Map of Halifax"/>
         </section>
       }
 
       {zoomedInCity === 'montreal' && 
         <section className="city-map">
-          <img src={montreal}/>
+          <img src={montreal} alt="Map of Montreal"/>
         </section>
       }
 
       {zoomedInCity === 'toronto' && 
         <section className="city-map">
-          <img src={toronto}/>
+          <img src={toronto} alt="Map of Toronto"/>
         </section>
       }
 
       {(zoomedInCity === 'calgary' || zoomedInCity === 'edmonton') && 
         <section className="city-map">
-          <img src={calgary}/>
+          <img src={calgary} alt="Map of Alberta, showing both Calgary and Edmonton"/>
         </section>
       }
 
       {zoomedInCity === 'vancouver' && 
         <section className="city-map">
-          <img src={vancouver}/>
+          <img src={vancouver} alt="Map of Vancouver"/>
         </section>
       }
     </section>
