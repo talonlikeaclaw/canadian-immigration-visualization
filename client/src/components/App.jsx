@@ -9,7 +9,7 @@ import TorontoCity from './TorontoCity';
 import CalgaryCity from './CalgaryCity';
 import VancouverCity from './VancouverCity';
 import Footer from './Footer';
-import whiteCurve from '../assets/images/white-curve.png';
+import whiteCurve from '../assets/images/white-curve.webp';
 
 function App() {
   // A google search on how I can track the position of React elements

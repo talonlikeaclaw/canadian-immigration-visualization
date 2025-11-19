@@ -1,6 +1,6 @@
 import '../assets/styles/HeroSection.css';
 import arrow from'../assets/images/arrow.svg';
-import blueWaves from '../assets/images/blue_waves.png';
+import blueWaves from '../assets/images/blue_waves.webp';
 
 
 function HeroSection(){
