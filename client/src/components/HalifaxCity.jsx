@@ -2,6 +2,11 @@ import { useState, useEffect } from 'react';
 import '../assets/styles/City.css';
 import Chart from './Chart';
 
+/**
+ * @param {boolean} cityInView flag to determine if the city of halifax is in view
+ * @param {React Ref Object} reference a reference object used to determine the cityInView flag
+ * @returns a component representing the entire Halifax city component
+ */
 function HalifaxCity({cityInView, reference}){
   const [cityData, setCityData] = useState({ immigration: [], languages: [] });
 
@@ -35,6 +40,7 @@ function HalifaxCity({cityInView, reference}){
     }
   
   }, [cityInView, cityData]);
+
   return (
     <>
       <p className="transition">Our journey starts in Halifax, the capital of Nova Scotia.</p>
@@ -98,6 +104,13 @@ function HalifaxCity({cityInView, reference}){
   );
 }
 
+/**
+ * Transforms the object returned by the immigration APIs into an
+ *  array accepted by the Chart component
+ * This function also trims the original data to only be of length 10
+ * @param {Object} cityDataObj the object returned by the immigration APIs
+ * @returns an array of {label, value} objects accepted by the Chart component
+ */
 function convertImmigrationDataObjectToArray(cityDataObj){
   let immigrationData = [];
   
@@ -117,6 +130,14 @@ function convertImmigrationDataObjectToArray(cityDataObj){
   return immigrationChartData;
 }
 
+/**
+ * Simplifies the array retrieved from the language API
+ * to an array accepted by the Chart component
+ * This function also trims the original data to only be of length 10
+ * And it removes English from the data in order to only display the non-offical languages
+ * @param {Object} cityDataObj 
+ * @returns an array of {label, value} objects accepted by the Chart component
+ */
 function simplifyLanguageArray(cityDataObj){
   let languagesData = [];
 
