@@ -1,0 +1,289 @@
+
+
+
+
+
+### V1.0.0
+
+### Opportunities
+
+**AWS**
+- the numbers are in bytes
+- Reduce unused JavaScript => Estimated savings 0.1s
+    - Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity.
+	    - https://cdn.jsdelivr.net/npm/chart.js	size => 1,537,877 potential saving => 1,095,297
+        - http://16.52.46.206/assets/index-G9nAvfbF.js	size => 71,812 potential saving => 64,080 
+- Serve images in next-gen formats => Estimated savings 1.2s
+    - Image formats like WebP and AVIF often provide better compression than PNG or JPEG, which means faster downloads and less data consumption.
+        - http://16.52.46.206/assets/blue_waves-C6c1mKYc.png size => 1,072,650 potential saving => 1,052,209
+        - http://16.52.46.206/assets/white-curve-DKXaIjeq.png	size => 56,821 potential saving => 46,273
+- Use HTTPS/2
+    - HTTP/2 offers many benefits over HTTP/1.1, including binary headers and multiplexing.
+- Avoid multiple page redirects => Estimated savings 0.1s
+    - Redirects introduce additional delays before the page can be loaded. 
+        - time spent in ms
+        - http://16.52.46.206/index.html => 5
+        - https://16.52.46.206/index.html => 115
+        - http://16.52.46.206/index.html =>	0
+- Properly size images => Estimated savings 0.1s
+    - Serve images that are appropriately-sized to save cellular data and improve load time.
+        - http://16.52.46.206/assets/white-curve-DKXaIjeq.png	56,821	47,446
+        - http://16.52.46.206/assets/blue_waves-C6c1mKYc.png	1,072,650	43,129
+- Eliminate render-blocking resources => Estimated savings 0s
+    - Resources are blocking the first paint of your page. Consider delivering critical JS/CSS inline and deferring all non-critical JS/styles.
+        - http://16.52.46.206/assets/index-CB-ig7zV.css	size => 2253	potential saving => 207
+- Avoid serving legacy JavaScript to modern browsers
+    - polyfills and transforms enables legacy browser to use new javaScript features. However , many arent necessary for modern browsers. for your bundled javascript, adopt a modern script deployment strategy using module/nomodule feature detection to reduce the amount of the code shipped to modern browsers, while retaining for legacy browsers.
+- Reduce unused CSS
+    - Reduce unused rules from styleshees and defer CSS not used for above the fold content to decrease bytes consumed by network activity.
+- Preload Largest Contentful Paint image
+    - If the LCP element is dynamically added to the page, you should preload the image in order to improve LCP.
+        - http://16.52.46.206/assets/white-curve-DKXaIjeq.png	=> 0
+
+**Render**
+
+- Reduce unused JavaScript => Estimated savings 0.1s
+- Initial server response time was short => Root document took 90 ms
+- Preload Largest Contentful Paint image
+- Properly size images => Potential savings of 88 KiB
+- Serve images in next-gen formats
+
+### Diagnostics
+
+**AWS**
+
+- Avoid chaining critical requests => 2 chains found
+- Largest Contentful Paint element => 1,120 ms
+- Avoids enormous network payloads => Total size was 1,329 KiB
+  - http://16.52.46.206/assets/blue_waves-C6c1mKYc.png
+    - before => 1072982
+    - now => 1072992
+  - http://16.52.46.206/assets/index-G9nAvfbF.js
+    - before => 1538536
+    - now => 123863
+  - https://cdn.jsdelivr.net/npm/chart.js
+    - before => 72565
+    - now => 72220
+  - http://16.52.46.206/assets/white-curve-DKXaIjeq.png
+    - before => 57149
+    - now => 57159
+  - http://16.52.46.206/assets/map-e_IAmjJw.jpg
+    - before => 30569
+    - now => 30579
+  - http://16.52.46.206/assets/index-CB-ig7zV.css
+    - before => 2253
+    - now => 2277
+  - http://16.52.46.206/canada.svg
+    - before => 1368
+    - now => 1054
+  - http://16.52.46.206/index.html
+    - before => 741
+    - now => 730
+- Avoid long main-thread tasks => 1 long task found
+- Minimize third-party usage
+- Third-party code blocked the main thread for 0 ms
+- JavaScript execution time => 0.1 s
+- Minimizes main-thread work => 0.4 s
+- Avoids an excessive DOM size => 154 elements
+- Image elements do not have explicit width and height
+- Serve static assets with an efficient cache policy => 1 resource found
+
+**Render**
+
+- Avoid chaining critical requests => 2 chains found
+- Largest Contentful Paint element => 1,090 ms
+- Avoids enormous network payloads => Total size was 1,330 KiB
+- Avoid long main-thread tasks => 1 long task found
+- Minimize third-party usage => Third-party code blocked the main thread for 0 ms
+- JavaScript execution time => 0.1 s
+- Minimizes main-thread work => 0.6 s
+- Avoids an excessive DOM size => 154 elements
+- Image elements do not have explicit width and height
+- Serve static assets with an efficient cache policy => 1 resource found
+
+### Accessibility
+
+**AWS**
+
+- Background and foreground colors do not have a sufficient contrast ratio.
+- Image elements do not have [alt] attributes
+
+**Additional Items to Check Manually**
+
+- Interactive controls are keyboard focusable
+  - Custom interactive controls are keyboard focusable and display a focus indicator.
+- Interactive elements indicate their purpose and state
+  - Interactive elements, such as links and buttons, should indicate their state and be distinguishable from non-interactive elements.
+- The page has a logical tab order
+  - Tabbing through the page follows the visual layout. Users cannot focus elements that are offscreen.
+- Visual order on the page follows DOM order
+  - DOM order matches the visual order, improving navigation for assistive technology.
+- User focus is not accidentally trapped in a region
+  - A user can tab into and out of any control or region without accidentally trapping their focus.
+- The user's focus is directed to new content added to the page
+  - If new content, such as a dialog, is added to the page, the user's focus is directed to it.
+- HTML5 landmark elements are used to improve navigation
+  - Landmark elements (<main>, <nav>, etc.) are used to improve the keyboard navigation of the page for assistive technology.
+- Offscreen content is hidden from assistive technology
+  - Offscreen content is hidden with display: none or aria-hidden=true.
+- Custom controls have associated labels
+  - Custom interactive controls have associated labels, provided by aria-label or aria-labelledby.
+- Custom controls have ARIA roles
+  - Custom interactive controls have appropriate ARIA roles.
+
+**Render**
+
+- Background and foreground colors do not have a sufficient contrast ratio.
+  Names and labels
+- Image elements do not have [alt] attributes
+
+**Additional Items to Check Manually**
+
+- Interactive controls are keyboard focusable
+  - Custom interactive controls are keyboard focusable and display a focus indicator.
+- Interactive elements indicate their purpose and state
+  - Interactive elements, such as links and buttons, should indicate their state and be distinguishable from non-interactive elements.
+- The page has a logical tab order
+  - Tabbing through the page follows the visual layout. Users cannot focus elements that are offscreen.
+- Visual order on the page follows DOM order
+  - DOM order matches the visual order, improving navigation for assistive technology.
+- User focus is not accidentally trapped in a region
+  - A user can tab into and out of any control or region without accidentally trapping their focus.
+- The user's focus is directed to new content added to the page
+  - If new content, such as a dialog, is added to the page, the user's focus is directed to it.
+- HTML5 landmark elements are used to improve navigation
+  - Landmark elements (<main>, <nav>, etc.) are used to improve the keyboard navigation of the page for assistive technology.
+- Offscreen content is hidden from assistive technology
+  - Offscreen content is hidden with display: none or aria-hidden=true.
+- Custom controls have associated labels
+  - Custom interactive controls have associated labels, provided by aria-label or aria-labelledby.
+- Custom controls have ARIA roles
+  - Custom interactive controls have appropriate ARIA roles.
+
+### Best practices
+
+**AWS**
+
+- trust and safety
+- Does not use HTTPS => 7 insecure requests found
+- Ensure CSP is effective against XSS attacks
+
+  - A strong Content Security Policy (CSP) significantly reduces the risk of cross-site scripting (XSS) attacks.
+  - Severity => High
+  - No CSP found in enforcement mode
+
+- User Experience
+- Displays images with incorrect aspect ratio
+  - Image display dimensions should match natural aspect ratio.
+  - http://16.52.46.206/assets/white-curve-DKXaIjeq.png 1366 x 136 (10.04) 2940 x 383 (7.68)
+  - http://16.52.46.206/assets/blue_waves-C6c1mKYc.png 1366 x 681 (2.01) 1262 x 768 (1.64)
+
+**Render**
+
+- Ensure CSP is effective against XSS attacks
+
+  - A strong Content Security Policy (CSP) significantly reduces the risk of cross-site scripting (XSS) attacks.
+  - Severity => High
+    - No CSP found in enforcement mode
+
+- User Experience
+- Displays images with incorrect aspect ratio
+  - Image display dimensions should match natural aspect ratio.
+  - https://five20-project-safari-chiru-dunbar.onrender.com/assets/white-curve-DKXaIjeq.png 1366 x 136 (10.04) 2940 x 383 (7.68)
+  - https://five20-project-safari-chiru-dunbar.onrender.com/assets/blue_waves-C6c1mKYc.png 1366 x 681 (2.01) 1262 x 768 (1.64)
+
+### SEO
+
+**AWS**
+
+- Document does not have a meta description
+  - Meta descriptions may be included in search results to concisely summarize page content.
+- Image elements do not have [alt] attributes
+  - Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute.
+  - Failing Elements
+    - section.scroll-content > section.map-wrapper > section.country-map > imgFix any of the following:
+    - Element does not have an alt attribute
+    - aria-label attribute does not exist or is empty
+    - aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+    - Element has no title attribute
+    - Element's default semantics were not overridden with role="none" or role="presentation"
+
+**Additional Items to Check Manually**
+
+- Structured data is valid
+  - Run the Structured Data Testing Tool and the Structured Data Linter to validate structured data.
+
+**Render**
+
+- Document does not have a meta description
+  - Meta descriptions may be included in search results to concisely summarize page content.
+- Image elements do not have [alt] attributes
+  - Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute.
+  - Failing Elements
+    - section.scroll-content > section.map-wrapper > section.country-map > imgFix any of the following:
+    - Element does not have an alt attribute
+    - aria-label attribute does not exist or is empty
+    - aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+    - Element has no title attribute
+    - Element's default semantics were not overridden with role="none" or role="presentation"
+
+**Additional Items to Check Manually**
+
+- Structured data is valid
+  - Run the Structured Data Testing Tool and the Structured Data Linter to validate structured data.
+
+### PWA
+
+**AWS**
+
+- Web app manifest or service worker do not meet the installability requirements => 2 reasons
+  - Service worker is the technology that enables your app to use many Progressive Web App features, such as offline, add to homescreen, and push notifications. With proper service worker and manifest implementations, browsers can proactively prompt users to add your app to their homescreen, which can lead to higher engagement.
+  - Failure reason
+    - Page is not served from a secure origin
+    - Page has no manifest <link> URL
+- Is not configured for a custom splash screen
+  - A themed splash screen ensures a high-quality experience when users launch your app from their homescreens.
+  - Failures => No manifest was fetched
+- Does not set a theme color for the address bar.
+  - The browser address bar can be themed to match your site.
+  - Failures:
+    - No manifest was fetched
+    - No `<meta name="theme-color">` tag found
+- Content is sized correctly for the viewport
+  - If the width of your app's content doesn't match the width of the viewport, your app might not be optimized for mobile screens.
+- Manifest doesn't have a maskable icon
+  - A maskable icon ensures that the image fills the entire shape without being letterboxed when installing the app on a device.
+
+**Additional Items to Check Manually**
+
+- Site works cross-browse
+  - To reach the most number of users, sites should work across every major browser.
+- Page transitions don't feel like they block on the network
+  - Transitions should feel snappy as you tap around, even on a slow network. This experience is key to a user's perception of performance.
+- Each page has a URL
+  - Ensure individual pages are deep linkable via URL and that URLs are unique for the purpose of shareability on social media.
+
+**Render**
+
+- Web app manifest or service worker do not meet the installability requirements
+  - Service worker is the technology that enables your app to use many Progressive Web App features, such as offline, add to homescreen, and push notifications. With proper service worker and manifest implementations, browsers can proactively prompt users to add your app to their homescreen, which can lead to higher engagement.
+  - Failure reason => Page has no manifest <link> URL
+- Is not configured for a custom splash screen
+  - A themed splash screen ensures a high-quality experience when users launch your app from their homescreens.
+  - Failure => No manifest was fetched
+- Does not set a theme color for the address bar
+  - The browser address bar can be themed to match your site.
+  - Failures =>
+    - No manifest was fetched
+    - No `<meta name="theme-color">` tag found
+- Content is sized correctly for the viewport
+  - If the width of your app's content doesn't match the width of the viewport, your app might not be optimized for mobile screens.
+- A <meta name="viewport"> not only optimizes your app for mobile screen sizes, but also prevents a 300 millisecond delay to user input.
+- Manifest doesn't have a maskable icon
+  - A maskable icon ensures that the image fills the entire shape without being letterboxed when installing the app on a device.
+- Site works cross-browser
+  - To reach the most number of users, sites should work across every major browser.
+- Page transitions don't feel like they block on the network
+  - Transitions should feel snappy as you tap around, even on a slow network. This experience is key to a user's perception of performance.
+- Each page has a URL
+  - Ensure individual pages are deep linkable via URL and that URLs are unique for the purpose of shareability on social media.
