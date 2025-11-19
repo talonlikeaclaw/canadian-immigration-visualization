@@ -64,135 +64,136 @@
 Lead: Talon, Melania
 Link:
 
---- 
+---
 
 ### V1.0.0
 
 ### Opportunities
 
 **AWS**
+
 - the numbers are in bytes
 - Reduce unused JavaScript => Estimated savings 0.1s
-    - Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity.
-	    - https://cdn.jsdelivr.net/npm/chart.js	size => 1,537,877 potential saving => 1,095,297
-        - http://16.52.46.206/assets/index-G9nAvfbF.js	size => 71,812 potential saving => 64,080 
+  - Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity.
+    - https://cdn.jsdelivr.net/npm/chart.js size => 1,537,877 potential saving => 1,095,297
+      - http://16.52.46.206/assets/index-G9nAvfbF.js size => 71,812 potential saving => 64,080
 - Serve images in next-gen formats => Estimated savings 1.2s
-    - Image formats like WebP and AVIF often provide better compression than PNG or JPEG, which means faster downloads and less data consumption.
-        - http://16.52.46.206/assets/blue_waves-C6c1mKYc.png size => 1,072,650 potential saving => 1,052,209
-        - http://16.52.46.206/assets/white-curve-DKXaIjeq.png	size => 56,821 potential saving => 46,273
+  - Image formats like WebP and AVIF often provide better compression than PNG or JPEG, which means faster downloads and less data consumption.
+    - http://16.52.46.206/assets/blue_waves-C6c1mKYc.png size => 1,072,650 potential saving => 1,052,209
+    - http://16.52.46.206/assets/white-curve-DKXaIjeq.png size => 56,821 potential saving => 46,273
 - Use HTTPS/2
-    - HTTP/2 offers many benefits over HTTP/1.1, including binary headers and multiplexing.
+  - HTTP/2 offers many benefits over HTTP/1.1, including binary headers and multiplexing.
 - Avoid multiple page redirects => Estimated savings 0.1s
-    - Redirects introduce additional delays before the page can be loaded. 
-        - time spent in ms
-        - http://16.52.46.206/index.html => 5
-        - https://16.52.46.206/index.html => 115
-        - http://16.52.46.206/index.html =>	0
+  - Redirects introduce additional delays before the page can be loaded.
+    - time spent in ms
+    - http://16.52.46.206/index.html => 5
+    - https://16.52.46.206/index.html => 115
+    - http://16.52.46.206/index.html => 0
 - Properly size images => Estimated savings 0.1s
-    - Serve images that are appropriately-sized to save cellular data and improve load time.
-        - http://16.52.46.206/assets/white-curve-DKXaIjeq.png	56,821	47,446
-        - http://16.52.46.206/assets/blue_waves-C6c1mKYc.png	1,072,650	43,129
+  - Serve images that are appropriately-sized to save cellular data and improve load time.
+    - http://16.52.46.206/assets/white-curve-DKXaIjeq.png 56,821 47,446
+    - http://16.52.46.206/assets/blue_waves-C6c1mKYc.png 1,072,650 43,129
 - Eliminate render-blocking resources => Estimated savings 0s
-    - Resources are blocking the first paint of your page. Consider delivering critical JS/CSS inline and deferring all non-critical JS/styles.
-        - http://16.52.46.206/assets/index-CB-ig7zV.css	size => 2253	potential saving => 207
+  - Resources are blocking the first paint of your page. Consider delivering critical JS/CSS inline and deferring all non-critical JS/styles.
+    - http://16.52.46.206/assets/index-CB-ig7zV.css size => 2253 potential saving => 207
 - Avoid serving legacy JavaScript to modern browsers
-    - polyfills and transforms enables legacy browser to use new javaScript features. However , many arent necessary for modern browsers. for your bundled javascript, adopt a modern script deployment strategy using module/nomodule feature detection to reduce the amount of the code shipped to modern browsers, while retaining for legacy browsers.
+  - polyfills and transforms enables legacy browser to use new javaScript features. However , many arent necessary for modern browsers. for your bundled javascript, adopt a modern script deployment strategy using module/nomodule feature detection to reduce the amount of the code shipped to modern browsers, while retaining for legacy browsers.
 - Reduce unused CSS
-    - Reduce unused rules from styleshees and defer CSS not used for above the fold content to decrease bytes consumed by network activity.
+  - Reduce unused rules from styleshees and defer CSS not used for above the fold content to decrease bytes consumed by network activity.
 - Preload Largest Contentful Paint image
-    - If the LCP element is dynamically added to the page, you should preload the image in order to improve LCP.
-        - http://16.52.46.206/assets/white-curve-DKXaIjeq.png	=> 0
+  - If the LCP element is dynamically added to the page, you should preload the image in order to improve LCP.
+    - http://16.52.46.206/assets/white-curve-DKXaIjeq.png => 0
 
 **Render**
 
-- Preload Largest Contentful Paint image  potential saving in ms => 210
-    - if the LCP element is dynamically added to the page, you should preload the image in order to improve LCP
-        - assets.white-curve.png
+- Preload Largest Contentful Paint image potential saving in ms => 210
+  - if the LCP element is dynamically added to the page, you should preload the image in order to improve LCP
+    - assets.white-curve.png
 - Initial server response time was short => Root document took 95 ms
 - Reduce unused CSS => Estimated savings 0.1s
-    - .maplibregl-map{font:12....}  size => 13,107  potential saving in bytes => 13,107
+  - .maplibregl-map{font:12....} size => 13,107 potential saving in bytes => 13,107
 - Reduce unused JavaScript
-    - reduce unused javascript and defer loading scripts until they are required to decrease bytesconsumed by network.
-    - assets/index-someHash.js => 1,471,009 potential saving bytes => 1,047,672
-    - npm/chart.js => 71,767  potential saving in bytes => 64,039 
+  - reduce unused javascript and defer loading scripts until they are required to decrease bytesconsumed by network.
+  - assets/index-someHash.js => 1,471,009 potential saving bytes => 1,047,672
+  - npm/chart.js => 71,767 potential saving in bytes => 64,039
 - Avoid serving legacy JavaScript to modern browsers
 - Properly size images => Potential savings of 88 KiB
-    - serve images that are appropriately-sized to save cellular data and improve load time
-        - assets/white-curve.png size=> 56,821 => potential savingg in bytes => 47,446
-        - assets/blue-waves.png size => 1,072,650 potential saving in bytes => 43,129
+  - serve images that are appropriately-sized to save cellular data and improve load time
+    - assets/white-curve.png size=> 56,821 => potential savingg in bytes => 47,446
+    - assets/blue-waves.png size => 1,072,650 potential saving in bytes => 43,129
 - Serve images in next-gen formats
-    - image formats like Webp and AVIF often provide better compression than PNG or JPEG, which means faster download and less data consumption.
-        - assets/bluewave-someHash.png size => 1,072,650 potential saving in bytes => 1,052,209 
-        - assets/white-curve-someHash.png size => 56,821 potential saving in bytes => 46,273
+  - image formats like Webp and AVIF often provide better compression than PNG or JPEG, which means faster download and less data consumption.
+    - assets/bluewave-someHash.png size => 1,072,650 potential saving in bytes => 1,052,209
+    - assets/white-curve-someHash.png size => 56,821 potential saving in bytes => 46,273
 
 ### Diagnostics
 
 **AWS**
 
 - Avoid chaining critical requests => 2 chains found
-    - The Critical Request Chains below show you what resources are loaded with a high priority. Consider reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load.
-        - http://16.52.46.206/index.html => 0.0kb
-        - https://16.52.46.206/index.html => 0.0kb
-        - http://16.52.46.206/index.html => 0.7kb
-        - http://16.52.46.206/assets/index-CB-ig7zV.css => 2.2kb
-        - http://16.52.46.206/assets/index-G9nAvfbF.js => 1502.5kb
- - Avoids enormous network payloads => Total size was 2,711 KiB
-    - largest network payload cost users real money and are highly corelated with long load times. 
-        - http://16.52.46.206/assets/blue_waves-C6c1mKYc.png => 1,072,982
-        - http://16.52.46.206/assets/index-G9nAvfbF.js => 1,538,536
-        - https://cdn.jsdelivr.net/npm/chart.js => 72565
-        - http://16.52.46.206/assets/white-curve-DKXaIjeq.png => 57149
-        - http://16.52.46.206/assets/map-e_IAmjJw.jpg => 30569
-        - http://16.52.46.206/assets/index-CB-ig7zV.css => 2253
-        - http://16.52.46.206/canada.svg => 1368
-        - http://16.52.46.206/index.html => 741
+  - The Critical Request Chains below show you what resources are loaded with a high priority. Consider reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load.
+    - http://16.52.46.206/index.html => 0.0kb
+    - https://16.52.46.206/index.html => 0.0kb
+    - http://16.52.46.206/index.html => 0.7kb
+    - http://16.52.46.206/assets/index-CB-ig7zV.css => 2.2kb
+    - http://16.52.46.206/assets/index-G9nAvfbF.js => 1502.5kb
+- Avoids enormous network payloads => Total size was 2,711 KiB
+  - largest network payload cost users real money and are highly corelated with long load times.
+    - http://16.52.46.206/assets/blue_waves-C6c1mKYc.png => 1,072,982
+    - http://16.52.46.206/assets/index-G9nAvfbF.js => 1,538,536
+    - https://cdn.jsdelivr.net/npm/chart.js => 72565
+    - http://16.52.46.206/assets/white-curve-DKXaIjeq.png => 57149
+    - http://16.52.46.206/assets/map-e_IAmjJw.jpg => 30569
+    - http://16.52.46.206/assets/index-CB-ig7zV.css => 2253
+    - http://16.52.46.206/canada.svg => 1368
+    - http://16.52.46.206/index.html => 741
 - Avoid long main-thread tasks => 1 long task found
-    - lists the longest tasks on the main thread. useful for identifying worst contributors to input delay
-        - assets/indexSomeHash.js start time => 1768 duration in ms => 370
-        - assets/indexSomeHash.js start time => 2140 duration in ms => 153
-        - unattributable          start time => 1689 duration in ms => 70
+  - lists the longest tasks on the main thread. useful for identifying worst contributors to input delay
+    - assets/indexSomeHash.js start time => 1768 duration in ms => 370
+    - assets/indexSomeHash.js start time => 2140 duration in ms => 153
+    - unattributable start time => 1689 duration in ms => 70
 - Minimize third-party usage
-    - Third-party code can significantly impact load performance. Limit the number of redundant third-party providers and try to load third-party code after your page has primarily finished loading.
-	    - Main-Thread Blocking Time in ms => 72565
-            - https://cdn.jsdelivr.net/npm/chart.js
+
+  - Third-party code can significantly impact load performance. Limit the number of redundant third-party providers and try to load third-party code after your page has primarily finished loading.
+    - Main-Thread Blocking Time in ms => 72565 - https://cdn.jsdelivr.net/npm/chart.js
 
 - JavaScript execution time => 0.1 s
-    - Consider reducing the time spent parsing, compiling, and executing JS. You may find delivering smaller JS payloads helps with this. 
-    - cpu time - script evaluation - script parse
-    - http://16.52.46.206/assets/index-G9nAvfbF.js	240	117	1
-    - Unattributable	101	1	0
-    - http://16.52.46.206/index.html	54	1	0
-    
+  - Consider reducing the time spent parsing, compiling, and executing JS. You may find delivering smaller JS payloads helps with this.
+  - cpu time - script evaluation - script parse
+  - http://16.52.46.206/assets/index-G9nAvfbF.js 240 117 1
+  - Unattributable 101 1 0
+  - http://16.52.46.206/index.html 54 1 0
 - Minimizes main-thread work => 0.4 s
-    - Consider reducing the time spent parsing, compiling and executing JS. You may find delivering smaller JS payloads helps with this. 
-        - Category - Time Spent (in ms)
-            - Script Evaluation	=> 464 
-            - other => 291
-            - Style & Layout => 85
-            - Rendering	=> 16
-            - Script Parsing & Compilation => 14 
-            - Parse HTML & CSS => 1
+  - Consider reducing the time spent parsing, compiling and executing JS. You may find delivering smaller JS payloads helps with this.
+    - Category - Time Spent (in ms)
+      - Script Evaluation => 464
+      - other => 291
+      - Style & Layout => 85
+      - Rendering => 16
+      - Script Parsing & Compilation => 14
+      - Parse HTML & CSS => 1
 - Avoids an excessive DOM size => 275 elements
-     - a large DOM will increase memory usage, cause longer style calculation and produce costly layout reflows.
+  - a large DOM will increase memory usage, cause longer style calculation and produce costly layout reflows.
 - Image elements do not have explicit width and height
-    - Set an explicit width and height on image elements to reduce layout shifts and improve CLS.
-        - http://16.52.46.206/assets/map-e_IAmjJw.jpg
+  - Set an explicit width and height on image elements to reduce layout shifts and improve CLS.
+    - http://16.52.46.206/assets/map-e_IAmjJw.jpg
 - Serve static assets with an efficient cache policy 1 resource found
-    - A long cache lifetime can speed up repeat visits to your page. 
-        - https://cdn.jsdelivr.net/npm/chart.js	cache ttl => 604,800,000 transfer size => 72220
+  - A long cache lifetime can speed up repeat visits to your page.
+    - https://cdn.jsdelivr.net/npm/chart.js cache ttl => 604,800,000 transfer size => 72220
 
 **Render**
+
 - Largest Contentful Paint element => 2700 ms
 - Avoid chaining critical requests => 2 chains found
 - Avoids enormous network payloads => Total size was 2,645 KiB
 - Avoid long main-thread tasks => 3 long task found
 - Minimize third-party usage => Third-party code blocked the main thread for 0 ms
-    - chart.js transfer size => 72221 blocking time => 0
+  - chart.js transfer size => 72221 blocking time => 0
 - JavaScript execution time => 0.4 s
 - Minimizes main-thread work => 0.8 s
 - Avoids an excessive DOM size => 275 elements
 - Image elements do not have explicit width and height
-    - set an explicit width and height on image element to reduce layout shifts and improve CLS
+  - set an explicit width and height on image element to reduce layout shifts and improve CLS
 - Serve static assets with an efficient cache policy => 1 resource found
 
 ### Accessibility
@@ -200,45 +201,45 @@ Link:
 **AWS**
 
 - Background and foreground colors do not have a sufficient contrast ratio.
-    - Low-contrast text is difficult or impossible for many users to read. 
-    - Failing Elements
-        - form > fieldset > section.input-row > button
-        - Fix any of the following:
-            - Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 13.2pt (17.6px), font weight: normal). Expected contrast ratio of 4.5:1
-        - div.chart-grid > article.chart-container > div.city-info > h4
-        - Fix any of the following:
-            - Element has insufficient color contrast of 4.18 (foreground color: #1e6ffb, background color: #f8f8f8, font size: 12.6pt (16.8px), font weight: bold). Expected contrast ratio of 4.5:1
-    - relatedNode
-        - section.chart-section > div.chart-grid > article.chart-container > div.city-info
-        - div#root > section.scroll-content > footer.footer > a
-        - Fix any of the following:
-            - Element has insufficient color contrast of 3.85 (foreground color: #646cff, background color: #f8f8f8, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1
-    - relatedNode
-        - body > div#root > section.scroll-content > footer.footer
-        - div#root > section.scroll-content > footer.footer > a
-        - Fix any of the following:
-            - Element has insufficient color contrast of 3.85 (foreground color: #646cff, background color: #f8f8f8, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1
-    - relatedNode
-        - body > div#root > section.scroll-content > footer.footer
-        - div#root > section.scroll-content > footer.footer > a
-        - Fix any of the following:
-            - Element has insufficient color contrast of 3.85 (foreground color: #646cff, background color: #f8f8f8, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1
-    - relatedNode
-    - body > div#root > section.scroll-content > footer.footer
-    - div#root > section.scroll-content > footer.footer > em.footer-disclaimer
+  - Low-contrast text is difficult or impossible for many users to read.
+  - Failing Elements
+    - form > fieldset > section.input-row > button
     - Fix any of the following:
-        - Element has insufficient color contrast of 2.68 (foreground color: #999999, background color: #f8f8f8, font size: 10.2pt (13.6px), font weight: normal). Expected contrast ratio of 4.5:1
-    - relatedNode
+      - Element has insufficient color contrast of 3.67 (foreground color: #ffffff, background color: #3b82f6, font size: 13.2pt (17.6px), font weight: normal). Expected contrast ratio of 4.5:1
+    - div.chart-grid > article.chart-container > div.city-info > h4
+    - Fix any of the following:
+      - Element has insufficient color contrast of 4.18 (foreground color: #1e6ffb, background color: #f8f8f8, font size: 12.6pt (16.8px), font weight: bold). Expected contrast ratio of 4.5:1
+  - relatedNode
+    - section.chart-section > div.chart-grid > article.chart-container > div.city-info
+    - div#root > section.scroll-content > footer.footer > a
+    - Fix any of the following:
+      - Element has insufficient color contrast of 3.85 (foreground color: #646cff, background color: #f8f8f8, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1
+  - relatedNode
     - body > div#root > section.scroll-content > footer.footer
+    - div#root > section.scroll-content > footer.footer > a
+    - Fix any of the following:
+      - Element has insufficient color contrast of 3.85 (foreground color: #646cff, background color: #f8f8f8, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1
+  - relatedNode
+    - body > div#root > section.scroll-content > footer.footer
+    - div#root > section.scroll-content > footer.footer > a
+    - Fix any of the following:
+      - Element has insufficient color contrast of 3.85 (foreground color: #646cff, background color: #f8f8f8, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1
+  - relatedNode
+  - body > div#root > section.scroll-content > footer.footer
+  - div#root > section.scroll-content > footer.footer > em.footer-disclaimer
+  - Fix any of the following:
+    - Element has insufficient color contrast of 2.68 (foreground color: #999999, background color: #f8f8f8, font size: 10.2pt (13.6px), font weight: normal). Expected contrast ratio of 4.5:1
+  - relatedNode
+  - body > div#root > section.scroll-content > footer.footer
 - Image elements do not have [alt] attributes
-    - Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. 
-    - Failing Elements
-        - section.scroll-content > section.map-wrapper > section.country-map > imgFix any of the following:
-        - Element does not have an alt attribute
-        - aria-label attribute does not exist or is empty
-        - aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-        - Element has no title attribute
-        - Element's default semantics were not overridden with role="none" or role="presentation"
+  - Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute.
+  - Failing Elements
+    - section.scroll-content > section.map-wrapper > section.country-map > imgFix any of the following:
+    - Element does not have an alt attribute
+    - aria-label attribute does not exist or is empty
+    - aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+    - Element has no title attribute
+    - Element's default semantics were not overridden with role="none" or role="presentation"
 
 **Additional Items to Check Manually**
 
@@ -268,7 +269,7 @@ Link:
 - Background and foreground colors do not have a sufficient contrast ratio.
   - low-contrast text is difficult or impossible for many users to read.
 - Image elements do not have [alt] attributes
-    - infomative elements should aim for short, descriptive alternate text. decoratice elements can be ignored with an empty alt attribute. 
+  - infomative elements should aim for short, descriptive alternate text. decoratice elements can be ignored with an empty alt attribute.
 
 **Additional Items to Check Manually**
 
@@ -299,17 +300,19 @@ Link:
 
 - trust and safety
 - Ensure CSP is effective against XSS attacks
+
   - A strong Content Security Policy (CSP) significantly reduces the risk of cross-site scripting (XSS) attacks.
   - Severity => High
   - No CSP found in enforcement mode
 
 - User Experience
 - Displays images with incorrect aspect ratio
+
   - Image display dimensions should match natural aspect ratio.
   - http://16.52.46.206/assets/white-curve-DKXaIjeq.png 1366 x 136 (10.04) 2940 x 383 (7.68)
   - http://16.52.46.206/assets/blue_waves-C6c1mKYc.png 1366 x 681 (2.01) 1262 x 768 (1.64)
 
-- General 
+- General
 - Missing source maps for large first-party javascript
 
 **Render**
@@ -322,13 +325,14 @@ Link:
 
 - User Experience
 - Displays images with incorrect aspect ratio
+
   - Image display dimensions should match natural aspect ratio.
   - https://five20-project-safari-chiru-dunbar.onrender.com/assets/white-curve-DKXaIjeq.png 1366 x 136 (10.04) 2940 x 383 (7.68)
   - https://five20-project-safari-chiru-dunbar.onrender.com/assets/blue_waves-C6c1mKYc.png 1366 x 681 (2.01) 1262 x 768 (1.64)
 
-- General 
+- General
 - Missing source maps for large first-party java script
-    - source maps translate minified code to the original source code. this helps developers debug in production. in addition, lighthouse is able to provide furthure insights. consider deploying source maps to take advantage of these benefits.
+  - source maps translate minified code to the original source code. this helps developers debug in production. in addition, lighthouse is able to provide furthure insights. consider deploying source maps to take advantage of these benefits.
 
 ### SEO
 
@@ -426,9 +430,6 @@ Link:
 - Each page has a URL
   - Ensure individual pages are deep linkable via URL and that URLs are unique for the purpose of shareability on social media.
 
-
-
-
 ### screenshots
 
 - Opportunity
@@ -438,7 +439,7 @@ Link:
 <img src="assets/renderOpps2.png" alt="Opportunity 0" width="800" />
 
 - Diagnostics
-**AWS**
+  **AWS**
 
 <img src="assets/diag0.png" alt="diagnostic 0" width="800" />
 <img src="assets/diag1.png" alt="diagnostic 1" width="800" />
@@ -470,8 +471,8 @@ Link:
 <img src="assets/renderAccess1.png" alt="accessibility 1" width="800" />
 <img src="assets/renderAccess2.png" alt="accessibility 2" width="800" />
 
-- best practice 
-**AWS**
+- best practice
+  **AWS**
 
 <img src="assets/best0.png" alt="best practice" width="800" />
 
@@ -489,8 +490,7 @@ Link:
 
 <img src="assets/renderSeo0.png" alt="Seo 0" width="800" />
 
-
-- PWA 
+- PWA
 
 **AWS**
 

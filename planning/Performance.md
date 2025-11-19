@@ -9,18 +9,18 @@
 
 - For testing, we used Chrome’s Lighthouse reports and Catchpoint’s WebPageTest tool. Both were run on desktop (Chrome, Toronto location, Cable 5/1 Mbps, 28 ms RTT). We looked mainly at metrics like First Contentful Paint (FCP), Largest Contentful Paint (LCP), Total Blocking Time (TBT), and Speed Index. These tests help us compare results from the end of Phase 2 to now and see how much the site improved even before doing focused optimizations.
 
-- [**Conext before we start**](Backup.md#context) 
+- [**Conext before we start**](Backup.md#context)
 
 - **tools we will use to test performance**
-    - Browser lighthouse report
-    - https://www.webpagetest.org
-    - Chrome browser
-    - https://ioapp.catchpoint.com/auth/WptAccount/Login
-    - Device => desktop - Chrome
-    - location => Toronto, Canada
-    - connection => Cable(5/1 Mbps 28ms RTT)
-    - Number of runs => (1-3)
-    - Tests performed both ( site performance, lighthouse)
+  - Browser lighthouse report
+  - https://www.webpagetest.org
+  - Chrome browser
+  - https://ioapp.catchpoint.com/auth/WptAccount/Login
+  - Device => desktop - Chrome
+  - location => Toronto, Canada
+  - connection => Cable(5/1 Mbps 28ms RTT)
+  - Number of runs => (1-3)
+  - Tests performed both ( site performance, lighthouse)
 
 ## Baseline Performance
 
@@ -36,19 +36,31 @@
 **The follwing is the links will bring you to another page where we have added complet details about our website tests**
 
 - [Go to Opportunites](Backup.md#opportunities)
+
 ---
+
 - [Go to diagnostics](Backup.md#diagnostics)
---- 
+
+---
+
 - [Go to accesibility](Backup.md#accessibility)
+
 ---
+
 - [Go to Best practice](Backup.md#best-practices)
+
 ---
+
 - [Go to SEO](Backup.md#seo)
+
 ---
+
 - [Go to PWA](Backup.md#pwa)
+
 ---
 
 ### V1.0.1
+
 #### Summary of Changes
 
 #### Caching Enhancements
@@ -66,13 +78,13 @@
 - This change resulted in great optimization and gave the following change in results
 
 - Lead: Talon
-- Link: 
-    - [serverside optimization](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs)
+- Link:
 
-    - [pre/post memory cache ](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897619430)
+  - [serverside optimization](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs)
 
-    - [AWS latency improvement summary ](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897637516)
+  - [pre/post memory cache ](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897619430)
 
+  - [AWS latency improvement summary ](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897637516)
 
 | City      | Avg Pre | Avg Post | Improvement |
 | --------- | ------- | -------- | ----------- |
@@ -122,9 +134,11 @@
   - http://16.52.46.206/index.html
     - before => 741
     - now => 730
---- 
+
+---
 
 ### V1.0.2
+
 ## Summary of Changes
 
 ## Conclusion
