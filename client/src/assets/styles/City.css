@@ -71,6 +71,31 @@
 	top: 25vh;
 }
 
+@media (max-width: 800px) {
+
+	/* change layout to colum */
+	.text-chart-group{
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		align-items: center;
+	}
+
+	/* change layout to column and have texts appear before chart */
+	.text-chart-group__left{
+		display: flex;
+		flex-direction: column-reverse;
+		gap: 2rem;
+		align-items: center;
+	}
+
+	/* remove position sticky */
+	.text-chart-group__chart{
+		position: relative;
+		top: 0;
+	}
+}
+
 @media (max-width: 450px) {
 	.chart-wrapper>*{
 		max-width: 95vw;
