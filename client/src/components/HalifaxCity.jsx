@@ -14,7 +14,7 @@ function HalifaxCity({cityInView, reference}){
       if (cityData.immigration.length > 0) return;
       if (cityData.languages.length > 0) return;
       Promise.all([
-        fetch(`/api/immigration/halifax`),
+        fetch(`/api/immigration/halifax/period/1980`),
         fetch(`/api/languages/halifax`),
       ]).
         then(([immigrationResponse, languageResponse]) => {
@@ -40,39 +40,57 @@ function HalifaxCity({cityInView, reference}){
       <p className="transition">Our journey starts in Halifax, the capital of Nova Scotia.</p>
       
       <section className="halifax-section city-section" ref={reference}>
-        <p>
-        For centuries, Halifax&apos;s story was all about the British
-        Empire and the sea. As a major port and military hub, its
-        earliest and largest immigrant groups were British and Irish.
-        </p>
-        <p>
-        These settlers came as early as the 1700s, often as fishermen,
-        sailors, and labourers. The Irish, for example, had a strong
-        community here long before the devastating Potato Famine pushed
-        masses to North America.
-        </p>
-        <p>
-        This deep British heritage laid the linguistic foundation. Today,
-        while English is overwhelmingly the dominant language spoken by
-        420,230 people, Halifax is entering a new era, welcoming a fresh
-        wave of global immigrants.
-        </p>
-        <p>
-        Among the non-official languages, Arabic is the most widely
-        spoken, with 4,475 speakers, significantly outpacing the next
-        largest groups, Punjabi (2,470 speakers) and Korean (1,600
-        speakers).
-        </p>
-        <p>
-        The fact that Arabic, along with Tagalog (1,315 speakers) and
-        Hindi (1,040 speakers) combined are more prevalent than French
-        (3,470 speakers) highlights the recent diversification of
-        immigration in this East Coast, drawing communities primarily
-        from the Middle East, South Asia, and East Asia.
-        </p>
+        <section className="text-chart-group">
+          <section className="text-chart-group__texts">
+            <p>
+            For centuries, Halifax&apos;s story was all about the British
+            Empire and the sea. As a major port and military hub, its
+            earliest and largest immigrant groups were British and Irish.
+            </p>
+            <p>
+            These settlers came as early as the 1700s, often as fishermen,
+            sailors, and labourers. The Irish, for example, had a strong
+            community here long before the devastating Potato Famine pushed
+            masses to North America.
+            </p>
+          </section>
 
-        <Chart data={immigrationChartData} title="halifax" />
-        <Chart data={languagesChartData} title="halifax" />
+          <Chart 
+            data={immigrationChartData}
+            title="Immigration patterns before 1980"
+            classes="text-chart-group__chart"
+          />
+        </section>
+
+        <section className="text-chart-group">
+          <section className="text-chart-group__texts">
+            <p>
+            This deep British heritage laid the linguistic foundation. Today,
+            while English is overwhelmingly the dominant language spoken by
+            420,230 people, Halifax is entering a new era, welcoming a fresh
+            wave of global immigrants.
+            </p>
+            <p>
+            Among the non-official languages, Arabic is the most widely
+            spoken, with 4,475 speakers, significantly outpacing the next
+            largest groups, Punjabi (2,470 speakers) and Korean (1,600
+            speakers).
+            </p>
+            <p>
+            The fact that Arabic, along with Tagalog (1,315 speakers) and
+            Hindi (1,040 speakers) combined are more prevalent than French
+            (3,470 speakers) highlights the recent diversification of
+            immigration in this East Coast, drawing communities primarily
+            from the Middle East, South Asia, and East Asia.
+            </p>
+          </section>
+          <Chart
+            data={languagesChartData}
+            title="Top 10 languages spoken (excluding English)"
+            classes="text-chart-group__chart"
+          />
+        </section>
+
       </section>
 
       <div className="city-divider"></div>
@@ -94,6 +112,8 @@ function convertImmigrationDataObjectToArray(cityDataObj){
     value: value
   }));
 
+  immigrationChartData.length = 10;
+
   return immigrationChartData;
 }
 
@@ -109,7 +129,8 @@ function simplifyLanguageArray(cityDataObj){
       };
     });
   }
-
+  languagesData.shift();
+  languagesData.length = 10;
   return languagesData;
 }
 
