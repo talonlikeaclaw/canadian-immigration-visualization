@@ -216,12 +216,17 @@ width and height of viewport as reported in the console with `window.screen`) --
 
 ## Summary of Changes
 
-- Caching Enhancements - Added immigrationCache and languageCache directly into their routers. - Implemented browser caching rules for client/dist: - index.html => no-cache - Hashed files => max-age=31536000, immutable 
-- Improved overall client-side and localhost load performance.
+- Caching Enhancements
+  - Added immigrationCache and languageCache directly into their routers.
+  - Implemented browser caching rules for client/dist:
+  - index.html => no-cache - Hashed files => max-age=31536000, immutable
+  - Improved overall client-side and localhost load performance.
 - Server Optimization
-- Installed and configured compression middleware to reduce payload size and speed up responses.
+
+  - Installed and configured compression middleware to reduce payload size and speed up responses.
 
 - This change resulted in great optimization and gave the following change in results
+
   - **AWS Latency Improvement Summary**
 
 | City      | Avg Pre | Avg Post | Improvement |
