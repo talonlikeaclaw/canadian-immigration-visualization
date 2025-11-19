@@ -1,6 +1,68 @@
+### Context
 
+- this part is just at the end of phase 2 and the start of third ! and we noticed that the lighthouse performance numbers have jumped from 40-50% to 76%s, even though the goal was not improving performance. Melania and Talon were working on some bugs/chnages that they were thinking from phase 2 and that ended up improving the overall performance as well. so I will just do a comparaison of the changes before we start to work on actual optimizations and improving of our website. note when I say "now" it means when we start phase 3 and not the final results now!
 
+## Summary of Changes
 
+- First contentful paint
+  - end of phase 2 => 37.2 s
+  - now => 1.5 s
+- Largest contentful paint
+  - end of phase 2 => 73.4 s
+  - now => 2.6 s
+- Total blocking time
+  - end of phase 2 => 5080 ms
+  - now => 160 ms
+- Speed index
+  - end of phase 2 => 37.2 s
+  - now => 1.5 s
+
+---
+
+### End of phase 2 diagnostics:
+
+- Minimize main-thread work 10.0 s
+- Reduce JavaScript execution time 6.2 s
+- Minify JavaScript Est savings of 6,456 KiB
+- Reduce unused JavaScript Est savings of 9,569 KiB
+- Avoid serving legacy JavaScript to modern browsers Est savings of 31 KiB
+- Page prevented back/forward cache restoration 1 failure reason
+- Reduce unused CSS Est savings of 13 KiB
+- Avoid enormous network payloads Total size was 14,083 KiB
+- Avoid long main-thread tasks 13 long tasks found
+  User Timing marks and measures 10 user timings
+
+---
+
+### insights:
+
+- Forced reflow
+- LCP request discovery
+- Network dependency tree
+- Use efficient cache lifetimes Est savings of 7 KiB
+- Improve image delivery Est savings of 25 KiB
+- LCP breakdown
+- 3rd parties
+
+### Diagnostics now !
+
+- Serve images in next-gen formats Est savings of 1,073 KiB
+- Largest Contentful Paint element 2,630 ms
+- Reduce unused JavaScript Est savings of 1,132 KiB
+- Use HTTP/2 7 requests not served via HTTP/2
+- Properly size images Est savings of 474 KiB
+- Preload Largest Contentful Paint image Est savings of 120 ms
+- Image elements do not have explicit width and height
+- Serve static assets with an efficient cache policy 1 resource found
+- Avoid serving legacy JavaScript to modern browsers Est savings of 9 KiB
+- Reduce unused CSS Est savings of 13 KiB
+- Avoid enormous network payloads Total size was 2,711 KiB
+- Avoid long main-thread tasks 2 long tasks found
+- Avoid chaining critical requests 2 chains found
+- Minimize third-party usage Third-party code blocked the main thread for 0 ms
+
+Lead: Talon, Melania
+Link:
 
 
 ### V1.0.0
@@ -42,63 +104,94 @@
 
 **Render**
 
-- Reduce unused JavaScript => Estimated savings 0.1s
-- Initial server response time was short => Root document took 90 ms
-- Preload Largest Contentful Paint image
+- Preload Largest Contentful Paint image  potential saving in ms => 210
+    - if the LCP element is dynamically added to the page, you should preload the image in order to improve LCP
+        - assets.white-curve.png
+- Initial server response time was short => Root document took 95 ms
+- Reduce unused CSS => Estimated savings 0.1s
+    - .maplibregl-map{font:12....}  size => 13,107  potential saving in bytes => 13,107
+- Reduce unused JavaScript
+    - reduce unused javascript and defer loading scripts until they are required to decrease bytesconsumed by network.
+    - assets/index-someHash.js => 1,471,009 potential saving bytes => 1,047,672
+    - npm/chart.js => 71,767  potential saving in bytes => 64,039 
+- Avoid serving legacy JavaScript to modern browsers
 - Properly size images => Potential savings of 88 KiB
+    - serve images that are appropriately-sized to save cellular data and improve load time
+        - assets/white-curve.png size=> 56,821 => potential savingg in bytes => 47,446
+        - assets/blue-waves.png size => 1,072,650 potential saving in bytes => 43,129
 - Serve images in next-gen formats
+    - image formats like Webp and AVIF often provide better compression than PNG or JPEG, which means faster download and less data consumption.
+        - assets/bluewave-someHash.png size => 1,072,650 potential saving in bytes => 1,052,209 
+        - assets/white-curve-someHash.png size => 56,821 potential saving in bytes => 46,273
 
 ### Diagnostics
 
 **AWS**
 
 - Avoid chaining critical requests => 2 chains found
-- Largest Contentful Paint element => 1,120 ms
-- Avoids enormous network payloads => Total size was 1,329 KiB
-  - http://16.52.46.206/assets/blue_waves-C6c1mKYc.png
-    - before => 1072982
-    - now => 1072992
-  - http://16.52.46.206/assets/index-G9nAvfbF.js
-    - before => 1538536
-    - now => 123863
-  - https://cdn.jsdelivr.net/npm/chart.js
-    - before => 72565
-    - now => 72220
-  - http://16.52.46.206/assets/white-curve-DKXaIjeq.png
-    - before => 57149
-    - now => 57159
-  - http://16.52.46.206/assets/map-e_IAmjJw.jpg
-    - before => 30569
-    - now => 30579
-  - http://16.52.46.206/assets/index-CB-ig7zV.css
-    - before => 2253
-    - now => 2277
-  - http://16.52.46.206/canada.svg
-    - before => 1368
-    - now => 1054
-  - http://16.52.46.206/index.html
-    - before => 741
-    - now => 730
+    - The Critical Request Chains below show you what resources are loaded with a high priority. Consider reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load.
+        - http://16.52.46.206/index.html => 0.0kb
+        - https://16.52.46.206/index.html => 0.0kb
+        - http://16.52.46.206/index.html => 0.7kb
+        - http://16.52.46.206/assets/index-CB-ig7zV.css => 2.2kb
+        - http://16.52.46.206/assets/index-G9nAvfbF.js => 1502.5kb
+ - Avoids enormous network payloads => Total size was 2,711 KiB
+    - largest network payload cost users real money and are highly corelated with long load times. 
+        - http://16.52.46.206/assets/blue_waves-C6c1mKYc.png => 1,072,982
+        - http://16.52.46.206/assets/index-G9nAvfbF.js => 1,538,536
+        - https://cdn.jsdelivr.net/npm/chart.js => 72565
+        - http://16.52.46.206/assets/white-curve-DKXaIjeq.png => 57149
+        - http://16.52.46.206/assets/map-e_IAmjJw.jpg => 30569
+        - http://16.52.46.206/assets/index-CB-ig7zV.css => 2253
+        - http://16.52.46.206/canada.svg => 1368
+        - http://16.52.46.206/index.html => 741
 - Avoid long main-thread tasks => 1 long task found
+    - lists the longest tasks on the main thread. useful for identifying worst contributors to input delay
+        - assets/indexSomeHash.js start time => 1768 duration in ms => 370
+        - assets/indexSomeHash.js start time => 2140 duration in ms => 153
+        - unattributable          start time => 1689 duration in ms => 70
 - Minimize third-party usage
-- Third-party code blocked the main thread for 0 ms
+    - Third-party code can significantly impact load performance. Limit the number of redundant third-party providers and try to load third-party code after your page has primarily finished loading.
+	    - Main-Thread Blocking Time in ms => 72565
+            - https://cdn.jsdelivr.net/npm/chart.js
+
 - JavaScript execution time => 0.1 s
+    - Consider reducing the time spent parsing, compiling, and executing JS. You may find delivering smaller JS payloads helps with this. 
+    - cpu time - script evaluation - script parse
+    - http://16.52.46.206/assets/index-G9nAvfbF.js	240	117	1
+    - Unattributable	101	1	0
+    - http://16.52.46.206/index.html	54	1	0
+    
 - Minimizes main-thread work => 0.4 s
-- Avoids an excessive DOM size => 154 elements
+    - Consider reducing the time spent parsing, compiling and executing JS. You may find delivering smaller JS payloads helps with this. 
+        - Category - Time Spent (in ms)
+            - Script Evaluation	=> 464 
+            - other => 291
+            - Style & Layout => 85
+            - Rendering	=> 16
+            - Script Parsing & Compilation => 14 
+            - Parse HTML & CSS => 1
+- Avoids an excessive DOM size => 275 elements
+     - a large DOM will increase memory usage, cause longer style calculation and produce costly layout reflows.
 - Image elements do not have explicit width and height
-- Serve static assets with an efficient cache policy => 1 resource found
+    - Set an explicit width and height on image elements to reduce layout shifts and improve CLS.
+        - http://16.52.46.206/assets/map-e_IAmjJw.jpg
+- Serve static assets with an efficient cache policy 1 resource found
+    - A long cache lifetime can speed up repeat visits to your page. 
+        - https://cdn.jsdelivr.net/npm/chart.js	cache ttl => 604,800,000 transfer size => 72220
 
 **Render**
-
+- Largest Contentful Paint element => 2700 ms
 - Avoid chaining critical requests => 2 chains found
-- Largest Contentful Paint element => 1,090 ms
-- Avoids enormous network payloads => Total size was 1,330 KiB
-- Avoid long main-thread tasks => 1 long task found
+- Avoids enormous network payloads => Total size was 2,645 KiB
+- Avoid long main-thread tasks => 3 long task found
 - Minimize third-party usage => Third-party code blocked the main thread for 0 ms
-- JavaScript execution time => 0.1 s
-- Minimizes main-thread work => 0.6 s
-- Avoids an excessive DOM size => 154 elements
+    - chart.js transfer size => 72221 blocking time => 0
+- JavaScript execution time => 0.4 s
+- Minimizes main-thread work => 0.8 s
+- Avoids an excessive DOM size => 275 elements
 - Image elements do not have explicit width and height
+    - set an explicit width and height on image element to reduce layout shifts and improve CLS
 - Serve static assets with an efficient cache policy => 1 resource found
 
 ### Accessibility
@@ -287,3 +380,45 @@
   - Transitions should feel snappy as you tap around, even on a slow network. This experience is key to a user's perception of performance.
 - Each page has a URL
   - Ensure individual pages are deep linkable via URL and that URLs are unique for the purpose of shareability on social media.
+
+
+### screenshot dump
+
+- Opportunity
+
+<img src="assets/renderOpps0.png" alt="Opportunity 0" width="800" />
+<img src="assets/renderOpps1.png" alt="Opportunity 0" width="800" /> 
+<img src="assets/renderOpps2.png" alt="Opportunity 0" width="800" />
+
+- Diagnostics
+**AWS**
+
+<img src="assets/diag0.png" alt="diagnostic 0" width="800" />
+<img src="assets/diag1.png" alt="diagnostic 1" width="800" />
+<img src="assets/diag2.png" alt="diagnostic 2" width="800" />
+<img src="assets/diag3.png" alt="diagnostic 3" width="800" />
+<img src="assets/diag4.png" alt="diagnostic 4" width="800" />
+<img src="assets/diag5.png" alt="diagnostic 5" width="800" />
+
+**Render**
+
+<img src="assets/renderDiag0.png" alt="diagnostic 0" width="800" />
+<img src="assets/renderDiag1.png" alt="diagnostic 1" width="800" />
+<img src="assets/renderDiag2.png" alt="diagnostic 2" width="800" />
+<img src="assets/renderDiag3.png" alt="diagnostic 3" width="800" />
+
+---
+
+- Accessibility
+
+**AWS**
+
+<img src="assets/access0.png" alt="accessibility 0" width="800" />
+<img src="assets/access1.png" alt="accessibility 1" width="800" />
+<img src="assets/access2.png" alt="accessibility 2" width="800" />
+
+**Render**
+
+<img src="assets/renderAccess0.png" alt="accessibility 0" width="800" />
+<img src="assets/renderAccess1.png" alt="accessibility 1" width="800" />
+<img src="assets/renderAccess2.png" alt="accessibility 2" width="800" />

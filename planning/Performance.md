@@ -14,74 +14,7 @@
 <!-- Summarize initial results for each tool that you used. Did the tools
 detect all the performance issues you see as a user? -->
 
-- this part is just at the end of phase 2 and the start of third ! and we noticed that the lighthouse performance numbers have jumped from 40-50% to 76%s, even though the goal was not improving performance. Melania and Talon were working on some bugs/chnages that they were thinking from phase 2 and that ended up improving the overall performance as well. so I will just do a comparaison of the changes before we start to work on actual optimizations and improving of our website. note when I say "now" it means when we start phase 3 and not the final results now!
-
-## Summary of Changes
-
-<!-- Briefly describe each change and the impact it had on performance (be specific). If there
-was no performance improvement, explain why that might be the case -->
-
-- First contentful paint
-  - end of phase 2 => 37.2 s
-  - now => 1.5 s
-- Largest contentful paint
-  - end of phase 2 => 73.4 s
-  - now => 2.6 s
-- Total blocking time
-  - end of phase 2 => 5080 ms
-  - now => 160 ms
-- Speed index
-  - end of phase 2 => 37.2 s
-  - now => 1.5 s
-
----
-
-### End of phase 2 diagnostics:
-
-- Minimize main-thread work 10.0 s
-- Reduce JavaScript execution time 6.2 s
-- Minify JavaScript Est savings of 6,456 KiB
-- Reduce unused JavaScript Est savings of 9,569 KiB
-- Avoid serving legacy JavaScript to modern browsers Est savings of 31 KiB
-- Page prevented back/forward cache restoration 1 failure reason
-- Reduce unused CSS Est savings of 13 KiB
-- Avoid enormous network payloads Total size was 14,083 KiB
-- Avoid long main-thread tasks 13 long tasks found
-  User Timing marks and measures 10 user timings
-
----
-
-### insights:
-
-- Forced reflow
-- LCP request discovery
-- Network dependency tree
-- Use efficient cache lifetimes Est savings of 7 KiB
-- Improve image delivery Est savings of 25 KiB
-- LCP breakdown
-- 3rd parties
-
-### Diagnostics now !
-
-- Serve images in next-gen formats Est savings of 1,073 KiB
-- Largest Contentful Paint element 2,630 ms
-- Reduce unused JavaScript Est savings of 1,132 KiB
-- Use HTTP/2 7 requests not served via HTTP/2
-- Properly size images Est savings of 474 KiB
-- Preload Largest Contentful Paint image Est savings of 120 ms
-- Image elements do not have explicit width and height
-- Serve static assets with an efficient cache policy 1 resource found
-- Avoid serving legacy JavaScript to modern browsers Est savings of 9 KiB
-- Reduce unused CSS Est savings of 13 KiB
-- Avoid enormous network payloads Total size was 2,711 KiB
-- Avoid long main-thread tasks 2 long tasks found
-- Avoid chaining critical requests 2 chains found
-- Minimize third-party usage Third-party code blocked the main thread for 0 ms
-
-### <!-- Change 1 -->
-
-Lead: Talon, Melania
-Link: <!-- gitlab url to specific lines of code -->
+[before we start](Backup.md#context) 
 
 ### Tests
 
@@ -121,58 +54,17 @@ width and height of viewport as reported in the console with `window.screen`) --
 ### Opportunities
 
 - opportunities is basically the testing websites suggestions to improve the website
-
-- **AWS**
-
-<img src="assets/opps0.png" alt="Opportunity 0" width="800" />
-<img src="assets/opps1.png" alt="Opportunity 1" width="800" />
-<img src="assets/opps2.png" alt="Opportunity 2" width="800" />
-<img src="assets/opps3.png" alt="Opportunity 3" width="800" />
-<img src="assets/opps4.png" alt="Opportunity 4" width="800" />
-
-- **Render**
-
-<img src="assets/renderOpps0.png" alt="Opportunity 0" width="800" />
-<img src="assets/renderOpps1.png" alt="Opportunity 0" width="800" /> 
-<img src="assets/renderOpps2.png" alt="Opportunity 0" width="800" />
+- [Go to Opportunites](Backup.md#opportunities)
 
 ---
 
-### Diagnostics
+### Diagnostics 
+- [Go to diagnostics](Backup.md#diagnostics)
 
-**AWS**
-
-<img src="assets/diag0.png" alt="diagnostic 0" width="800" />
-<img src="assets/diag1.png" alt="diagnostic 1" width="800" />
-<img src="assets/diag2.png" alt="diagnostic 2" width="800" />
-<img src="assets/diag3.png" alt="diagnostic 3" width="800" />
-<img src="assets/diag4.png" alt="diagnostic 4" width="800" />
-<img src="assets/diag5.png" alt="diagnostic 5" width="800" />
-
-**Render**
-
-<img src="assets/renderDiag0.png" alt="diagnostic 0" width="800" />
-<img src="assets/renderDiag1.png" alt="diagnostic 1" width="800" />
-<img src="assets/renderDiag2.png" alt="diagnostic 2" width="800" />
-<img src="assets/renderDiag3.png" alt="diagnostic 3" width="800" />
-
----
+--- 
 
 ### Accessibility
-
-**AWS**
-
-<img src="assets/access0.png" alt="accessibility 0" width="800" />
-<img src="assets/access1.png" alt="accessibility 1" width="800" />
-<img src="assets/access2.png" alt="accessibility 2" width="800" />
-
-**Render**
-
-<img src="assets/renderAccess0.png" alt="accessibility 0" width="800" />
-<img src="assets/renderAccess1.png" alt="accessibility 1" width="800" />
-<img src="assets/renderAccess2.png" alt="accessibility 2" width="800" />
-
-</div>
+- [Go to accesibility](Backup.md#diagnostics)
 
 ---
 
