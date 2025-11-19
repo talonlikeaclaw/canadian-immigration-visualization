@@ -46,50 +46,76 @@ function MontrealCity({cityInView, reference}){
       </p>
       
       <section className="montreal-section city-section" ref={reference}>
-        <p>
-              To protect its unique French identity, Quebec took control of
-              immigration. A key moment was Bill 101 (the Charter of the French
-              Language) in 1977, which made French the official language and
-              the required language for immigrant childrens schooling.
-        </p>
-        <p>
-              This control was cemented with the 1991 Canada-Quebec Accord.
-              This agreement gave the province almost total power to select its
-              own economic immigrants and manage their French integration (
-              francization ). The clear goal: to attract Francophones from
-              across the globe.
-        </p>
-    
-        <p>
+
+        <section className="text-chart-group__left">
+          <Chart
+            data={immigrationChartData} 
+            title="Immigration patterns from 1980 to 1990"
+            classes="text-chart-group__chart"
+          />
+          <section className="text-chart-group__texts">
+            <p>
+                  To protect its unique French identity, Quebec took control of
+                  immigration. A key moment was Bill 101 (the Charter of the French
+                  Language) in 1977, which made French the official language and
+                  the required language for immigrant childrens schooling.
+            </p>
+            <p>
+                  This control was cemented with the 1991 Canada-Quebec Accord.
+                  This agreement gave the province almost total power to select its
+                  own economic immigrants and manage their French integration (
+                  francization ). The clear goal: to attract Francophones from
+                  across the globe.
+            </p>
+            <p>
               This strategy worked and created an incredibly diverse mix.
-              Between 2016 and 2021, over 161,700 new immigrants arrived.
-        </p>
-    
-        <p>
-              The top countries of origin show a clear global Francophone
-              attraction: France (15,295), Algeria (12,840), and Syria (11,595)
-              led the way.
-        </p>
-    
-        <p>
-              This blend makes Montréal the only major Canadian city where
-              French is the majority language, spoken by over 2.7 million
-              people, while English also maintains a major presence with
-              693,340 speakers. The city&apos;s truly cosmopolitan nature is
-              further reflected in its leading non-official languages, where
-              Spanish (90,235 speakers) and Arabic (89,800 speakers) indicate
-              strong links to Latin America, the Middle East, and North Africa.
-        </p>
-    
-        <p>
-              However, European languages also have a deep historical
-              footprint, with large communities of Italian (25,805 speakers),
-              Russian (21,015 speakers), and Romanian (20,590 speakers)
-              speakers.
-        </p>
-    
-        <Chart data={immigrationChartData} title="montreal" />
-        <Chart data={languagesChartData} title="montreal" />
+              Between 1980 and 1990, over 161,000 new immigrants arrived.
+            </p>
+          </section>
+        </section>
+  
+        <section className="text-chart-group">
+          <section className="text-chart-group__texts">
+            <p>
+                  The top countries of origin show a clear global Francophone
+                  attraction: France (15,295), Algeria (12,840), and Syria (11,595)
+                  led the way.
+            </p>
+          </section>
+          <Chart
+            data={immigrationChartData} 
+            title="The Leading 20 Origin Countries of Immigrants (1980 - 2021)"
+            classes="text-chart-group__chart"
+          />
+        </section>
+
+        <section className="text-chart-group__left">
+      
+          <Chart
+            data={languagesChartData} 
+            title="Top 15 spoken languages"
+            classes="text-chart-group__chart"
+          />
+
+          <section className="text-chart-group__texts">
+            <p>
+                  This blend makes Montréal the only major Canadian city where
+                  French is the majority language, spoken by over 2.7 million
+                  people, while English also maintains a major presence with
+                  693,340 speakers. The city&apos;s truly cosmopolitan nature is
+                  further reflected in its leading non-official languages, where
+                  Spanish (90,235 speakers) and Arabic (89,800 speakers) indicate
+                  strong links to Latin America, the Middle East, and North Africa.
+            </p>
+        
+            <p>
+                  However, European languages also have a deep historical
+                  footprint, with large communities of Italian (25,805 speakers),
+                  Russian (21,015 speakers), and Romanian (20,590 speakers)
+                  speakers.
+            </p>
+          </section>
+        </section>
 
       </section>
 
