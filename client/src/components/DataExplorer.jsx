@@ -5,21 +5,25 @@ import SelectField from './SelectField';
 import '../assets/styles/DataExplorer.css';
 
 export default function DataExplorer() {
-  // Form state
-  const [selectedCity, setSelectedCity] = useState('Montréal');
-  const [comparisonCity, setComparisonCity] = useState('');
-  const [dataType, setDataType] = useState('immigration');
-  const [period, setPeriod] = useState('All time');
-  const [langToggle, setLangToggle] = useState('Include');
-  const [resultLimit, setResultLimit] = useState(10);
+  // Form state (user is editing)
+  const [formState, setFormState] = useState({
+    city: 'Montréal',
+    comparisonCity: '',
+    dataType: 'immigration',
+    period: 'All time',
+    languageToggle: 'Include',
+    resultLimit: 10
+  });
 
-  // Active/committed state
-  const [activeCity, setActiveCity] = useState('');
-  const [activeComparisonCity, setActiveComparisonCity] = useState('');
-  const [activeDataType, setActiveDataType] = useState('immigration');
-  const [activePeriod, setActivePeriod] = useState('All time');
-  const [activeLangToggle, setActiveLangToggle] = useState('Include');
-  const [activeResultLimit, setActiveResultLimit] = useState(10);
+  // Active state (what is displayed)
+  const [activeState, setActiveState] = useState({
+    city: '',
+    comparisonCity: '',
+    dataType: 'immigration',
+    period: 'All time',
+    languageToggle: 'Include',
+    resultLimit: 10
+  });
 
   // Data state
   const [data, setData] = useState(null);
@@ -32,27 +36,31 @@ export default function DataExplorer() {
 
   const primaryData = useMemo(
     () =>
-      data && activeCity ? data.filter(d => d.city === activeCity) : [],
-    [data, activeCity]
+      data && activeState.city
+        ? data.filter(d => d.city === activeState.city)
+        : [],
+    [data, activeState.city]
   );
 
   const comparisonData = useMemo(
     () =>
-      data && activeComparisonCity
-        ? data.filter(d => d.city === activeComparisonCity)
+      data && activeState.comparisonCity
+        ? data.filter(d => d.city === activeState.comparisonCity)
         : [],
-    [data, activeComparisonCity]
+    [data, activeState.comparisonCity]
   );
 
   const getChartTitle = () => {
-    const cities = activeComparisonCity
-      ? `${activeCity} vs ${activeComparisonCity}`
-      : activeCity;
+    const cities = activeState.comparisonCity
+      ? `${activeState.city} vs ${activeState.comparisonCity}`
+      : activeState.city;
     const dataset =
-      activeDataType.charAt(0).toUpperCase() + activeDataType.slice(1);
+      activeState.dataType.charAt(0).toUpperCase() +
+      activeState.dataType.slice(1);
     const period =
-      activeDataType === 'immigration' && activePeriod !== 'All time'
-        ? ` (${activePeriod})`
+      activeState.dataType === 'immigration' &&
+      activeState.period !== 'All time'
+        ? ` (${activeState.period})`
         : '';
 
     return `${cities} - ${dataset} Data${period}`;
@@ -77,7 +85,7 @@ export default function DataExplorer() {
     }
 
     return baseUrl;
-  };
+  }
 
   /**
    * Fetches and normalizes dataset information for a given city.
@@ -127,6 +135,15 @@ export default function DataExplorer() {
     }
   }
 
+  // Helper to check if request is same as previous
+  const isSameRequest = () =>
+    JSON.stringify(formState) === JSON.stringify(activeState);
+
+  // Updates the controlled form fields
+  const updateForm = (field, value) => {
+    setFormState(prev => ({ ...prev, [field]: value }));
+  };
+
   /**
    * Handles form submission: fetches city info and dataset
    * based on current selections (city, dataset type, and period).
@@ -135,22 +152,13 @@ export default function DataExplorer() {
     e.preventDefault();
 
     // Ensure city is selected
-    if (!selectedCity) {
+    if (!formState.city) {
       setError('Please select at least one city.');
       return;
     }
 
     // Prevent refetching if same request
-    const isSameRequest =
-      selectedCity === activeCity &&
-      comparisonCity === activeComparisonCity &&
-      dataType === activeDataType &&
-      (dataType === 'immigration'
-        ? period === activePeriod
-        : langToggle === activeLangToggle) &&
-      resultLimit === activeResultLimit;
-
-    if (isSameRequest) {
+    if (isSameRequest()) {
       return;
     }
 
@@ -162,46 +170,50 @@ export default function DataExplorer() {
     setData(null);
 
     // Commit form selections
-    setActiveCity(selectedCity);
-    setActiveComparisonCity(comparisonCity || '');
-    setActiveDataType(dataType);
-    setActivePeriod(period);
-    setActiveLangToggle(langToggle);
-    setActiveResultLimit(resultLimit);
+    setActiveState(formState);
 
     try {
       const promises = [
-        fetch(`/api/city/${encodeURIComponent(selectedCity)}`).then(r => r.json()),
+        fetch(`/api/city/${encodeURIComponent(formState.city)}`).then(r =>
+          r.json()
+        ),
         fetchDataset(
-          selectedCity,
-          dataType,
-          period,
-          langToggle
+          formState.city,
+          formState.dataType,
+          formState.period,
+          formState.languageToggle
         )
       ];
 
       // Optionally fetch comparison city info
-      if (comparisonCity) {
+      if (formState.comparisonCity) {
         promises.push(
-          fetch(`/api/city/${encodeURIComponent(comparisonCity)}`).then(r => r.json()),
+          fetch(
+            `/api/city/${encodeURIComponent(formState.comparisonCity)}`
+          ).then(r => r.json()),
           fetchDataset(
-            comparisonCity,
-            dataType,
-            period,
-            langToggle
+            formState.comparisonCity,
+            formState.dataType,
+            formState.period,
+            formState.languageToggle
           )
         );
       }
 
       const results = await Promise.all(promises);
-      const [cityJson, primaryData, comparisonJson, comparisonData = []] = results;
+      const [cityJson, primaryData, comparisonJson, comparisonData = []] =
+        results;
 
       setCityInfo(cityJson);
       setComparisonCityInfo(comparisonJson || null);
 
       const combined = [
-        ...primaryData.slice(0, resultLimit).map(d => ({ ...d, city: selectedCity })),
-        ...comparisonData.slice(0, resultLimit).map(d => ({ ...d, city: comparisonCity }))
+        ...primaryData.
+          slice(0, formState.resultLimit).
+          map(d => ({ ...d, city: formState.city })),
+        ...comparisonData.
+          slice(0, formState.resultLimit).
+          map(d => ({ ...d, city: formState.comparisonCity }))
       ];
 
       setData(combined);
@@ -230,19 +242,19 @@ export default function DataExplorer() {
             <SelectField
               label="Primary City:"
               id="city-select"
-              value={selectedCity}
-              onChange={e => setSelectedCity(e.target.value)}
+              value={formState.city}
+              onChange={e => updateForm('city', e.target.value)}
               options={cityOptions}
             />
             <SelectField
               label="Secondary City (Optional):"
               id="comparison-select"
-              value={comparisonCity}
-              onChange={e => setComparisonCity(e.target.value)}
+              value={formState.comparisonCity}
+              onChange={e => updateForm('comparisonCity', e.target.value)}
               options={[
                 { value: '', label: 'None' },
                 ...cities.
-                  filter(c => c !== selectedCity).
+                  filter(c => c !== formState.city).
                   map(c => ({ value: c, label: c }))
               ]}
             />
@@ -253,26 +265,26 @@ export default function DataExplorer() {
             <SelectField
               label="Choose a Dataset:"
               id="dataset-select"
-              value={dataType}
-              onChange={e => setDataType(e.target.value)}
+              value={formState.dataType}
+              onChange={e => updateForm('dataType', e.target.value)}
               options={datasetOptions}
             />
 
             {/* Period only shown for immigration */}
-            {dataType === 'immigration' ?
+            {formState.dataType === 'immigration' ? 
               <SelectField
                 label="Period:"
                 id="period-select"
-                value={period}
-                onChange={e => setPeriod(e.target.value)}
+                value={formState.period}
+                onChange={e => updateForm('period', e.target.value)}
                 options={periodOptions}
               />
-              :
+              : 
               <SelectField
                 label="Include Official Languages:"
                 id="lang-select"
-                value={langToggle}
-                onChange={e => setLangToggle(e.target.value)}
+                value={formState.languageToggle}
+                onChange={e => updateForm('languageToggle', e.target.value)}
                 options={langToggleOptions}
               />
             }
@@ -283,13 +295,13 @@ export default function DataExplorer() {
             <SelectField
               label="Result Limit:"
               id="limit-select"
-              value={resultLimit}
-              onChange={e => setResultLimit(parseInt(e.target.value))}
+              value={formState.resultLimit}
+              onChange={e => updateForm('resultLimit', parseInt(e.target.value))}
               options={limitOptions}
             />
           </section>
           <section className="input-row">
-            <button type="submit" disabled={!selectedCity || loading}>
+            <button type="submit" disabled={!formState.city || loading}>
               {loading ? 'Loading...' : 'Show Data'}
             </button>
           </section>
@@ -307,30 +319,30 @@ export default function DataExplorer() {
           <div className="chart-grid">
             {/* Primary City */}
             <article className="chart-container">
-              <CityInfoCard city={activeCity} info={cityInfo} />
+              <CityInfoCard city={activeState.city} info={cityInfo} />
               <Chart
                 data={primaryData}
-                title={`${activeCity} - ${activeDataType}`}
+                title={`${activeState.city} - ${activeState.dataType}`}
                 xLabel="Count"
                 yLabel={
-                  activeDataType === 'immigration' ? 'Country' : 'Language'
+                  activeState.dataType === 'immigration' ? 'Country' : 'Language'
                 }
               />
             </article>
 
             {/* Comparison City */}
-            {activeComparisonCity && 
+            {activeState.comparisonCity && 
               <article className="chart-container">
                 <CityInfoCard
-                  city={activeComparisonCity}
+                  city={activeState.comparisonCity}
                   info={comparisonCityInfo}
                 />
                 <Chart
                   data={comparisonData}
-                  title={`${activeComparisonCity} - ${activeDataType}`}
+                  title={`${activeState.comparisonCity} - ${activeState.dataType}`}
                   xLabel="Count"
                   yLabel={
-                    activeDataType === 'immigration'
+                    activeState.dataType === 'immigration'
                       ? 'Country'
                       : 'Language'
                   }
@@ -355,7 +367,7 @@ export default function DataExplorer() {
                 yLabel="Country of Origin"
               />
             </article>
-            {comparisonCity &&
+            {formState.comparisonCity && 
               <article className="chart-container">
                 <CityInfoCard
                   city="Example City 2"
