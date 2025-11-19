@@ -216,13 +216,14 @@ width and height of viewport as reported in the console with `window.screen`) --
 
 ## Summary of Changes
 
-- Caching Enhancements
+#### Caching Enhancements
   - Added immigrationCache and languageCache directly into their routers.
   - Implemented browser caching rules for client/dist:
-  - index.html => no-cache - Hashed files => max-age=31536000, immutable
+  - index.html => no-cache 
+  - Hashed files => max-age=31536000, immutable
   - Improved overall client-side and localhost load performance.
-- Server Optimization
 
+#### Server Optimization
   - Installed and configured compression middleware to reduce payload size and speed up responses.
 
 - This change resulted in great optimization and gave the following change in results
@@ -238,7 +239,7 @@ width and height of viewport as reported in the console with `window.screen`) --
 
 ## Summary of Changes
 
-- switched from plotly to chart.js
+#### switched from plotly to chart.js
 
 - biggest differnce with this change was the size js file in dist/assets/index-SomeHash.js which went from 5095.92kb (1535.73 compressed) to 375.19 kb (123.83 compressed)
 
