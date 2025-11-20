@@ -1,10 +1,10 @@
 import '../assets/styles/Map.css';
-import countryMap from'../assets/images/map.png';
-import halifax from'../assets/images/halifax.png';
-import montreal from'../assets/images/montreal.png';
-import toronto from'../assets/images/toronto.png';
-import calgary from'../assets/images/calgary.png';
-import vancouver from'../assets/images/vancouver.png';
+import countryMap from'../assets/images/map.webp';
+import halifax from'../assets/images/halifax.webp';
+import montreal from'../assets/images/montreal.webp';
+import toronto from'../assets/images/toronto.webp';
+import calgary from'../assets/images/calgary.webp';
+import vancouver from'../assets/images/vancouver.webp';
 
 function Map({zoomedInCity = ''}){
   return (
