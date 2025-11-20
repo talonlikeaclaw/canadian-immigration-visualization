@@ -129,6 +129,11 @@ h3 {
 .chart-section h3 {
   font-size: 1.3rem;
   margin: 0;
+  width: fit-content;
+  margin: auto;
+  padding: 1rem;
+  background-color: white;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
 /* === Chart Grid === */
