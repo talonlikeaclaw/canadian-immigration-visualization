@@ -86,7 +86,7 @@ function HalifaxCity({cityInView, reference}){
         <section className="text-chart-group__left">
           <Chart
             data={languageData}
-            title="Top 10 languages spoken (excluding English)"
+            title="Top 10 languages spoken"
             classes="text-chart-group__chart"
           />
 

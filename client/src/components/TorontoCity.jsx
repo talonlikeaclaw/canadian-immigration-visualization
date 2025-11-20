@@ -68,7 +68,7 @@ function TorontoCity({cityInView, reference}){
         <section className="text-chart-group__left">
           <Chart
             data={cityData.languages} 
-            title="Top 20 spoken languages (excluding English)"
+            title="Top 20 spoken languages"
             classes="text-chart-group__chart"
           />
           <section className="text-chart-group__texts">
