@@ -69,7 +69,7 @@ export default function DataExplorer() {
   /**
    * Builds the immigration URL for fetching immigration data.
    * @param {string} city - the city to fetch data for.
-   * @param {string} period - the seleced period.
+   * @param {string} period - the selected period.
    * @returns the url built depending on the parameters.
    */
   function buildImmigrationUrl(city, period) {
