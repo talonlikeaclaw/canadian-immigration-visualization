@@ -5,6 +5,11 @@
 This project aims to explore and visualize Canadian immigration patterns to different major cities through the lens of the languages spoken. 
 By combining demographic and linguistic datasets, we will create a narrative that illustrates how different immigrant communities cluster in major Canadian cities, showcasing the cultural and linguistic profile of each major city center.
 
+### Deployed URLs
+
+- [AWS Deployment](http://16.52.46.206/)
+- [Render Deployment](https://five20-project-safari-chiru-dunbar.onrender.com/)
+
 ## Selected cities 
 
 | Region              | Cities           |
