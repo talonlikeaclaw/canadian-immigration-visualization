@@ -23,6 +23,12 @@ This project explores Canadian immigration patterns in major cities, with a focu
 
 Below are previews of the project interface showing the landing (Hero) section and the interactive Data Explorer.
 
+## Technologies Used
+
+- **Frontend**: React, Vite, Chart.js
+- **Backend**: Node.js, Express, Swagger
+- **Database**: MongoDB
+
 ### Hero Section
 
 <img src="./assets/HeroSection.png" alt="Hero Section Screenshot" width="800"/>
