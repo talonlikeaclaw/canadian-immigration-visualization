@@ -32,8 +32,6 @@ const parseCount = s => {
 
 /**
  * Parse and normalize StatsCan immigration CSV rows into typed records.
- * ESM path handling: __filename/__dirname are derived from import.meta.url so
- * the CSV can be located regardless of process working directory.
  *
  * @param {Function} reader - Optional file reader function used for testing.
  * @returns Promise<Array<{ City: string, Country: string, Period: string, Count: number|null }>>
