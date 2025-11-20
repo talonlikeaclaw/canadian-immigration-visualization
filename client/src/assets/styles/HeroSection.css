@@ -41,6 +41,16 @@ scroll over it
  */
 .scroll-content{
 	background-color: white;
+	background-image: 
+		linear-gradient(
+			white, 
+			#EFF6F6,
+			#E3EDF1,
+			#C8DDE5,
+			#9EC5D7,
+			#74AAC6,
+			#4D83AF
+		);
 	width: 100vw;
 }
 
@@ -58,19 +68,11 @@ scroll over it
 }
 
 /* bouncing arrow */
-.scroll-content{
-	background-color: white;
-	background-image: 
-		linear-gradient(
-			white, 
-			#EFF6F6,
-			#E3EDF1,
-			#C8DDE5,
-			#9EC5D7,
-			#74AAC6,
-			#4D83AF
-		);
-	width: 100vw;
+.scroll{
+	animation: bounce 0.5s infinite alternate;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
 }
 
 .scroll img{
