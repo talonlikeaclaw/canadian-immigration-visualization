@@ -21,7 +21,7 @@ export default function convertImmigrationDataObjectToArray(immigrationDataset, 
     value: value
   }));
 
-  immigrationChartData.length = limit;
+  const slicedArray = immigrationChartData.slice(0, limit);
 
-  return immigrationChartData;
+  return slicedArray;
 }

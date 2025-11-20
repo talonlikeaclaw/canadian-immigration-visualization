@@ -19,6 +19,8 @@ export default function simplifyLanguageArray(languagesArray, limit = 10){
       };
     });
   }
-  languagesData.length = limit;
-  return languagesData;
+
+  const slicedArray = languagesData.slice(0, limit);
+
+  return slicedArray;
 }
