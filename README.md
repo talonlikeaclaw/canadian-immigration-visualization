@@ -139,7 +139,7 @@ npm run dev
 
 #### Client (Frontend)
 
-- **Data Visualization**: [plotly.js/react-plotly.js](https://www.npmjs.com/package/react-plotly.js/v/2.2.0)
+- **Data Visualization**: [react-chartjs-2](https://www.npmjs.com/package/react-chartjs-2)
 - **Lazy Loading**: [react-intersection-observer](https://www.npmjs.com/package/react-intersection-observer)
 
 #### Server (Backend)
