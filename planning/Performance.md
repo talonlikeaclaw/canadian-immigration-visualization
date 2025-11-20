@@ -81,10 +81,11 @@
 - Link:
 
   - [server-side optimization](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs)
-
-  - [pre/post memory cache ](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897619430)
-
-  - [AWS latency improvement summary ](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897637516)
+  - [immigration cache](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs?file=aa17feaf687510ece026764aff66e967de9277c4#aa17feaf687510ece026764aff66e967de9277c4_5_5)
+  - [Language cache](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs?file=18969587d68ed0c6391d0b1a9f5bb28dcfe30e9b#18969587d68ed0c6391d0b1a9f5bb28dcfe30e9b_5_5)
+  - [Browser cache rules](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs?file=a419538ddb09d617809b78f68696e80833c4051b#a419538ddb09d617809b78f68696e80833c4051b_34_48)
+  - [before/after proof](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897619430)
+  - [AWS latency improvement proof ](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897637516)
 
 | City      | Avg Pre | Avg Post | Improvement |
 | --------- | ------- | -------- | ----------- |
