@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import '../assets/styles/City.css';
 import Chart from './Chart';
+import normalizeLanguageData from '../utils/NormalizeLanguageData.js';
+import normalizeImmigrationData from '../utils/NormalizeImmigrationData.js';
 
 function MontrealCity({cityInView, reference}){
   const [languageData, setLanguageData] = useState([]);
@@ -30,14 +32,14 @@ function MontrealCity({cityInView, reference}){
         }).
         then(([languageData, immigration1Data, immigration2Data]) => {
           // Update the states
-          const simplifiedLanguagesArray = simplifyLanguageArray(languageData);
+          const simplifiedLanguagesArray = normalizeLanguageData(languageData);
           setLanguageData(simplifiedLanguagesArray);
   
-          const convertedImmigration1Array = convertImmigrationDataObjectToArray(immigration1Data);
+          const convertedImmigration1Array = normalizeImmigrationData(immigration1Data);
           setImmigrationDataset1(convertedImmigration1Array);
   
           const convertedImmigration2Array = 
-            convertImmigrationDataObjectToArray(immigration2Data, 15);
+            normalizeImmigrationData(immigration2Data, 15);
           setImmigrationDataset2(convertedImmigration2Array);
   
         }).
@@ -148,56 +150,6 @@ function MontrealCity({cityInView, reference}){
       <div className="city-divider"></div>
     </>
   );
-}
-
-/**
- * Transforms the object returned by the immigration APIs into an
- *  array accepted by the Chart component
- * This function allows
- * @param {Object} cityDataObj the object returned by the immigration APIs
- * @param {number} limit optional parameter determining how long the end array will be
- * @returns an array of {label, value} objects accepted by the Chart component
- */
-function convertImmigrationDataObjectToArray(immigrationDataset, limit = 10){
-  let immigrationData = [];
-  
-  if (immigrationDataset.length !== 0){
-    immigrationData = immigrationDataset.countries;
-  }
-
-  const immigrationEntries = Object.entries(immigrationData);
-
-  const immigrationChartData = immigrationEntries.map(([countryName, value]) => ({
-    label: countryName,
-    value: value
-  }));
-
-  immigrationChartData.length = limit;
-
-  return immigrationChartData;
-}
-
-/**
- * Simplifies the array retrieved from the language API
- * to an array accepted by the Chart component
- * This function also trims the original data to only be of length 10
- * @param {Object} languagesArray 
- * @returns an array of {label, value} objects accepted by the Chart component
- */
-function simplifyLanguageArray(languagesArray){
-  let languagesData = [];
-
-
-  if (languagesArray.length !== 0){
-    languagesData = languagesArray.map(data =>{
-      return {
-        label: data.Language,
-        value: data.Count
-      };
-    });
-  }
-  languagesData.length = 10;
-  return languagesData;
 }
 
 export default MontrealCity;
