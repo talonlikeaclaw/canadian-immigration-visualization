@@ -413,7 +413,9 @@ export default function DataExplorer() {
               <CityInfoCard city={activeState.city} info={cityInfo} />
               <Chart
                 data={primaryData}
-                title={`${activeState.city} - ${activeState.dataType}`}
+                title={`${activeState.city} -
+                  ${activeState.dataType[0].toUpperCase()
+                  + activeState.dataType.slice(1)}`}
                 yLabel="Count"
                 xLabel={
                   activeState.dataType === 'immigration'
@@ -432,7 +434,9 @@ export default function DataExplorer() {
                 />
                 <Chart
                   data={comparisonData}
-                  title={`${activeState.comparisonCity} - ${activeState.dataType}`}
+                  title={`${activeState.comparisonCity} -
+                    ${activeState.dataType[0].toUpperCase()
+                    + activeState.dataType.slice(1)}`}
                   yLabel="Count"
                   xLabel={
                     activeState.dataType === 'immigration'
