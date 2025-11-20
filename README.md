@@ -129,6 +129,67 @@ npm run dev
 - Backend API runs on: http://localhost:3000
 - Visit http://localhost:3000/docs for the API route documentation.
 
+## Deployment and Redeployment
+
+### AWS Manual Deploy and Redeploy
+
+Follow the instructions [here](https://gitlab.com/dawson-cst-cohort-2026/520/all-students/mern-quotes/) to deploy your [AWS](https://aws.amazon.com/lightsail/) instance and get your SSH key (`<key>.pem`) for your instance.
+
+#### Local Steps
+
+- Download your build artifact (already compressed), or clone your repo into the same directory as your SSH key for the AWS instance: `<key>.pem`.
+
+- If using a clone, switch to the desired branch and run `npm run build` inside it, then:
+  - Ensure your production `.env` is in the `server/` directory.
+  - Compress the repo: `tar -czvf project.tar.gz <project-repo>`
+
+- Send to the server: `scp -r <key>.pem project.tar.gz bitnami@<ip>:~`
+- Connect to server: `ssh -i <key>.pem bitnami@<ip>`
+
+#### On Server
+
+- If using artifact:
+  - Make `project` directory and `cd` into it.
+
+- Extract files: `tar -xzvf project.tar.gz`
+
+- If using clone:
+  - Go to server directory: `cd <project-repo>/server`
+
+- If using artifact, add production `.env` to `server/`
+  - Go to server directory: `cd server/`
+
+- Double check your production `.env` is there: `ls -la`
+
+##### If First Deployment
+
+  - Install `pm2`: `sudo npm install -g pm2@latest`
+  - Update apache config: `vim ~/stack/apache/conf/vhosts`
+    - Proxy 3001 to 80 (which is open/public on this aws instance).
+
+```apache
+<VirtualHost 127.0.0.1:80 _default_:80>
+  ProxyPass / http://localhost:3001/
+  ProxyPassReverse / http://localhost:3001/
+</VirtualHost>
+```
+
+- Run: `NODE_ENV=production PORT=3001 pm2 start bin/www`
+
+##### If Redeployment
+
+  - Restart the app `pm2 restart <name>`.
+    - If `pm2 restart` isn't getting the results you want, try `pm2 delete <name>` and then `NODE_ENV=production PORT=3001 pm2 start bin/www`
+
+### Render Auto Deploy
+
+Render updates the live app automatically on each push to the specified branch.
+
+When deploying you need to manually copy the `.env` from the project root into the `/server` directory in your build command.
+
+- Build Command: `cp .env server/.env && cd client && npm install --include=dev && npm run build && cd ../server && npm install`
+- Start Command: `cd server && node bin/www`
+
 ## Attributions
 
 ### Dataset Sources
