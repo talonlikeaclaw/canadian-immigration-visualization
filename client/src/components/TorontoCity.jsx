@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import '../assets/styles/City.css';
 import Chart from './Chart';
+import normalizeLanguageData from '../utils/NormalizeLanguageData.js';
+import normalizeImmigrationData from '../utils/NormalizeImmigrationData.js';
 
 function TorontoCity({cityInView, reference}){
   const [cityData, setCityData] = useState({ immigration: [], languages: [] });
-
-  const immigrationChartData = convertImmigrationDataObjectToArray(cityData);
-  const languagesChartData = simplifyLanguageArray(cityData);
 
   useEffect(()=>{
     if (cityInView){
@@ -27,7 +26,9 @@ function TorontoCity({cityInView, reference}){
         }).
         then(([immigrationData, languageData]) => {
           // Update the state with the combined data
-          setCityData({ immigration: immigrationData, languages: languageData });
+          const immigrationChartData = normalizeImmigrationData(immigrationData);
+          const languagesChartData = normalizeLanguageData(languageData);
+          setCityData({ immigration: immigrationChartData, languages: languagesChartData });
         }).
         catch(error => {
           // Handle any errors that occurred in the chain
@@ -58,7 +59,7 @@ function TorontoCity({cityInView, reference}){
             </p>
           </section>
           <Chart
-            data={immigrationChartData}
+            data={cityData.immigration}
             title="The Top 20 Countries Driving Immigration (All Time)"
             classes="text-chart-group__chart"
           />
@@ -66,7 +67,7 @@ function TorontoCity({cityInView, reference}){
 
         <section className="text-chart-group__left">
           <Chart
-            data={languagesChartData} 
+            data={cityData.languages} 
             title="Top 20 spoken languages (excluding English)"
             classes="text-chart-group__chart"
           />
@@ -93,45 +94,6 @@ function TorontoCity({cityInView, reference}){
       <div className="city-divider"></div>
     </>
   );
-}
-
-function convertImmigrationDataObjectToArray(cityDataObj){
-  let immigrationData = [];
-  
-  if (cityDataObj.immigration.length !== 0){
-    immigrationData = cityDataObj.immigration.countries;
-  }
-
-  const immigrationEntries = Object.entries(immigrationData);
-
-  const immigrationChartData = immigrationEntries.map(([countryName, value]) => ({
-    label: countryName,
-    value: value
-  }));
-
-  immigrationChartData.length = 20;
-
-  return immigrationChartData;
-}
-
-function simplifyLanguageArray(cityDataObj){
-  let languagesData = [];
-
-
-  if (cityDataObj.languages.length !== 0){
-    languagesData = cityDataObj.languages.map(data =>{
-      return {
-        label: data.Language,
-        value: data.Count
-      };
-    });
-  }
-
-  languagesData.shift();
-
-  languagesData.length = 20;
-
-  return languagesData;
 }
 
 export default TorontoCity;
