@@ -119,7 +119,9 @@ cd client
 npm run dev
 ```
 
-The frontend (Vite) will run on http://localhost:5173, and the backend API on http://localhost:3000.
+- Frontend (Vite) will run on: http://localhost:5173
+- Backend API runs on: http://localhost:3000
+- Visit http://localhost:3000/docs for the API route documentation.
 
 ## Attributions
 
