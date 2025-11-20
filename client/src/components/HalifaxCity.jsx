@@ -96,14 +96,14 @@ function HalifaxCity({cityInView, reference}){
             wave of global immigrants.
             </p>
             <p>
-            Among the non-official languages, Arabic is the most widely
-            spoken, with 4,475 speakers, significantly outpacing the next
+            Among the non-official languages, Mandarin and Arabic are the most widely
+            spoken, with 4,670 and 4,475 speakers each, significantly outpacing the next
             largest groups, Punjabi (2,470 speakers) and Korean (1,600
             speakers).
             </p>
             <p>
-            The fact that Arabic, along with Tagalog (1,315 speakers) and
-            Hindi (1,040 speakers) combined are more prevalent than French
+            The fact that Mandarin and Arabic, along with Tagalog (1,315 speakers) and
+            Hindi (1,040 speakers) combined are more than twice as prevalent as French
             (3,470 speakers) highlights the recent diversification of
             immigration in this East Coast, drawing communities primarily
             from the Middle East, South Asia, and East Asia.
