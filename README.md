@@ -1,24 +1,23 @@
-# Immigration Patterns in Canadian Cities and Languages Spoken in Those Cities
+# Canadian Immigration Patterns and Languages Visualization Project
 
 ## Project Overview
 
-This project aims to explore and visualize Canadian immigration patterns to different major cities through the lens of the languages spoken. 
-By combining demographic and linguistic datasets, we will create a narrative that illustrates how different immigrant communities cluster in major Canadian cities, showcasing the cultural and linguistic profile of each major city center.
+This project explores Canadian immigration patterns in major cities, with a focus on the languages spoken by immigrant communities. By combining demographic and linguistic datasets, it provides a visual narrative of how immigrant communities cluster across Canada's key urban centers, highlighting the unique cultural and linguistic profiles of each city.
 
-### Deployed URLs
+### Live Deployment
 
-- [AWS Deployment](http://16.52.46.206/)
-- [Render Deployment](https://five20-project-safari-chiru-dunbar.onrender.com/)
+- AWS: http://16.52.46.206/
+- Render: https://five20-project-safari-chiru-dunbar.onrender.com/
 
 ## Selected cities 
 
-| Region              | Cities           |
-| ------------------- | ---------------- |
-| Atlantic/East       | Halifax          |
-| Central/Francophone | Montreal         |
-| Central/Anglophone  | Toronto          |
-| Prairies            | Calgary/Edmonton |
-| Pacific/West        | Vancouver        |
+| Region                | Cities           |
+| --------------------- | ---------------- |
+| Atlantic / East       | Halifax          |
+| Central / Francophone | Montreal         |
+| Central / Anglophone  | Toronto          |
+| Prairies              | Calgary/Edmonton |
+| Pacific / West        | Vancouver        |
 
 ## Screenshots
 
