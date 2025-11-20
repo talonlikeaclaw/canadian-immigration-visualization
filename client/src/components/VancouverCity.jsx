@@ -37,13 +37,13 @@ function VancouverCity({cityInView, reference}){
   }, [cityInView, cityData]);
   return (
     <>
-      <p className="transition">
-            Finally, we land in Vancouver, a stunning city whose identity has
-            been completely remade by its role as Canada&apos;s bridge to the
-            Pacific.
-      </p>
 
       <section className="vancouver-section city-section" ref={reference}>
+        <p className="transition">
+              Finally, we land in Vancouver, a stunning city whose identity has
+              been completely remade by its role as Canada&apos;s bridge to the
+              Pacific.
+        </p>
         <section className="text-chart-group">
           <section className="text-chart-group__texts">
             <p>

@@ -37,13 +37,13 @@ function CalgaryCity({cityInView, reference}){
   }, [cityInView, cityData]);
   return (
     <>
-      <p className="transition">
-        Now we explore the Prairies with Calgary and Edmonton, two cities
-        whose fortunes are tied directly to the earth. Their histories are
-        defined by natural resources.
-      </p>
 
       <section className="calgary-section city-section" ref={reference}>
+        <p className="transition">
+          Now we explore the Prairies with Calgary and Edmonton, two cities
+          whose fortunes are tied directly to the earth. Their histories are
+          defined by natural resources.
+        </p>
         <section className="text-chart-group">
           <section className="text-chart-group__texts">
             <p>

@@ -37,11 +37,11 @@ function TorontoCity({cityInView, reference}){
   }, [cityInView, cityData]);
   return (
     <>
-      <p className="transition">
-            We move west to Toronto, the massive, English-speaking metropolis
-            that truly took off after World War II.
-      </p>
       <section className="toronto-section city-section" ref={reference}>
+        <p className="transition">
+              We move west to Toronto, the massive, English-speaking metropolis
+              that truly took off after World War II.
+        </p>
         <section className="text-chart-group">
           <section className="text-chart-group__texts">
             <p>

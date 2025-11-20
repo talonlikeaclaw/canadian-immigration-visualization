@@ -51,15 +51,15 @@ function MontrealCity({cityInView, reference}){
 
   return (
     <>
-      <p className="transition">
-            Next, we head to Montreal, the vibrant cultural heart of French
-            North America. This city&apos;s identity is defined by its powerful
-            Francophone ties. Montreal’s exposure to the world got a huge boost
-            from Expo 67, the spectacularly successful World’s Fair. It put
-            Montréal on the global stage.
-      </p>
       
       <section className="montreal-section city-section" ref={reference}>
+        <p className="transition">
+              Next, we head to Montreal, the vibrant cultural heart of French
+              North America. This city&apos;s identity is defined by its powerful
+              Francophone ties. Montreal’s exposure to the world got a huge boost
+              from Expo 67, the spectacularly successful World’s Fair. It put
+              Montréal on the global stage.
+        </p>
 
         <section className="text-chart-group__left">
           <Chart

@@ -32,8 +32,9 @@ function Chart({ data, title, xLabel, yLabel, classes}) {
     labels: labels,
     datasets: [{
       data: values,
-      backgroundColor: '#F0F5F6',
-      borderColor: '#2D407A',
+      backgroundColor: '#781E0E',
+      hoverBackgroundColor: '#99331F',
+      borderColor: '#99331F',
       borderWidth: 1,
     }]
   };

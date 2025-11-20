@@ -56,9 +56,9 @@ function HalifaxCity({cityInView, reference}){
 
   return (
     <>
-      <p className="transition">Our journey starts in Halifax, the capital of Nova Scotia.</p>
       
       <section className="halifax-section city-section" ref={reference}>
+        <p className="transition">Our journey starts in Halifax, the capital of Nova Scotia.</p>
         <section className="text-chart-group">
           <section className="text-chart-group__texts">
             <p>

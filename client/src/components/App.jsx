@@ -16,13 +16,14 @@ function App() {
   // lead me to the react intersction observer (plus I think this was
   // in one of class lectures, with lazy loading)
   // https://www.npmjs.com/package/react-intersection-observer
+  const options = {threshold: 0.1};
 
-  const { ref: halifaxRef, inView: halifaxInView } = useInView();
-  const { ref: montrealRef, inView: montrealInView } = useInView();
-  const { ref: torontoRef, inView: torontoInView } = useInView();
-  const { ref: calgaryRef, inView: calgaryInView } = useInView();
+  const { ref: halifaxRef, inView: halifaxInView } = useInView(options);
+  const { ref: montrealRef, inView: montrealInView } = useInView(options);
+  const { ref: torontoRef, inView: torontoInView } = useInView(options);
+  const { ref: calgaryRef, inView: calgaryInView } = useInView(options);
   const { ref: vancouverRef, inView: vancouverInView } =
-    useInView();
+    useInView(options);
 
   // Determine the currently zoomed city based on scroll position
   const currentZoomedCity = vancouverInView
