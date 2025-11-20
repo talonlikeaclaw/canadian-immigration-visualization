@@ -225,6 +225,27 @@ export default function DataExplorer() {
     }
   }
 
+  /**
+   * The Chart component does not render when no data is passed in.
+   * This function creates empty data with the right amount of entries
+   * to improve the animation during loading with chart.js.
+   * @param {number} resultLimit - The amount of empty results to create.
+   * @returns {Array<{label: string, value: number}>} An array of empty data objects.
+   */
+  function createEmptyData(resultLimit) {
+    const emptyData = [];
+    const placeholder =
+      formState.dataType === 'immigration'
+        ? 'Loading Immigration Data...'
+        : 'Loading Language Data...';
+
+    for (let i = 0; i < resultLimit; i++) {
+      const label = i === 0 ? placeholder : '';
+      emptyData.push({ label: label, value: 0 });
+    }
+    return emptyData;
+  }
+
   return (
     <section className="data-explorer-section">
       {/* === Selection Form === */}
@@ -323,9 +344,11 @@ export default function DataExplorer() {
               <Chart
                 data={primaryData}
                 title={`${activeState.city} - ${activeState.dataType}`}
-                xLabel="Count"
-                yLabel={
-                  activeState.dataType === 'immigration' ? 'Country' : 'Language'
+                yLabel="Count"
+                xLabel={
+                  activeState.dataType === 'immigration'
+                    ? 'Country'
+                    : 'Language'
                 }
               />
             </article>
@@ -340,8 +363,8 @@ export default function DataExplorer() {
                 <Chart
                   data={comparisonData}
                   title={`${activeState.comparisonCity} - ${activeState.dataType}`}
-                  xLabel="Count"
-                  yLabel={
+                  yLabel="Count"
+                  xLabel={
                     activeState.dataType === 'immigration'
                       ? 'Country'
                       : 'Language'
@@ -353,31 +376,53 @@ export default function DataExplorer() {
         </section>
         : 
         <section className="chart-section">
-          <h3>Example Data Preview - Immigration Data</h3>
+          <header className="header-wrapper">
+            <h3>
+              {loading
+                ? 'Loading... Please Wait!'
+                : 'Example Data Preview - Sample Data'}
+            </h3>
+          </header>
           <div className="chart-grid">
             <article className="chart-container">
               <CityInfoCard
-                city="Example City 1"
+                city={loading ? 'Loading...' : 'Example City 1'}
                 info={EXAMPLE_CITY_INFO_1}
               />
               <Chart
-                data={EXAMPLE_IMMIGRATION_DATA}
-                title="Sample Immigration Data"
-                xLabel="Number of Immigrants"
-                yLabel="Country of Origin"
+                data={
+                  loading
+                    ? createEmptyData(formState.resultLimit)
+                    : EXAMPLE_IMMIGRATION_DATA
+                }
+                title={
+                  loading
+                    ? 'Loading... Please wait!'
+                    : 'Sample Immigration Data'
+                }
+                yLabel={loading ? 'Loading...' : 'Count'}
+                xLabel={loading ? 'Loading...' : 'Immigration'}
               />
             </article>
             {formState.comparisonCity && 
               <article className="chart-container">
                 <CityInfoCard
-                  city="Example City 2"
+                  city={loading ? 'Loading...' : 'Example City 2'}
                   info={EXAMPLE_CITY_INFO_2}
                 />
                 <Chart
-                  data={EXAMPLE_LANGUAGE_DATA}
-                  title="Sample Language Data"
-                  xLabel="Number of Speakers"
-                  yLabel="Language"
+                  data={
+                    loading
+                      ? createEmptyData(formState.resultLimit)
+                      : EXAMPLE_LANGUAGE_DATA
+                  }
+                  title={
+                    loading
+                      ? 'Loading... Please wait!'
+                      : 'Sample Language Data'
+                  }
+                  yLabel={loading ? 'Loading...' : 'Count'}
+                  xLabel={loading ? 'Loading...' : 'Language'}
                 />
               </article>
             }
