@@ -26,7 +26,7 @@
 
 **AWS**
 
-<img src="assets/test1.png" alt="first test with catchoint" width="800" />
+<img src="assets/test1.png" alt="first test with catchpoint" width="800" />
 <img src="assets/overall.png" alt="AWS overall numbers" width="800" />
 
 **Render**
@@ -35,15 +35,15 @@
 
 **The follwing is the links will bring you to another page where we have added complet details about our website tests**
 
-- [Go to Opportunites](Backup.md#opportunities)
+- [Go to Opportunities](Backup.md#opportunities)
 
 ---
 
-- [Go to diagnostics](Backup.md#diagnostics)
+- [Go to Diagnostics](Backup.md#diagnostics)
 
 ---
 
-- [Go to accesibility](Backup.md#accessibility)
+- [Go to Accessibility](Backup.md#accessibility)
 
 ---
 
@@ -80,7 +80,7 @@
 - Lead: Talon
 - Link:
 
-  - [serverside optimization](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs)
+  - [server-side optimization](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs)
 
   - [pre/post memory cache ](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897619430)
 
@@ -98,7 +98,7 @@
 
 #### switched from plotly to chart.js
 
-- biggest differnce with this change was the size js file in dist/assets/index-SomeHash.js which went from 5095.92kb (1535.73 compressed) to 375.19 kb (123.83 compressed)
+- biggest difference with this change was the size js file in dist/assets/index-SomeHash.js which went from 5095.92kb (1535.73 compressed) to 375.19 kb (123.83 compressed)
 
 - Lead: Melania
 - [with plotly](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2893449310)

@@ -1,6 +1,6 @@
 ### Context
 
-- this part is just at the end of phase 2 and the start of third ! and we noticed that the lighthouse performance numbers have jumped from 40-50% to 76%s, even though the goal was not improving performance. Melania and Talon were working on some bugs/chnages that they were thinking from phase 2 and that ended up improving the overall performance as well. so I will just do a comparaison of the changes before we start to work on actual optimizations and improving of our website. note when I say "now" it means when we start phase 3 and not the final results now!
+- this part is just at the end of phase 2 and the start of third ! and we noticed that the lighthouse performance numbers have jumped from 40-50% to 76%s, even though the goal was not improving performance. Melania and Talon were working on some bugs/changes that they were thinking from phase 2 and that ended up improving the overall performance as well. so I will just do a comparison of the changes before we start to work on actual optimizations and improving of our website. note when I say "now" it means when we start phase 3 and not the final results now!
 
 ## Summary of Changes
 
@@ -97,9 +97,9 @@ Link:
   - Resources are blocking the first paint of your page. Consider delivering critical JS/CSS inline and deferring all non-critical JS/styles.
     - http://16.52.46.206/assets/index-CB-ig7zV.css size => 2253 potential saving => 207
 - Avoid serving legacy JavaScript to modern browsers
-  - polyfills and transforms enables legacy browser to use new javaScript features. However , many arent necessary for modern browsers. for your bundled javascript, adopt a modern script deployment strategy using module/nomodule feature detection to reduce the amount of the code shipped to modern browsers, while retaining for legacy browsers.
+  - polyfills and transforms enables legacy browser to use new javaScript features. However , many are'nt necessary for modern browsers. for your bundled javascript, adopt a modern script deployment strategy using module/nomodule feature detection to reduce the amount of the code shipped to modern browsers, while retaining for legacy browsers.
 - Reduce unused CSS
-  - Reduce unused rules from styleshees and defer CSS not used for above the fold content to decrease bytes consumed by network activity.
+  - Reduce unused rules from stylesheet and defer CSS not used for above the fold content to decrease bytes consumed by network activity.
 - Preload Largest Contentful Paint image
   - If the LCP element is dynamically added to the page, you should preload the image in order to improve LCP.
     - http://16.52.46.206/assets/white-curve-DKXaIjeq.png => 0
@@ -113,17 +113,17 @@ Link:
 - Reduce unused CSS => Estimated savings 0.1s
   - .maplibregl-map{font:12....} size => 13,107 potential saving in bytes => 13,107
 - Reduce unused JavaScript
-  - reduce unused javascript and defer loading scripts until they are required to decrease bytesconsumed by network.
+  - reduce unused javascript and defer loading scripts until they are required to decrease bytes consumed by network.
   - assets/index-someHash.js => 1,471,009 potential saving bytes => 1,047,672
   - npm/chart.js => 71,767 potential saving in bytes => 64,039
 - Avoid serving legacy JavaScript to modern browsers
 - Properly size images => Potential savings of 88 KiB
   - serve images that are appropriately-sized to save cellular data and improve load time
-    - assets/white-curve.png size=> 56,821 => potential savingg in bytes => 47,446
+    - assets/white-curve.png size=> 56,821 => potential saving in bytes => 47,446
     - assets/blue-waves.png size => 1,072,650 potential saving in bytes => 43,129
 - Serve images in next-gen formats
   - image formats like Webp and AVIF often provide better compression than PNG or JPEG, which means faster download and less data consumption.
-    - assets/bluewave-someHash.png size => 1,072,650 potential saving in bytes => 1,052,209
+    - assets/blue-wave-someHash.png size => 1,072,650 potential saving in bytes => 1,052,209
     - assets/white-curve-someHash.png size => 56,821 potential saving in bytes => 46,273
 
 ### Diagnostics
@@ -138,7 +138,7 @@ Link:
     - http://16.52.46.206/assets/index-CB-ig7zV.css => 2.2kb
     - http://16.52.46.206/assets/index-G9nAvfbF.js => 1502.5kb
 - Avoids enormous network payloads => Total size was 2,711 KiB
-  - largest network payload cost users real money and are highly corelated with long load times.
+  - largest network payload cost users real money and are highly co-related with long load times.
     - http://16.52.46.206/assets/blue_waves-C6c1mKYc.png => 1,072,982
     - http://16.52.46.206/assets/index-G9nAvfbF.js => 1,538,536
     - https://cdn.jsdelivr.net/npm/chart.js => 72565
@@ -269,7 +269,7 @@ Link:
 - Background and foreground colors do not have a sufficient contrast ratio.
   - low-contrast text is difficult or impossible for many users to read.
 - Image elements do not have [alt] attributes
-  - infomative elements should aim for short, descriptive alternate text. decoratice elements can be ignored with an empty alt attribute.
+  - informative elements should aim for short, descriptive alternate text. decorative elements can be ignored with an empty alt attribute.
 
 **Additional Items to Check Manually**
 
@@ -332,7 +332,7 @@ Link:
 
 - General
 - Missing source maps for large first-party java script
-  - source maps translate minified code to the original source code. this helps developers debug in production. in addition, lighthouse is able to provide furthure insights. consider deploying source maps to take advantage of these benefits.
+  - source maps translate minified code to the original source code. this helps developers debug in production. in addition, lighthouse is able to provide further insights. consider deploying source maps to take advantage of these benefits.
 
 ### SEO
 
