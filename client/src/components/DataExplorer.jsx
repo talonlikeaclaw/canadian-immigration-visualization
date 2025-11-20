@@ -162,35 +162,66 @@ export default function DataExplorer() {
       return;
     }
 
-    // Reset UI
+    // Reset error and show loading
     setError('');
     setLoading(true);
-    setCityInfo(null);
-    setComparisonCityInfo(null);
-    setData(null);
-
-    // Commit form selections
-    setActiveState(formState);
 
     try {
-      const promises = [
-        fetch(`/api/city/${encodeURIComponent(formState.city)}`).then(r =>
-          r.json()
-        ),
-        fetchDataset(
-          formState.city,
-          formState.dataType,
-          formState.period,
-          formState.languageToggle
-        )
-      ];
+      const promises = [];
+      const fetchIndex = {};
 
-      // Optionally fetch comparison city info
-      if (formState.comparisonCity) {
+      // Check if we need to fetch city data
+      const cityChanged = formState.city !== activeState.city;
+
+      const dataParamsChanged =
+        formState.dataType !== activeState.dataType ||
+        formState.period !== activeState.period ||
+        formState.languageToggle !== activeState.languageToggle ||
+        formState.resultLimit !== activeState.resultLimit;
+
+      // Fetch primary city info if city changed
+      if (cityChanged) {
+        fetchIndex.cityInfo = promises.length;
+        promises.push(
+          fetch(`/api/city/${encodeURIComponent(formState.city)}`).then(
+            r => r.json()
+          )
+        );
+      }
+
+      // Fetch primary dataset if city changed or data params changed
+      if (cityChanged || dataParamsChanged) {
+        fetchIndex.primaryData = promises.length;
+        promises.push(
+          fetchDataset(
+            formState.city,
+            formState.dataType,
+            formState.period,
+            formState.languageToggle
+          )
+        );
+      }
+
+      // Check if we need to fetch comparison city data
+      const comparisonCityChanged =
+        formState.comparisonCity !== activeState.comparisonCity;
+
+      // Fetch comparison city info if it exists and changed
+      if (formState.comparisonCity && comparisonCityChanged) {
+        fetchIndex.comparisonCityInfo = promises.length;
         promises.push(
           fetch(
             `/api/city/${encodeURIComponent(formState.comparisonCity)}`
-          ).then(r => r.json()),
+          ).then(r => r.json())
+        );
+      }
+
+      if (
+        formState.comparisonCity &&
+        (comparisonCityChanged || dataParamsChanged)
+      ) {
+        fetchIndex.comparisonData = promises.length;
+        promises.push(
           fetchDataset(
             formState.comparisonCity,
             formState.dataType,
@@ -200,22 +231,57 @@ export default function DataExplorer() {
         );
       }
 
+      // Fetch all needed data
       const results = await Promise.all(promises);
-      const [cityJson, primaryData, comparisonJson, comparisonData = []] =
-        results;
 
-      setCityInfo(cityJson);
-      setComparisonCityInfo(comparisonJson || null);
+      // Update city info only if we fetched it
+      if (fetchIndex.cityInfo !== undefined) {
+        setCityInfo(results[fetchIndex.cityInfo]);
+      }
 
+      // Update comparison city info only if we fetched it, or clear if no comparison city
+      if (fetchIndex.comparisonCityInfo !== undefined) {
+        setComparisonCityInfo(results[fetchIndex.comparisonCityInfo]);
+      } else if (!formState.comparisonCity) {
+        setComparisonCityInfo(null);
+      }
+
+      // Get primary data (either newly fetched or filter from existing)
+      let primaryDataArray;
+      if (fetchIndex.primaryData !== undefined) {
+        primaryDataArray = results[fetchIndex.primaryData];
+      } else {
+        // Use existing data for this city
+        primaryDataArray = data
+          ? data.filter(d => d.city === formState.city)
+          : [];
+      }
+
+      // Get comparison data (either newly fetched or filter from existing)
+      let comparisonDataArray = [];
+      if (formState.comparisonCity) {
+        if (fetchIndex.comparisonData !== undefined) {
+          comparisonDataArray = results[fetchIndex.comparisonData];
+        } else {
+          // Use existing data for this city
+          comparisonDataArray = data
+            ? data.filter(d => d.city === formState.comparisonCity)
+            : [];
+        }
+      }
+
+      // Combine and set data
       const combined = [
-        ...primaryData.
+        ...primaryDataArray.
           slice(0, formState.resultLimit).
           map(d => ({ ...d, city: formState.city })),
-        ...comparisonData.
+        ...comparisonDataArray.
           slice(0, formState.resultLimit).
           map(d => ({ ...d, city: formState.comparisonCity }))
       ];
 
+      // Commit form selections
+      setActiveState(formState);
       setData(combined);
     } catch (err) {
       console.error(err);
@@ -305,7 +371,9 @@ export default function DataExplorer() {
                 label="Include Official Languages:"
                 id="lang-select"
                 value={formState.languageToggle}
-                onChange={e => updateForm('languageToggle', e.target.value)}
+                onChange={e =>
+                  updateForm('languageToggle', e.target.value)
+                }
                 options={langToggleOptions}
               />
             }
@@ -317,7 +385,9 @@ export default function DataExplorer() {
               label="Result Limit:"
               id="limit-select"
               value={formState.resultLimit}
-              onChange={e => updateForm('resultLimit', parseInt(e.target.value))}
+              onChange={e =>
+                updateForm('resultLimit', parseInt(e.target.value))
+              }
               options={limitOptions}
             />
           </section>
