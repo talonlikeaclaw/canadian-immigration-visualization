@@ -73,10 +73,11 @@ function TorontoCity({cityInView, reference}){
           />
           <section className="text-chart-group__texts">
             <p>
-              The most spoken non-official language is Punjabi (Panjabi) with
-              161,965 speakers. This is followed by Urdu (89,120 speakers) and
-              Tamil (83,225 speakers), clearly showing Toronto&apos;s powerful
-              ties to India, Pakistan, and Sri Lanka. Other huge communities
+              The most spoken non-official language are of Chinese descent, with
+              204,420 Mandarin speakers, and 177,950 Cantonese speakers. Punjabi (Panjabi)
+              is next with 161,965 speakers. This is followed by Urdu (89,120 speakers) and
+              Tamil (83,225 speakers), clearly showing Toronto&apos;s strong
+              ties to India, Pakistan, and Sri Lanka. Other large communities
               include speakers of Spanish (78,275), Tagalog (77,925), and
               Iranian Persian (57,085).
             </p>

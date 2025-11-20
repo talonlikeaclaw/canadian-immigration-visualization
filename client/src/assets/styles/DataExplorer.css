@@ -2,6 +2,9 @@
 .data-explorer-section {
   position: relative;
   z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 /* CSS styles assisted by ChatGPT. */
 header h2 {
@@ -86,6 +89,7 @@ button {
 select:hover,
 button:hover {
   background: #333;
+  color: white;
 }
 
 select:focus,
@@ -93,6 +97,7 @@ button:focus {
   outline: none;
   border-color: #4a90ff;
   box-shadow: 0 0 0 2px rgba(74, 144, 255, 0.25);
+  color: white;
 }
 
 /* === Button === */
@@ -108,6 +113,7 @@ button {
 
 button:hover:not(:disabled) {
   background: #2563eb;
+  color: white;
 }
 
 button:disabled {
@@ -142,6 +148,7 @@ h3 {
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
+  max-width: 90vw;
   margin: 1.5rem 0rem 1.5rem 0rem;
 }
 
@@ -162,10 +169,20 @@ h3 {
   min-width: 280px;
   min-height: 540px;
   box-sizing: border-box;
+	border: 3px solid #27407E;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
-.chart-container .chart-wrapper{
+.chart-container > .chart-wrapper {
+	border: 3px solid #27407e50;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
+  min-height: 40vh;
+  max-height: 40vh;
+}
+
+.chart-container > .chart-wrapper > h2 {
+  color: #213547;
 }
 
 /* === City Info === */
@@ -176,6 +193,8 @@ h3 {
 
   background: #f8f8f8;
   border-radius: 8px;
+	border: 3px solid #27407e50;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   color: #333;
   text-align: left;
   font-size: 0.95rem;
@@ -192,54 +211,26 @@ h3 {
   line-height: 1.5;
 }
 
-/* === Plotly Toolbar === */
-.chart-container .modebar {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2px;
-
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 6px;
-  padding: 3px;
-  max-width: calc(100% - 16px);
-  overflow: hidden;
-  z-index: 10;
-  opacity: 0;
-  transition: opacity 0.25s ease-in-out;
-}
-
-.chart-container:hover .modebar {
-  opacity: 1;
-}
-
-.chart-container .modebar-btn {
-  background: transparent;
-  border-radius: 4px;
-  padding: 2px;
-  color: #333;
-  transition: background 0.15s, color 0.15s;
-}
-
-.chart-container .modebar-btn:hover {
-  background: #3b82f6;
-  color: #fff;
-}
-
 /* === Responsive === */
 @media (max-width: 800px) {
   header h2 {
     font-size: 1.5rem;
   }
 
+  form {
+    max-width: 90vw;
+  }
+
   fieldset {
     padding: 1.25rem;
   }
 
+  .input-row {
+    flex-wrap: wrap;
+  }
+
   .chart-grid {
-    flex-direction: column;
+    max-width: 100%;
     align-items: center;
   }
 

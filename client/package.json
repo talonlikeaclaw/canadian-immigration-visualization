@@ -13,7 +13,7 @@
   "bundlesize": [
     {
       "path": "./dist/assets/*.js",
-      "maxSize": "2000 kB"
+      "maxSize": "140 kB"
     },
     {
       "path": "./dist/assets/*.css",

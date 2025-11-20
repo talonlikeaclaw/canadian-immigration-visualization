@@ -1,4 +1,4 @@
-# Performance of
+# Performance of Canadian Linguistic journey
 
 - [On AWS](http://16.52.46.206/index.html)
 - [On Render](https://five20-project-safari-chiru-dunbar.onrender.com/)
@@ -9,215 +9,138 @@
 
 - For testing, we used Chrome’s Lighthouse reports and Catchpoint’s WebPageTest tool. Both were run on desktop (Chrome, Toronto location, Cable 5/1 Mbps, 28 ms RTT). We looked mainly at metrics like First Contentful Paint (FCP), Largest Contentful Paint (LCP), Total Blocking Time (TBT), and Speed Index. These tests help us compare results from the end of Phase 2 to now and see how much the site improved even before doing focused optimizations.
 
-## Baseline Performance
+- [**Conext before we start**](Backup.md#context)
 
-<!-- Summarize initial results for each tool that you used. Did the tools
-detect all the performance issues you see as a user? -->
-
-- this part is just at the end of phase 2 and the start of third ! and we noticed that the lighthouse performance numbers have jumped from 40-50% to 76%s, even though the goal was not improving performance. Melania and Talon were working on some bugs/chnages that they were thinking from phase 2 and that ended up improving the overall performance as well. so I will just do a comparaison of the changes before we start to work on actual optimizations and improving of our website. note when I say "now" it means when we start phase 3 and not the final results now!
-
-## Summary of Changes
-
-<!-- Briefly describe each change and the impact it had on performance (be specific). If there
-was no performance improvement, explain why that might be the case -->
-
-- First contentful paint
-  - end of phase 2 => 37.2 s
-  - now => 1.5 s
-- Largest contentful paint
-  - end of phase 2 => 73.4 s
-  - now => 2.6 s
-- Total blocking time
-  - end of phase 2 => 5080 ms
-  - now => 160 ms
-- Speed index
-  - end of phase 2 => 37.2 s
-  - now => 1.5 s
-
----
-
-### End of phase 2 diagnostics:
-
-- Minimize main-thread work 10.0 s
-- Reduce JavaScript execution time 6.2 s
-- Minify JavaScript Est savings of 6,456 KiB
-- Reduce unused JavaScript Est savings of 9,569 KiB
-- Avoid serving legacy JavaScript to modern browsers Est savings of 31 KiB
-- Page prevented back/forward cache restoration 1 failure reason
-- Reduce unused CSS Est savings of 13 KiB
-- Avoid enormous network payloads Total size was 14,083 KiB
-- Avoid long main-thread tasks 13 long tasks found
-  User Timing marks and measures 10 user timings
-
----
-
-### insights:
-
-- Forced reflow
-- LCP request discovery
-- Network dependency tree
-- Use efficient cache lifetimes Est savings of 7 KiB
-- Improve image delivery Est savings of 25 KiB
-- LCP breakdown
-- 3rd parties
-
-### Diagnostics now !
-
-- Serve images in next-gen formats Est savings of 1,073 KiB
-- Largest Contentful Paint element 2,630 ms
-- Reduce unused JavaScript Est savings of 1,132 KiB
-- Use HTTP/2 7 requests not served via HTTP/2
-- Properly size images Est savings of 474 KiB
-- Preload Largest Contentful Paint image Est savings of 120 ms
-- Image elements do not have explicit width and height
-- Serve static assets with an efficient cache policy 1 resource found
-- Avoid serving legacy JavaScript to modern browsers Est savings of 9 KiB
-- Reduce unused CSS Est savings of 13 KiB
-- Avoid enormous network payloads Total size was 2,711 KiB
-- Avoid long main-thread tasks 2 long tasks found
-- Avoid chaining critical requests 2 chains found
-- Minimize third-party usage Third-party code blocked the main thread for 0 ms
-
-### <!-- Change 1 -->
-
-Lead: <!-- name of main contributor to this change -->
-Link: <!-- gitlab url to specific lines of code -->
-
-### Tests
-
-<!-- Briefly state how you gathered data about app performance, and in what environment
-(which browsers, what browser versions, what kind of device, OS,
-width and height of viewport as reported in the console with `window.screen`) -->
-
-- Here we started to test our website
-- tools we will use to test performance
-
+- **tools we will use to test performance**
   - Browser lighthouse report
-  - https://www.webpagetest.org/
-
-- Chrome browser
-- https://ioapp.catchpoint.com/auth/WptAccount/Login
+  - https://www.webpagetest.org
+  - Chrome browser
+  - https://ioapp.catchpoint.com/auth/WptAccount/Login
   - Device => desktop - Chrome
   - location => Toronto, Canada
   - connection => Cable(5/1 Mbps 28ms RTT)
   - Number of runs => (1-3)
   - Tests performed both ( site performance, lighthouse)
-  - <img src="assets/test1.png" alt="first test with catchoint" width="800" />
 
 ## Baseline Performance
 
-### Performance overall numbers
-
 **AWS**
 
+<img src="assets/test1.png" alt="first test with catchpoint" width="800" />
 <img src="assets/overall.png" alt="AWS overall numbers" width="800" />
 
 **Render**
 
 <img src="assets/renderOverall.png" alt="Render overall numbers" width="800" />
 
----
+**The following links will bring you to another page where we have added complete details about our website tests**
 
-### Opportunities
-
-- opportunities is basically the testing websites suggestions to improve the website
-
-- **AWS**
-
-<img src="assets/opps0.png" alt="Opportunity 0" width="800" />
-<img src="assets/opps1.png" alt="Opportunity 1" width="800" />
-<img src="assets/opps2.png" alt="Opportunity 2" width="800" />
-<img src="assets/opps3.png" alt="Opportunity 3" width="800" />
-<img src="assets/opps4.png" alt="Opportunity 4" width="800" />
-
-- **Render**
-
-<img src="assets/renderOpps0.png" alt="Opportunity 0" width="800" />
-<img src="assets/renderOpps1.png" alt="Opportunity 0" width="800" /> 
-<img src="assets/renderOpps2.png" alt="Opportunity 0" width="800" />
+- [Go to Opportunities](Backup.md#opportunities)
 
 ---
 
-### Diagnostics
-
-**AWS**
-
-<img src="assets/diag0.png" alt="diagnostic 0" width="800" />
-<img src="assets/diag1.png" alt="diagnostic 1" width="800" />
-<img src="assets/diag2.png" alt="diagnostic 2" width="800" />
-<img src="assets/diag3.png" alt="diagnostic 3" width="800" />
-<img src="assets/diag4.png" alt="diagnostic 4" width="800" />
-<img src="assets/diag5.png" alt="diagnostic 5" width="800" />
-
-**Render**
-
-<img src="assets/renderDiag0.png" alt="diagnostic 0" width="800" />
-<img src="assets/renderDiag1.png" alt="diagnostic 1" width="800" />
-<img src="assets/renderDiag2.png" alt="diagnostic 2" width="800" />
-<img src="assets/renderDiag3.png" alt="diagnostic 3" width="800" />
+- [Go to Diagnostics](Backup.md#diagnostics)
 
 ---
 
-### Accessibility
-
-**AWS**
-
-<img src="assets/access0.png" alt="accessibility 0" width="800" />
-<img src="assets/access1.png" alt="accessibility 1" width="800" />
-<img src="assets/access2.png" alt="accessibility 2" width="800" />
-
-**Render**
-
-<img src="assets/renderAccess0.png" alt="accessibility 0" width="800" />
-<img src="assets/renderAccess1.png" alt="accessibility 1" width="800" />
-<img src="assets/renderAccess2.png" alt="accessibility 2" width="800" />
-
-</div>
+- [Go to Accessibility](Backup.md#accessibility)
 
 ---
 
-### Best practices
-
-**AWS**
-
-<img src="assets/best0.png" alt="best practice" width="800" />
-
-**Render**
-
-<img src="assets/renderBest0.png" alt="best practice" width="800" />
+- [Go to Best practice](Backup.md#best-practices)
 
 ---
 
-### SEO => content best practice
-
-**AWS**
-
-<img src="assets/seo0.png" alt="Seo 0" width="800" />
-
-**Render**
-
-<img src="assets/renderSeo0.png" alt="Seo 0" width="800" />
+- [Go to SEO](Backup.md#seo)
 
 ---
 
-### PWA
+- [Go to PWA](Backup.md#pwa)
 
-**AWS**
+---
 
-<img src="assets/pwa0.png" alt="pwa 0" width="800" />
+### V1.0.1
 
-**Render**
+#### Summary of Changes
 
-<img src="assets/renderPwa0.png" alt="pwa 0" width="800" />
+#### Caching Enhancements
+
+- Added immigrationCache and languageCache directly into their routers.
+- Implemented browser caching rules for client/dist:
+- index.html => no-cache
+- Hashed files => max-age=31536000, immutable
+- Improved overall client-side and localhost load performance.
+
+#### Server Optimization
+
+- Installed and configured compression middleware to reduce payload size and speed up responses.
+
+- This change resulted in great optimization and gave the following change in results
+
+- Lead: Talon
+- Link:
+
+  - [server-side optimization](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs)
+  - [immigration cache](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs?file=aa17feaf687510ece026764aff66e967de9277c4#aa17feaf687510ece026764aff66e967de9277c4_5_5)
+  - [Language cache](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs?file=18969587d68ed0c6391d0b1a9f5bb28dcfe30e9b#18969587d68ed0c6391d0b1a9f5bb28dcfe30e9b_5_5)
+  - [Browser cache rules](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs?file=a419538ddb09d617809b78f68696e80833c4051b#a419538ddb09d617809b78f68696e80833c4051b_34_48)
+  - [before/after proof](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897619430)
+  - [AWS latency improvement proof ](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897637516)
+
+| City      | Avg Pre | Avg Post | Improvement |
+| --------- | ------- | -------- | ----------- |
+| Halifax   | 57.5ms  | 24.5ms   | 57%         |
+| Montreal  | 57.5ms  | 36ms     | 36%         |
+| Toronto   | 48ms    | 26.5ms   | 44%         |
+| Calgary   | 49ms    | 19ms     | 61%         |
+| Vancouver | 43.5ms  | 26ms     | 40%         |
+
+**Average response latency gains: 47.6%!!!**
+
+#### switched from plotly to chart.js
+
+- biggest difference with this change was the size js file in dist/assets/index-SomeHash.js which went from 5095.92kb (1535.73 compressed) to 375.19 kb (123.83 compressed)
+
+- Lead: Melania
+- [with plotly](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2893449310)
+- [ with chart.js](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2893450729)
+- [ code link](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/48/diffs?file=1304fc061eb9b3fb296bfd0cff93c11c512e321e#1304fc061eb9b3fb296bfd0cff93c11c512e321e_3_2)
+
+- after these changes our overall numbers have changed [here](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897859910) is before and after the changes were applied.
+
+- Avoid chaining critical requests => 2 chains found
+- Largest Contentful Paint element => 1,120 ms
+- Avoids enormous network payloads => Total size was 1,329 KiB
+  - http://16.52.46.206/assets/blue_waves-C6c1mKYc.png
+    - before => 1072982
+    - now => 1072992
+  - http://16.52.46.206/assets/index-G9nAvfbF.js
+    - before => 1538536
+    - now => 123863
+  - https://cdn.jsdelivr.net/npm/chart.js
+    - before => 72565
+    - now => 72220
+  - http://16.52.46.206/assets/white-curve-DKXaIjeq.png
+    - before => 57149
+    - now => 57159
+  - http://16.52.46.206/assets/map-e_IAmjJw.jpg
+    - before => 30569
+    - now => 30579
+  - http://16.52.46.206/assets/index-CB-ig7zV.css
+    - before => 2253
+    - now => 2277
+  - http://16.52.46.206/canada.svg
+    - before => 1368
+    - now => 1054
+  - http://16.52.46.206/index.html
+    - before => 741
+    - now => 730
+
+---
+
+### V1.0.2
 
 ## Summary of Changes
-
----
-
-### <!-- Change n -->
-
-Lead: <!-- name of main contributor to this change -->
-Link: <!-- gitlab url to specific lines of code -->
 
 ## Conclusion
 

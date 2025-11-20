@@ -76,8 +76,9 @@ function VancouverCity({cityInView, reference}){
           <section className="text-chart-group__texts">
             <p>
               The list of most common non-official languages reads like a map
-              of the Asia-Pacific. Vancouver has substantial populations
-              speaking Korean (40,045 speakers) and Tagalog (37,890 speakers).
+              of the Asia-Pacific. Vancouver has substantial populations speaking Mandarin
+              (152,810 speakers), Punjabi (Panjabi) (136,300 speakers), Cantonese (131,660),
+              Korean (40,045 speakers) and Tagalog (37,890 speakers).
               The city also has a surprisingly large community of Iranian
               Persian speakers (30,985). The prevalence of all these Asian and
               global languages, especially compared to the relatively small
