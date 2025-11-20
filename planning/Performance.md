@@ -33,7 +33,7 @@
 
 <img src="assets/renderOverall.png" alt="Render overall numbers" width="800" />
 
-**The follwing is the links will bring you to another page where we have added complet details about our website tests**
+**The following links will bring you to another page where we have added complete details about our website tests**
 
 - [Go to Opportunities](Backup.md#opportunities)
 
@@ -103,8 +103,8 @@
 
 - Lead: Melania
 - [with plotly](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2893449310)
-
 - [ with chart.js](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2893450729)
+- [ code link](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/48/diffs?file=1304fc061eb9b3fb296bfd0cff93c11c512e321e#1304fc061eb9b3fb296bfd0cff93c11c512e321e_3_2)
 
 - after these changes our overall numbers have changed [here](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897859910) is before and after the changes were applied.
 
