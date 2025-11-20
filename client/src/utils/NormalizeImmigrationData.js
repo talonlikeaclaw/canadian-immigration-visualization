@@ -8,6 +8,10 @@
  * @returns an array of {label, value} objects accepted by the Chart component
  */
 export default function convertImmigrationDataObjectToArray(immigrationDataset, limit = 10){
+  if (immigrationDataset.length === 0) return [];
+  if (immigrationDataset === undefined) return [];
+  if (immigrationDataset === null) return [];
+
   let immigrationData = [];
   
   if (immigrationDataset.length !== 0){

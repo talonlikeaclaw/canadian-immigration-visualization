@@ -8,8 +8,11 @@
  * @returns an array of {label, value} objects accepted by the Chart component
  */
 export default function simplifyLanguageArray(languagesArray, limit = 10){
-  let languagesData = [];
+  if (languagesArray.length === 0) return [];
+  if (languagesArray === undefined) return [];
+  if (languagesArray === null) return [];
 
+  let languagesData = [];
 
   if (languagesArray.length !== 0){
     languagesData = languagesArray.map(data =>{
