@@ -22,7 +22,9 @@ ChartJS.register(
 
 function Chart({ data, title, xLabel, yLabel, classes}) {
   if (!data || data.length === 0) {
-    return <span>There was an error fetching the data. <br/> No data available to display.</span>;
+    return <span className="chart-error">
+      There was an error fetching the data. <br/> No data available to display.
+    </span>;
   }
 
   const labels = data.map(item => item.label);

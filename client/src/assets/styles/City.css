@@ -35,6 +35,21 @@ p.transition{
 	max-height: 50vh;
 }
 
+.chart-error {
+	background-color: white;
+	color: #771E0E;
+	width: 90%;
+	max-height: 50vh;
+	min-height: 50vh;
+	display: grid;
+	place-content: center;
+	border-radius: 12px;
+	border: 3px solid #771E0E;
+  	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+	position: sticky;
+	top: 25vh;
+}
+
 .city-divider{
 	height: 100vh;
 	width: 90vw;
@@ -99,6 +114,11 @@ p.transition{
 		padding: 1rem;
 		justify-content: center;
 		height: 60vh;
+	}
+
+	.chart-error {
+		position: relative;
+		top: 0;
 	}
 
 	.chart-wrapper > :nth-child(2) {
