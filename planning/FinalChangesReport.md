@@ -17,6 +17,8 @@
 #### trim_blue_wave
 ![trim](assets/trim.png)
 
+#### preload
+![preload](assets/preload.png)
 
 
 ### Lazy

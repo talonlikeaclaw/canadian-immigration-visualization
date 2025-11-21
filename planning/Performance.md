@@ -148,8 +148,8 @@
 - [Compressed blue wave image](FinalChangesReport.md#compressed_bluewave)
 - [Added img alt ](FinalChangesReport.md#alt)
 - [Add contrast to images ](FinalChangesReport.md#contrast)
-- [trim blue_wave img](FinalChangesReport.md#trim_blue_wave)
-- [Added img alt ](FinalChangesReport.md#alt)
+- [Trim blue_wave img](FinalChangesReport.md#trim_blue_wave)
+- [Preload blue wave img ](FinalChangesReport.md#preload)
 - [Added img alt ](FinalChangesReport.md#alt)
 
 
