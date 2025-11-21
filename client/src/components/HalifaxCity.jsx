@@ -5,9 +5,11 @@ import normalizeLanguageData from '../utils/NormalizeLanguageData.js';
 import normalizeImmigrationData from '../utils/NormalizeImmigrationData.js';
 
 /**
- * @param {boolean} cityInView flag to determine if the city of halifax is in view
- * @param {React Ref Object} reference a reference object used to determine the cityInView flag
- * @returns a component representing the entire Halifax city component
+ * Halifax section that preloads language and immigration datasets when visible.
+ * @param {Object} props
+ * @param {boolean} props.cityInView - Whether the Halifax section is in the viewport.
+ * @param {RefObject<HTMLElement>} props.reference - Ref tied to the section for cityInView,
+ * @returns {JSX.Element} Halifax narrative and charts.
  */
 function HalifaxCity({cityInView, reference}){
   const [languageData, setLanguageData] = useState([]);

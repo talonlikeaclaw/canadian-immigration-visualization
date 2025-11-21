@@ -8,7 +8,7 @@ import Chart from './Chart';
  * Calgary section that displays immigration and language datasets once in view.
  * @param {Object} props
  * @param {boolean} props.cityInView - Whether the section is currently visible.
- * @param {RefObject<HTMLElement>} props.reference - Ref attached to the section
+ * @param {RefObject<HTMLElement>} props.reference - Ref attached to the section for cityInView,
  * @returns {JSX.Element} Calgary narrative and charts.
  */
 function CalgaryCity({cityInView, reference}){
