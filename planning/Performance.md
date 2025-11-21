@@ -9,7 +9,7 @@
 
 - For testing, we used Chrome’s Lighthouse reports and Catchpoint’s WebPageTest tool. Both were run on desktop (Chrome, Toronto location, Cable 5/1 Mbps, 28 ms RTT). We looked mainly at metrics like First Contentful Paint (FCP), Largest Contentful Paint (LCP), Total Blocking Time (TBT), and Speed Index. These tests help us compare results from the end of Phase 2 to now and see how much the site improved even before doing focused optimizations.
 
-- [**Conext before we start**](Backup.md#context)
+- [**Context before we start**](Backup.md#context)
 
 - **tools we will use to test performance**
   - Browser lighthouse report
