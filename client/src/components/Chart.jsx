@@ -1,4 +1,5 @@
 import { Bar } from 'react-chartjs-2';
+import Checkbox from './Checkbox';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -51,7 +52,10 @@ function Chart({ data, title, xLabel, yLabel, classes}) {
 
   return (
     <div className={`chart-wrapper ${classes}`}>
-      <h2 style={{ textAlign: 'center' }}>{title}</h2>
+      <section className="chart-header">
+        <h2 style={{ textAlign: 'center' }}>{title}</h2>
+        <Checkbox />
+      </section>
       <Bar
         data={userData}
         options={{
