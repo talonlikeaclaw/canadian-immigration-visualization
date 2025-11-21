@@ -20,6 +20,9 @@
 #### preload
 ![preload](assets/preload.png)
 
+#### meta
+![meta](assets/meta.png)
+
 
 ### Lazy
 

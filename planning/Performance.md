@@ -77,7 +77,7 @@
 
 - This change resulted in great optimization and gave the following change in results
 
-- Lead: Talon
+- Lead: ***Talon**
 - Link:
 
   - [server-side optimization](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs)
@@ -101,7 +101,7 @@
 
 - biggest difference with this change was the size js file in dist/assets/index-SomeHash.js which went from 5095.92kb (1535.73 compressed) to 375.19 kb (123.83 compressed)
 
-- Lead: Melania
+- Lead: **Melania**
 - [with plotly](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2893449310)
 - [ with chart.js](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2893450729)
 - [ code link](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/48/diffs?file=1304fc061eb9b3fb296bfd0cff93c11c512e321e#1304fc061eb9b3fb296bfd0cff93c11c512e321e_3_2)
@@ -150,12 +150,10 @@
 - [Add contrast to images ](FinalChangesReport.md#contrast)
 - [Trim blue_wave img](FinalChangesReport.md#trim_blue_wave)
 - [Preload blue wave img ](FinalChangesReport.md#preload)
-- [Added img alt ](FinalChangesReport.md#alt)
+- [Added meta tags ](FinalChangesReport.md#meta)
 
-
-
-- Lead: Melania 
-- Link: 
+- Lead:**Melania** 
+- Links: 
   - [blue wave direct link](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/blob/32a511d266eaf7b63d74a067957b5ab86d5baa68/client/src/assets/images/blue_waves.png)
 
 
