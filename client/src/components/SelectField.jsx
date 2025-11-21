@@ -1,5 +1,16 @@
 import '../assets/styles/DataExplorer.css';
 
+/**
+ * Styled select input field with label and option rendering.
+ * @param {Object} props
+ * @param {string} props.label - Field label.
+ * @param {string} props.id - Element id for accessibility.
+ * @param {string|number} props.value - Current selected value.
+ * @param {(event: React.ChangeEvent<HTMLSelectElement>) => void} props.onChange - Change handler.
+ * @param {{value: string, label: string}[]} props.options - Select options.
+ * @param {boolean} [props.disabled] - Whether the field is disabled.
+ * @returns {JSX.Element} Labeled select control.
+ */
 export default function SelectField({
   label,
   id,
