@@ -26,6 +26,8 @@ This project explores Canadian immigration patterns in major cities, with a focu
 | Prairies              | Calgary/Edmonton |
 | Pacific / West        | Vancouver        |
 
+---
+
 ## Screenshots
 
 ### Hero Section
@@ -39,6 +41,8 @@ This project explores Canadian immigration patterns in major cities, with a focu
 ### Data Explorer
 
 <img src="./assets/DataExplorer.png" alt="Data Explorer Screenshot" width="1200"/>
+
+---
 
 ## Setup Instructions
 
@@ -135,9 +139,13 @@ npm run dev
 
 - Visit http://localhost:3000/docs for the API route documentation.
 
-### Testing
+---
+
+### 8. Testing
 
 - To run the unit tests: `cd server && npm run test`.
+
+---
 
 ## Deployment and Redeployment
 
@@ -199,6 +207,8 @@ When deploying you need to manually copy the `.env` from the project root into t
 
 - Build Command: `cp .env server/.env && cd client && npm install --include=dev && npm run build && cd ../server && npm install`
 - Start Command: `cd server && node bin/www`
+
+---
 
 ## Attributions
 
