@@ -23,7 +23,17 @@ export default function simplifyLanguageArray(languagesArray, limit = 10){
     });
   }
 
-  const slicedArray = languagesData.slice(0, limit);
+  const filteredLanguagesArray = languagesData.filter(({ label }) => {
+    // For anglophone cities I only removed English and I kept the french language
+    if (languagesData[0].label === 'English') return label !== 'English';
+
+    // For francophone cities (i.e. Montreal) 
+    // I removed both french and english language because 
+    // the ratio was very bog compared to the other languages
+    if (languagesData[0].label === 'French') return label !== 'French' && label !== 'English';
+  });
+
+  const slicedArray = filteredLanguagesArray.slice(0, limit);
 
   return slicedArray;
 }
