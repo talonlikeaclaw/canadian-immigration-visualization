@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { lazy, Suspense, useState, useEffect } from 'react';
 import '../assets/styles/City.css';
-import Chart from './Chart';
+const Chart = lazy( () => import('./Chart') );
 import normalizeLanguageData from '../utils/NormalizeLanguageData.js';
 import normalizeImmigrationData from '../utils/NormalizeImmigrationData.js';
 
@@ -71,11 +71,13 @@ function MontrealCity({cityInView, reference}){
         </p>
 
         <section className="text-chart-group__left">
-          <Chart
-            data={immigrationDataset1} 
-            title="Immigration patterns from 1980 to 1990 (Top 10 countries)"
-            classes="text-chart-group__chart"
-          />
+          <Suspense fallback={<span className="chart-error">Loading... Please wait!</span>}>
+            <Chart
+              data={immigrationDataset1} 
+              title="Immigration patterns from 1980 to 1990 (Top 10 countries)"
+              classes="text-chart-group__chart"
+            />
+          </Suspense>
           <section className="text-chart-group__texts">
             <p>
                   To protect its unique French identity, Quebec took control of
@@ -117,21 +119,25 @@ function MontrealCity({cityInView, reference}){
               sources of new residents that have contributed to the demographic makeup of Montréal.
             </p>
           </section>
-          <Chart
-            data={immigrationDataset2} 
-            title="The Leading 15 Origin Countries of Immigrants (All recorded years)"
-            classes="text-chart-group__chart"
-          />
+          <Suspense fallback={<span className="chart-error">Loading... Please wait!</span>}>
+            <Chart
+              data={immigrationDataset2} 
+              title="The Leading 15 Origin Countries of Immigrants (All recorded years)"
+              classes="text-chart-group__chart"
+            />
+          </Suspense>
         </section>
 
         <section className="text-chart-group__left">
       
-          <Chart
-            data={languageData} 
-            title="Top 10 spoken languages (Excluding French & English)"
-            classes="text-chart-group__chart"
-            footerContent="Both French and English was removed to allow a better comparison"
-          />
+          <Suspense fallback={<span className="chart-error">Loading... Please wait!</span>}>
+            <Chart
+              data={languageData} 
+              title="Top 10 spoken languages (Excluding French & English)"
+              classes="text-chart-group__chart"
+              footerContent="Both French and English was removed to allow a better comparison"
+            />
+          </Suspense>
 
           <section className="text-chart-group__texts">
             <p>

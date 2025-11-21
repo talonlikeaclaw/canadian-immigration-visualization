@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react';
-import Chart from './Chart';
+import { lazy, Suspense, useMemo, useState } from 'react';
+const Chart = lazy( () => import('./Chart') );
 import CityInfoCard from './CityInfoCard';
 import SelectField from './SelectField';
 import '../assets/styles/DataExplorer.css';
@@ -432,30 +432,10 @@ export default function DataExplorer() {
             {/* Primary City */}
             <article className="chart-container">
               <CityInfoCard city={activeState.city} info={cityInfo} />
-              <Chart
-                data={primaryData}
-                title={`${activeState.city} -
-                  ${activeState.dataType[0].toUpperCase()
-                  + activeState.dataType.slice(1)}`}
-                yLabel="Count"
-                xLabel={
-                  activeState.dataType === 'immigration'
-                    ? 'Country'
-                    : 'Language'
-                }
-              />
-            </article>
-
-            {/* Comparison City */}
-            {activeState.comparisonCity && 
-              <article className="chart-container">
-                <CityInfoCard
-                  city={activeState.comparisonCity}
-                  info={comparisonCityInfo}
-                />
+              <Suspense fallback={<span className="chart-error">Loading... Please wait!</span>}>
                 <Chart
-                  data={comparisonData}
-                  title={`${activeState.comparisonCity} -
+                  data={primaryData}
+                  title={`${activeState.city} -
                     ${activeState.dataType[0].toUpperCase()
                     + activeState.dataType.slice(1)}`}
                   yLabel="Count"
@@ -465,6 +445,30 @@ export default function DataExplorer() {
                       : 'Language'
                   }
                 />
+              </Suspense>
+            </article>
+
+            {/* Comparison City */}
+            {activeState.comparisonCity && 
+              <article className="chart-container">
+                <CityInfoCard
+                  city={activeState.comparisonCity}
+                  info={comparisonCityInfo}
+                />
+                <Suspense fallback={<span className="chart-error">Loading... Please wait!</span>}>
+                  <Chart
+                    data={comparisonData}
+                    title={`${activeState.comparisonCity} -
+                      ${activeState.dataType[0].toUpperCase()
+                      + activeState.dataType.slice(1)}`}
+                    yLabel="Count"
+                    xLabel={
+                      activeState.dataType === 'immigration'
+                        ? 'Country'
+                        : 'Language'
+                    }
+                  />
+                </Suspense>
               </article>
             }
           </div>
@@ -484,20 +488,22 @@ export default function DataExplorer() {
                 city={loading ? 'Loading...' : 'Example City 1'}
                 info={EXAMPLE_CITY_INFO_1}
               />
-              <Chart
-                data={
-                  loading
-                    ? createEmptyData(formState.resultLimit)
-                    : EXAMPLE_IMMIGRATION_DATA
-                }
-                title={
-                  loading
-                    ? 'Loading... Please wait!'
-                    : 'Sample Immigration Data'
-                }
-                yLabel={loading ? 'Loading...' : 'Count'}
-                xLabel={loading ? 'Loading...' : 'Immigration'}
-              />
+              <Suspense fallback={<span className="chart-error">Loading... Please wait!</span>}>
+                <Chart
+                  data={
+                    loading
+                      ? createEmptyData(formState.resultLimit)
+                      : EXAMPLE_IMMIGRATION_DATA
+                  }
+                  title={
+                    loading
+                      ? 'Loading... Please wait!'
+                      : 'Sample Immigration Data'
+                  }
+                  yLabel={loading ? 'Loading...' : 'Count'}
+                  xLabel={loading ? 'Loading...' : 'Immigration'}
+                />
+              </Suspense>
             </article>
             {formState.comparisonCity && 
               <article className="chart-container">
@@ -505,20 +511,22 @@ export default function DataExplorer() {
                   city={loading ? 'Loading...' : 'Example City 2'}
                   info={EXAMPLE_CITY_INFO_2}
                 />
-                <Chart
-                  data={
-                    loading
-                      ? createEmptyData(formState.resultLimit)
-                      : EXAMPLE_LANGUAGE_DATA
-                  }
-                  title={
-                    loading
-                      ? 'Loading... Please wait!'
-                      : 'Sample Language Data'
-                  }
-                  yLabel={loading ? 'Loading...' : 'Count'}
-                  xLabel={loading ? 'Loading...' : 'Language'}
-                />
+                <Suspense fallback={<span className="chart-error">Loading... Please wait!</span>}>
+                  <Chart
+                    data={
+                      loading
+                        ? createEmptyData(formState.resultLimit)
+                        : EXAMPLE_LANGUAGE_DATA
+                    }
+                    title={
+                      loading
+                        ? 'Loading... Please wait!'
+                        : 'Sample Language Data'
+                    }
+                    yLabel={loading ? 'Loading...' : 'Count'}
+                    xLabel={loading ? 'Loading...' : 'Language'}
+                  />
+                </Suspense>
               </article>
             }
           </div>

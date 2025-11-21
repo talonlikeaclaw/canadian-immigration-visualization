@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { lazy, Suspense, useState, useEffect } from 'react';
 import '../assets/styles/City.css';
 const Chart = lazy( () => import('./Chart') );
 import normalizeLanguageData from '../utils/NormalizeLanguageData.js';
@@ -77,7 +77,7 @@ function HalifaxCity({cityInView, reference}){
             masses to North America.
             </p>
           </section>
-          <Suspense fallback={<p>Loading chart...</p>}>
+          <Suspense fallback={<span className="chart-error">Loading... Please wait!</span>}>
             <Chart 
               data={immigrationDataset1}
               title="Immigration patterns before 1980"
@@ -87,7 +87,7 @@ function HalifaxCity({cityInView, reference}){
         </section>
 
         <section className="text-chart-group__left">
-          <Suspense fallback={<p>Loading chart...</p>}>
+          <Suspense fallback={<span className="chart-error">Loading... Please wait!</span>}>
             <Chart
               data={languageData}
               title="Top 10 languages spoken (Excluding English)"
@@ -141,7 +141,7 @@ function HalifaxCity({cityInView, reference}){
             free admission to municipal recreation facilities and programs
             </p>
           </section>
-          <Suspense fallback={<p>Loading chart...</p>}>
+          <Suspense fallback={<span className="chart-error">Loading... Please wait!</span>}>
             <Chart
               data={immigrationDataset2}
               title="Immigration patterns from 2016 to 2021"

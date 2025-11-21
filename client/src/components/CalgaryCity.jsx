@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { lazy, Suspense, useState, useEffect } from 'react';
 import '../assets/styles/City.css';
 import normalizeLanguageData from '../utils/NormalizeLanguageData.js';
 import normalizeImmigrationData from '../utils/NormalizeImmigrationData.js';
-import Chart from './Chart';
+const Chart = lazy( () => import('./Chart') );
 
 /**
  * Calgary section that displays immigration and language datasets once in view.
@@ -81,20 +81,24 @@ function CalgaryCity({cityInView, reference}){
               European nations.
             </p>
           </section>
-          <Chart
-            data={cityData.immigration}
-            title="Leading 15 Origin Countries of Immigrants to Calgary (1991 - 2000)"
-            classes="text-chart-group__chart"
-          />
+          <Suspense fallback={<span className="chart-error">Loading... Please wait!</span>}>
+            <Chart
+              data={cityData.immigration}
+              title="Leading 15 Origin Countries of Immigrants to Calgary (1991 - 2000)"
+              classes="text-chart-group__chart"
+            />
+          </Suspense>
 
         </section>
         <section className="text-chart-group__left">
-          <Chart
-            data={cityData.languages}
-            title="Top 10 languages spoken in Calgary (Excluding English)"
-            classes="text-chart-group__chart"
-            footerContent="English was removed to allow a better comparison"
-          />
+          <Suspense fallback={<span className="chart-error">Loading... Please wait!</span>}>
+            <Chart
+              data={cityData.languages}
+              title="Top 10 languages spoken in Calgary (Excluding English)"
+              classes="text-chart-group__chart"
+              footerContent="English was removed to allow a better comparison"
+            />
+          </Suspense>
           <section className="text-chart-group__texts">
             <p>
               Looking at the two cities head-to-head, you can also see a shared

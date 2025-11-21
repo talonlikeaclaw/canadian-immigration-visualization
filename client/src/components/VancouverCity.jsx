@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { lazy, Suspense, useState, useEffect } from 'react';
 import '../assets/styles/City.css';
-import Chart from './Chart';
+const Chart = lazy( () => import('./Chart') );
 import normalizeLanguageData from '../utils/NormalizeLanguageData.js';
 import normalizeImmigrationData from '../utils/NormalizeImmigrationData.js';
 
@@ -67,20 +67,24 @@ function VancouverCity({cityInView, reference}){
                   chose Vancouver as their new home.
             </p>
           </section>
-          <Chart
-            data={cityData.immigration}
-            title="Top 10 Countries Shaping Immigration (2001 - 2005)"
-            classes="text-chart-group__chart"
-          />
+          <Suspense fallback={<span className="chart-error">Loading... Please wait!</span>}>
+            <Chart
+              data={cityData.immigration}
+              title="Top 10 Countries Shaping Immigration (2001 - 2005)"
+              classes="text-chart-group__chart"
+            />
+          </Suspense>
         </section>
 
         <section className="text-chart-group__left">
-          <Chart
-            data={cityData.languages}
-            title="Top 10 Languages Spoken (Excluding English)"
-            classes="text-chart-group__chart"
-            footerContent="English was removed to allow a better comparison"
-          />
+          <Suspense fallback={<span className="chart-error">Loading... Please wait!</span>}>
+            <Chart
+              data={cityData.languages}
+              title="Top 10 Languages Spoken (Excluding English)"
+              classes="text-chart-group__chart"
+              footerContent="English was removed to allow a better comparison"
+            />
+          </Suspense>
           <section className="text-chart-group__texts">
             <p>
               The list of most common non-official languages reads like a map
