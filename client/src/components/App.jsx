@@ -69,10 +69,13 @@ function App() {
       <HeroSection />
       <section className="scroll-content">
         <img src={whiteCurve} alt="white curve"  className="white-curve"/>
-        <Map zoomedInCity={currentZoomedCity} />
 
         {displayContextText()}
 
+        <Suspense fallback={<p>Loading Map...</p>}>
+          <Map zoomedInCity={currentZoomedCity} />
+        </Suspense>
+        
         <HalifaxCity cityInView={halifaxInView} reference={halifaxRef}/>
 
         <Suspense fallback={<p>Loading Montréal...</p>}>
