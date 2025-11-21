@@ -20,7 +20,7 @@ function CalgaryCity({cityInView, reference}){
   const showLoading = isLoading || !hasData && !fetchError;
 
   useEffect(()=>{
-    // don't fetch data if already fetched/loading/o
+    // don't fetch data if already fetched/loading
     if (!cityInView || hasData || isLoading) return;
 
     setFetchError(false);
