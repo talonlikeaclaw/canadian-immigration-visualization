@@ -4,6 +4,13 @@ import Chart from './Chart';
 import normalizeLanguageData from '../utils/NormalizeLanguageData.js';
 import normalizeImmigrationData from '../utils/NormalizeImmigrationData.js';
 
+/**
+ * Vancouver section that lazily fetches immigration and language stats.
+ * @param {Object} props
+ * @param {boolean} props.cityInView - Whether the section is currently visible.
+ * @param {RefObject<HTMLElement>} props.reference - Ref tied to the section for cityInView,
+ * @returns {JSX.Element} Vancouver narrative and charts.
+ */
 function VancouverCity({cityInView, reference}){
   const [cityData, setCityData] = useState({ immigration: [], languages: [] });
 

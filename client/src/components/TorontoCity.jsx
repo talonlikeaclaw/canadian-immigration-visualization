@@ -4,6 +4,13 @@ import Chart from './Chart';
 import normalizeLanguageData from '../utils/NormalizeLanguageData.js';
 import normalizeImmigrationData from '../utils/NormalizeImmigrationData.js';
 
+/**
+ * Toronto section that fetches immigration and language data when visible.
+ * @param {Object} props
+ * @param {boolean} props.cityInView - Whether the section is intersecting the viewport.
+ * @param {RefObject<HTMLElement>} props.reference - Ref tied to the section for cityInView,
+ * @returns {JSX.Element} Toronto storyline and charts.
+ */
 function TorontoCity({cityInView, reference}){
   const [cityData, setCityData] = useState({ immigration: [], languages: [] });
 
