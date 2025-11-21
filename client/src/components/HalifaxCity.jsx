@@ -92,6 +92,10 @@ function HalifaxCity({cityInView, reference}){
               data={languageData}
               title="Top 10 languages spoken (Excluding English)"
               classes="text-chart-group__chart"
+              footerContent={
+                `English was removed as a language to 
+                allow a better comparaison and analysis of non-offical languages`
+              }
             />
           </Suspense>
 

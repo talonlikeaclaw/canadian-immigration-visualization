@@ -28,7 +28,7 @@ ChartJS.register(
  * @param {string} [classes] - Extra CSS classes for the wrapper element.
  * @returns {JSX.Element} Configured bar chart or an error message when data is missing.
  */
-function Chart({ data, title, xLabel, yLabel, classes}) {
+function Chart({ data, title, xLabel, yLabel, classes, footerContent}) {
   if (!data || data.length === 0) {
     return <span className="chart-error">
       There was an error fetching the data. <br/> No data available to display.
@@ -86,6 +86,7 @@ function Chart({ data, title, xLabel, yLabel, classes}) {
           resizeDelay: 0,
         }}
       />
+      <footer>{footerContent}</footer>
     </div>
   );
 };

@@ -130,6 +130,10 @@ function MontrealCity({cityInView, reference}){
             data={languageData} 
             title="Top 10 spoken languages (Excluding French & English)"
             classes="text-chart-group__chart"
+            footerContent={
+              `Both French and English were removed as to 
+              allow a better comparaison and analysis of non-offical languages`
+            }
           />
 
           <section className="text-chart-group__texts">
