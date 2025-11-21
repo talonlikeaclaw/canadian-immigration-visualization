@@ -79,6 +79,10 @@ function VancouverCity({cityInView, reference}){
             data={cityData.languages}
             title="Top 10 Languages Spoken (Excluding English)"
             classes="text-chart-group__chart"
+            footerContent={
+              `English was removed as a language to 
+              allow a better comparaison and analysis of non-offical languages`
+            }
           />
           <section className="text-chart-group__texts">
             <p>
