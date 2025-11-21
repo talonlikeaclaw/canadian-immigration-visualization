@@ -26,8 +26,11 @@
 
 ### Lazy
 
+#### beforeLazy
 ![with lazy](assets/withLazy.png) 
 
+#### afterLazy
 ![without lazy](assets/withoutLazy.png)
+
 
 
