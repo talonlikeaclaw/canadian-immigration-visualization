@@ -159,18 +159,25 @@
   - [blue wave direct link](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/blob/32a511d266eaf7b63d74a067957b5ab86d5baa68/client/src/assets/images/blue_waves.png)
   - [alt](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/55/diffs?file=4cd6750f2ec85995373e84f1633b501d6cd65cf0#4cd6750f2ec85995373e84f1633b501d6cd65cf0_15_14)
   - [contrast](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/55/diffs?file=6464364828334fe066233459e0d6b74556c861b8#6464364828334fe066233459e0d6b74556c861b8_104_102)
-  - [preload](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/55/diffs?file=0f416da26130c4b5a608cf3e939a70da2b426880#0f416da26130c4b5a608cf3e939a70da2b426880_8_16) 
+  - [preload](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/55/diffs?file=0f416da26130c4b5a608cf3e939a70da2b426880#0f416da26130c4b5a608cf3e939a70da2b426880_8_16)
   - [meta](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/55/diffs?file=0f416da26130c4b5a608cf3e939a70da2b426880#0f416da26130c4b5a608cf3e939a70da2b426880_6_6)
 
-##### Loading components dynamically
+##### Loading components dynamically (lazy + suspense)
 
 - [Before](FinalChangesReport.md#beforeLazy)
 - [After](FinalChangesReport.md#afterLazy)
+
+##### Memoizing App children
+- [lighthouse](FinalChangesReport.md#lighthouse)
+- [We decided to not keep this](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/60#note_2905256906)
 
 - Lead: **Habib**
 - Link:
   - [corresponding issue ](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2903035175)
   - [corresponding MR](dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar!60)
+  - [Lazy load components](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/60/diffs?file=163e76491d088e6785415d7fa5e054ca65ba4fe8#163e76491d088e6785415d7fa5e054ca65ba4fe8_12_7)
+  - [Wrap with Suspense](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/60/diffs?file=163e76491d088e6785415d7fa5e054ca65ba4fe8#163e76491d088e6785415d7fa5e054ca65ba4fe8_79_92)
+
 ## Conclusion
 
 <!-- Summarize which changes had the greatest impact, note any surprising results and list 2-3 main

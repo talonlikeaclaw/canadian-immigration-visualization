@@ -32,5 +32,8 @@
 #### afterLazy
 ![without lazy](assets/withoutLazy.png)
 
-
-
+#### memoizing
+![memo](assets/memo.png)
+![memo2](assets/memo2.png)
+##### lighthouse
+![lighthouse with memo](assets/lighthouse.png)
