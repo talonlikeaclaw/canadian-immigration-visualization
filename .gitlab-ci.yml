@@ -104,7 +104,7 @@ test-server:
     NODE_ENV: test
     # dummy db
     DB_NAME: webproject
-    # fake mongo uri to prevent real db donnection
+    # fake mongo uri to prevent real db connection
     ATLAS_URI_DEV: mongodb://fake-uri
   script:
     - cd server
@@ -141,7 +141,7 @@ build-app-archive:
     - npm ci --omit=dev --cache .npm --prefer-offline
     - cd .. 
   
-  # create tar.gz with prodcuction needed files
+  # create tar.gz with production needed files
   # exclude cache and dev stuff
   script:
     # remove any leftover archive in workspace
@@ -184,7 +184,7 @@ build-app-archive:
           package-lock.json
       fi
   artifacts:
-    # downloadble archive
+    # downloadable archive
     paths:
       - "$RELEASE_FILE"
     when: on_success
