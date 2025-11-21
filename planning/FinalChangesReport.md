@@ -11,6 +11,14 @@
 #### alt
 ![Added alt to img](assets/imgAlt.png)
 
+#### contrast
+![contrast](assets/contrast.png)
+
+#### trim_blue_wave
+![trim](assets/trim.png)
+
+
+
 ### Lazy
 
 ![with lazy](assets/withLazy.png) 
