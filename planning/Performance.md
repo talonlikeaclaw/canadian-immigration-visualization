@@ -140,17 +140,27 @@
 
 ### V1.0.2
 
-## Summary of Changes
+#### Summary of Changes
+
+##### Optimizing Frontend 
+
+- [Before any changes for frontend](FinalChangesReport.md#before) 
+- [Compressed blue wave image](FinalChangesReport.md#compressed_bluewave)
+- [Added img alt ](FinalChangesReport.md#alt)
+- [Added img alt ](FinalChangesReport.md#alt)
+- [Added img alt ](FinalChangesReport.md#alt)
+- [Added img alt ](FinalChangesReport.md#alt)
+- [Added img alt ](FinalChangesReport.md#alt)
 
 
 
+- Lead: Melania 
+- Link: 
+  - [blue wave direct link](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/blob/32a511d266eaf7b63d74a067957b5ab86d5baa68/client/src/assets/images/blue_waves.png)
 
 
 
-
-
-
-#### Loading components dynamically 
+##### Loading components dynamically 
 
 - Lead:
 - Link: 
