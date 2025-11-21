@@ -1,5 +1,4 @@
-
-
+**This file contains the final results of optimizing our website**
 
 ### Frontend 
 #### Before
