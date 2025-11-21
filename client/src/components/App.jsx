@@ -5,7 +5,7 @@ import HeroSection from './HeroSection';
 const DataExplorer = lazy( ()=> import('./DataExplorer') );
 const MemoizedDataExplorer = memo(DataExplorer); 
 const Map = lazy( ()=> import('./Map') );
-import HalifaxCity from './HalifaxCity';
+const HalifaxCity = lazy( () => import('./HalifaxCity') );
 const MontrealCity = lazy( () => import('./MontrealCity') ); 
 const TorontoCity = lazy( ()=>  import('./TorontoCity') );
 const CalgaryCity = lazy( () => import('./CalgaryCity') );
