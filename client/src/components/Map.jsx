@@ -6,6 +6,12 @@ import toronto from'../assets/images/toronto.webp';
 import calgary from'../assets/images/calgary.webp';
 import vancouver from'../assets/images/vancouver.webp';
 
+/**
+ * Displays the map image based on scroll position/city in view.
+ * @param {Object} props
+ * @param {string} [props.zoomedInCity] - The city currently in view.
+ * @returns {JSX.Element} Map visualization for the current scroll context.
+ */
 function Map({zoomedInCity = ''}){
   return (
     <section className="map-wrapper">

@@ -5,8 +5,13 @@ import { parse } from 'csv-parse/sync';
 
 // Regex patterns created by ChatGPT
 
-// For labels like "Halifax (CMA), N.S. i12" or "Saint Pierre and Miquelon 5"
+/**
+ * Cleans trailing index markers and whitespace from StatsCan labels.
+ * @param {string} s - Raw label string from CSV.
+ * @returns {string} Sanitized label value.
+ */
 const cleanLabel = s =>
+// For labels like "Halifax (CMA), N.S. i12" or "Saint Pierre and Miquelon 5"
   (s || '').
     // remove a trailing space + 'i' + digits (" i12")
     replace(/\si\d+$/i, '').
@@ -14,15 +19,25 @@ const cleanLabel = s =>
     replace(/\s+\d+$/g, '').
     trim();
 
-// For period values like "2016 to 2021 7"
+/**
+ * Normalizes immigration period labels by removing index markers.
+ * @param {string} s - Raw period string from CSV.
+ * @returns {string} Cleaned period label.
+ */
 const cleanImmigrationPeriod = s =>
+  // For period values like "2016 to 2021 7"
   (s || '').
     replace(/\si\d+$/i, '').
     replace(/\s+(\d+)$/, (_, d) => Number(d) < 10 ? '' : ` ${d}`).
     trim();
 
-// For parsing number values
+/**
+ * Parses a string containing a numeric count, returning null for invalid values.
+ * @param {string} s - Raw count string from CSV.
+ * @returns {number|null} Parsed number or null when unavailable.
+ */
 const parseCount = s => {
+// For parsing number values
   if (!s) return null;
   const cleaned = s.replace(/[\u00A0\u202F, ]/g, '');
   return /^\d+$/.test(cleaned) ? Number(cleaned) : null;
@@ -32,11 +47,9 @@ const parseCount = s => {
 
 /**
  * Parse and normalize StatsCan immigration CSV rows into typed records.
- * ESM path handling: __filename/__dirname are derived from import.meta.url so
- * the CSV can be located regardless of process working directory.
  *
  * @param {Function} reader - Optional file reader function used for testing.
- * @returns Promise<Array<{ City: string, Country: string, Period: string, Count: number|null }>>
+ * @returns {Promise<Array<{ City: string, Country: string, Period: string, Count: number|null }>>}
  */
 export async function parseImmigrationCSV(reader = readFile) {
   const filePath = './data/immigration_data.csv';
@@ -151,7 +164,7 @@ export async function parseImmigrationCSV(reader = readFile) {
  * Parse and normalize StatsCan language CSV rows into typed records.
  *
  * @param {Function} reader - Optional file reader function used for testing.
- * @returns Promise<Array<{ City: city, Language: language, Count: count| }>>
+ * @returns {Promise<Array<{ City: string, Language: string, Count: number|null }>>}
  */
 export async function parseLanguageCSV(reader = readFile) {
   const filePath = './data/language_data.csv';

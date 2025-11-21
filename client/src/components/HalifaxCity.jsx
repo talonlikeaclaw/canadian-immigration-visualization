@@ -1,13 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import '../assets/styles/City.css';
-import Chart from './Chart';
+const Chart = lazy( () => import('./Chart') );
 import normalizeLanguageData from '../utils/NormalizeLanguageData.js';
 import normalizeImmigrationData from '../utils/NormalizeImmigrationData.js';
 
 /**
- * @param {boolean} cityInView flag to determine if the city of halifax is in view
- * @param {React Ref Object} reference a reference object used to determine the cityInView flag
- * @returns a component representing the entire Halifax city component
+ * Halifax section that preloads language and immigration datasets when visible.
+ * @param {Object} props
+ * @param {boolean} props.cityInView - Whether the Halifax section is in the viewport.
+ * @param {RefObject<HTMLElement>} props.reference - Ref tied to the section for cityInView,
+ * @returns {JSX.Element} Halifax narrative and charts.
  */
 function HalifaxCity({cityInView, reference}){
   const [languageData, setLanguageData] = useState([]);
@@ -75,20 +77,23 @@ function HalifaxCity({cityInView, reference}){
             masses to North America.
             </p>
           </section>
-
-          <Chart 
-            data={immigrationDataset1}
-            title="Immigration patterns before 1980"
-            classes="text-chart-group__chart"
-          />
+          <Suspense fallback={<p>Loading chart...</p>}>
+            <Chart 
+              data={immigrationDataset1}
+              title="Immigration patterns before 1980"
+              classes="text-chart-group__chart"
+            />
+          </Suspense>
         </section>
 
         <section className="text-chart-group__left">
-          <Chart
-            data={languageData}
-            title="Top 10 languages spoken"
-            classes="text-chart-group__chart"
-          />
+          <Suspense fallback={<p>Loading chart...</p>}>
+            <Chart
+              data={languageData}
+              title="Top 10 languages spoken"
+              classes="text-chart-group__chart"
+            />
+          </Suspense>
 
           <section className="text-chart-group__texts">
             <p>
@@ -135,11 +140,13 @@ function HalifaxCity({cityInView, reference}){
             free admission to municipal recreation facilities and programs
             </p>
           </section>
-          <Chart
-            data={immigrationDataset2}
-            title="Immigration patterns from 2016 to 2021"
-            classes="text-chart-group__chart"
-          />
+          <Suspense fallback={<p>Loading chart...</p>}>
+            <Chart
+              data={immigrationDataset2}
+              title="Immigration patterns from 2016 to 2021"
+              classes="text-chart-group__chart"
+            />
+          </Suspense>
         </section>
 
       </section>

@@ -1,19 +1,25 @@
+import {lazy, Suspense} from 'react';
 import { useInView } from 'react-intersection-observer';
 import '../assets/styles/App.css';
 import HeroSection from './HeroSection';
-import DataExplorer from './DataExplorer';
+const DataExplorer = lazy( ()=> import('./DataExplorer') );
 import Map from './Map';
-import HalifaxCity from './HalifaxCity';
-import MontrealCity from './MontrealCity'; 
-import TorontoCity from './TorontoCity';
-import CalgaryCity from './CalgaryCity';
-import VancouverCity from './VancouverCity';
-import Footer from './Footer';
+const HalifaxCity = lazy( () => import('./HalifaxCity') );
+const MontrealCity = lazy( () => import('./MontrealCity') ); 
+const TorontoCity = lazy( ()=>  import('./TorontoCity') );
+const CalgaryCity = lazy( () => import('./CalgaryCity') );
+const VancouverCity = lazy( () => import('./VancouverCity') );
+const Footer = lazy( ()=> import('./Footer') );
 import whiteCurve from '../assets/images/white-curve.webp';
 
+/**
+ * Root application component that wires together the hero, map, city sections,
+ * and data explorer while tracking which city card is in view for updating the map.
+ * @returns {JSX.Element} Rendered application layout.
+ */
 function App() {
   // A google search on how I can track the position of React elements
-  // lead me to the react intersction observer (plus I think this was
+  // lead me to the react intersection observer (plus I think this was
   // in one of class lectures, with lazy loading)
   // https://www.npmjs.com/package/react-intersection-observer
   const options = {threshold: 0.1};
@@ -39,7 +45,8 @@ function App() {
             : '';
   
   /**
-   * @returns two paragraphs that introduce our story
+   * Renders introductory context that frames the coast-to-coast narrative.
+   * @returns {JSX.Element} Introductory copy for the experience.
    */
   function displayContextText(){
     return (
@@ -67,21 +74,40 @@ function App() {
       <HeroSection />
       <section className="scroll-content">
         <img src={whiteCurve} alt="white curve"  className="white-curve"/>
+
+        {/* <Suspense fallback={<p>Loading Map...</p>}> */}
         <Map zoomedInCity={currentZoomedCity} />
+        {/* </Suspense> */}
 
         {displayContextText()}
+        <Suspense fallback={<p>Loading Halifax...</p>}>
+          <HalifaxCity cityInView={halifaxInView} reference={halifaxRef}/>
+        </Suspense>
+        <Suspense fallback={<p>Loading Montréal...</p>}>
+          <MontrealCity cityInView={montrealInView} reference={montrealRef}/>
+        </Suspense>
 
-        <HalifaxCity cityInView={halifaxInView} reference={halifaxRef}/>
-        <MontrealCity cityInView={montrealInView} reference={montrealRef}/>
-        <TorontoCity cityInView={torontoInView} reference={torontoRef}/>
-        <CalgaryCity cityInView={calgaryInView} reference={calgaryRef}/>
-        <VancouverCity cityInView={vancouverInView} reference={vancouverRef}/>
+        <Suspense fallback={<p>Loading Toronto...</p>}>
+          <TorontoCity cityInView={torontoInView} reference={torontoRef}/>
+        </Suspense>
 
-        <DataExplorer />
-        <Footer />
+        <Suspense fallback={<p>Loading Calgary...</p>}>
+          <CalgaryCity cityInView={calgaryInView} reference={calgaryRef}/>
+        </Suspense>
+
+        <Suspense fallback={<p>Loading Vancouver...</p>}>
+          <VancouverCity cityInView={vancouverInView} reference={vancouverRef}/>
+        </Suspense>
+
+        <Suspense fallback= {<p> Loading Data Explorer</p>}>
+          <DataExplorer />
+        </Suspense>
+
+        <Suspense fallback= {<p> Loading Data Footer</p>}>
+          <Footer />
+        </Suspense>
       </section>
     </>
   );
 }
-
 export default App;

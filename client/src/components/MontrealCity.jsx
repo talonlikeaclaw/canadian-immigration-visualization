@@ -4,6 +4,13 @@ import Chart from './Chart';
 import normalizeLanguageData from '../utils/NormalizeLanguageData.js';
 import normalizeImmigrationData from '../utils/NormalizeImmigrationData.js';
 
+/**
+ * Montréal section that fetches immigration and language data when in view.
+ * @param {Object} props
+ * @param {boolean} props.cityInView - Whether the section is currently visible.
+ * @param {RefObject<HTMLElement>} props.reference - Ref tied to the section for cityInView,
+ * @returns {JSX.Element} Montréal narrative and charts.
+ */
 function MontrealCity({cityInView, reference}){
   const [languageData, setLanguageData] = useState([]);
   const [immigrationDataset1, setImmigrationDataset1] = useState([]);

@@ -19,6 +19,15 @@ ChartJS.register(
   Legend
 );
 
+/**
+ * Generic bar chart wrapper around chart.js with defensive empty state handling.
+ * @param {{label: string, value: number}[]} data - Chart data entries.
+ * @param {string} title - Heading displayed above the chart.
+ * @param {string} [xLabel] - Optional label for the x-axis.
+ * @param {string} [yLabel] - Optional label for the y-axis.
+ * @param {string} [classes] - Extra CSS classes for the wrapper element.
+ * @returns {JSX.Element} Configured bar chart or an error message when data is missing.
+ */
 function Chart({ data, title, xLabel, yLabel, classes}) {
   if (!data || data.length === 0) {
     return <span className="chart-error">

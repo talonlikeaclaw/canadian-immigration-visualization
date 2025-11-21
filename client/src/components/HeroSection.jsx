@@ -3,6 +3,10 @@ import arrow from'../assets/images/arrow.svg';
 import blueWaves from '../assets/images/blue_waves.webp';
 
 
+/**
+ * Renders the page hero section with introduction and scroll prompt.
+ * @returns {JSX.Element} Hero section content.
+ */
 function HeroSection(){
   return(
     <section className="hero-section">

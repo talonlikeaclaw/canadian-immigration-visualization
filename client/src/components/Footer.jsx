@@ -1,4 +1,9 @@
 import '../assets/styles/Footer.css';
+
+/**
+ * Footer with attribution, licensing, and disclaimer text.
+ * @returns {JSX.Element} Page footer content.
+ */
 export default function Footer(){
   return(
     <footer className="footer">
@@ -33,8 +38,8 @@ export default function Footer(){
         .
       <br/> <br/>
       <em className="footer-disclaimer"> 
-          The data prensented in this project is intended solely for the educational
-           and analytical purposes. 
+          The data presented in this project is intended solely for the educational
+          and analytical purposes.
           It does not reflect any political, religious, or ideological stance by the authors.
       </em>
     </footer>

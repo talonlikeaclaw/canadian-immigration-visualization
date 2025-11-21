@@ -30,6 +30,7 @@ import { parseImmigrationCSV, parseLanguageCSV } from './csvParser.mjs';
  * @param {Object} deps.db - Database manager.
  * @param {Function} deps.parseImmigrationCSV - Function that returns parsed immigration data.
  * @param {Function} deps.parseLanguageCSV - Function that returns parsed language data.
+ * @returns {Promise<void>} Resolves when the seed operation completes.
  */
 export async function seedDatabase(
   deps = { db, parseImmigrationCSV, parseLanguageCSV }

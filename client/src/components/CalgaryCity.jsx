@@ -1,9 +1,16 @@
 import { useState, useEffect } from 'react';
 import '../assets/styles/City.css';
-import Chart from './Chart';
 import normalizeLanguageData from '../utils/NormalizeLanguageData.js';
 import normalizeImmigrationData from '../utils/NormalizeImmigrationData.js';
+import Chart from './Chart';
 
+/**
+ * Calgary section that displays immigration and language datasets once in view.
+ * @param {Object} props
+ * @param {boolean} props.cityInView - Whether the section is currently visible.
+ * @param {RefObject<HTMLElement>} props.reference - Ref attached to the section for cityInView,
+ * @returns {JSX.Element} Calgary narrative and charts.
+ */
 function CalgaryCity({cityInView, reference}){
   const [cityData, setCityData] = useState({ immigration: [], languages: [] });
 
@@ -79,6 +86,7 @@ function CalgaryCity({cityInView, reference}){
             title="Leading 15 Origin Countries of Immigrants to Calgary (1991 - 2000)"
             classes="text-chart-group__chart"
           />
+
         </section>
         <section className="text-chart-group__left">
           <Chart

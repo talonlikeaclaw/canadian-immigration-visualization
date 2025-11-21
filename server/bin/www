@@ -49,6 +49,7 @@ const server = app.listen(PORT, () => {
  * Ensures the HTTP server and database connections are closed cleanly.
  *
  * @param {string} signal - The system signal received.
+ * @returns {void}
  */
 function handleShutdown(signal) {
   console.info(`[SYS] ${signal} received: shutting down...`);
