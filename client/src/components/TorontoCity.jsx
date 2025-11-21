@@ -13,36 +13,43 @@ import normalizeImmigrationData from '../utils/NormalizeImmigrationData.js';
  */
 function TorontoCity({cityInView, reference}){
   const [cityData, setCityData] = useState({ immigration: [], languages: [] });
+  const [isLoading, setIsLoading] = useState(false);
+  const [fetchError, setFetchError] = useState(false);
+  const hasData =
+    cityData.immigration.length > 0 && cityData.languages.length > 0;
+  const showLoading = isLoading || !hasData && !fetchError;
 
   useEffect(()=>{
-    if (cityInView){
-      // don't fetch data if already fetched
-      if (cityData.immigration.length > 0) return;
-      if (cityData.languages.length > 0) return;
-  
-      Promise.all([
-        fetch(`/api/immigration/toronto`),
-        fetch(`/api/languages/toronto`),
-      ]).
-        then(([immigrationResponse, languageResponse]) => {
-          // Process the responses into JSON concurrently
-          return Promise.all([
-            immigrationResponse.json(),
-            languageResponse.json(),
-          ]);
-        }).
-        then(([immigrationData, languageData]) => {
-          // Update the state with the combined data
-          const immigrationChartData = normalizeImmigrationData(immigrationData, 20);
-          const languagesChartData = normalizeLanguageData(languageData, 20);
-          setCityData({ immigration: immigrationChartData, languages: languagesChartData });
-        }).
-        catch(error => {
-          // Handle any errors that occurred in the chain
-          console.error(error);
-        });
-    }
-  }, [cityInView, cityData]);
+    // don't fetch data if already fetched/loading
+    if (!cityInView || hasData || isLoading) return;
+
+    setFetchError(false);
+    setIsLoading(true);
+
+    Promise.all([
+      fetch(`/api/immigration/toronto`),
+      fetch(`/api/languages/toronto`),
+    ]).
+      then(([immigrationResponse, languageResponse]) => Promise.all([
+        // Process the responses into JSON concurrently
+        immigrationResponse.json(),
+        languageResponse.json(),
+      ])).
+      then(([immigrationData, languageData]) => {
+        // Update the state with the combined data
+        const immigrationChartData = normalizeImmigrationData(immigrationData, 20);
+        const languagesChartData = normalizeLanguageData(languageData, 20);
+        setCityData({ immigration: immigrationChartData, languages: languagesChartData });
+      }).
+      catch(error => {
+        // Handle any errors that occurred in the chain
+        console.error(error);
+        setFetchError(true);
+      }).
+      finally(() => {
+        setIsLoading(false);
+      });
+  }, [cityInView, hasData, isLoading]);
   return (
     <>
       <section className="toronto-section city-section" ref={reference}>
@@ -65,22 +72,24 @@ function TorontoCity({cityInView, reference}){
                   Guyana, the Philippines and so much more.
             </p>
           </section>
-          <Suspense fallback={<span className="chart-error">Loading... Please wait!</span>}>
+          <Suspense fallback={<span className="chart-error">Loading chart... Please wait!</span>}>
             <Chart
               data={cityData.immigration}
               title="The Top 20 Countries Driving Immigration (All Time)"
               classes="text-chart-group__chart"
+              loading={showLoading}
             />
           </Suspense>
         </section>
 
         <section className="text-chart-group__left">
-          <Suspense fallback={<span className="chart-error">Loading... Please wait!</span>}>
+          <Suspense fallback={<span className="chart-error">Loading chart... Please wait!</span>}>
             <Chart
               data={cityData.languages} 
               title="Top 20 spoken languages (Excluding English)"
               classes="text-chart-group__chart"
               footerContent="English was removed to allow a better comparison"
+              loading={showLoading}
             />
           </Suspense>
           <section className="text-chart-group__texts">
