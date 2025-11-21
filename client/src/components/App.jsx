@@ -75,13 +75,22 @@ function App() {
 
         <HalifaxCity cityInView={halifaxInView} reference={halifaxRef}/>
 
-        <Suspense fallback={<p>Loading city data...</p>}>
+        <Suspense fallback={<p>Loading Montréal...</p>}>
           <MontrealCity cityInView={montrealInView} reference={montrealRef}/>
+        </Suspense>
+
+        <Suspense fallback={<p>Loading Toronto...</p>}>
           <TorontoCity cityInView={torontoInView} reference={torontoRef}/>
+        </Suspense>
+
+        <Suspense fallback={<p>Loading Calgary...</p>}>
           <CalgaryCity cityInView={calgaryInView} reference={calgaryRef}/>
+        </Suspense>
+
+        <Suspense fallback={<p>Loading Vancouver...</p>}>
           <VancouverCity cityInView={vancouverInView} reference={vancouverRef}/>
         </Suspense>
-        
+
         <Suspense fallback= {<p> Loading Data Explorer</p>}>
           <MemoizedDataExplorer />
         </Suspense>
