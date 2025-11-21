@@ -15,48 +15,59 @@ function MontrealCity({cityInView, reference}){
   const [languageData, setLanguageData] = useState([]);
   const [immigrationDataset1, setImmigrationDataset1] = useState([]);
   const [immigrationDataset2, setImmigrationDataset2] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [fetchError, setFetchError] = useState(false);
+  const hasData = languageData.length > 0 &&
+    immigrationDataset1.length > 0 &&
+    immigrationDataset2.length > 0;
+  const showLoading = isLoading || !hasData && !fetchError;
 
   useEffect(()=>{
-    if (cityInView){
-      // don't fetch data if already fetched
-      if (languageData.length > 0) return;
-      if (immigrationDataset1.length > 0) return;
-      if (immigrationDataset2.length > 0) return;
-      Promise.all([
-        fetch(`/api/languages/montréal`),
-        fetch(`/api/immigration/montréal/period/1980/1990`),
-        fetch(`/api/immigration/montréal`),
-      ]).
-        then(([languageResponse, immigration1Response, immigration2Response]) => {
-          if (languageResponse.ok && immigration1Response.ok && immigration2Response.ok){
-            return Promise.all([
-              languageResponse.json(),
-              immigration1Response.json(),
-              immigration2Response.json(),
-            ]);
+    // don't fetch data if already fetched/loading
+    if (!cityInView || hasData || isLoading) return;
+
+    setFetchError(false);
+    setIsLoading(true);
+
+    Promise.all([
+      fetch(`/api/languages/montréal`),
+      fetch(`/api/immigration/montréal/period/1980/1990`),
+      fetch(`/api/immigration/montréal`),
+    ]).
+      then(([languageResponse, immigration1Response, immigration2Response]) => {
+        if (languageResponse.ok && immigration1Response.ok && immigration2Response.ok){
+          return Promise.all([
+            languageResponse.json(),
+            immigration1Response.json(),
+            immigration2Response.json(),
+          ]);
   
-          }
-        }).
-        then(([languageData, immigration1Data, immigration2Data]) => {
-          // Update the states
-          const simplifiedLanguagesArray = normalizeLanguageData(languageData);
-          setLanguageData(simplifiedLanguagesArray);
+        }
+        throw new Error('Failed to fetch Montréal data');
+      }).
+      then(([languageData, immigration1Data, immigration2Data]) => {
+        // Update the states
+        const simplifiedLanguagesArray = normalizeLanguageData(languageData);
+        setLanguageData(simplifiedLanguagesArray);
   
-          const convertedImmigration1Array = normalizeImmigrationData(immigration1Data);
-          setImmigrationDataset1(convertedImmigration1Array);
+        const convertedImmigration1Array = normalizeImmigrationData(immigration1Data);
+        setImmigrationDataset1(convertedImmigration1Array);
   
-          const convertedImmigration2Array = 
-            normalizeImmigrationData(immigration2Data, 15);
-          setImmigrationDataset2(convertedImmigration2Array);
+        const convertedImmigration2Array = 
+          normalizeImmigrationData(immigration2Data, 15);
+        setImmigrationDataset2(convertedImmigration2Array);
   
-        }).
-        catch(error => {
-          // Handle any errors that occurred in the chain
-          console.error(error);
-        });
-    }
+      }).
+      catch(error => {
+        // Handle any errors that occurred in the chain
+        console.error(error);
+        setFetchError(true);
+      }).
+      finally(() => {
+        setIsLoading(false);
+      });
     
-  }, [cityInView, languageData, immigrationDataset1, immigrationDataset2]);
+  }, [cityInView, hasData, isLoading]);
 
   return (
     <>
@@ -71,11 +82,12 @@ function MontrealCity({cityInView, reference}){
         </p>
 
         <section className="text-chart-group__left">
-          <Suspense fallback={<span className="chart-error">Loading... Please wait!</span>}>
+          <Suspense fallback={<span className="chart-error">Loading chart... Please wait!</span>}>
             <Chart
               data={immigrationDataset1} 
               title="Immigration patterns from 1980 to 1990 (Top 10 countries)"
               classes="text-chart-group__chart"
+              loading={showLoading}
             />
           </Suspense>
           <section className="text-chart-group__texts">
@@ -83,7 +95,7 @@ function MontrealCity({cityInView, reference}){
                   To protect its unique French identity, Quebec took control of
                   immigration. A key moment was Bill 101 (the Charter of the French
                   Language) in 1977, which made French the official language and
-                  the required language for immigrant childrens schooling.
+                  the required language for immigrant children&apos;s schooling.
             </p>
             <p>
                   This control was cemented with the 1991 Canada-Quebec Accord.
@@ -119,23 +131,25 @@ function MontrealCity({cityInView, reference}){
               sources of new residents that have contributed to the demographic makeup of Montréal.
             </p>
           </section>
-          <Suspense fallback={<span className="chart-error">Loading... Please wait!</span>}>
+          <Suspense fallback={<span className="chart-error">Loading chart... Please wait!</span>}>
             <Chart
               data={immigrationDataset2} 
               title="The Leading 15 Origin Countries of Immigrants (All recorded years)"
               classes="text-chart-group__chart"
+              loading={showLoading}
             />
           </Suspense>
         </section>
 
         <section className="text-chart-group__left">
       
-          <Suspense fallback={<span className="chart-error">Loading... Please wait!</span>}>
+          <Suspense fallback={<span className="chart-error">Loading chart... Please wait!</span>}>
             <Chart
               data={languageData} 
               title="Top 10 spoken languages (Excluding French & English)"
               classes="text-chart-group__chart"
               footerContent="Both French and English was removed to allow a better comparison"
+              loading={showLoading}
             />
           </Suspense>
 
