@@ -6,10 +6,15 @@ const DataExplorer = lazy( ()=> import('./DataExplorer') );
 const MemoizedDataExplorer = memo(DataExplorer); 
 import Map from './Map';
 const HalifaxCity = lazy( () => import('./HalifaxCity') );
+const MemoizedHalifaxCity = memo(HalifaxCity);
 const MontrealCity = lazy( () => import('./MontrealCity') ); 
+const MemoizedMontrealCity = memo(MontrealCity);
 const TorontoCity = lazy( ()=>  import('./TorontoCity') );
+const MemoizedToronto = memo(TorontoCity);
 const CalgaryCity = lazy( () => import('./CalgaryCity') );
+const MemoizedCalgaryCity = memo(CalgaryCity);
 const VancouverCity = lazy( () => import('./VancouverCity') );
+const MemoizedVancouverCity = memo(VancouverCity);
 const Footer = lazy( ()=> import('./Footer') );
 import whiteCurve from '../assets/images/white-curve.webp';
 
@@ -74,22 +79,22 @@ function App() {
 
         {displayContextText()}
         <Suspense fallback={<p>Loading Halifax...</p>}>
-          <HalifaxCity cityInView={halifaxInView} reference={halifaxRef}/>
+          <MemoizedHalifaxCity cityInView={halifaxInView} reference={halifaxRef}/>
         </Suspense>
         <Suspense fallback={<p>Loading Montréal...</p>}>
-          <MontrealCity cityInView={montrealInView} reference={montrealRef}/>
+          <MemoizedMontrealCity cityInView={montrealInView} reference={montrealRef}/>
         </Suspense>
 
         <Suspense fallback={<p>Loading Toronto...</p>}>
-          <TorontoCity cityInView={torontoInView} reference={torontoRef}/>
+          <MemoizedToronto cityInView={torontoInView} reference={torontoRef}/>
         </Suspense>
 
         <Suspense fallback={<p>Loading Calgary...</p>}>
-          <CalgaryCity cityInView={calgaryInView} reference={calgaryRef}/>
+          <MemoizedCalgaryCity cityInView={calgaryInView} reference={calgaryRef}/>
         </Suspense>
 
         <Suspense fallback={<p>Loading Vancouver...</p>}>
-          <VancouverCity cityInView={vancouverInView} reference={vancouverRef}/>
+          <MemoizedVancouverCity cityInView={vancouverInView} reference={vancouverRef}/>
         </Suspense>
 
         <Suspense fallback= {<p> Loading Data Explorer</p>}>
