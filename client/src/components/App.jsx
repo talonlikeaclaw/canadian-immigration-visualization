@@ -4,7 +4,7 @@ import '../assets/styles/App.css';
 import HeroSection from './HeroSection';
 const DataExplorer = lazy( ()=> import('./DataExplorer') );
 const MemoizedDataExplorer = memo(DataExplorer); 
-const Map = lazy( ()=> import('./Map') );
+import Map from './Map';
 const HalifaxCity = lazy( () => import('./HalifaxCity') );
 const MontrealCity = lazy( () => import('./MontrealCity') ); 
 const TorontoCity = lazy( ()=>  import('./TorontoCity') );
@@ -70,9 +70,9 @@ function App() {
       <section className="scroll-content">
         <img src={whiteCurve} alt="white curve"  className="white-curve"/>
 
-        <Suspense fallback={<p>Loading Map...</p>}>
-          <Map zoomedInCity={currentZoomedCity} />
-        </Suspense>
+        {/* <Suspense fallback={<p>Loading Map...</p>}> */}
+        <Map zoomedInCity={currentZoomedCity} />
+        {/* </Suspense> */}
 
         {displayContextText()}
         <Suspense fallback={<p>Loading Halifax...</p>}>
