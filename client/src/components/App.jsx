@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import '../assets/styles/App.css';
 import HeroSection from './HeroSection';
@@ -44,44 +43,6 @@ function App() {
             ? 'halifax'
             : '';
 
-  // Keeps track of which cities have been in view to enable lazy loadings
-  const [renderedCity, setRenderedCity] = useState({
-    halifax: true,
-    montreal: false,
-    toronto: false,
-    calgary: false,
-    vancouver: false
-  });
-
-  /* Manually lazy load using useEffect because react-intersection-observer
-  does npt play nicely with lazy/Suspense fall back elements. */
-  useEffect(() => {
-    if (
-      currentZoomedCity === 'halifax' &&
-      renderedCity.montreal === false
-    ) {
-      setRenderedCity(prev => ({ ...prev, montreal: true }));
-    }
-    if (
-      currentZoomedCity === 'montreal' &&
-      renderedCity.toronto === false
-    ) {
-      setRenderedCity(prev => ({ ...prev, toronto: true }));
-    }
-    if (
-      currentZoomedCity === 'toronto' &&
-      renderedCity.calgary === false
-    ) {
-      setRenderedCity(prev => ({ ...prev, calgary: true }));
-    }
-    if (
-      currentZoomedCity === 'calgary' &&
-      renderedCity.vancouver === false
-    ) {
-      setRenderedCity(prev => ({ ...prev, vancouver: true }));
-    }
-  }, [currentZoomedCity, renderedCity]);
-
   /**
    * Renders introductory context that frames the coast-to-coast narrative.
    * @returns {JSX.Element} Introductory copy for the experience.
@@ -115,31 +76,16 @@ function App() {
         <Map zoomedInCity={currentZoomedCity} />
 
         {displayContextText()}
-        {renderedCity.halifax && 
-          <HalifaxCity cityInView={halifaxInView} reference={halifaxRef} />
-        }
-        {renderedCity.montreal && 
-          <MontrealCity
-            cityInView={montrealInView}
-            reference={montrealRef}
-          />
-        }
-        {renderedCity.toronto && 
-          <TorontoCity cityInView={torontoInView} reference={torontoRef} />
-        }
-        {renderedCity.calgary && 
-          <CalgaryCity cityInView={calgaryInView} reference={calgaryRef} />
-        }
-        {renderedCity.vancouver && 
-          <>
-            <VancouverCity
-              cityInView={vancouverInView}
-              reference={vancouverRef}
-            />
-            <DataExplorer />
-            <Footer />
-          </>
-        }
+
+        <HalifaxCity cityInView={halifaxInView} reference={halifaxRef}/>
+        <MontrealCity cityInView={montrealInView} reference={montrealRef}/>
+        <TorontoCity cityInView={torontoInView} reference={torontoRef}/>
+        <CalgaryCity cityInView={calgaryInView} reference={calgaryRef}/>
+        <VancouverCity cityInView={vancouverInView} reference={vancouverRef}/>
+
+        <DataExplorer />
+        <Footer />
+
       </section>
     </>
   );
