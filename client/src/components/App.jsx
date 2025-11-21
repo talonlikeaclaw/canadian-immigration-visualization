@@ -75,9 +75,9 @@ function App() {
         </Suspense>
 
         {displayContextText()}
-
-        <HalifaxCity cityInView={halifaxInView} reference={halifaxRef}/>
-
+        <Suspense fallback={<p>Loading Halifax...</p>}>
+          <HalifaxCity cityInView={halifaxInView} reference={halifaxRef}/>
+        </Suspense>
         <Suspense fallback={<p>Loading Montréal...</p>}>
           <MontrealCity cityInView={montrealInView} reference={montrealRef}/>
         </Suspense>
