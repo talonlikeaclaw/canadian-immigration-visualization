@@ -1,4 +1,4 @@
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import '../assets/styles/City.css';
 import normalizeLanguageData from '../utils/NormalizeLanguageData.js';
 import normalizeImmigrationData from '../utils/NormalizeImmigrationData.js';
