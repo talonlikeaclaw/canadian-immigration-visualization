@@ -128,7 +128,7 @@ function MontrealCity({cityInView, reference}){
       
           <Chart
             data={languageData} 
-            title="Top 10 spoken languages"
+            title="Top 10 spoken languages (Excluding French & English)"
             classes="text-chart-group__chart"
           />
 
