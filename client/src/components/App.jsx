@@ -70,12 +70,12 @@ function App() {
       <section className="scroll-content">
         <img src={whiteCurve} alt="white curve"  className="white-curve"/>
 
-        {displayContextText()}
-
         <Suspense fallback={<p>Loading Map...</p>}>
           <Map zoomedInCity={currentZoomedCity} />
         </Suspense>
-        
+
+        {displayContextText()}
+
         <HalifaxCity cityInView={halifaxInView} reference={halifaxRef}/>
 
         <Suspense fallback={<p>Loading Montréal...</p>}>
