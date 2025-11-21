@@ -77,7 +77,7 @@
 
 - This change resulted in great optimization and gave the following change in results
 
-- Lead: ***Talon**
+- Lead: **\*Talon**
 - Link:
 
   - [server-side optimization](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs)
@@ -142,9 +142,9 @@
 
 #### Summary of Changes
 
-##### Optimizing Frontend 
+##### Optimizing Frontend
 
-- [Before any changes for frontend](FinalChangesReport.md#before) 
+- [Before any changes for frontend](FinalChangesReport.md#before)
 - [Compressed blue wave image](FinalChangesReport.md#compressed_bluewave)
 - [Added img alt ](FinalChangesReport.md#alt)
 - [Add contrast to images ](FinalChangesReport.md#contrast)
@@ -152,17 +152,18 @@
 - [Preload blue wave img ](FinalChangesReport.md#preload)
 - [Added meta tags ](FinalChangesReport.md#meta)
 
-- Lead:**Melania** 
-- Links: 
+- Lead:**Melania**
+- Links:
+  - [corresponding issue ](dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar#83)
   - [blue wave direct link](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/blob/32a511d266eaf7b63d74a067957b5ab86d5baa68/client/src/assets/images/blue_waves.png)
+  - [alt](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/55/diffs?file=4cd6750f2ec85995373e84f1633b501d6cd65cf0#4cd6750f2ec85995373e84f1633b501d6cd65cf0_15_14)
+  - [contrast](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/55/diffs?file=6464364828334fe066233459e0d6b74556c861b8#6464364828334fe066233459e0d6b74556c861b8_104_102)
+  - [preload](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/55/diffs?file=0f416da26130c4b5a608cf3e939a70da2b426880#0f416da26130c4b5a608cf3e939a70da2b426880_8_16) -[meta](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/55/diffs?file=0f416da26130c4b5a608cf3e939a70da2b426880#0f416da26130c4b5a608cf3e939a70da2b426880_6_6)
 
-
-
-##### Loading components dynamically 
+##### Loading components dynamically
 
 - Lead:
-- Link: 
-
+- Link:
 
 ## Conclusion
 
