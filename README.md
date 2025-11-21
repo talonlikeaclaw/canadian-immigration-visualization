@@ -9,7 +9,14 @@ This project explores Canadian immigration patterns in major cities, with a focu
 - AWS: http://16.52.46.206/
 - Render: https://five20-project-safari-chiru-dunbar.onrender.com/
 
-## Selected cities 
+### Technologies Used
+
+- **Frontend**: React, Vite, Chart.js
+- **Backend**: Node.js, Express, Swagger
+  - **Testing**" Mocha, Chai, Sinon, Supertest
+- **Database**: MongoDB
+
+### Selected Cities
 
 | Region                | Cities           |
 | --------------------- | ---------------- |
@@ -20,15 +27,6 @@ This project explores Canadian immigration patterns in major cities, with a focu
 | Pacific / West        | Vancouver        |
 
 ## Screenshots
-
-Below are previews of the project interface showing the landing (Hero) section and the interactive Data Explorer.
-
-## Technologies Used
-
-- **Frontend**: React, Vite, Chart.js
-- **Backend**: Node.js, Express, Swagger
-  - **Testing**" Mocha, Chai, Sinon, Supertest
-- **Database**: MongoDB
 
 ### Hero Section
 
