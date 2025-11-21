@@ -1,14 +1,15 @@
+import {lazy, Suspense} from 'react';
 import { useInView } from 'react-intersection-observer';
 import '../assets/styles/App.css';
 import HeroSection from './HeroSection';
-import DataExplorer from './DataExplorer';
-import Map from './Map';
-import HalifaxCity from './HalifaxCity';
-import MontrealCity from './MontrealCity'; 
-import TorontoCity from './TorontoCity';
-import CalgaryCity from './CalgaryCity';
-import VancouverCity from './VancouverCity';
-import Footer from './Footer';
+const DataExplorer = lazy( ()=> import('./DataExplorer') ); 
+const Map = lazy( ()=> import('./Map') );
+const HalifaxCity = lazy( () => import('./HalifaxCity') );
+const MontrealCity = lazy( () => import('./MontrealCity') ); 
+const TorontoCity = lazy( ()=>  import('./TorontoCity') );
+const CalgaryCity = lazy( () => import('./CalgaryCity') );
+const VancouverCity = lazy( () => import('./VancouverCity') );
+const Footer = lazy( ()=> import('./Footer') );
 import whiteCurve from '../assets/images/white-curve.webp';
 
 function App() {
@@ -71,17 +72,17 @@ function App() {
 
         {displayContextText()}
 
-        <HalifaxCity cityInView={halifaxInView} reference={halifaxRef}/>
-        <MontrealCity cityInView={montrealInView} reference={montrealRef}/>
-        <TorontoCity cityInView={torontoInView} reference={torontoRef}/>
-        <CalgaryCity cityInView={calgaryInView} reference={calgaryRef}/>
-        <VancouverCity cityInView={vancouverInView} reference={vancouverRef}/>
-
+        <Suspense fallback={<p>Loading city data...</p>}>
+          <HalifaxCity cityInView={halifaxInView} reference={halifaxRef}/>
+          <MontrealCity cityInView={montrealInView} reference={montrealRef}/>
+          <TorontoCity cityInView={torontoInView} reference={torontoRef}/>
+          <CalgaryCity cityInView={calgaryInView} reference={calgaryRef}/>
+          <VancouverCity cityInView={vancouverInView} reference={vancouverRef}/>
+        </Suspense>
         <DataExplorer />
         <Footer />
       </section>
     </>
   );
 }
-
 export default App;
