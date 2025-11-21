@@ -15,48 +15,58 @@ function HalifaxCity({cityInView, reference}){
   const [languageData, setLanguageData] = useState([]);
   const [immigrationDataset1, setImmigrationDataset1] = useState([]);
   const [immigrationDataset2, setImmigrationDataset2] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [fetchError, setFetchError] = useState(false);
+  const hasData = languageData.length > 0 &&
+    immigrationDataset1.length > 0 &&
+    immigrationDataset2.length > 0;
+  const showLoading = isLoading || !hasData && !fetchError;
 
   // fetch all data for charts when the city comes into view
   useEffect(()=>{
-    if (cityInView){
-      // don't fetch data if already fetched
-      if (languageData.length > 0) return;
-      if (immigrationDataset1.length > 0) return;
-      if (immigrationDataset2.length > 0) return;
-      Promise.all([
-        fetch(`/api/languages/halifax`),
-        fetch(`/api/immigration/halifax/period/1980`),
-        fetch(`/api/immigration/halifax/period/2016/2021`),
-      ]).
-        then(([languageResponse, immigration1Response, immigration2Response]) => {
-          if (languageResponse.ok && immigration1Response.ok && immigration2Response.ok){
-            return Promise.all([
-              languageResponse.json(),
-              immigration1Response.json(),
-              immigration2Response.json(),
-            ]);
+    // don't fetch data if already fetched/loading
+    if (!cityInView || hasData || isLoading) return;
 
-          }
-        }).
-        then(([languageData, immigration1Data, immigration2Data]) => {
-          // Update the states
-          const simplifiedLanguagesArray = normalizeLanguageData(languageData);
-          setLanguageData(simplifiedLanguagesArray);
+    setFetchError(false);
+    setIsLoading(true);
 
-          const convertedImmigration1Array = normalizeImmigrationData(immigration1Data);
-          setImmigrationDataset1(convertedImmigration1Array);
+    Promise.all([
+      fetch(`/api/languages/halifax`),
+      fetch(`/api/immigration/halifax/period/1980`),
+      fetch(`/api/immigration/halifax/period/2016/2021`),
+    ]).
+      then(([languageResponse, immigration1Response, immigration2Response]) => {
+        if (languageResponse.ok && immigration1Response.ok && immigration2Response.ok){
+          return Promise.all([
+            languageResponse.json(),
+            immigration1Response.json(),
+            immigration2Response.json(),
+          ]);
 
-          const convertedImmigration2Array = normalizeImmigrationData(immigration2Data);
-          setImmigrationDataset2(convertedImmigration2Array);
+        }
+        throw new Error('Failed to fetch Halifax data');
+      }).
+      then(([languageData, immigration1Data, immigration2Data]) => {
+        // Update the states
+        const simplifiedLanguagesArray = normalizeLanguageData(languageData);
+        setLanguageData(simplifiedLanguagesArray);
 
-        }).
-        catch(error => {
-          // Handle any errors that occurred in the chain
-          console.error(error);
-        });
-    }
+        const convertedImmigration1Array = normalizeImmigrationData(immigration1Data);
+        setImmigrationDataset1(convertedImmigration1Array);
+
+        const convertedImmigration2Array = normalizeImmigrationData(immigration2Data);
+        setImmigrationDataset2(convertedImmigration2Array);
+      }).
+      catch(error => {
+        // Handle any errors that occurred in the chain
+        console.error(error);
+        setFetchError(true);
+      }).
+      finally(() => {
+        setIsLoading(false);
+      });
   
-  }, [cityInView, languageData, immigrationDataset1, immigrationDataset2]);
+  }, [cityInView, hasData, isLoading]);
 
   return (
     <>
@@ -77,22 +87,24 @@ function HalifaxCity({cityInView, reference}){
             masses to North America.
             </p>
           </section>
-          <Suspense fallback={<span className="chart-error">Loading... Please wait!</span>}>
+          <Suspense fallback={<span className="chart-error">Loading chart... Please wait!</span>}>
             <Chart 
               data={immigrationDataset1}
               title="Immigration patterns before 1980"
               classes="text-chart-group__chart"
+              loading={showLoading}
             />
           </Suspense>
         </section>
 
         <section className="text-chart-group__left">
-          <Suspense fallback={<span className="chart-error">Loading... Please wait!</span>}>
+          <Suspense fallback={<span className="chart-error">Loading chart... Please wait!</span>}>
             <Chart
               data={languageData}
               title="Top 10 languages spoken (Excluding English)"
               classes="text-chart-group__chart"
               footerContent="English was removed to allow a better comparison"
+              loading={showLoading}
             />
           </Suspense>
 
@@ -146,6 +158,7 @@ function HalifaxCity({cityInView, reference}){
               data={immigrationDataset2}
               title="Immigration patterns from 2016 to 2021"
               classes="text-chart-group__chart"
+              loading={showLoading}
             />
           </Suspense>
         </section>
