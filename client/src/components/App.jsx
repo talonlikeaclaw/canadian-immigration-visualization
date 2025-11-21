@@ -1,8 +1,9 @@
-import {lazy, Suspense} from 'react';
+import {lazy, Suspense, memo} from 'react';
 import { useInView } from 'react-intersection-observer';
 import '../assets/styles/App.css';
 import HeroSection from './HeroSection';
-const DataExplorer = lazy( ()=> import('./DataExplorer') ); 
+const DataExplorer = lazy( ()=> import('./DataExplorer') );
+const MemoizedDataExplorer = memo(DataExplorer); 
 const Map = lazy( ()=> import('./Map') );
 import HalifaxCity from './HalifaxCity';
 const MontrealCity = lazy( () => import('./MontrealCity') ); 
@@ -82,7 +83,7 @@ function App() {
         </Suspense>
         
         <Suspense fallback= {<p> Loading Data Explorer</p>}>
-          <DataExplorer />
+          <MemoizedDataExplorer />
         </Suspense>
 
         <Suspense fallback= {<p> Loading Data Footer</p>}>
