@@ -1,16 +1,15 @@
-import {lazy, Suspense} from 'react';
 import { useInView } from 'react-intersection-observer';
 import '../assets/styles/App.css';
 import HeroSection from './HeroSection';
-const DataExplorer = lazy( ()=> import('./DataExplorer') );
-import Map from './Map';
-const HalifaxCity = lazy( () => import('./HalifaxCity') );
-const MontrealCity = lazy( () => import('./MontrealCity') ); 
-const TorontoCity = lazy( ()=>  import('./TorontoCity') );
-const CalgaryCity = lazy( () => import('./CalgaryCity') );
-const VancouverCity = lazy( () => import('./VancouverCity') );
-const Footer = lazy( ()=> import('./Footer') );
 import whiteCurve from '../assets/images/white-curve.webp';
+import Map from './Map';
+import HalifaxCity from './HalifaxCity';
+import MontrealCity from './MontrealCity';
+import TorontoCity from './TorontoCity';
+import CalgaryCity from './CalgaryCity';
+import VancouverCity from './VancouverCity';
+import DataExplorer from './DataExplorer';
+import Footer from './Footer';
 
 /**
  * Root application component that wires together the hero, map, city sections,
@@ -75,37 +74,18 @@ function App() {
       <section className="scroll-content">
         <img src={whiteCurve} alt="white curve"  className="white-curve"/>
 
-        {/* <Suspense fallback={<p>Loading Map...</p>}> */}
         <Map zoomedInCity={currentZoomedCity} />
-        {/* </Suspense> */}
 
         {displayContextText()}
-        <Suspense fallback={<p>Loading Halifax...</p>}>
-          <HalifaxCity cityInView={halifaxInView} reference={halifaxRef}/>
-        </Suspense>
-        <Suspense fallback={<p>Loading Montréal...</p>}>
-          <MontrealCity cityInView={montrealInView} reference={montrealRef}/>
-        </Suspense>
+        <HalifaxCity cityInView={halifaxInView} reference={halifaxRef}/>
+        <MontrealCity cityInView={montrealInView} reference={montrealRef}/>
+        <TorontoCity cityInView={torontoInView} reference={torontoRef}/>
+        <CalgaryCity cityInView={calgaryInView} reference={calgaryRef}/>
+        <VancouverCity cityInView={vancouverInView} reference={vancouverRef}/>
 
-        <Suspense fallback={<p>Loading Toronto...</p>}>
-          <TorontoCity cityInView={torontoInView} reference={torontoRef}/>
-        </Suspense>
+        <DataExplorer />
+        <Footer />
 
-        <Suspense fallback={<p>Loading Calgary...</p>}>
-          <CalgaryCity cityInView={calgaryInView} reference={calgaryRef}/>
-        </Suspense>
-
-        <Suspense fallback={<p>Loading Vancouver...</p>}>
-          <VancouverCity cityInView={vancouverInView} reference={vancouverRef}/>
-        </Suspense>
-
-        <Suspense fallback= {<p> Loading Data Explorer</p>}>
-          <DataExplorer />
-        </Suspense>
-
-        <Suspense fallback= {<p> Loading Data Footer</p>}>
-          <Footer />
-        </Suspense>
       </section>
     </>
   );
