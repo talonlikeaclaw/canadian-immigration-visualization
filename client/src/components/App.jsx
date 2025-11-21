@@ -1,20 +1,14 @@
-import {lazy, Suspense, memo} from 'react';
+import {lazy, Suspense} from 'react';
 import { useInView } from 'react-intersection-observer';
 import '../assets/styles/App.css';
 import HeroSection from './HeroSection';
 const DataExplorer = lazy( ()=> import('./DataExplorer') );
-const MemoizedDataExplorer = memo(DataExplorer); 
 import Map from './Map';
 const HalifaxCity = lazy( () => import('./HalifaxCity') );
-const MemoizedHalifaxCity = memo(HalifaxCity);
 const MontrealCity = lazy( () => import('./MontrealCity') ); 
-const MemoizedMontrealCity = memo(MontrealCity);
 const TorontoCity = lazy( ()=>  import('./TorontoCity') );
-const MemoizedToronto = memo(TorontoCity);
 const CalgaryCity = lazy( () => import('./CalgaryCity') );
-const MemoizedCalgaryCity = memo(CalgaryCity);
 const VancouverCity = lazy( () => import('./VancouverCity') );
-const MemoizedVancouverCity = memo(VancouverCity);
 const Footer = lazy( ()=> import('./Footer') );
 import whiteCurve from '../assets/images/white-curve.webp';
 
@@ -75,30 +69,32 @@ function App() {
       <section className="scroll-content">
         <img src={whiteCurve} alt="white curve"  className="white-curve"/>
 
+        {/* <Suspense fallback={<p>Loading Map...</p>}> */}
         <Map zoomedInCity={currentZoomedCity} />
+        {/* </Suspense> */}
 
         {displayContextText()}
         <Suspense fallback={<p>Loading Halifax...</p>}>
-          <MemoizedHalifaxCity cityInView={halifaxInView} reference={halifaxRef}/>
+          <HalifaxCity cityInView={halifaxInView} reference={halifaxRef}/>
         </Suspense>
         <Suspense fallback={<p>Loading Montréal...</p>}>
-          <MemoizedMontrealCity cityInView={montrealInView} reference={montrealRef}/>
+          <MontrealCity cityInView={montrealInView} reference={montrealRef}/>
         </Suspense>
 
         <Suspense fallback={<p>Loading Toronto...</p>}>
-          <MemoizedToronto cityInView={torontoInView} reference={torontoRef}/>
+          <TorontoCity cityInView={torontoInView} reference={torontoRef}/>
         </Suspense>
 
         <Suspense fallback={<p>Loading Calgary...</p>}>
-          <MemoizedCalgaryCity cityInView={calgaryInView} reference={calgaryRef}/>
+          <CalgaryCity cityInView={calgaryInView} reference={calgaryRef}/>
         </Suspense>
 
         <Suspense fallback={<p>Loading Vancouver...</p>}>
-          <MemoizedVancouverCity cityInView={vancouverInView} reference={vancouverRef}/>
+          <VancouverCity cityInView={vancouverInView} reference={vancouverRef}/>
         </Suspense>
 
         <Suspense fallback= {<p> Loading Data Explorer</p>}>
-          <MemoizedDataExplorer />
+          <DataExplorer />
         </Suspense>
 
         <Suspense fallback= {<p> Loading Data Footer</p>}>
