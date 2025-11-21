@@ -76,7 +76,7 @@ function CalgaryCity({cityInView, reference}){
           </section>
           <Chart
             data={cityData.immigration}
-            title="The Leading 15 Origin Countries of Immigrants to Calgary(1991 - 2000)"
+            title="Leading 15 Origin Countries of Immigrants to Calgary(1991 - 2000)"
             classes="text-chart-group__chart"
           />
 
