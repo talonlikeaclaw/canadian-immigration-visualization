@@ -89,13 +89,32 @@ scroll over it
         transform: translateY(0);
     }
     100% {
-        transform: translateY(-10px);
+        transform: translateY(-1.25vh);
     }
 }
 
 @media (max-width: 450px) {
 	.hero-section h1 {
 		margin-bottom: 1rem;
+		font-size: 2rem;
+	}
+
+	.hero-section p {
+		font-size: 1rem;
+	}
+
+	.hero-section__content{
+		gap: 1rem;
+		padding: 3rem 1rem;
+	}
+
+	.scroll img{
+		height: 2rem;
+	}
+
+	.scroll{
+		animation: bounce 0.75s infinite alternate;
+		gap: 1rem;
 	}
 
 	.mini-intro{
