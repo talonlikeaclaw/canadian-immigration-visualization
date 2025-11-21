@@ -100,7 +100,7 @@ function App() {
           Canada’s three largest provinces by population (Ontario, Quebec
           and British Columbia) are home to over the majority of the
           country’s immigrant population. Each having it’s own distinct
-          lingustic profile shaped on geography and history.
+          linguistic profile shaped on geography and history.
         </p>
       </section>
     );
