@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import '../assets/styles/App.css';
 import HeroSection from './HeroSection';
@@ -21,7 +22,7 @@ function App() {
   // lead me to the react intersection observer (plus I think this was
   // in one of class lectures, with lazy loading)
   // https://www.npmjs.com/package/react-intersection-observer
-  const options = {threshold: 0.1};
+  const options = { threshold: 0.1 };
 
   const { ref: halifaxRef, inView: halifaxInView } = useInView(options);
   const { ref: montrealRef, inView: montrealInView } = useInView(options);
@@ -42,50 +43,103 @@ function App() {
           : halifaxInView
             ? 'halifax'
             : '';
-  
+
+  // Keeps track of which cities have been in view to enable lazy loadings
+  const [renderedCity, setRenderedCity] = useState({
+    halifax: true,
+    montreal: false,
+    toronto: false,
+    calgary: false,
+    vancouver: false
+  });
+
+  /* Manually lazy load using useEffect because react-intersection-observer
+  does npt play nicely with lazy/Suspense fall back elements. */
+  useEffect(() => {
+    if (
+      currentZoomedCity === 'halifax' &&
+      renderedCity.montreal === false
+    ) {
+      setRenderedCity(prev => ({ ...prev, montreal: true }));
+    }
+    if (
+      currentZoomedCity === 'montreal' &&
+      renderedCity.toronto === false
+    ) {
+      setRenderedCity(prev => ({ ...prev, toronto: true }));
+    }
+    if (
+      currentZoomedCity === 'toronto' &&
+      renderedCity.calgary === false
+    ) {
+      setRenderedCity(prev => ({ ...prev, calgary: true }));
+    }
+    if (
+      currentZoomedCity === 'calgary' &&
+      renderedCity.vancouver === false
+    ) {
+      setRenderedCity(prev => ({ ...prev, vancouver: true }));
+    }
+  }, [currentZoomedCity, renderedCity]);
+
   /**
    * Renders introductory context that frames the coast-to-coast narrative.
    * @returns {JSX.Element} Introductory copy for the experience.
    */
-  function displayContextText(){
+  function displayContextText() {
     return (
       <section className="context-text">
         <p>
-        While English and French are Canada’s official languages, a closer
-        look reveals over 200 non-official languages thriving in our
-        biggest cities. We will however focus on 6 cities across the country, from east to
-        west.
+          While English and French are Canada’s official languages, a
+          closer look reveals over 200 non-official languages thriving in
+          our biggest cities. We will however focus on 6 cities across the
+          country, from east to west.
         </p>
-        
+
         <p>
-        Canada’s three largest provinces by population (Ontario, Quebec and
-        British Columbia) are home to over the majority of the country’s
-        immigrant population. Each having it’s own distinct lingustic
-        profile shaped on geography and history.
+          Canada’s three largest provinces by population (Ontario, Quebec
+          and British Columbia) are home to over the majority of the
+          country’s immigrant population. Each having it’s own distinct
+          lingustic profile shaped on geography and history.
         </p>
       </section>
     );
   }
 
-
   return (
     <>
       <HeroSection />
       <section className="scroll-content">
-        <img src={whiteCurve} alt="white curve"  className="white-curve"/>
+        <img src={whiteCurve} alt="white curve" className="white-curve" />
 
         <Map zoomedInCity={currentZoomedCity} />
 
         {displayContextText()}
-        <HalifaxCity cityInView={halifaxInView} reference={halifaxRef}/>
-        <MontrealCity cityInView={montrealInView} reference={montrealRef}/>
-        <TorontoCity cityInView={torontoInView} reference={torontoRef}/>
-        <CalgaryCity cityInView={calgaryInView} reference={calgaryRef}/>
-        <VancouverCity cityInView={vancouverInView} reference={vancouverRef}/>
-
-        <DataExplorer />
-        <Footer />
-
+        {renderedCity.halifax && 
+          <HalifaxCity cityInView={halifaxInView} reference={halifaxRef} />
+        }
+        {renderedCity.montreal && 
+          <MontrealCity
+            cityInView={montrealInView}
+            reference={montrealRef}
+          />
+        }
+        {renderedCity.toronto && 
+          <TorontoCity cityInView={torontoInView} reference={torontoRef} />
+        }
+        {renderedCity.calgary && 
+          <CalgaryCity cityInView={calgaryInView} reference={calgaryRef} />
+        }
+        {renderedCity.vancouver && 
+          <>
+            <VancouverCity
+              cityInView={vancouverInView}
+              reference={vancouverRef}
+            />
+            <DataExplorer />
+            <Footer />
+          </>
+        }
       </section>
     </>
   );
