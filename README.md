@@ -27,16 +27,20 @@ Below are previews of the project interface showing the landing (Hero) section a
 
 - **Frontend**: React, Vite, Chart.js
 - **Backend**: Node.js, Express, Swagger
-  - **Testing**" Mocha, Chai, Sinon, SuperTest
+  - **Testing**" Mocha, Chai, Sinon, Supertest
 - **Database**: MongoDB
 
 ### Hero Section
 
-<img src="./assets/HeroSection.png" alt="Hero Section Screenshot" width="800"/>
+<img src="./assets/HeroSection.png" alt="Hero Section Screenshot" width="900"/>
+
+### City Section
+
+<img src="./assets/CitySection.png" alt="City Section Screenshot" width="900"/>
 
 ### Data Explorer
 
-<img src="./assets/DataExplorer.png" alt="Data Explorer Screenshot" width="800"/>
+<img src="./assets/DataExplorer.png" alt="Data Explorer Screenshot" width="900"/>
 
 ## Setup Instructions
 
