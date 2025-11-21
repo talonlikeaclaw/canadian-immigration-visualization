@@ -1,0 +1,17 @@
+.checkbox-container{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.5rem;
+	padding: 0.5rem;
+	max-width: 40%;
+}
+
+.checkbox-container label{
+	color: #6E2516;
+	user-select: none;
+}
+
+.checkbox-container input[type="checkbox"]{
+	margin-top: 0.5em;
+}

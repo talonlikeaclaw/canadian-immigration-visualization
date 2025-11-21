@@ -51,6 +51,15 @@ p.transition{
 	top: 25vh;
 }
 
+.chart-header{
+	display: flex;
+	align-items: center;
+}
+
+.chart-header h2{
+	flex: 1;
+}
+
 .city-divider{
 	height: 100vh;
 	width: 90vw;
