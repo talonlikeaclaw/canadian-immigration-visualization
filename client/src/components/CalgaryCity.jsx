@@ -4,6 +4,13 @@ import normalizeLanguageData from '../utils/NormalizeLanguageData.js';
 import normalizeImmigrationData from '../utils/NormalizeImmigrationData.js';
 import Chart from './Chart';
 
+/**
+ * Calgary section that displays immigration and language datasets once in view.
+ * @param {Object} props
+ * @param {boolean} props.cityInView - Whether the section is currently visible.
+ * @param {RefObject<HTMLElement>} props.reference - Ref attached to the section
+ * @returns {JSX.Element} Calgary narrative and charts.
+ */
 function CalgaryCity({cityInView, reference}){
   const [cityData, setCityData] = useState({ immigration: [], languages: [] });
 
