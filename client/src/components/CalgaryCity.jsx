@@ -33,7 +33,7 @@ function CalgaryCity({cityInView, reference}){
         }).
         then(([immigrationData, languageData]) => {
           // Update the state with the combined data
-          const immigrationChartData = normalizeImmigrationData(immigrationData);
+          const immigrationChartData = normalizeImmigrationData(immigrationData, 15);
           const languagesChartData = normalizeLanguageData(languageData);
           setCityData({ immigration: immigrationChartData, languages: languagesChartData });
         }).
@@ -91,7 +91,7 @@ function CalgaryCity({cityInView, reference}){
         <section className="text-chart-group__left">
           <Chart
             data={cityData.languages}
-            title="Top 10 languages spoken in Calgary"
+            title="Top 10 languages spoken in Calgary (Excluding English)"
             classes="text-chart-group__chart"
           />
           <section className="text-chart-group__texts">

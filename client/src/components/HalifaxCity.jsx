@@ -90,7 +90,7 @@ function HalifaxCity({cityInView, reference}){
           <Suspense fallback={<p>Loading chart...</p>}>
             <Chart
               data={languageData}
-              title="Top 10 languages spoken"
+              title="Top 10 languages spoken (Excluding English)"
               classes="text-chart-group__chart"
             />
           </Suspense>
