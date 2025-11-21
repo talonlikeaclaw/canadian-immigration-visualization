@@ -9,7 +9,7 @@
 
 - For testing, we used Chrome’s Lighthouse reports and Catchpoint’s WebPageTest tool. Both were run on desktop (Chrome, Toronto location, Cable 5/1 Mbps, 28 ms RTT). We looked mainly at metrics like First Contentful Paint (FCP), Largest Contentful Paint (LCP), Total Blocking Time (TBT), and Speed Index. These tests help us compare results from the end of Phase 2 to now and see how much the site improved even before doing focused optimizations.
 
-- [**Conext before we start**](Backup.md#context)
+- [**Context before we start**](Backup.md#context)
 
 - **tools we will use to test performance**
   - Browser lighthouse report
@@ -77,7 +77,7 @@
 
 - This change resulted in great optimization and gave the following change in results
 
-- Lead: Talon
+- Lead: **Talon**
 - Link:
 
   - [server-side optimization](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs)
@@ -101,7 +101,7 @@
 
 - biggest difference with this change was the size js file in dist/assets/index-SomeHash.js which went from 5095.92kb (1535.73 compressed) to 375.19 kb (123.83 compressed)
 
-- Lead: Melania
+- Lead: **Melania**
 - [with plotly](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2893449310)
 - [ with chart.js](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2893450729)
 - [ code link](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/48/diffs?file=1304fc061eb9b3fb296bfd0cff93c11c512e321e#1304fc061eb9b3fb296bfd0cff93c11c512e321e_3_2)
@@ -140,7 +140,43 @@
 
 ### V1.0.2
 
-## Summary of Changes
+#### Summary of Changes
+
+##### Optimizing Frontend
+
+- [Before any changes for frontend](FinalChangesReport.md#before)
+- [Compressed blue wave image](FinalChangesReport.md#compressed_bluewave)
+- [Added img alt ](FinalChangesReport.md#alt)
+- [Add contrast to images ](FinalChangesReport.md#contrast)
+- [Trim blue_wave img](FinalChangesReport.md#trim_blue_wave)
+- [Preload blue wave img ](FinalChangesReport.md#preload)
+- [Added meta tags ](FinalChangesReport.md#meta)
+
+- Lead:**Melania**
+- Links:
+  - [corresponding issue ](dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar#83)
+  - [corresponding MR](dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar!55)
+  - [blue wave direct link](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/blob/32a511d266eaf7b63d74a067957b5ab86d5baa68/client/src/assets/images/blue_waves.png)
+  - [alt](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/55/diffs?file=4cd6750f2ec85995373e84f1633b501d6cd65cf0#4cd6750f2ec85995373e84f1633b501d6cd65cf0_15_14)
+  - [contrast](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/55/diffs?file=6464364828334fe066233459e0d6b74556c861b8#6464364828334fe066233459e0d6b74556c861b8_104_102)
+  - [preload](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/55/diffs?file=0f416da26130c4b5a608cf3e939a70da2b426880#0f416da26130c4b5a608cf3e939a70da2b426880_8_16)
+  - [meta](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/55/diffs?file=0f416da26130c4b5a608cf3e939a70da2b426880#0f416da26130c4b5a608cf3e939a70da2b426880_6_6)
+
+##### Loading components dynamically (lazy + suspense)
+
+- [Before](FinalChangesReport.md#beforeLazy)
+- [After](FinalChangesReport.md#afterLazy)
+
+##### Memoizing App children
+- [lighthouse](FinalChangesReport.md#lighthouse)
+- [We decided to not keep this](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/60#note_2905256906)
+
+- Lead: **Habib**
+- Link:
+  - [corresponding issue ](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2903035175)
+  - [corresponding MR](dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar!60)
+  - [Lazy load components](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/60/diffs?file=163e76491d088e6785415d7fa5e054ca65ba4fe8#163e76491d088e6785415d7fa5e054ca65ba4fe8_12_7)
+  - [Wrap with Suspense](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/60/diffs?file=163e76491d088e6785415d7fa5e054ca65ba4fe8#163e76491d088e6785415d7fa5e054ca65ba4fe8_79_92)
 
 ## Conclusion
 

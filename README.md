@@ -1,31 +1,48 @@
-# Immigration Patterns in Canadian Cities and Languages Spoken in Those Cities
+# Canadian Immigration Patterns and Languages Visualization Project
 
 ## Project Overview
 
-This project aims to explore and visualize Canadian immigration patterns to different major cities through the lens of the languages spoken. 
-By combining demographic and linguistic datasets, we will create a narrative that illustrates how different immigrant communities cluster in major Canadian cities, showcasing the cultural and linguistic profile of each major city center.
+This project explores Canadian immigration patterns in major cities, with a focus on the languages spoken by immigrant communities. By combining demographic and linguistic datasets, it provides a visual narrative of how immigrant communities cluster across Canada's key urban centers, highlighting the unique cultural and linguistic profiles of each city.
 
-## Selected cities 
+### Live Deployment
 
-| Region              | Cities           |
-| ------------------- | ---------------- |
-| Atlantic/East       | Halifax          |
-| Central/Francophone | Montreal         |
-| Central/Anglophone  | Toronto          |
-| Prairies            | Calgary/Edmonton |
-| Pacific/West        | Vancouver        |
+- AWS: http://16.52.46.206/
+- Render: https://five20-project-safari-chiru-dunbar.onrender.com/
+
+### Technologies Used
+
+- **Frontend**: React, Vite, Chart.js
+- **Backend**: Node.js, Express, Swagger
+  - **Testing**" Mocha, Chai, Sinon, Supertest
+- **Database**: MongoDB
+
+### Selected Cities
+
+| Region                | Cities           |
+| --------------------- | ---------------- |
+| Atlantic / East       | Halifax          |
+| Central / Francophone | Montreal         |
+| Central / Anglophone  | Toronto          |
+| Prairies              | Calgary/Edmonton |
+| Pacific / West        | Vancouver        |
+
+---
 
 ## Screenshots
 
-Below are previews of the project interface showing the landing (Hero) section and the interactive Data Explorer.
-
 ### Hero Section
 
-<img src="./assets/HeroSection.png" alt="Hero Section Screenshot" width="800"/>
+<img src="./assets/HeroSection.png" alt="Hero Section Screenshot" width="1200"/>
+
+### City Section
+
+<img src="./assets/CitySection.png" alt="City Section Screenshot" width="1200"/>
 
 ### Data Explorer
 
-<img src="./assets/DataExplorer.png" alt="Data Explorer Screenshot" width="800"/>
+<img src="./assets/DataExplorer.png" alt="Data Explorer Screenshot" width="1200"/>
+
+---
 
 ## Setup Instructions
 
@@ -99,6 +116,8 @@ npm run start
 
 The server will start on http://localhost:3000/index.html
 
+- Visit http://localhost:3000/docs for the API route documentation.
+
 ---
 
 ### 7. Optional: Development Mode
@@ -115,7 +134,81 @@ cd client
 npm run dev
 ```
 
-The frontend (Vite) will run on http://localhost:5173, and the backend API on http://localhost:3000.
+- Frontend (Vite) will run on: http://localhost:5173
+- Backend API runs on: http://localhost:3000
+
+- Visit http://localhost:3000/docs for the API route documentation.
+
+---
+
+### 8. Testing
+
+- To run the unit tests: `cd server && npm run test`.
+
+---
+
+## Deployment and Redeployment
+
+### AWS Manual Deploy and Redeploy
+
+Follow the instructions [here](https://gitlab.com/dawson-cst-cohort-2026/520/all-students/mern-quotes/) to deploy your [AWS](https://aws.amazon.com/lightsail/) instance and get your SSH key (`<key>.pem`) for your instance.
+
+#### Local Steps
+
+- Download your build artifact (already compressed), or clone your repo into the same directory as your SSH key for the AWS instance: `<key>.pem`.
+
+- If using a clone, switch to the desired branch and run `npm run build` inside it, then:
+  - Ensure your production `.env` is in the `server/` directory.
+  - Compress the repo: `tar -czvf project.tar.gz <project-repo>`
+
+- Send to the server: `scp -r <key>.pem project.tar.gz bitnami@<ip>:~`
+- Connect to server: `ssh -i <key>.pem bitnami@<ip>`
+
+#### On Server
+
+- If using artifact:
+  - Make `project` directory and `cd` into it.
+
+- Extract files: `tar -xzvf project.tar.gz`
+
+- If using clone:
+  - Go to server directory: `cd <project-repo>/server`
+
+- If using artifact, add production `.env` to `server/`
+  - Go to server directory: `cd server/`
+
+- Double check your production `.env` is there: `ls -la`
+
+##### If First Deployment
+
+  - Install `pm2`: `sudo npm install -g pm2@latest`
+  - Update apache config: `vim ~/stack/apache/conf/vhosts`
+    - Proxy 3001 to 80 (which is open/public on this aws instance).
+
+```apache
+<VirtualHost 127.0.0.1:80 _default_:80>
+  ProxyPass / http://localhost:3001/
+  ProxyPassReverse / http://localhost:3001/
+</VirtualHost>
+```
+
+- Run: `NODE_ENV=production PORT=3001 pm2 start bin/www`
+
+##### If Redeployment
+
+  - Restart the app `pm2 restart <name>`.
+    - If `pm2 restart` isn't getting the results you want, try `pm2 delete <name>` and then `NODE_ENV=production PORT=3001 pm2 start bin/www`
+
+### Render Auto Deploy
+
+Render updates the live app automatically on each push to the specified branch.
+
+When deploying you need to manually copy the `.env` from the project root into the `/server` directory in your build command.
+
+- Build Command: `cp .env server/.env && cd client && npm install --include=dev && npm run build && cd ../server && npm install`
+- Start Command: `cd server && node bin/www`
+
+---
 
 ## Attributions
 
@@ -133,7 +226,7 @@ The frontend (Vite) will run on http://localhost:5173, and the backend API on ht
 
 #### Client (Frontend)
 
-- **Data Visualization**: [plotly.js/react-plotly.js](https://www.npmjs.com/package/react-plotly.js/v/2.2.0)
+- **Data Visualization**: [react-chartjs-2](https://www.npmjs.com/package/react-chartjs-2)
 - **Lazy Loading**: [react-intersection-observer](https://www.npmjs.com/package/react-intersection-observer)
 
 #### Server (Backend)
