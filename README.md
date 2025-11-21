@@ -30,15 +30,15 @@ This project explores Canadian immigration patterns in major cities, with a focu
 
 ### Hero Section
 
-<img src="./assets/HeroSection.png" alt="Hero Section Screenshot" width="900"/>
+<img src="./assets/HeroSection.png" alt="Hero Section Screenshot" width="1200"/>
 
 ### City Section
 
-<img src="./assets/CitySection.png" alt="City Section Screenshot" width="900"/>
+<img src="./assets/CitySection.png" alt="City Section Screenshot" width="1200"/>
 
 ### Data Explorer
 
-<img src="./assets/DataExplorer.png" alt="Data Explorer Screenshot" width="900"/>
+<img src="./assets/DataExplorer.png" alt="Data Explorer Screenshot" width="1200"/>
 
 ## Setup Instructions
 
