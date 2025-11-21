@@ -4,6 +4,11 @@ import CityInfoCard from './CityInfoCard';
 import SelectField from './SelectField';
 import '../assets/styles/DataExplorer.css';
 
+/**
+ * Interactive explorer for comparing immigration or language data between cities.
+ * Handles form state, data fetching, and chart rendering.
+ * @returns {JSX.Element} Data explorer panel with controls and charts.
+ */
 export default function DataExplorer() {
   // Form state (user is editing)
   const [formState, setFormState] = useState({
@@ -50,6 +55,10 @@ export default function DataExplorer() {
     [data, activeState.comparisonCity]
   );
 
+  /**
+   * Builds a human-readable chart title based on the active selection.
+   * @returns {string} Combined chart title.
+   */
   const getChartTitle = () => {
     const cities = activeState.comparisonCity
       ? `${activeState.city} vs ${activeState.comparisonCity}`
@@ -68,9 +77,9 @@ export default function DataExplorer() {
 
   /**
    * Builds the immigration URL for fetching immigration data.
-   * @param {string} city - the city to fetch data for.
-   * @param {string} period - the selected period.
-   * @returns the url built depending on the parameters.
+   * @param {string} city - The city to fetch data for.
+   * @param {string} period - The selected period.
+   * @returns {string} URL built depending on the parameters.
    */
   function buildImmigrationUrl(city, period) {
     const baseUrl = `/api/immigration/${encodeURIComponent(city)}`;
@@ -92,6 +101,7 @@ export default function DataExplorer() {
    * @param {string} city - The name of the city to fetch data for.
    * @param {string} type - The dataset category to retrieve.
    * @param {string} period - The selected time period.
+   * @param {string} lang - Whether to include official languages.
    * @returns {Promise<Array<{ label: string, value: number }>>}
    */
   async function fetchDataset(city, type, period, lang) {
@@ -135,11 +145,20 @@ export default function DataExplorer() {
     }
   }
 
-  // Helper to check if request is same as previous
+  /**
+   * Determines if the current form state matches the active query,
+   * preventing redundant fetches.
+   * @returns {boolean} True when the form mirrors the active selection.
+   */
   const isSameRequest = () =>
     JSON.stringify(formState) === JSON.stringify(activeState);
 
-  // Updates the controlled form fields
+  /**
+   * Updates a specific field in form state.
+   * @param {formState} field - Name of the form field to update.
+   * @param {string|number} value - New value for the field.
+   * @returns {void}
+   */
   const updateForm = (field, value) => {
     setFormState(prev => ({ ...prev, [field]: value }));
   };
@@ -147,6 +166,8 @@ export default function DataExplorer() {
   /**
    * Handles form submission: fetches city info and dataset
    * based on current selections (city, dataset type, and period).
+   * @param {React.FormEvent<HTMLFormElement>} e - Form submission event.
+   * @returns {Promise<void>}
    */
   async function handleSubmit(e) {
     e.preventDefault();
