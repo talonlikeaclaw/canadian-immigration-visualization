@@ -27,6 +27,7 @@ Below are previews of the project interface showing the landing (Hero) section a
 
 - **Frontend**: React, Vite, Chart.js
 - **Backend**: Node.js, Express, Swagger
+  - **Testing**" Mocha, Chai, Sinon, SuperTest
 - **Database**: MongoDB
 
 ### Hero Section
@@ -109,6 +110,8 @@ npm run start
 
 The server will start on http://localhost:3000/index.html
 
+- Visit http://localhost:3000/docs for the API route documentation.
+
 ---
 
 ### 7. Optional: Development Mode
@@ -127,7 +130,12 @@ npm run dev
 
 - Frontend (Vite) will run on: http://localhost:5173
 - Backend API runs on: http://localhost:3000
+
 - Visit http://localhost:3000/docs for the API route documentation.
+
+### Testing
+
+- To run the unit tests: `cd server && npm run test`.
 
 ## Deployment and Redeployment
 
