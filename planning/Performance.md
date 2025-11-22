@@ -162,7 +162,8 @@ I added the compression middleware to the Express application, greatly reducing 
 
 #### Summary of Changes
 
-##### Optimizing 
+##### Optimizing
+
 - The overall goal of these changes was to get as close to 100 on all the Google Lighthouse categories
 - The good thing is that most of the improvements I had to do were just low hanging fruit like using alt attributes for images, compressing our images, etc.
 - Preloading the images that show up in our hero section (above the fold) made the number for the Performance category go up.
@@ -188,14 +189,15 @@ I added the compression middleware to the Express application, greatly reducing 
 
 ##### Loading components dynamically (lazy + suspense)
 
-- So, for the optimization part of our website I did use lazy to load the App children components and then I use the Suspense Wrapper to wrap where they are being called. this method was effective at making the initial loading of App faster however it created other issues such as layout shift when I used the lazy with Map component I removed it. then they interfered with the `react intersection observer` which after testing and discussing Talon removed them and kept only the one's for lazy loading the charts. 
-- Then, I tried memoizing the components. this was effective for all the renders happening after the first time because every time the child component renders the App renders as the parent component then the App makes other children to re render. this would prevent all the seconde renders of the children however it would increase the App initial rendering time significantly. as our goal was to make the FCP as fast as possible we did not kept this changes. 
+- So, for the optimization part of our website I did use lazy to load the App children components and then I use the Suspense Wrapper to wrap where they are being called. this method was effective at making the initial loading of App faster however it created other issues such as layout shift when I used the lazy with Map component I removed it. then they interfered with the `react intersection observer` which after testing and discussing Talon removed them and kept only the one's for lazy loading the charts.
+- Then, I tried memoizing the components. this was effective for all the renders happening after the first time because every time the child component renders the App renders as the parent component then the App makes other children to re render. this would prevent all the seconde renders of the children however it would increase the App initial rendering time significantly. as our goal was to make the FCP as fast as possible we did not kept this changes.
 - I also tried to use the intersection observer on data explorer component as it is one of the largest component it made the UI weird because the Footer would be placed before the data explorer.
 
 - [Before](FinalChangesReport.md#beforeLazy)
 - [After](FinalChangesReport.md#afterLazy)
 
 ##### Memoizing App children
+
 - [lighthouse](FinalChangesReport.md#lighthouse)
 - [We decided to not keep this](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/60#note_2905256906)
 
