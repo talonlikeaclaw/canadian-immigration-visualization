@@ -63,29 +63,31 @@
 
 #### Summary of Changes
 
-#### Caching Enhancements
+##### Server-side Optimizations
 
-- Added immigrationCache and languageCache directly into their routers.
-- Implemented browser caching rules for client/dist:
-- index.html => no-cache
-- Hashed files => max-age=31536000, immutable
-- Improved overall client-side and localhost load performance.
+- Link: [Server-side Optimization](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs)
 
-#### Server Optimization
-
-- Installed and configured compression middleware to reduce payload size and speed up responses.
-
-- This change resulted in great optimization and gave the following change in results
+###### Browser Cache-Control
 
 - Lead: **Talon**
-- Link:
 
-  - [server-side optimization](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs)
-  - [immigration cache](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs?file=aa17feaf687510ece026764aff66e967de9277c4#aa17feaf687510ece026764aff66e967de9277c4_5_5)
-  - [Language cache](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs?file=18969587d68ed0c6391d0b1a9f5bb28dcfe30e9b#18969587d68ed0c6391d0b1a9f5bb28dcfe30e9b_5_5)
-  - [Browser cache rules](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs?file=a419538ddb09d617809b78f68696e80833c4051b#a419538ddb09d617809b78f68696e80833c4051b_34_48)
-  - [before/after proof](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897619430)
-  - [AWS latency improvement proof ](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897637516)
+I added explicit browser cache controls to benefit from Vite rollup's hashed file names. I used an example provided in the lecture notes to set the hashed files to cache for a year, and I also added the `immutable` tag because the hashed files are `immutable` in nature. This means that the browser knows that it will never have to ping the server about those files every again because the file name will change if the context changes. While caching doesn't improve performance the first time a user visits our web app, any subsequent visits will see nice performance bumps as the browser servers the documents from its cache.
+
+- Implemented browser caching rules for `client/dist`:
+  - `index.html` => `no-cache`
+  - Hashed files => `max-age=31536000, immutable`
+- Improved overall client-side and localhost load performance.
+
+- Link: [Browser cache rules](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs?file=a419538ddb09d617809b78f68696e80833c4051b#a419538ddb09d617809b78f68696e80833c4051b_34_48)
+
+###### Server Memory Cache
+
+- Lead: **Talon**
+
+I implemented caching directly to the Express server to reduce the amount of database requests over time. When the server if first started there will be no performance improvements. However, ad users query our routes, the Express server will store those queries and their results in a `Map`. This greatly reduces the overall latency when fetching data. Our dataset is static, so we benefit greatly from caching on the server (as you can see from the below results).
+
+- Added `immigrationCache` and `languageCache` directly into the routes.
+- This change resulted in great optimization and gave the following change in results:
 
 | City      | Avg Pre | Avg Post | Improvement |
 | --------- | ------- | -------- | ----------- |
@@ -96,6 +98,20 @@
 | Vancouver | 43.5ms  | 26ms     | 40%         |
 
 **Average response latency gains: 47.6%!!!**
+
+- Links:
+  - [Immigration Cache](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs?file=aa17feaf687510ece026764aff66e967de9277c4#aa17feaf687510ece026764aff66e967de9277c4_5_5)
+  - [Language Cache](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/merge_requests/52/diffs?file=18969587d68ed0c6391d0b1a9f5bb28dcfe30e9b#18969587d68ed0c6391d0b1a9f5bb28dcfe30e9b_5_5)
+  - [Before/after proof](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2897619430)
+
+###### Express Compression
+
+- Lead: **Talon**
+
+I added the compression middleware to the Express application, greatly reducing the payload size of fetched content. I had no idea that browsers could decompress content so quickly. It was such a simple change, for such great performance improvement. I was able to confirm that compression was working properly, but checking the response headers and looking for the `Content-Encoding` header. You could also tell because the payloads themselves were smaller!
+
+- Links:
+  - [Code](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/blob/staging/server/app.mjs?ref_type=heads#L43)
 
 #### switched from plotly to chart.js
 
