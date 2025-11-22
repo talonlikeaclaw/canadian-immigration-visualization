@@ -210,5 +210,24 @@ I added the compression middleware to the Express application, greatly reducing 
 
 ## Conclusion
 
-<!-- Summarize which changes had the greatest impact, note any surprising results and list 2-3 main
-things you learned from this experience. -->
+### Greatest Impact
+
+- Switching from Plotly to Chart.js.
+  - Plotly was very heavy and significantly increased the size of our JavaScript bundle.
+  - Plotly also caused rendering issues, occasionally displaying elements in unexpected places.
+- Preloading images.
+  - Preloading images improved the performance score and overall user experience by ensuring the `HeroSection` images appeared as quickly as possible.
+  - Preloading the `Map` images also prevented flickering when scrolling through city sections, further improving the user experience.
+- Adding compression to the Express server.
+
+### Surprising Results
+
+- Compression had a major impact on performance, despite being such a simple addition to the codebase.
+- Lazy loading did not behave as intuitively as we expected.
+
+### What We Learned
+
+- Vite’s Rollup is highly effective at optimizing bundle sizes. However, trying to optimize too much can sometimes interfere with the bundler. Understanding how it works helps maximize the impact of the optimizations.
+- It’s easy to spend hours chasing performance improvements only to discover negligible gains, or end up reverting those changes. That’s okay. What matters most is documenting *before* and *after* results and **learning** from the process.
+- Choose project dependencies carefully. Some libraries can greatly inflate bundle size and negatively affect performance and give you headaches.
+- Improving user experience can require trade-offs, such as slightly increasing initial load time for smoother interactions within the app.
