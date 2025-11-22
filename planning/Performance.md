@@ -146,7 +146,11 @@
 
 #### Summary of Changes
 
-##### Optimizing Frontend
+##### Optimizing 
+- The overall goal of these changes was to get as close to 100 on all the Google Lighthouse categories
+- The good thing is that most of the improvements I had to do were just low hanging fruit like using alt attributes for images, compressing our images, etc.
+- Preloading the images that show up in our hero section (above the fold) made the number for the Performance category go up.
+- Unfortunately, the thing I could not fix per se, is that the images in the hero section (blue waves and white curve) do not maintain the same aspect ratio on both desktop and mobile views. This is done intentionally for stylistic reasons. Since I wanted the blue waves to cover the entire 'above the fold' view, the ratio could not be maintained on smaller screens. This aspect gets flagged by the lighthouse report (Best Practices)
 
 - [Before any changes for frontend](FinalChangesReport.md#before)
 - [Compressed blue wave image](FinalChangesReport.md#compressed_bluewave)
