@@ -71,7 +71,7 @@
 
 - Lead: **Talon**
 
-I added explicit browser cache controls to benefit from Vite rollup's hashed file names. I used an example provided in the lecture notes to set the hashed files to cache for a year, and I also added the `immutable` tag because the hashed files are `immutable` in nature. This means that the browser knows that it will never have to ping the server about those files every again because the file name will change if the context changes. While caching doesn't improve performance the first time a user visits our web app, any subsequent visits will see nice performance bumps as the browser servers the documents from its cache.
+I added explicit browser cache controls to benefit from Vite rollup's hashed file names. I used an example provided in the lecture notes to set the hashed files to cache for a year, and I also added the `immutable` tag because the hashed files are `immutable` in nature. This means that the browser knows that it will never have to ping the server about those files ever again because the file name will change if the context changes. While caching doesn't improve performance the first time a user visits our web app, any subsequent visits will see nice performance bumps as the browser servers the documents from its cache.
 
 - Implemented browser caching rules for `client/dist`:
   - `index.html` => `no-cache`
@@ -84,7 +84,7 @@ I added explicit browser cache controls to benefit from Vite rollup's hashed fil
 
 - Lead: **Talon**
 
-I implemented caching directly to the Express server to reduce the amount of database requests over time. When the server if first started there will be no performance improvements. However, ad users query our routes, the Express server will store those queries and their results in a `Map`. This greatly reduces the overall latency when fetching data. Our dataset is static, so we benefit greatly from caching on the server (as you can see from the below results).
+I implemented caching directly to the Express server to reduce the amount of database requests over time. When the server is first started there will be no performance improvements. However, as users query our routes, the Express server will store those queries and their results in a `Map`. This greatly reduces the overall latency when fetching data. Our dataset is static, so we benefit greatly from caching on the server (as you can see from the below results).
 
 - Added `immigrationCache` and `languageCache` directly into the routes.
 - This change resulted in great optimization and gave the following change in results:
