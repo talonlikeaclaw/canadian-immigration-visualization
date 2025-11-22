@@ -99,7 +99,11 @@
 
 #### switched from plotly to chart.js
 
-- biggest difference with this change was the size js file in dist/assets/index-SomeHash.js which went from 5095.92kb (1535.73 compressed) to 375.19 kb (123.83 compressed)
+- The biggest difference with this change was the size js file in dist/assets/index-SomeHash.js which went from 5095.92kb (1535.73 compressed) to 375.19 kb (123.83 compressed)
+- Initially, I was working on the front-end trying to fix a layout issue. After sending a few hours trying to find the root cause and fixing it, Talon suggested that I try Chart.js.
+- And that's what motived the switch from Plotly.js to Chart.js
+- Only after I fixed my layout shift issue and build the project that I realized the size of the `dist/assets/index-SomeHash.js` went down significantly.
+- This was one of the first optimization changes we did with out even realizing it.
 
 - Lead: **Melania**
 - [with plotly](https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar/-/issues/65#note_2893449310)
