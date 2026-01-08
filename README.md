@@ -4,9 +4,14 @@
 
 This project explores Canadian immigration patterns in major cities, with a focus on the languages spoken by immigrant communities. By combining demographic and linguistic datasets, it provides a visual narrative of how immigrant communities cluster across Canada's key urban centers, highlighting the unique cultural and linguistic profiles of each city.
 
+### Contributors
+
+- Talon Dunbar
+- Melania Chiru
+- Habib Safari
+
 ### Live Deployment
 
-- AWS: http://16.52.46.206/
 - Render: https://five20-project-safari-chiru-dunbar.onrender.com/
 
 ### Technologies Used
@@ -56,9 +61,10 @@ This project explores Canadian immigration patterns in major cities, with a focu
 ### 1. Clone the Repository
 
 ```bash
-git clone https://gitlab.com/dawson-cst-cohort-2026/520/section3/teams/teamhabibmelaniatalon/520-project-safari-chiru-dunbar.git
-cd 520-project-safari-chiru-dunbar
+git clone git@github.com:talonlikeaclaw/canadian-immigration-visualization.git
+cd canadian-immigration-visualization
 ```
+
 ---
 
 ### 2. Install Dependencies
